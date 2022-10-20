@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Datagrid,
   DateField,
@@ -7,6 +8,7 @@ import {
   Edit,
   SimpleForm,
   TextInput,
+  Create,
 } from 'react-admin';
 
 export const FoodCategoryList = () => (
@@ -23,9 +25,14 @@ export const FoodCategoryList = () => (
 export const FoodCategoryEdit = () => (
   <Edit>
     <SimpleForm>
-      <DateInput source="created_at" />
       <TextInput source="name" />
-      <DateInput source="updated_at" />
     </SimpleForm>
   </Edit>
+);
+export const FoodCategoryCreate = () => (
+  <Create>
+    <SimpleForm>
+      <TextInput source="name" />
+    </SimpleForm>
+  </Create>
 );
