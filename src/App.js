@@ -20,6 +20,7 @@ import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -158,7 +159,7 @@ const App = () => {
       />
       <Resource
         name="nutritionist"
-        icon={AddchartIcon}
+        icon={LocalPharmacyIcon}
         list={NutritionistList}
         edit={NutritionistEdit}
         create={NutritionistCreate}
