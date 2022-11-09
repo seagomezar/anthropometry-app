@@ -13,6 +13,7 @@ import UserIcon from '@mui/icons-material/Group';
 import AddchartIcon from '@mui/icons-material/Addchart';
 import StraightenIcon from '@mui/icons-material/Straighten';
 
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -96,7 +97,7 @@ const App = () => {
       />
       <Resource
         name="food_category"
-        icon={AddchartIcon}
+        icon={MenuBookIcon}
         list={FoodCategoryList}
         edit={FoodCategoryEdit}
         create={GoalCreate}
