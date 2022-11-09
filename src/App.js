@@ -19,6 +19,7 @@ import NextPlanIcon from '@mui/icons-material/NextPlan';
 import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import KitchenIcon from '@mui/icons-material/Kitchen';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -150,7 +151,7 @@ const App = () => {
       />
       <Resource
         name="eating_moment"
-        icon={AddchartIcon}
+        icon={CalendarMonthIcon}
         list={EatingMomentList}
         edit={EatingMomentEdit}
         create={EatingMomentCreate}
