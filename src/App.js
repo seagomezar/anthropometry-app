@@ -12,7 +12,7 @@ import { UserCreate, UserEdit, UserList } from './Components/Users';
 import UserIcon from '@mui/icons-material/Group';
 import AddchartIcon from '@mui/icons-material/Addchart';
 import StraightenIcon from '@mui/icons-material/Straighten';
-
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
@@ -104,7 +104,7 @@ const App = () => {
       />
       <Resource
         name="food"
-        icon={AddchartIcon}
+        icon={LocalDiningIcon}
         list={FoodList}
         edit={FoodEdit}
         create={FoodCreate}
