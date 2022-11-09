@@ -18,6 +18,7 @@ import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
+import KitchenIcon from '@mui/icons-material/Kitchen';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -142,7 +143,7 @@ const App = () => {
       />
       <Resource
         name="food_has_food_category"
-        icon={AddchartIcon}
+        icon={KitchenIcon}
         list={FoodHasFoodCategoryList}
         edit={FoodHasFoodcategoryEdit}
         create={FoodHasEatingMomentCreate}
