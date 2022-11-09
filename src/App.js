@@ -14,6 +14,7 @@ import AddchartIcon from '@mui/icons-material/Addchart';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -111,7 +112,7 @@ const App = () => {
       />
       <Resource
         name="goal"
-        icon={AddchartIcon}
+        icon={SportsScoreIcon}
         list={GoalList}
         edit={GoalEdit}
         create={GoalCreate}
