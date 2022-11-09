@@ -14,6 +14,10 @@ import AddchartIcon from '@mui/icons-material/Addchart';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SportsScoreIcon from '@mui/icons-material/SportsScore';
+import NextPlanIcon from '@mui/icons-material/NextPlan';
+import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
+import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -111,27 +115,27 @@ const App = () => {
       />
       <Resource
         name="goal"
-        icon={AddchartIcon}
+        icon={SportsScoreIcon}
         list={GoalList}
         edit={GoalEdit}
         create={GoalCreate}
       />
       <Resource
         name="plan"
-        icon={AddchartIcon}
+        icon={NextPlanIcon}
         list={PlanList}
         edit={PlanEdit}
         create={PlanCreate}
       />
       <Resource
         name="presciribed_food"
-        icon={AddchartIcon}
+        icon={MedicationLiquidIcon}
         list={ListGuesser}
         edit={EditGuesser}
       />
       <Resource
         name="food_has_eating_moment"
-        icon={AddchartIcon}
+        icon={AlarmOnIcon}
         list={FoodHasEatingMomentList}
         edit={FoodHasEatingMomentEdit}
         create={FoodHasEatingMomentCreate}
