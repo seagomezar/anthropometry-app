@@ -17,6 +17,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
+import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -134,7 +135,7 @@ const App = () => {
       />
       <Resource
         name="food_has_eating_moment"
-        icon={AddchartIcon}
+        icon={AlarmOnIcon}
         list={FoodHasEatingMomentList}
         edit={FoodHasEatingMomentEdit}
         create={FoodHasEatingMomentCreate}
