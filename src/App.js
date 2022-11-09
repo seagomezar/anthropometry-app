@@ -16,6 +16,7 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import NextPlanIcon from '@mui/icons-material/NextPlan';
+import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -127,7 +128,7 @@ const App = () => {
       />
       <Resource
         name="presciribed_food"
-        icon={AddchartIcon}
+        icon={MedicationLiquidIcon}
         list={ListGuesser}
         edit={EditGuesser}
       />
