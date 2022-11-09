@@ -11,6 +11,8 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { UserCreate, UserEdit, UserList } from './Components/Users';
 import UserIcon from '@mui/icons-material/Group';
 import AddchartIcon from '@mui/icons-material/Addchart';
+import StraightenIcon from '@mui/icons-material/Straighten';
+
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -87,7 +89,7 @@ const App = () => {
       />
       <Resource
         name="measurement"
-        icon={AddchartIcon}
+        icon={StraightenIcon}
         list={MeasurementList}
         edit={MeasurementEdit}
         create={MeasurementCreate}
