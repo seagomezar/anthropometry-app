@@ -11,6 +11,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { UserCreate, UserEdit, UserList } from './Components/Users';
 import UserIcon from '@mui/icons-material/Group';
 import AddchartIcon from '@mui/icons-material/Addchart';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import {
@@ -94,7 +95,7 @@ const App = () => {
       />
       <Resource
         name="food_category"
-        icon={AddchartIcon}
+        icon={MenuBookIcon}
         list={FoodCategoryList}
         edit={FoodCategoryEdit}
         create={GoalCreate}
