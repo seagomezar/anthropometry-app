@@ -29,6 +29,14 @@ export const es = {
         updated_at: 'Actualizado'
       }
     },
+    goal: {
+      name: "meta |||| metas",
+      fields: {
+        name: 'nombre',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    }
   },
 };
 
