@@ -20,7 +20,15 @@ export const es = {
     },
     measurement: {
       name: "Medición |||| Mediciones"
-    }
+    },
+    food_category: {
+      name: "Categoria |||| Categorias",
+      fields: {
+        name: 'nombre',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    },
   },
 };
 
