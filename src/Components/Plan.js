@@ -19,9 +19,9 @@ export const PlanList = () => (
       <TextField source="id" />
       <TextField source="comments" />
       <DateField source="created_at" />
-      <ReferenceField source="goal_id" reference="goals" />
+      <ReferenceField source="goal_id" reference="goal" />
       <DateField source="updated_at" />
-      <ReferenceField source="user_id" reference="users" />
+      <ReferenceField source="user_id" reference="user" />
     </Datagrid>
   </List>
 );
@@ -30,8 +30,8 @@ export const PlanEdit = () => (
   <Edit>
     <SimpleForm>
       <TextInput source="comments" />
-      <ReferenceInput source="goal_id" reference="goals" />
-      <ReferenceInput source="user_id" reference="users" />
+      <ReferenceInput source="goal_id" reference="goal" />
+      <ReferenceInput source="user_id" reference="user" />
     </SimpleForm>
   </Edit>
 );
@@ -39,8 +39,8 @@ export const PlanCreate = () => (
   <Create>
     <SimpleForm>
       <TextInput source="comments" />
-      <ReferenceInput source="goal_id" reference="goals" />
-      <ReferenceInput source="user_id" reference="users" />
+      <ReferenceInput source="goal_id" reference="goal" />
+      <ReferenceInput source="user_id" reference="user" />
     </SimpleForm>
   </Create>
 );

@@ -20,7 +20,7 @@ export const FoodHasEatingMomentList = () => (
       <DateField source="created_at" />
       <ReferenceField
         source="eating_moment_id"
-        reference="eating_moments"
+        reference="eating_moment"
       />
       <ReferenceField source="food_id" reference="food" />
       <DateField source="updated_at" />
