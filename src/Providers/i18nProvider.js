@@ -12,8 +12,15 @@ export const es = {
       fields: {
         firstname: 'Nombre',
         lastname: 'Apellido',
+        phone: 'Teléfono',
+        address: 'Dirección',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
       },
     },
+    measurement: {
+      name: "Medición |||| Mediciones"
+    }
   },
 };
 
