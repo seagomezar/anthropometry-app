@@ -57,7 +57,6 @@ import {
 } from './Components/Nutritionist';
 import { MyAppBar } from './Components/MyAppBar';
 
-/*
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
   cache: new InMemoryCache(),
@@ -66,11 +65,10 @@ const myClientWithAuth = new ApolloClient({
       'CLc8hYc2WXlT803cRh718KIV6PpHECfEChKn66Aa68Am7mxg05gaBtYYwkyrFIhk',
   },
 });
-*/
-const myClientWithAuth = new ApolloClient({
+/* const myClientWithAuth = new ApolloClient({
   uri: 'http://localhost:8080/v1/graphql',
   cache: new InMemoryCache(),
-});
+}); */
 
 const App = () => {
   const [dataProvider, setDataProvider] = useState(null);
