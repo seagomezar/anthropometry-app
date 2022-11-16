@@ -36,6 +36,16 @@ export const es = {
         created_at: 'Creado',
         updated_at: 'Actualizado'
       }
+    },
+    plan: {
+      name: "plan |||| planes",
+      fields: {
+        comments: 'comentario',
+        goal_id: 'meta',
+        user_id: 'usuario',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
     }
   },
 };
