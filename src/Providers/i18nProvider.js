@@ -99,6 +99,15 @@ export const es = {
         created_at: 'Creado',
         updated_at: 'Actualizado'
       }
+    },
+    food_has_food_category:{
+      name: "Categoria de alimento |||| Categoria de alimentos",
+      fields:{
+        food_id: 'Alimento',
+        food_category_id: 'Categoria',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
     }
   },
 };
