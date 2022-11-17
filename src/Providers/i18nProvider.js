@@ -113,7 +113,7 @@ export const es = {
       name: 'Momento |||| Momentos',
       fields:{
         name: 'Nombre',
-        time: 'Hora',
+        time: 'Horas',
         created_at: 'Creado',
         updated_at: 'Actualizado'
       }
