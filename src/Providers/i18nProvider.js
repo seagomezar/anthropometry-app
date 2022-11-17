@@ -19,7 +19,12 @@ export const es = {
       },
     },
     measurement: {
-      name: "Medición |||| Mediciones"
+      name: "Medición |||| Mediciones",
+      fields: {
+        dm_elbow: 'Diametro Codo (cms)',
+        plg_armpit: "Pliege Axila (mm)",
+        prm_calf: "Perímetro Pantorrilla (cms)"
+      }
     },
     food_category: {
       name: "Categoria |||| Categorias",
