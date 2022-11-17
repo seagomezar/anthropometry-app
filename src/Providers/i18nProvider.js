@@ -26,7 +26,41 @@ export const es = {
         prm_calf: "Perímetro Pantorrilla (cms)"
       }
     },
-
+    food_category: {
+      name: "Categoria |||| Categorias",
+      fields: {
+        name: 'Nombre',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    },
+    goal: {
+      name: "Meta |||| Metas",
+      fields: {
+        name: 'Nombre',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    },
+    plan: {
+      name: "Plan |||| Planes",
+      fields: {
+        comments: 'Comentario',
+        goal_id: 'Meta',
+        user_id: 'Usuario',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    },
+    food_has_eating_moment: {
+      name: "Momento de comida |||| Momento de comidas ",
+      fields: {
+        eating_moment_id: 'Momento',
+        food_id: 'Alimento',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    }
   },
 };
 
