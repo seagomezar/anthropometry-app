@@ -33,7 +33,7 @@ export const es = {
         plg_supraspinal: 'Plige supraspinal (mm)',
         plg_thigh: 'Pliege muslo (mm)',
         plg_triceps:'Pliege triceps(mm)',
-        prm_arm: 'perimetro brazo (cms)',
+        prm_arm: 'Perimetro brazo (cms)',
         prm_calf: 'Perímetro Pantorrilla (cms)',
         prm_chest: 'Perimetro pecho (cms)',
         prm_hip: 'Perimetro cadera (cms)',
@@ -105,6 +105,15 @@ export const es = {
       fields:{
         food_id: 'Alimento',
         food_category_id: 'Categoria',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    },
+    eating_moment:{
+      name: 'Momento |||| Momentos',
+      fields:{
+        name: 'Nombre',
+        time: 'Hora',
         created_at: 'Creado',
         updated_at: 'Actualizado'
       }
