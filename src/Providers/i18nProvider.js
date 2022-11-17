@@ -117,7 +117,20 @@ export const es = {
         created_at: 'Creado',
         updated_at: 'Actualizado'
       }
-    }
+    },
+    nutritionist:{
+      name: 'nutricionista |||| nutricionistas',
+      fields:{
+        address: 'Dirección',
+        email: 'correo',
+        firstname: 'Nombre',
+        phone: 'Teléfono',
+        lastname: 'Apellido',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    },
+    
   },
 };
 
