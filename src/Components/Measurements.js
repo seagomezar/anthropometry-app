@@ -106,6 +106,12 @@ export const MeasurementCreate = () => (
     <SimpleForm sx={{ maxWidth: 500 }}>
       <NumberInput source="control" />
       <Typography variant="h6" gutterBottom>
+        Mediciones
+      </Typography>
+      <NumberInput source="weight" />
+      <NumberInput source="height" />
+
+      <Typography variant="h6" gutterBottom>
         Pliegues (m.m)
       </Typography>
       <NumberInput source="plg_abdominal" />
@@ -141,15 +147,11 @@ export const MeasurementCreate = () => (
 
       <DateInput source="creatinine" />
       <NumberInput source="fitness_level" />
-      <NumberInput source="height" />
       <TextInput source="id" />
-     
-      
       <TextInput source="t3_t4" />
       <TextInput source="triglycerides" />
       <TextInput source="uric_acid" />
       <ReferenceInput source="user_id" reference="user" />
-      <NumberInput source="weight" />
     </SimpleForm>
   </Create>
 );
