@@ -60,6 +60,20 @@ export const es = {
         created_at: 'Creado',
         updated_at: 'Actualizado'
       }
+    },
+    food:{
+      name: "Alimento |||| Alimentos",
+      fields:{
+        calories: 'Calorías',
+        chos: 'Carbohidratos',
+        description: 'Descripción',
+        fat: 'grasa',
+        measure_unit: 'Unidad de medida',
+        protein: 'proteína',
+        quantity: 'cantidad',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
     }
   },
 };
