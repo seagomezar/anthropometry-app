@@ -17,12 +17,12 @@ export const NutritionistList = () => (
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="address" />
-      <DateField source="created_at" />
       <EmailField source="email" />
       <TextField source="firstname" />
       <TextField source="lastname" />
       <TextField source="phone" />
       <DateField source="updated_at" />
+      <DateField source="created_at" />
     </Datagrid>
   </List>
 );
@@ -31,12 +31,12 @@ export const NutritionistEdit = () => (
   <Edit>
     <SimpleForm>
       <TextInput source="address" />
-      <DateInput source="created_at" />
       <TextInput source="email" />
       <TextInput source="firstname" />
       <TextInput source="lastname" />
       <TextInput source="phone" />
       <DateInput source="updated_at" />
+      <DateInput source="created_at" />
     </SimpleForm>
   </Edit>
 );

@@ -19,7 +19,6 @@ export const FoodList = () => (
       <TextField source="id" />
       <NumberField source="calories" />
       <NumberField source="chos" />
-      <DateField source="created_at" />
       <TextField source="description" />
       <NumberField source="fat" />
       <TextField source="measure_unit" />
@@ -27,6 +26,7 @@ export const FoodList = () => (
       <NumberField source="quantity" />
       {/* TODO: Mover los updated at y created_at al final de cada tabla*/}
       <DateField source="updated_at" />
+      <DateField source="created_at" />
     </Datagrid>
   </List>
 );

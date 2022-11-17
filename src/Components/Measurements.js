@@ -65,8 +65,7 @@ export const MeasurementList = () => {
 export const MeasurementEdit = () => (
   <Edit>
     <SimpleForm>
-      <NumberInput source="control" />
-      <DateInput source="created_at" />
+      <NumberInput source="control" /> 
       <DateInput source="creatinine" />
       <NumberInput source="dm_elbow" />
       <NumberInput source="dm_knee" />
@@ -91,12 +90,13 @@ export const MeasurementEdit = () => (
       <NumberInput source="prm_waist" />
       <TextInput source="t3_t4" />
       <TextInput source="triglycerides" />
-      <DateInput source="updated_at" />
       <TextInput source="uric_acid" />
       <ReferenceInput source="user_id" reference="user" />
       <NumberInput source="weight" />
       <NumberInput source="x" />
       <NumberInput source="y" />
+      <DateInput source="created_at" />
+      <DateInput source="updated_at" />
     </SimpleForm>
   </Edit>
 );
