@@ -92,10 +92,10 @@ export const es = {
         calories: 'Calorías',
         chos: 'Carbohidratos',
         description: 'Descripción',
-        fat: 'grasa',
+        fat: 'Grasa',
         measure_unit: 'Unidad de medida',
-        protein: 'proteína',
-        quantity: 'cantidad',
+        protein: 'Proteína',
+        quantity: 'Cantidad',
         created_at: 'Creado',
         updated_at: 'Actualizado'
       }
@@ -113,16 +113,16 @@ export const es = {
       name: 'Momento |||| Momentos',
       fields:{
         name: 'Nombre',
-        time: 'Horas',
+        time: 'Hora',
         created_at: 'Creado',
         updated_at: 'Actualizado'
       }
     },
     nutritionist:{
-      name: 'nutricionista |||| nutricionistas',
+      name: 'Nutricionista |||| Nutricionistas',
       fields:{
         address: 'Dirección',
-        email: 'correo',
+        email: 'Correo Electronico',
         firstname: 'Nombre',
         phone: 'Teléfono',
         lastname: 'Apellido',
@@ -130,7 +130,18 @@ export const es = {
         updated_at: 'Actualizado'
       }
     },
-    
+    prescribed_food:{
+      name:'Alimentos en plan |||| Alimentos en planes',
+      fields:{
+        eating_moment_name:'eating_moment_name',
+        eating_moment_time:'eating_moment_time',
+        food_id:'Alimento',
+        plan_id:'plan',
+        prescribed_quantity:'Cantidad Prescrita',
+        created_at: 'Creado',
+        updated_at: 'Actualizado'
+      }
+    }
   },
 };
 
