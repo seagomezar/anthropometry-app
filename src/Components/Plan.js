@@ -18,10 +18,10 @@ export const PlanList = () => (
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="comments" />
-      <DateField source="created_at" />
       <ReferenceField source="goal_id" reference="goal" />
-      <DateField source="updated_at" />
       <ReferenceField source="user_id" reference="user" />
+      <DateField source="created_at" /> 
+      <DateField source="updated_at" />
     </Datagrid>
   </List>
 );

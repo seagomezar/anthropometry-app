@@ -65,8 +65,7 @@ export const MeasurementList = () => {
 export const MeasurementEdit = () => (
   <Edit>
     <SimpleForm>
-      <NumberInput source="control" />
-      <DateInput source="created_at" />
+      <NumberInput source="control" /> 
       <DateInput source="creatinine" />
       <NumberInput source="dm_elbow" />
       <NumberInput source="dm_knee" />
@@ -91,12 +90,13 @@ export const MeasurementEdit = () => (
       <NumberInput source="prm_waist" />
       <TextInput source="t3_t4" />
       <TextInput source="triglycerides" />
-      <DateInput source="updated_at" />
       <TextInput source="uric_acid" />
       <ReferenceInput source="user_id" reference="user" />
       <NumberInput source="weight" />
       <NumberInput source="x" />
       <NumberInput source="y" />
+      <DateInput source="created_at" />
+      <DateInput source="updated_at" />
     </SimpleForm>
   </Edit>
 );
@@ -105,6 +105,12 @@ export const MeasurementCreate = () => (
   <Create>
     <SimpleForm sx={{ maxWidth: 500 }}>
       <NumberInput source="control" />
+      <Typography variant="h6" gutterBottom>
+        Mediciones
+      </Typography>
+      <NumberInput source="weight" />
+      <NumberInput source="height" />
+
       <Typography variant="h6" gutterBottom>
         Pliegues (m.m)
       </Typography>
@@ -141,15 +147,11 @@ export const MeasurementCreate = () => (
 
       <DateInput source="creatinine" />
       <NumberInput source="fitness_level" />
-      <NumberInput source="height" />
       <TextInput source="id" />
-     
-      
       <TextInput source="t3_t4" />
       <TextInput source="triglycerides" />
       <TextInput source="uric_acid" />
       <ReferenceInput source="user_id" reference="user" />
-      <NumberInput source="weight" />
     </SimpleForm>
   </Create>
 );

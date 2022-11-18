@@ -19,6 +19,7 @@ export const EatingMomentList = () => (
       <TextField source="name" />
       <TextField source="time" />
       <DateField source="updated_at" />
+      <DateField source="created_at" />
     </Datagrid>
   </List>
 );

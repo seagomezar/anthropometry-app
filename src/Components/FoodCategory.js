@@ -15,9 +15,9 @@ export const FoodCategoryList = () => (
   <List>
     <Datagrid rowClick="edit">
       <TextField source="id" />
-      <DateField source="created_at" />
       <TextField source="name" />
       <DateField source="updated_at" />
+      <DateField source="created_at" />
     </Datagrid>
   </List>
 );

@@ -17,13 +17,13 @@ export const FoodHasFoodCategoryList = () => (
   <List>
     <Datagrid rowClick="edit">
       <TextField source="id" />
-      <DateField source="created_at" />
       <ReferenceField
         source="food_category_id"
         reference="food_category"
       />
       <ReferenceField source="food_id" reference="food" />
       <DateField source="updated_at" />
+      <DateField source="created_at" />
     </Datagrid>
   </List>
 );
