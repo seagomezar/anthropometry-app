@@ -22,9 +22,11 @@ import {
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useMediaQuery } from '@mui/material';
+import { useTranslate } from 'react-admin';
 
 const UserTitle = () => {
   const record = useRecordContext();
+  
   return (
     <span>
       User {record ? `"${record.firstname} ${record.lastname}"` : ''}
@@ -87,47 +89,49 @@ export const UserEdit = () => (
 
 // TODO: Para los usuarios eliminar el campo image y anadir el campo birthday, Recuerda actualizar las tablas y formularios
 
-export const UserCreate = () => (
-  <Create>
-    <SimpleForm sx={{ maxWidth: 500 }}>
-      <Typography variant="h6" gutterBottom>
-        Identity
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <TextInput source="firstname" isRequired fullWidth />
-        </Box>
-        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-          <TextInput source="lastname" isRequired fullWidth />
-        </Box>
+export const UserCreate = () => {
+  const translate = useTranslate();
+  return <Create>
+  <SimpleForm sx={{ maxWidth: 500 }}>
+    <Typography variant="h6" gutterBottom>
+    {translate('myroot.identity')}
+    </Typography>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <TextInput source="firstname" isRequired fullWidth />
       </Box>
-      <TextInput type="email" source="email" isRequired fullWidth />
-      <DateInput source="birthday" />
-      <Separator />
-
-      <Typography variant="h6" gutterBottom>
-        Address & Phone
-      </Typography>
-      <TextInput
-        source="address"
-        multiline
-        fullWidth
-        helperText={false}
-      />
-      <TextInput source="phone" fullWidth helperText={false} />
-      <Separator />
-
-      <Typography variant="h6" gutterBottom>
-        Password
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <PasswordInput source="password" fullWidth />
-        </Box>
-        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-          <PasswordInput source="confirm_password" fullWidth />
-        </Box>
+      <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+        <TextInput source="lastname" isRequired fullWidth />
       </Box>
-    </SimpleForm>
-  </Create>
-);
+    </Box>
+    <TextInput type="email" source="email" isRequired fullWidth />
+    <DateInput source="birthday" />
+    <Separator />
+
+    <Typography variant="h6" gutterBottom>
+    {translate('myroot.addressAndPhone')}
+    </Typography>
+    <TextInput
+      source="address"
+      multiline
+      fullWidth
+      helperText={false}
+    />
+    <TextInput source="phone" fullWidth helperText={false} />
+    <Separator />
+
+    <Typography variant="h6" gutterBottom>
+    {translate('myroot.password')}
+    </Typography>
+    <Box display={{ xs: 'block', sm: 'flex' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <PasswordInput source="password" fullWidth />
+      </Box>
+      <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+        <PasswordInput source="confirm_password" fullWidth />
+      </Box>
+    </Box>
+  </SimpleForm>
+</Create>
+}
+  

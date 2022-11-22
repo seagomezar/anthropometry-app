@@ -5,6 +5,11 @@ import spanishMessages from '@blackbox-vision/ra-language-spanish';
 
 export const es = {
   ...spanishMessages,
+  myroot: {
+    password: 'Contraseña',
+    addressAndPhone: 'Dirección & Teléfono',
+    identity: 'Identidad'
+  },
   resources: {
     // TODO: Completar los nombres de todos
     user: {
@@ -17,6 +22,8 @@ export const es = {
         birthday: 'Fecha De Nacimiento',
         created_at: 'Creado',
         updated_at: 'Actualizado',
+        password: 'Contraseña',
+        confirm_password: 'Confirmar Contraseña'
       },
     },
     measurement: {
