@@ -56,7 +56,6 @@ export const UserList = () => {
           <TextField source="firstname" />
           <TextField source="lastname" />
           <EmailField source="email" />
-          {/*<ImageField source="image" title="firstname" />*/}
           <TextField source="phone" />
           <TextField source="address" />
           <TextField source="birthday" />
@@ -78,7 +77,6 @@ export const UserEdit = () => (
       <TextInput source="address" />
       <TextInput source="email" />
       <TextInput source="firstname" />
-      {/*<TextInput source="image" />*/}
       <TextInput source="lastname" />
       <TextInput source="password" />
       <TextInput source="phone" />

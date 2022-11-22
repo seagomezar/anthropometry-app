@@ -14,7 +14,7 @@ export const es = {
         lastname: 'Apellido',
         phone: 'Teléfono',
         address: 'Dirección',
-        birthday: 'fecha de nacimiento',
+        birthday: 'Fecha De Nacimiento',
         created_at: 'Creado',
         updated_at: 'Actualizado',
       },
