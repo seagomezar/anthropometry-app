@@ -55,7 +55,6 @@ import {
   NutritionistEdit,
   NutritionistList,
 } from './Components/Nutritionist';
-import { MyAppBar } from './Components/MyAppBar';
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -136,6 +135,7 @@ const App = () => {
         list={GoalList}
         edit={GoalEdit}
         create={GoalCreate}
+        recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
         name="plan"
@@ -143,6 +143,7 @@ const App = () => {
         list={PlanList}
         edit={PlanEdit}
         create={PlanCreate}
+        recordRepresentation={(record) => `${record.name}`}
       />
       {/* TODO: Arreglar este con la informacion correcta*/}
       <Resource
@@ -171,6 +172,7 @@ const App = () => {
         list={EatingMomentList}
         edit={EatingMomentEdit}
         create={EatingMomentCreate}
+        recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
         name="nutritionist"
