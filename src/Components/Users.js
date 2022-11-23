@@ -85,6 +85,7 @@ export const UserEdit = () => (
           <TextInput source="lastname" isRequired fullWidth />
         </Box>
       </Box>
+      <TextInput type="genre" source="genre" isRequired fullWidth />
       <TextInput type="email" source="email" isRequired fullWidth />
       <DateInput source="birthday" />
       <Separator />
@@ -132,6 +133,7 @@ export const UserCreate = () => (
           <TextInput source="lastname" isRequired fullWidth />
         </Box>
       </Box>
+      <TextInput type="genre" source="genre" isRequired fullWidth />
       <TextInput type="email" source="email" isRequired fullWidth />
       <DateInput source="birthday" />
       <Separator />
