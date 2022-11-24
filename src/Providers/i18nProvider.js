@@ -20,6 +20,7 @@ export const es = {
         phone: 'Teléfono',
         address: 'Dirección',
         birthday: 'Fecha De Nacimiento',
+        genre: 'Genero',
         created_at: 'Creado',
         updated_at: 'Actualizado',
         password: 'Contraseña',
