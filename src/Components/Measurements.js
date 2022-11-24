@@ -159,7 +159,9 @@ export const MeasurementCreate = () => (
           <NumberInput source="plg_armpit" fullWidth />
         </Box>
       </Box>
-      <NumberInput source="plg_calf" fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <NumberInput source="plg_calf" fullWidth />
+      </Box>
       <NumberInput source="plg_chest" />
       <NumberInput source="plg_subscapular" />
       <NumberInput source="plg_suprailiac" />
