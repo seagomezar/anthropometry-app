@@ -117,8 +117,6 @@ export const MeasurementEdit = () => (
       <TextInput source="triglycerides" />
       <TextInput source="uric_acid" />
       <ReferenceInput source="user_id" reference="user" />
-      <DateInput source="created_at" />
-      <DateInput source="updated_at" />
     </SimpleForm>
   </Edit>
 );
@@ -129,8 +127,7 @@ export const MeasurementCreate = () => (
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
           <ReferenceInput
-            source="user_id"
-            reference="user"
+            source="user_id" reference="user"
             fullWidth
           />
         </Box>
