@@ -58,6 +58,7 @@ export const es = {
         triglycerides: 'Triglicérios',
         uric_acid: 'Ácido úrico',
         user_id: 'Usuario',
+        sport:'Deporte'
       },
     },
     food_category: {
