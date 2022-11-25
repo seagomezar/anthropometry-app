@@ -48,6 +48,7 @@ export const MeasurementList = () => {
           <TextField source="id" />
           <ReferenceField source="user_id" reference="user" />
           <NumberField source="control" />
+          <NumberField source="sport" />
           <NumberField source="height" />
           <NumberField source="weight" />
           <DateField source="created_at" />
@@ -64,6 +65,7 @@ export const MeasurementEdit = () => (
   <Edit>
     <SimpleForm>
       <NumberInput source="control" />
+      <NumberField source="sport" />
       <DateInput source="created_at" />
       <DateInput source="creatinine" />
       <NumberInput source="dm_elbow" />
@@ -103,6 +105,7 @@ export const MeasurementCreate = () => (
   <Create>
     <SimpleForm>
       <NumberInput source="control" />
+      <NumberField source="sport" />
       <DateInput source="created_at" />
       <DateInput source="creatinine" />
       <NumberInput source="dm_elbow" />
