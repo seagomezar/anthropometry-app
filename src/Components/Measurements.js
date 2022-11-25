@@ -25,8 +25,6 @@ const measurementFilters = [
   <ReferenceInput source="user_id" label="User" reference="user" />,
 ];
 
-const Separator = () => <Box pt="1em" />;
-
 export const MeasurementList = () => {
   const isSmall = useMediaQuery((theme) =>
     theme.breakpoints.down('sm')
@@ -52,6 +50,7 @@ export const MeasurementList = () => {
           <TextField source="id" />
           <ReferenceField source="user_id" reference="user" />
           <NumberField source="control" />
+          <NumberField source="sport" />
           <NumberField source="height" />
           <NumberField source="weight" />
           <DateField source="created_at" />
@@ -66,7 +65,49 @@ export const MeasurementList = () => {
 
 export const MeasurementEdit = () => (
   <Edit>
-    <SimpleForm sx={{ maxWidth: 600 }}>
+    <SimpleForm>
+      <NumberInput source="control" /> 
+      <DateInput source="creatinine" />
+      <NumberInput source="dm_elbow" />
+      <NumberInput source="dm_knee" />
+      <NumberInput source="dm_wrist" />
+      <NumberInput source="fitness_level" />
+      <NumberInput source="height" />
+      <TextInput source="id" />
+      <NumberInput source="plg_abdominal" />
+      <NumberInput source="plg_armpit" />
+      <NumberInput source="plg_calf" />
+      <NumberInput source="plg_chest" />
+      <NumberInput source="plg_subscapular" />
+      <NumberInput source="plg_suprailiac" />
+      <NumberInput source="plg_supraspinal" />
+      <NumberInput source="plg_thigh" />
+      <NumberInput source="plg_triceps" />
+      <NumberInput source="prm_arm" />
+      <NumberInput source="prm_calf" />
+      <NumberInput source="prm_chest" />
+      <NumberInput source="prm_hip" />
+      <NumberInput source="prm_thigh" />
+      <NumberInput source="prm_waist" />
+      <TextInput source="t3_t4" />
+      <TextInput source="triglycerides" />
+      <TextInput source="uric_acid" />
+      <ReferenceInput source="user_id" reference="user" />
+    </SimpleForm>
+  </Edit>
+);
+
+export const MeasurementCreate = () => (
+  <Create>
+    <SimpleForm sx={{ maxWidth: 500 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <ReferenceInput source="user_id" reference="user"fullWidth/>
+     </Box>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <NumberInput source="sport"fullWidth />
+     </Box>
+    </Box>
       <NumberInput source="control" />
       <Typography variant="h6" gutterBottom>
         Mediciones
@@ -86,7 +127,6 @@ export const MeasurementEdit = () => (
       <NumberInput source="plg_supraspinal" />
       <NumberInput source="plg_thigh" />
       <NumberInput source="plg_triceps" />
-
       <Typography variant="h6" gutterBottom>
         Perímetros (cm)
       </Typography>
@@ -96,16 +136,15 @@ export const MeasurementEdit = () => (
       <NumberInput source="prm_hip" />
       <NumberInput source="prm_thigh" />
       <NumberInput source="prm_waist" />
-
       <Typography variant="h6" gutterBottom>
-        Diametro (cm)
+      Diametro (cm)
       </Typography>
+      <NumberInput source="dm_elbow" />
       <NumberInput source="dm_knee" />
       <NumberInput source="dm_wrist" />
-      <NumberInput source="dm_elbow" />
 
       <Typography variant="h6" gutterBottom>
-        Somatotipo de referencia
+      Somatotipo de referencia
       </Typography>
       <NumberInput source="x" />
       <NumberInput source="y" />
@@ -117,79 +156,6 @@ export const MeasurementEdit = () => (
       <TextInput source="triglycerides" />
       <TextInput source="uric_acid" />
       <ReferenceInput source="user_id" reference="user" />
-    </SimpleForm>
-  </Edit>
-);
-
-export const MeasurementCreate = () => (
-  <Create>
-    <SimpleForm sx={{ maxWidth: 500 }}>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <ReferenceInput
-            source="user_id" reference="user"
-            fullWidth
-          />
-        </Box>
-      </Box>
-      <NumberInput source="control" />
-      <Typography variant="h6" gutterBottom>
-        Mediciones
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="weight" fullWidth />
-        </Box>
-        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="height" fullWidth />
-        </Box>
-      </Box>
-      <Separator />
-      <Typography variant="h6" gutterBottom>
-        Pliegues (m.m)
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="plg_abdominal" fullWidth />
-        </Box>
-        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="plg_armpit" fullWidth />
-        </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <NumberInput source="plg_calf" fullWidth />
-      </Box>
-      <NumberInput source="plg_chest" />
-      <NumberInput source="plg_subscapular" />
-      <NumberInput source="plg_suprailiac" />
-      <NumberInput source="plg_supraspinal" />
-      <NumberInput source="plg_thigh" />
-      <NumberInput source="plg_triceps" />
-      <Typography variant="h6" gutterBottom>
-        Perímetros (cm)
-      </Typography>
-      <NumberInput source="prm_arm" />
-      <NumberInput source="prm_calf" />
-      <NumberInput source="prm_chest" />
-      <NumberInput source="prm_hip" />
-      <NumberInput source="prm_thigh" />
-      <NumberInput source="prm_waist" required fullWidth />
-      <Typography variant="h6" gutterBottom>
-        Diametro (cm)
-      </Typography>
-      <NumberInput source="dm_elbow" />
-      <NumberInput source="dm_knee" />
-      <NumberInput source="dm_wrist" />
-      <Typography variant="h6" gutterBottom>
-        Somatotipo de referencia
-      </Typography>
-      <NumberInput source="x" />
-      <NumberInput source="y" />
-      <DateInput source="creatinine" />
-      <NumberInput source="fitness_level" />
-      <TextInput source="t3_t4" />
-      <TextInput source="triglycerides" />
-      <TextInput source="uric_acid" />
     </SimpleForm>
   </Create>
 );
