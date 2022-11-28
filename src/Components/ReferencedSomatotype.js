@@ -13,7 +13,7 @@ import {
   Create,
 } from 'react-admin';
 
-export const FoodList = () => (
+export const ReferencedSomatotypeList = () => (
   <List>
     <Datagrid rowClick="edit">
       <TextField source="id" />
@@ -30,7 +30,7 @@ export const FoodList = () => (
   </List>
 );
 
-export const FoodEdit = () => (
+export const ReferencedSomatotypeEdit = () => (
   <Edit>
     <SimpleForm>
     <TextField source="sport" />
@@ -43,7 +43,7 @@ export const FoodEdit = () => (
     </SimpleForm>
   </Edit>
 );
-export const FoodCreate = () => (
+export const ReferencedSomatotypeCreate = () => (
   <Create>
     <SimpleForm>
     <TextField source="sport" />
