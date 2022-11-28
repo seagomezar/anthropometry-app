@@ -152,6 +152,18 @@ export const es = {
         updated_at: 'Actualizado',
       },
     },
+    Referenced_somatotype:{
+      name: 'referenciado de Somatotipo',
+      fields:{
+        sport: 'deporte',
+        gender:'genero',
+        endomorph:'endomorfo',
+        mesomorph:'mesomorfo',
+        ectomortph:'ectomorfo',
+        x:'x',
+        y:'y',
+      }
+    },
   },
 };
 
