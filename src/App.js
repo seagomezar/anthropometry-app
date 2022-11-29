@@ -188,7 +188,7 @@ const App = () => {
         create={NutritionistCreate}
       />
       <Resource
-        name="referenced_Somatotype"
+        name="referenced_somatotype"
         icon={LocalPharmacyIcon}
         list={ReferencedSomatotypeList}
         edit={ReferencedSomatotypeEdit}

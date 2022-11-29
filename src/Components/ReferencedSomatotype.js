@@ -12,6 +12,11 @@ import {
   TextInput,
   Create,
 } from 'react-admin';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+
+const Separator = () => <Box pt="1em" />;
 
 export const ReferencedSomatotypeList = () => (
   <List>
@@ -45,14 +50,34 @@ export const ReferencedSomatotypeEdit = () => (
 );
 export const ReferencedSomatotypeCreate = () => (
   <Create>
-    <SimpleForm>
-    <TextField source="sport" />
-      <TextField source="gender" />
-      <NumberField source="endomorph" />
-      <NumberField source="mesomorph" />
-      <NumberField source="ectomortph" />
-      <NumberField source="x" />
-      <NumberField source="y" />
+   <SimpleForm sx={{ maxWidth: 600 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextField source="sport"fullWidth />
+     </Box>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextField source="gender"fullWidth />
+     </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <NumberField source="endomorph"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <NumberField source="mesomorph"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+    <NumberField source="ectomortph"fullWidth />
+    </Box>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+    <NumberField source="x"fullWidth />
+    </Box>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+    <NumberField source="y"fullWidth />
+    </Box>
+    </Box>
     </SimpleForm>
   </Create>
 );
