@@ -12,18 +12,23 @@ import {
   TextInput,
   Create,
 } from 'react-admin';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { useMediaQuery } from '@mui/material';
+
+const Separator = () => <Box pt="1em" />;
 
 export const FoodHasEatingMomentList = () => (
   <List>
     <Datagrid rowClick="edit">
       <TextField source="id" />
-      <DateField source="created_at" />
       <ReferenceField
         source="eating_moment_id"
-        reference="eating_moments"
+        reference="eating_moment"
       />
       <ReferenceField source="food_id" reference="food" />
       <DateField source="updated_at" />
+      <DateField source="created_at" />
     </Datagrid>
   </List>
 );
@@ -41,12 +46,18 @@ export const FoodHasEatingMomentEdit = () => (
 );
 export const FoodHasEatingMomentCreate = () => (
   <Create>
-    <SimpleForm>
-      <ReferenceInput
+    <SimpleForm sx={{ maxWidth: 600 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <ReferenceInput
         source="eating_moment_id"
         reference="eating_moments"
       />
-      <ReferenceInput source="food_id" reference="food" />
+     </Box>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <ReferenceInput source="food_id" reference="food"fullWidth />
+     </Box>
+    </Box>
     </SimpleForm>
   </Create>
 );

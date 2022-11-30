@@ -4,13 +4,13 @@ import buildHasuraProvider from 'ra-data-hasura';
 import {
   Admin,
   EditGuesser,
+  Layout,
   ListGuesser,
   Resource,
 } from 'react-admin';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { UserCreate, UserEdit, UserList } from './Components/Users';
 import UserIcon from '@mui/icons-material/Group';
-import AddchartIcon from '@mui/icons-material/Addchart';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -23,6 +23,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
+import { i18nProvider } from './Providers/i18nProvider';
 import {
   MeasurementCreate,
   MeasurementEdit,
@@ -54,6 +55,12 @@ import {
   NutritionistEdit,
   NutritionistList,
 } from './Components/Nutritionist';
+import {
+  ReferencedSomatotypeCreate,
+  ReferencedSomatotypeEdit,
+  ReferencedSomatotypeList,
+} from './Components/ReferencedSomatotype';
+
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -63,6 +70,10 @@ const myClientWithAuth = new ApolloClient({
       'CLc8hYc2WXlT803cRh718KIV6PpHECfEChKn66Aa68Am7mxg05gaBtYYwkyrFIhk',
   },
 });
+/* const myClientWithAuth = new ApolloClient({
+  uri: 'http://localhost:8080/v1/graphql',
+  cache: new InMemoryCache(),
+}); */
 
 const App = () => {
   const [dataProvider, setDataProvider] = useState(null);
@@ -83,6 +94,7 @@ const App = () => {
     <Admin
       dashboard={Dashboard}
       authProvider={authProvider}
+      i18nProvider={i18nProvider}
       dataProvider={dataProvider}
     >
       <Resource
@@ -108,6 +120,7 @@ const App = () => {
         list={FoodCategoryList}
         edit={FoodCategoryEdit}
         create={GoalCreate}
+        recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
         name="food"
@@ -115,6 +128,12 @@ const App = () => {
         list={FoodList}
         edit={FoodEdit}
         create={FoodCreate}
+        recordRepresentation={(record) =>
+          `${
+            record.description[0].toUpperCase() +
+            record.description.substring(1)
+          }`
+        }
       />
       <Resource
         name="goal"
@@ -122,6 +141,7 @@ const App = () => {
         list={GoalList}
         edit={GoalEdit}
         create={GoalCreate}
+        recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
         name="plan"
@@ -129,9 +149,11 @@ const App = () => {
         list={PlanList}
         edit={PlanEdit}
         create={PlanCreate}
+        recordRepresentation={(record) => `${record.name}`}
       />
+      {/* TODO: Arreglar este con la informacion correcta*/}
       <Resource
-        name="presciribed_food"
+        name="prescribed_food"
         icon={MedicationLiquidIcon}
         list={ListGuesser}
         edit={EditGuesser}
@@ -156,6 +178,7 @@ const App = () => {
         list={EatingMomentList}
         edit={EatingMomentEdit}
         create={EatingMomentCreate}
+        recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
         name="nutritionist"
@@ -163,6 +186,13 @@ const App = () => {
         list={NutritionistList}
         edit={NutritionistEdit}
         create={NutritionistCreate}
+      />
+      <Resource
+        name="referenced_somatotype"
+        icon={LocalPharmacyIcon}
+        list={ReferencedSomatotypeList}
+        edit={ReferencedSomatotypeEdit}
+        create={ReferencedSomatotypeCreate}
       />
     </Admin>
   );
