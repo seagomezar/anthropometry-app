@@ -12,6 +12,12 @@ import {
   TextInput,
   Create,
 } from 'react-admin';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+
+const Separator = () => <Box pt="1em" />;
+
 
 export const PlanList = () => (
   <List>
@@ -28,19 +34,39 @@ export const PlanList = () => (
 
 export const PlanEdit = () => (
   <Edit>
-    <SimpleForm>
-      <TextInput source="comments" />
-      <ReferenceInput source="goal_id" reference="goal" />
-      <ReferenceInput source="user_id" reference="user" />
+    <SimpleForm sx={{ maxWidth: 600 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextInput source="comments"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <ReferenceInput source="goal_id" reference="goal"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <ReferenceInput source="user_id" reference="user"fullWidth />
+      </Box>
+    </Box>
     </SimpleForm>
   </Edit>
 );
 export const PlanCreate = () => (
   <Create>
-    <SimpleForm>
-      <TextInput source="comments" />
-      <ReferenceInput source="goal_id" reference="goal" />
-      <ReferenceInput source="user_id" reference="user" />
+   <SimpleForm sx={{ maxWidth: 600 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextInput source="comments"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <ReferenceInput source="goal_id" reference="goal"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <ReferenceInput source="user_id" reference="user"fullWidth />
+      </Box>
+    </Box>
     </SimpleForm>
   </Create>
 );

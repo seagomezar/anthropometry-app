@@ -11,7 +11,11 @@ import {
   TextInput,
   Create,
 } from 'react-admin';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
+
+const Separator = () => <Box pt="1em" />;
 export const NutritionistList = () => (
   <List>
     <Datagrid rowClick="edit">
@@ -29,25 +33,55 @@ export const NutritionistList = () => (
 
 export const NutritionistEdit = () => (
   <Edit>
-    <SimpleForm>
-      <TextInput source="address" />
-      <TextInput source="email" />
-      <TextInput source="firstname" />
-      <TextInput source="lastname" />
-      <TextInput source="phone" />
-      <DateInput source="updated_at" />
-      <DateInput source="created_at" />
+    <SimpleForm sx={{ maxWidth: 600 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextInput source="firstname"fullWidth />
+    </Box>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextInput source="lastname"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextInput source="address"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextInput source="email"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}> 
+     <TextInput source="phone"fullWidth />
+     </Box>
+    </Box>
     </SimpleForm>
   </Edit>
 );
 export const NutritionistCreate = () => (
   <Create>
-    <SimpleForm>
-      <TextInput source="address" />
-      <TextInput source="email" />
-      <TextInput source="firstname" />
-      <TextInput source="lastname" />
-      <TextInput source="phone" />
+      <SimpleForm sx={{ maxWidth: 600 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextInput source="firstname"fullWidth />
+    </Box>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextInput source="lastname"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextInput source="address"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextInput source="email"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}> 
+     <TextInput source="phone"fullWidth />
+     </Box>
+    </Box>
     </SimpleForm>
   </Create>
 );

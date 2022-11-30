@@ -55,6 +55,12 @@ import {
   NutritionistEdit,
   NutritionistList,
 } from './Components/Nutritionist';
+import {
+  ReferencedSomatotypeCreate,
+  ReferencedSomatotypeEdit,
+  ReferencedSomatotypeList,
+} from './Components/ReferencedSomatotype';
+
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -180,6 +186,13 @@ const App = () => {
         list={NutritionistList}
         edit={NutritionistEdit}
         create={NutritionistCreate}
+      />
+      <Resource
+        name="referenced_somatotype"
+        icon={LocalPharmacyIcon}
+        list={ReferencedSomatotypeList}
+        edit={ReferencedSomatotypeEdit}
+        create={ReferencedSomatotypeCreate}
       />
     </Admin>
   );

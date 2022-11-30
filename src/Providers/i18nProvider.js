@@ -58,7 +58,7 @@ export const es = {
         triglycerides: 'Triglicérios',
         uric_acid: 'Ácido úrico',
         user_id: 'Usuario',
-        sport:'deporte'
+        sport:'Deporte'
       },
     },
     food_category: {
@@ -143,11 +143,25 @@ export const es = {
     prescribed_food: {
       name: 'Alimentos en plan |||| Alimentos en planes',
       fields: {
-        eating_moment_name: 'eating_moment_name',
-        eating_moment_time: 'eating_moment_time',
+        eating_moment_name: 'Eating_moment_name',
+        eating_moment_time: 'Eating_moment_time',
         food_id: 'Alimento',
         plan_id: 'plan',
         prescribed_quantity: 'Cantidad Prescrita',
+        created_at: 'Creado',
+        updated_at: 'Actualizado',
+      },
+    },
+    referencid_somatotype: {
+      name: 'Somatotipo de referencia |||| Somatotipos de referencias',
+      fields: {
+        sport: 'Deporte',
+        gender: 'Genero',
+        endomorph: 'Endomorfo',
+        mesomorph: 'Mesomorfo',
+        ectomortph: 'Ectomorfo',
+        x:'x',
+        y:'y',
         created_at: 'Creado',
         updated_at: 'Actualizado',
       },
