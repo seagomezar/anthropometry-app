@@ -32,6 +32,7 @@ import {
 import {
   FoodCategoryEdit,
   FoodCategoryList,
+  FoodCategoryCreate,
 } from './Components/FoodCategory';
 import { FoodCreate, FoodEdit, FoodList } from './Components/Food';
 import { GoalCreate, GoalEdit, GoalList } from './Components/Goal';
@@ -60,6 +61,11 @@ import {
   ReferencedSomatotypeEdit,
   ReferencedSomatotypeList,
 } from './Components/ReferencedSomatotype';
+import {
+  PrescribedFoodCreate,
+  PrescribedFoodEdit,
+  PrescribedFoodList,
+} from './Components/PrescribedFood';
 
 
 const myClientWithAuth = new ApolloClient({
@@ -119,7 +125,7 @@ const App = () => {
         icon={MenuBookIcon}
         list={FoodCategoryList}
         edit={FoodCategoryEdit}
-        create={GoalCreate}
+        create={FoodCategoryCreate}
         recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
@@ -151,12 +157,12 @@ const App = () => {
         create={PlanCreate}
         recordRepresentation={(record) => `${record.name}`}
       />
-      {/* TODO: Arreglar este con la informacion correcta*/}
       <Resource
         name="prescribed_food"
         icon={MedicationLiquidIcon}
-        list={ListGuesser}
-        edit={EditGuesser}
+        list={PrescribedFoodList}
+        edit={PrescribedFoodEdit}
+        create={PrescribedFoodCreate}
       />
       <Resource
         name="food_has_eating_moment"

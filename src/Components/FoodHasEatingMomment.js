@@ -35,12 +35,18 @@ export const FoodHasEatingMomentList = () => (
 
 export const FoodHasEatingMomentEdit = () => (
   <Edit>
-    <SimpleForm>
-      <ReferenceInput
+   <SimpleForm sx={{ maxWidth: 600 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <ReferenceInput
         source="eating_moment_id"
-        reference="eating_moments"
+        reference="eating_moment"
       />
-      <ReferenceInput source="food_id" reference="food" />
+     </Box>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <ReferenceInput source="food_id" reference="food"fullWidth />
+     </Box>
+    </Box>
     </SimpleForm>
   </Edit>
 );
@@ -51,7 +57,7 @@ export const FoodHasEatingMomentCreate = () => (
      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
      <ReferenceInput
         source="eating_moment_id"
-        reference="eating_moments"
+        reference="eating_moment"
       />
      </Box>
      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
