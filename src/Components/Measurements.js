@@ -65,6 +65,7 @@ export const MeasurementList = () => {
 
 export const MeasurementEdit = () => (
   <Edit>
+
     <SimpleForm sx={{ maxWidth: 600 }}>
     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
