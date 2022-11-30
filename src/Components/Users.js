@@ -18,11 +18,11 @@ import {
   Filter,
   DeleteButton,
   ImageField,
+  useTranslate,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useMediaQuery } from '@mui/material';
-import { useTranslate } from 'react-admin';
 
 const UserTitle = () => {
   const record = useRecordContext();
@@ -73,51 +73,59 @@ export const UserList = () => {
 };
 
 // TODO: Añadir el id a todos los formularios de edicion
-export const UserEdit = () => (
-  <Edit title={<UserTitle />}>
-    <SimpleForm sx={{ maxWidth: 500 }}>
-      <Typography variant="h6" gutterBottom>
-        Identity
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <TextInput source="firstname" isRequired fullWidth />
+export const UserEdit = () => {
+  const translate = useTranslate();
+  return (
+    <Edit title={<UserTitle />}>
+      <SimpleForm sx={{ maxWidth: 500 }}>
+        <Typography variant="h6" gutterBottom>
+          {translate('myroot.identity')}
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <TextInput source="firstname" isRequired fullWidth />
+          </Box>
+          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+            <TextInput source="lastname" isRequired fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-          <TextInput source="lastname" isRequired fullWidth />
-        </Box>
-      </Box>
-      <TextInput type="gender" source="gender" isRequired fullWidth />
-      <TextInput type="email" source="email" isRequired fullWidth />
-      <DateInput source="birthday" />
-      <Separator />
+        <TextInput
+          type="gender"
+          source="gender"
+          isRequired
+          fullWidth
+        />
+        <TextInput type="email" source="email" isRequired fullWidth />
+        <DateInput source="birthday" />
+        <Separator />
 
-      <Typography variant="h6" gutterBottom>
-        Address & Phone
-      </Typography>
-      <TextInput
-        source="address"
-        multiline
-        fullWidth
-        helperText={false}
-      />
-      <TextInput source="phone" fullWidth helperText={false} />
-      <Separator />
+        <Typography variant="h6" gutterBottom>
+          Address & Phone
+        </Typography>
+        <TextInput
+          source="address"
+          multiline
+          fullWidth
+          helperText={false}
+        />
+        <TextInput source="phone" fullWidth helperText={false} />
+        <Separator />
 
-      <Typography variant="h6" gutterBottom>
-        Password
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <PasswordInput source="password" fullWidth />
+        <Typography variant="h6" gutterBottom>
+          Password
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <PasswordInput source="password" fullWidth />
+          </Box>
+          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+            <PasswordInput source="confirm_password" fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-          <PasswordInput source="confirm_password" fullWidth />
-        </Box>
-      </Box>
-    </SimpleForm>
-  </Edit>
-);
+      </SimpleForm>
+    </Edit>
+  );
+};
 
 export const UserCreate = () => {
   const translate = useTranslate();
