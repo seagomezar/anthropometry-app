@@ -67,7 +67,6 @@ import {
   PrescribedFoodList,
 } from './Components/PrescribedFood';
 
-
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
   cache: new InMemoryCache(),
@@ -155,7 +154,7 @@ const App = () => {
         list={PlanList}
         edit={PlanEdit}
         create={PlanCreate}
-        recordRepresentation={(record) => `${record.name}`}
+        recordRepresentation={(record) => `${record.comments}`}
       />
       <Resource
         name="prescribed_food"

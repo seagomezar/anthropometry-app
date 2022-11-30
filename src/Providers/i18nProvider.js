@@ -9,6 +9,8 @@ export const es = {
     password: 'Contraseña',
     addressAndPhone: 'Dirección & Teléfono',
     identity: 'Identidad',
+    male: 'Masculino',
+    female: 'Femenino',
   },
   resources: {
     // TODO: Completar los nombres de todos
@@ -58,7 +60,7 @@ export const es = {
         triglycerides: 'Triglicérios',
         uric_acid: 'Ácido úrico',
         user_id: 'Usuario',
-        sport:'Deporte'
+        sport: 'Deporte',
       },
     },
     food_category: {
@@ -160,8 +162,8 @@ export const es = {
         endomorph: 'Endomorfo',
         mesomorph: 'Mesomorfo',
         ectomortph: 'Ectomorfo',
-        x:'x',
-        y:'y',
+        x: 'x',
+        y: 'y',
         created_at: 'Creado',
         updated_at: 'Actualizado',
       },
