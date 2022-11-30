@@ -8,7 +8,7 @@ export const es = {
   myroot: {
     password: 'Contraseña',
     addressAndPhone: 'Dirección & Teléfono',
-    identity: 'Identidad'
+    identity: 'Identidad',
   },
   resources: {
     // TODO: Completar los nombres de todos
@@ -20,11 +20,11 @@ export const es = {
         phone: 'Teléfono',
         address: 'Dirección',
         birthday: 'Fecha De Nacimiento',
-        genre: 'Genero',
+        gender: 'Genero',
         created_at: 'Creado',
         updated_at: 'Actualizado',
         password: 'Contraseña',
-        confirm_password: 'Confirmar Contraseña'
+        confirm_password: 'Confirmar Contraseña',
       },
     },
     measurement: {
@@ -51,7 +51,7 @@ export const es = {
         x: 'x',
         y: 'y',
         fitness_level: 'Nivel de entrenamiento',
-        height: 'Altura',
+        height: 'Altura (Cms)',
         weight: 'Peso (Kg)',
         creatinine: 'Creatinine',
         t3_t4: 't3_t4',
