@@ -13,7 +13,6 @@ import {
   Create,
 } from 'react-admin';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 
 const Separator = () => <Box pt="1em" />;
@@ -26,7 +25,7 @@ export const ReferencedSomatotypeList = () => (
       <TextField source="gender" />
       <NumberField source="endomorph" />
       <NumberField source="mesomorph" />
-      <NumberField source="ectomortph" />
+      <NumberField source="ectomorph" />
       <NumberField source="x" />
       <NumberField source="y" />
       <DateField source="updated_at" />
@@ -37,18 +36,38 @@ export const ReferencedSomatotypeList = () => (
 
 export const ReferencedSomatotypeEdit = () => (
   <Edit>
-    <SimpleForm>
-    <TextField source="sport" />
-      <TextField source="gender" />
-      <NumberField source="endomorph" />
-      <NumberField source="mesomorph" />
-      <NumberField source="ectomortph" />
-      <NumberField source="x" />
-      <NumberField source="y" />
+    <SimpleForm sx={{ maxWidth: 600 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextField source="sport"fullWidth />
+     </Box>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextField source="gender"fullWidth />
+     </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <NumberField source="endomorph"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <NumberField source="mesomorph"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+    <NumberField source="ectomorph"fullWidth />
+    </Box>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+    <NumberField source="x"fullWidth />
+    </Box>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+    <NumberField source="y"fullWidth />
+    </Box>
+    </Box>
     </SimpleForm>
   </Edit>
 );
-export const ReferencedSomatotypeCreate = () => (
+export const ReferencedSomatotypeCreate= () => (
   <Create>
    <SimpleForm sx={{ maxWidth: 600 }}>
     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
@@ -69,7 +88,7 @@ export const ReferencedSomatotypeCreate = () => (
     </Box>
     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-    <NumberField source="ectomortph"fullWidth />
+    <NumberField source="ectomorph"fullWidth />
     </Box>
     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
     <NumberField source="x"fullWidth />

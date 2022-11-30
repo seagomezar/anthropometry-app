@@ -152,7 +152,7 @@ export const es = {
         updated_at: 'Actualizado',
       },
     },
-    referencid_somatotype: {
+    referenced_somatotype: {
       name: 'Somatotipo de referencia |||| Somatotipos de referencias',
       fields: {
         sport: 'Deporte',
