@@ -16,6 +16,7 @@ import {
   EditButton,
   DeleteButton,
   SimpleList,
+  useTranslate,
 } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -53,7 +54,7 @@ export const MeasurementList = () => {
           <NumberField source="sport" />
           <NumberField source="height" />
           <NumberField source="weight" />
-          <DateField  source="created_at" />
+          <DateField source="created_at" />
           <DateField source="updated_at" />
           <EditButton />
           <DeleteButton />
@@ -63,172 +64,182 @@ export const MeasurementList = () => {
   );
 };
 
-export const MeasurementEdit = () => (
-  <Edit>
+export const MeasurementEdit = () => {
+  const translate = useTranslate();
+  return (
+    <Edit>
+      <SimpleForm sx={{ maxWidth: 600 }}>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <ReferenceInput
+              source="user_id"
+              reference="user"
+              fullWidth
+            />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="sport" fullWidth />
+          </Box>
+        </Box>
+        <NumberInput source="control" fullWidth />
+        <Typography variant="h6" gutterBottom>
+          {translate('myroot.mediciones')}
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="weight" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="height" fullWidth />
+          </Box>
+        </Box>
 
-    <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <ReferenceInput source="user_id" reference="user"fullWidth />
-     </Box>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <NumberInput source="sport"fullWidth />     
-     </Box>
-    </Box>
-      <NumberInput source="control"fullWidth />
-      <Typography variant="h6" gutterBottom>
-        Mediciones
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="weight"fullWidth />
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="height" fullWidth/>
-       </Box>
-      </Box>
-
-      <Typography variant="h6" gutterBottom>
-        Pliegues (m.m)
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_abdominal"fullWidth />
+        <Typography variant="h6" gutterBottom>
+          Pliegues (m.m)
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_abdominal" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_armpit" fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_armpit"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_calf" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_chest" fullWidth />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_calf"fullWidth />
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_chest"fullWidth />
-       </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_subscapular"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_subscapular" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_suprailiac" fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_suprailiac"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_supraspinal" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_thigh" fullWidth />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="plg_supraspinal"fullWidth />
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="plg_thigh"fullWidth />
-       </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="plg_triceps"fullWidth />
-       </Box>
-      </Box>
-      <Typography variant="h6" gutterBottom>
-        Perímetros (cm)
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="prm_arm"fullWidth /> 
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="prm_calf"fullWidth />
-       </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="prm_chest"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="plg_triceps" fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="prm_hip"fullWidth />
+        <Typography variant="h6" gutterBottom>
+          Perímetros (cm)
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="prm_arm" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="prm_calf" fullWidth />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="prm_thigh" fullWidth/>
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="prm_waist"fullWidth />
-       </Box>
-      </Box>
-      <Typography variant="h6" gutterBottom>
-      Diametro (cm)
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="dm_elbow"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="prm_chest" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="prm_hip" fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="dm_knee"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="prm_thigh" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="prm_waist" fullWidth />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="dm_wrist"fullWidth />
-      </Box>
-      </Box>
-      <Typography variant="h6" gutterBottom>
-      Somatotipo de referencia
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="x"fullWidth />
+        <Typography variant="h6" gutterBottom>
+          Diametro (cm)
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="dm_elbow" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="dm_knee" fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="y"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="dm_wrist" fullWidth />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <DateInput source="creatinine"fullWidth />
+        <Typography variant="h6" gutterBottom>
+          Somatotipo de referencia
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="x" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="y" fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="fitness_level"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <DateInput source="creatinine" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="fitness_level" fullWidth />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <TextInput source="t3_t4"fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <TextInput source="t3_t4" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <TextInput source="triglycerides" fullWidth />
+          </Box>
         </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <TextInput source="triglycerides" fullWidth/>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <TextInput source="uric_acid" fullWidth />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <TextInput source="uric_acid"fullWidth />
-       </Box>
-      </Box>
-    </SimpleForm>
-  </Edit>
-);
+      </SimpleForm>
+    </Edit>
+  );
+};
 
 export const MeasurementCreate = () => (
   <Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <ReferenceInput source="user_id" reference="user"fullWidth />
-     </Box>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <NumberInput source="sport"fullWidth />     
-     </Box>
-    </Box>
-      <NumberInput source="control"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceInput
+            source="user_id"
+            reference="user"
+            fullWidth
+          />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="sport" fullWidth />
+        </Box>
+      </Box>
+      <NumberInput source="control" fullWidth />
       <Typography variant="h6" gutterBottom>
         Mediciones
       </Typography>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="weight"fullWidth />
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="height" fullWidth/>
-       </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="weight" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="height" fullWidth />
+        </Box>
       </Box>
 
       <Typography variant="h6" gutterBottom>
@@ -236,115 +247,115 @@ export const MeasurementCreate = () => (
       </Typography>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_abdominal"fullWidth />
+          <NumberInput source="plg_abdominal" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_armpit"fullWidth />
+          <NumberInput source="plg_armpit" fullWidth />
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_calf"fullWidth />
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_chest"fullWidth />
-       </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_subscapular"fullWidth />
+          <NumberInput source="plg_calf" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="plg_suprailiac"fullWidth />
+          <NumberInput source="plg_chest" fullWidth />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="plg_supraspinal"fullWidth />
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="plg_thigh"fullWidth />
-       </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="plg_subscapular" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="plg_suprailiac" fullWidth />
+        </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="plg_triceps"fullWidth />
-       </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="plg_supraspinal" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="plg_thigh" fullWidth />
+        </Box>
+      </Box>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="plg_triceps" fullWidth />
+        </Box>
       </Box>
       <Typography variant="h6" gutterBottom>
         Perímetros (cm)
       </Typography>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="prm_arm"fullWidth /> 
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="prm_calf"fullWidth />
-       </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="prm_chest"fullWidth />
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="prm_arm" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="prm_hip"fullWidth />
+          <NumberInput source="prm_calf" fullWidth />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="prm_thigh" fullWidth/>
-       </Box>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="prm_waist"fullWidth />
-       </Box>
-      </Box>
-      <Typography variant="h6" gutterBottom>
-      Diametro (cm)
-      </Typography>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <NumberInput source="dm_elbow"fullWidth />
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="prm_chest" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="dm_knee"fullWidth />
+          <NumberInput source="prm_hip" fullWidth />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="dm_wrist"fullWidth />
-      </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="prm_thigh" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="prm_waist" fullWidth />
+        </Box>
       </Box>
       <Typography variant="h6" gutterBottom>
-      Somatotipo de referencia
+        Diametro (cm)
       </Typography>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="x"fullWidth />
+          <NumberInput source="dm_elbow" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="y"fullWidth />
+          <NumberInput source="dm_knee" fullWidth />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <DateInput source="creatinine"fullWidth />
+          <NumberInput source="dm_wrist" fullWidth />
+        </Box>
+      </Box>
+      <Typography variant="h6" gutterBottom>
+        Somatotipo de referencia
+      </Typography>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="x" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <NumberInput source="fitness_level"fullWidth />
+          <NumberInput source="y" fullWidth />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <TextInput source="t3_t4"fullWidth />
+          <DateInput source="creatinine" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <TextInput source="triglycerides" fullWidth/>
+          <NumberInput source="fitness_level" fullWidth />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-       <TextInput source="uric_acid"fullWidth />
-       </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="t3_t4" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="triglycerides" fullWidth />
+        </Box>
+      </Box>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="uric_acid" fullWidth />
+        </Box>
       </Box>
     </SimpleForm>
   </Create>

@@ -11,6 +11,7 @@ export const es = {
     identity: 'Identidad',
     male: 'Masculino',
     female: 'Femenino',
+    mediciones: 'Mediciones',
   },
   resources: {
     // TODO: Completar los nombres de todos
