@@ -19,6 +19,8 @@ import {
   DeleteButton,
   ImageField,
   useTranslate,
+  Show,
+  SimpleShowLayout,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -53,7 +55,7 @@ export const UserList = () => {
           }
         />
       ) : (
-        <Datagrid rowClick="edit">
+        <Datagrid rowClick="show">
           <TextField source="id" />
           <TextField source="firstname" />
           <TextField source="lastname" />
@@ -185,5 +187,56 @@ export const UserCreate = () => {
         </Box>
       </SimpleForm>
     </Create>
+  );
+};
+
+export const UserShow = () => {
+  const translate = useTranslate();
+  return (
+    <Show>
+      <SimpleShowLayout sx={{ maxWidth: 500 }}>
+      <Typography variant="h6" gutterBottom>
+          {translate('myroot.identity')}
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <TextField source="firstname" />
+          </Box>     
+        </Box>
+        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+            <TextField source="lastname" />
+          </Box>
+        <TextField type="email" source="email" />
+        <TextField
+            type="gender"
+            source="gender"
+          />
+          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+            <DateField source="birthday" />
+          </Box>
+          
+          <Separator />
+          
+        <Separator />
+        <Typography variant="h6" gutterBottom>
+          {translate('myroot.addressAndPhone')}
+        </Typography>
+        <TextField
+          source="address"
+          helperText={false}
+        />
+        <TextField source="phone" fullWidth helperText={false} />
+        <Separator />
+
+        <Typography variant="h6" gutterBottom>
+          {translate('myroot.password')}
+        </Typography>
+        <Box display={{ xs: 'block', sm: 'flex' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <TextField source="password" fullWidth />
+          </Box>
+        </Box>
+      </SimpleShowLayout>
+    </Show>
   );
 };

@@ -9,6 +9,8 @@ import {
   SimpleForm,
   TextInput,
   Create,
+  Show,
+  SimpleShowLayout,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -19,7 +21,7 @@ const Separator = () => <Box pt="1em" />;
 
 export const EatingMomentList = () => (
   <List>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="id" />
       <DateField source="created_at" />
       <TextField source="name" />
@@ -59,3 +61,18 @@ export const EatingMomentCreate = () => (
     </SimpleForm>
   </Create>
 );
+
+export const EatingMomentShow = () => (
+ <Show>
+   <SimpleShowLayout sx={{ maxWidth: 500 }}>
+   <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextInput source="name"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextInput source="time"fullWidth />
+      </Box>
+    </Box>
+   </SimpleShowLayout>
+ </Show>
+)
