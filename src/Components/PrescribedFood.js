@@ -13,10 +13,12 @@ import {
   ReferenceInput,
   NumberInput,
   NumberField,
+  useTranslate,
   Show,
   SimpleShowLayout,
 } from 'react-admin';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const Separator = () => <Box pt="1em" />;
 
@@ -106,11 +108,16 @@ export const PrescribedFoodCreate = () => (
   </Create>
 );
 
-export const PrescribedFoodShow= () => (
+export const PrescribedFoodShow= () => {
+  const translate = useTranslate();
+  return (
   <Show>
     <SimpleShowLayout sx={{ maxWidth: 500 }}>
     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.prescribed_food.fields.plan_id')}
+            </Typography>
           <ReferenceField
             source="plan_id"
             reference="plan"
@@ -118,6 +125,9 @@ export const PrescribedFoodShow= () => (
           />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.prescribed_food.fields.food_id')}
+            </Typography>
           <ReferenceField
             source="food_id"
             reference="food"
@@ -127,17 +137,27 @@ export const PrescribedFoodShow= () => (
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.prescribed_food.fields.eating_moment_time')}
+            </Typography>
           <TextField source="eating_moment_time" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.prescribed_food.fields.eating_moment_name')}
+            </Typography>
           <TextField source="eating_moment_name" fullWidth />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.prescribed_food.fields.prescribed_quantity')}
+            </Typography>
           <NumberField source="prescribed_quantity" fullWidth />
         </Box>
       </Box>
     </SimpleShowLayout>
   </Show>
-);
+ );
+};
