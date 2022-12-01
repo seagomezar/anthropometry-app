@@ -14,6 +14,8 @@ import {
   SelectField,
   SelectInput,
   useTranslate,
+  Show,
+  SimpleShowLayout,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 
@@ -23,7 +25,7 @@ export const ReferencedSomatotypeList = () => {
   const translate = useTranslate();
   return (
     <List>
-      <Datagrid rowClick="edit">
+      <Datagrid rowClick="show">
         <TextField source="id" />
         <TextField source="sport" />
         <SelectField
@@ -87,9 +89,52 @@ export const ReferencedSomatotypeEdit = () => {
     </Edit>
   );
 };
-export const ReferencedSomatotypeCreate = () => (
+export const ReferencedSomatotypeCreate = () => {
+  const translate = useTranslate();
+  return (
   <Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <TextInput source="sport" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <SelectInput
+              source="gender"
+              choices={[
+                { id: true, name: translate('myroot.male') },
+                { id: false, name: translate('myroot.female') },
+              ]}
+            />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="endomorph" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="mesomorph" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="ectomorph" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="x" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="y" fullWidth />
+          </Box>
+        </Box>
+      </SimpleForm>
+  </Create>
+ );
+};
+
+export const ReferencedSomatotypeShow = () => (
+  <Show>
+    <SimpleShowLayout sx={{ maxWidth: 600 }}>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
           <TextField source="sport" fullWidth />
@@ -117,6 +162,6 @@ export const ReferencedSomatotypeCreate = () => (
           <NumberField source="y" fullWidth />
         </Box>
       </Box>
-    </SimpleForm>
-  </Create>
+    </SimpleShowLayout>
+  </Show>
 );

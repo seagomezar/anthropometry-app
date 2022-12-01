@@ -11,6 +11,8 @@ import {
   SimpleForm,
   TextInput,
   Create,
+  Show,
+  SimpleShowLayout,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -21,7 +23,7 @@ const Separator = () => <Box pt="1em" />;
 
 export const PlanList = () => (
   <List>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="id" />
       <TextField source="comments" />
       <ReferenceField source="goal_id" reference="goal" />
@@ -70,3 +72,23 @@ export const PlanCreate = () => (
     </SimpleForm>
   </Create>
 );
+
+export const PlanShow = () => (
+  <Show>
+    <SimpleShowLayout sx={{ maxWidth: 500 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextField source="comments"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextField source="goal_id" reference="goal"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextField source="user_id" reference="user"fullWidth />
+      </Box>
+    </Box>
+    </SimpleShowLayout>
+  </Show>
+)

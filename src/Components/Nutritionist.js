@@ -10,6 +10,8 @@ import {
   SimpleForm,
   TextInput,
   Create,
+  Show,
+  SimpleShowLayout,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -18,7 +20,7 @@ import Typography from '@mui/material/Typography';
 const Separator = () => <Box pt="1em" />;
 export const NutritionistList = () => (
   <List>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="id" />
       <TextField source="address" />
       <EmailField source="email" />
@@ -85,3 +87,31 @@ export const NutritionistCreate = () => (
     </SimpleForm>
   </Create>
 );
+
+export const NutritionistShow = () => (
+  <Show>
+     <SimpleShowLayout sx={{ maxWidth: 500 }}>
+     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextField source="firstname"fullWidth />
+    </Box>
+    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextField source="lastname"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+     <TextField source="address"fullWidth />
+      </Box>
+      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <TextField source="email"fullWidth />
+      </Box>
+    </Box>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}> 
+     <TextField source="phone"fullWidth />
+     </Box>
+    </Box>
+    </SimpleShowLayout>
+  </Show>
+)

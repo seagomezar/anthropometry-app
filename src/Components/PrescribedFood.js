@@ -12,6 +12,9 @@ import {
   ReferenceField,
   ReferenceInput,
   NumberInput,
+  NumberField,
+  Show,
+  SimpleShowLayout,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 
@@ -19,7 +22,7 @@ const Separator = () => <Box pt="1em" />;
 
 export const PrescribedFoodList = () => (
   <List>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="id" />
       <ReferenceField source="plan_id" reference="plan" />
       <ReferenceField source="food_id" reference="food" />
@@ -101,4 +104,40 @@ export const PrescribedFoodCreate = () => (
       </Box>
     </SimpleForm>
   </Create>
+);
+
+export const PrescribedFoodShow= () => (
+  <Show>
+    <SimpleShowLayout sx={{ maxWidth: 500 }}>
+    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceField
+            source="plan_id"
+            reference="plan"
+            fullWidth
+          />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceField
+            source="food_id"
+            reference="food"
+            fullWidth
+          />
+        </Box>
+      </Box>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextField source="eating_moment_time" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextField source="eating_moment_name" fullWidth />
+        </Box>
+      </Box>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberField source="prescribed_quantity" fullWidth />
+        </Box>
+      </Box>
+    </SimpleShowLayout>
+  </Show>
 );

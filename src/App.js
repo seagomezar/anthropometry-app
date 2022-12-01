@@ -9,7 +9,7 @@ import {
   Resource,
 } from 'react-admin';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { UserCreate, UserEdit, UserList } from './Components/Users';
+import { UserCreate, UserEdit, UserList, UserShow } from './Components/Users';
 import UserIcon from '@mui/icons-material/Group';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
@@ -28,43 +28,52 @@ import {
   MeasurementCreate,
   MeasurementEdit,
   MeasurementList,
+  MeasurementShow,
 } from './Components/Measurements';
 import {
   FoodCategoryEdit,
   FoodCategoryList,
   FoodCategoryCreate,
+  FoodCategoryShow,
 } from './Components/FoodCategory';
-import { FoodCreate, FoodEdit, FoodList } from './Components/Food';
-import { GoalCreate, GoalEdit, GoalList } from './Components/Goal';
-import { PlanCreate, PlanEdit, PlanList } from './Components/Plan';
+import { FoodCreate, FoodEdit, FoodList, FoodShow } from './Components/Food';
+import { GoalCreate, GoalEdit, GoalList, GoalShow} from './Components/Goal';
+import { PlanCreate, PlanEdit, PlanList, PlanShow } from './Components/Plan';
 import {
   FoodHasEatingMomentCreate,
   FoodHasEatingMomentEdit,
   FoodHasEatingMomentList,
+  FoodHasEatingMomentShow,
 } from './Components/FoodHasEatingMomment';
 import {
   FoodHasFoodcategoryEdit,
   FoodHasFoodCategoryList,
+  FoodHasFoodCategoryCreate,
+  FoodHasFoodCategoryShow,
 } from './Components/FoodHasFoodCategory';
 import {
   EatingMomentCreate,
   EatingMomentEdit,
   EatingMomentList,
+  EatingMomentShow,
 } from './Components/EatingMoment';
 import {
   NutritionistCreate,
   NutritionistEdit,
   NutritionistList,
+  NutritionistShow,
 } from './Components/Nutritionist';
 import {
   ReferencedSomatotypeCreate,
   ReferencedSomatotypeEdit,
   ReferencedSomatotypeList,
+  ReferencedSomatotypeShow,
 } from './Components/ReferencedSomatotype';
 import {
   PrescribedFoodCreate,
   PrescribedFoodEdit,
   PrescribedFoodList,
+  PrescribedFoodShow,
 } from './Components/PrescribedFood';
 
 const myClientWithAuth = new ApolloClient({
@@ -108,6 +117,7 @@ const App = () => {
         list={UserList}
         edit={UserEdit}
         create={UserCreate}
+        show={UserShow}
         recordRepresentation={(record) =>
           `${record.firstname} ${record.lastname}`
         }
@@ -118,6 +128,7 @@ const App = () => {
         list={MeasurementList}
         edit={MeasurementEdit}
         create={MeasurementCreate}
+        show={MeasurementShow}
       />
       <Resource
         name="food_category"
@@ -125,6 +136,7 @@ const App = () => {
         list={FoodCategoryList}
         edit={FoodCategoryEdit}
         create={FoodCategoryCreate}
+        show={FoodCategoryShow}
         recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
@@ -133,6 +145,7 @@ const App = () => {
         list={FoodList}
         edit={FoodEdit}
         create={FoodCreate}
+        show={FoodShow}
         recordRepresentation={(record) =>
           `${
             record.description[0].toUpperCase() +
@@ -146,6 +159,7 @@ const App = () => {
         list={GoalList}
         edit={GoalEdit}
         create={GoalCreate}
+        show={GoalShow}
         recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
@@ -154,6 +168,7 @@ const App = () => {
         list={PlanList}
         edit={PlanEdit}
         create={PlanCreate}
+        show={PlanShow}
         recordRepresentation={(record) => `${record.comments}`}
       />
       <Resource
@@ -162,6 +177,7 @@ const App = () => {
         list={PrescribedFoodList}
         edit={PrescribedFoodEdit}
         create={PrescribedFoodCreate}
+        Show={PrescribedFoodShow}
       />
       <Resource
         name="food_has_eating_moment"
@@ -169,13 +185,15 @@ const App = () => {
         list={FoodHasEatingMomentList}
         edit={FoodHasEatingMomentEdit}
         create={FoodHasEatingMomentCreate}
+        show={FoodHasEatingMomentShow}
       />
       <Resource
         name="food_has_food_category"
         icon={KitchenIcon}
         list={FoodHasFoodCategoryList}
         edit={FoodHasFoodcategoryEdit}
-        create={FoodHasEatingMomentCreate}
+        create={FoodHasFoodCategoryCreate}
+        show={FoodHasFoodCategoryShow}
       />
       <Resource
         name="eating_moment"
@@ -183,6 +201,7 @@ const App = () => {
         list={EatingMomentList}
         edit={EatingMomentEdit}
         create={EatingMomentCreate}
+        show={EatingMomentShow}
         recordRepresentation={(record) => `${record.name}`}
       />
       <Resource
@@ -191,6 +210,7 @@ const App = () => {
         list={NutritionistList}
         edit={NutritionistEdit}
         create={NutritionistCreate}
+        show={NutritionistShow}
       />
       <Resource
         name="referenced_somatotype"
@@ -198,6 +218,7 @@ const App = () => {
         list={ReferencedSomatotypeList}
         edit={ReferencedSomatotypeEdit}
         create={ReferencedSomatotypeCreate}
+        show={ReferencedSomatotypeShow}
       />
     </Admin>
   );
