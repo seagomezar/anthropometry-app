@@ -10,6 +10,7 @@ import {
   ReferenceInput,
   SimpleForm,
   TextInput,
+  useTranslate,
   Create,
   Show,
   SimpleShowLayout,
@@ -73,22 +74,34 @@ export const PlanCreate = () => (
   </Create>
 );
 
-export const PlanShow = () => (
+export const PlanShow = () => {
+  const translate = useTranslate();
+  return (
   <Show>
     <SimpleShowLayout sx={{ maxWidth: 500 }}>
     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <Typography variant="h6" gutterBottom>
+              {translate('resources.plan.fields.comments')}
+            </Typography>
       <TextField source="comments"fullWidth />
       </Box>
       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <Typography variant="h6" gutterBottom>
+              {translate('resources.plan.fields.goal_id')}
+            </Typography>
       <TextField source="goal_id" reference="goal"fullWidth />
       </Box>
     </Box>
     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
       <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+      <Typography variant="h6" gutterBottom>
+              {translate('resources.plan.fields.user_id')}
+            </Typography>
       <TextField source="user_id" reference="user"fullWidth />
       </Box>
     </Box>
     </SimpleShowLayout>
   </Show>
-)
+  );
+};
