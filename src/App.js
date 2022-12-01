@@ -9,7 +9,12 @@ import {
   Resource,
 } from 'react-admin';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { UserCreate, UserEdit, UserList, UserShow } from './Components/Users';
+import {
+  UserCreate,
+  UserEdit,
+  UserList,
+  UserShow,
+} from './Components/Users';
 import UserIcon from '@mui/icons-material/Group';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
@@ -36,9 +41,24 @@ import {
   FoodCategoryCreate,
   FoodCategoryShow,
 } from './Components/FoodCategory';
-import { FoodCreate, FoodEdit, FoodList, FoodShow } from './Components/Food';
-import { GoalCreate, GoalEdit, GoalList, GoalShow} from './Components/Goal';
-import { PlanCreate, PlanEdit, PlanList, PlanShow } from './Components/Plan';
+import {
+  FoodCreate,
+  FoodEdit,
+  FoodList,
+  FoodShow,
+} from './Components/Food';
+import {
+  GoalCreate,
+  GoalEdit,
+  GoalList,
+  GoalShow,
+} from './Components/Goal';
+import {
+  PlanCreate,
+  PlanEdit,
+  PlanList,
+  PlanShow,
+} from './Components/Plan';
 import {
   FoodHasEatingMomentCreate,
   FoodHasEatingMomentEdit,
@@ -177,7 +197,7 @@ const App = () => {
         list={PrescribedFoodList}
         edit={PrescribedFoodEdit}
         create={PrescribedFoodCreate}
-        Show={PrescribedFoodShow}
+        show={PrescribedFoodShow}
       />
       <Resource
         name="food_has_eating_moment"
