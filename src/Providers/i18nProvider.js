@@ -12,6 +12,11 @@ export const es = {
     male: 'Masculino',
     female: 'Femenino',
     mediciones: 'Mediciones',
+    AddressPhone: 'direccion y telefono',
+    pliegues:'Pliegues (m.m)',
+    perímetros:'Perímetros (cm)',
+    diametro:'Diametro (cm)',
+    somatotipo:'somatotipo de referencia',
   },
   resources: {
     // TODO: Completar los nombres de todos

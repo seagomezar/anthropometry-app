@@ -97,7 +97,7 @@ export const MeasurementEdit = () => {
         </Box>
 
         <Typography variant="h6" gutterBottom>
-          Pliegues (m.m)
+        {translate('myroot.pliegues')}
         </Typography>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -137,7 +137,7 @@ export const MeasurementEdit = () => {
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
-          Perímetros (cm)
+        {translate('myroot.perímetros')}
         </Typography>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -164,7 +164,7 @@ export const MeasurementEdit = () => {
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
-          Diametro (cm)
+        {translate('myroot.diametro')}
         </Typography>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -180,7 +180,7 @@ export const MeasurementEdit = () => {
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
-          Somatotipo de referencia
+        {translate('myroot.somatotipo')}
         </Typography>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -216,8 +216,9 @@ export const MeasurementEdit = () => {
   );
 };
 
-export const MeasurementCreate = () => (
-  <Create>
+export const MeasurementCreate = () => {
+  const translate = useTranslate();
+  return (<Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -233,7 +234,7 @@ export const MeasurementCreate = () => (
       </Box>
       <NumberInput source="control" fullWidth />
       <Typography variant="h6" gutterBottom>
-        Mediciones
+      {translate('myroot.mediciones')}
       </Typography>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -245,7 +246,7 @@ export const MeasurementCreate = () => (
       </Box>
 
       <Typography variant="h6" gutterBottom>
-        Pliegues (m.m)
+      {translate('myroot.pliegues')}
       </Typography>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -285,7 +286,7 @@ export const MeasurementCreate = () => (
         </Box>
       </Box>
       <Typography variant="h6" gutterBottom>
-        Perímetros (cm)
+      {translate('myroot.perímetros')}
       </Typography>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -328,7 +329,7 @@ export const MeasurementCreate = () => (
         </Box>
       </Box>
       <Typography variant="h6" gutterBottom>
-        Somatotipo de referencia
+      {translate('myroot.somatotipo')}
       </Typography>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -509,3 +510,4 @@ export const MeasurementShow = () => (
  </SimpleShowLayout>
   </Show>
 );
+};

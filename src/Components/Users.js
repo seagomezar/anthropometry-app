@@ -102,7 +102,7 @@ export const UserEdit = () => {
         <Separator />
 
         <Typography variant="h6" gutterBottom>
-          Address & Phone
+        {translate('myroot.addressAndPhone')}
         </Typography>
         <TextInput
           source="address"
@@ -114,7 +114,7 @@ export const UserEdit = () => {
         <Separator />
 
         <Typography variant="h6" gutterBottom>
-          Password
+        {translate('myroot.password')}
         </Typography>
         <Box display={{ xs: 'block', sm: 'flex' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
