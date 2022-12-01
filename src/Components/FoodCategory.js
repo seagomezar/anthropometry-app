@@ -8,6 +8,7 @@ import {
   Edit,
   SimpleForm,
   TextInput,
+  useTranslate,
   Create,
   Show,
   SimpleShowLayout,
@@ -52,14 +53,20 @@ export const FoodCategoryCreate = () => (
   </Create>
 );
 
-export const FoodCategoryShow = () => (
+export const FoodCategoryShow = () => {
+  const translate = useTranslate();
+  return (
   <Show>
      <SimpleShowLayout sx={{ maxWidth: 500 }}>
     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="name"fullWidth />
+     <Typography variant="h6" gutterBottom>
+              {translate('resources.food_category.fields.name')}
+            </Typography>
+     <TextField source="name"fullWidth />
       </Box>
       </Box>
      </SimpleShowLayout>
   </Show>
-)
+  );
+};
