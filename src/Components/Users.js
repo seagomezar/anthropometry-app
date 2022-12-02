@@ -200,39 +200,73 @@ export const UserShow = () => {
         </Typography>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.user.fields.firstname')}
+            </Typography>
             <TextField source="firstname" />
           </Box>     
         </Box>
         <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.user.fields.lastname')}
+            </Typography>
             <TextField source="lastname" />
           </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.user.fields.email')}
+            </Typography>
         <TextField type="email" source="email" />
+        </Box>
+        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.user.fields.gender')}
+            </Typography>
         <TextField
             type="gender"
             source="gender"
           />
+          </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.user.fields.birthday')}
+            </Typography>
             <DateField source="birthday" />
           </Box>
-          
+          </Box>
           <Separator />
           
         <Separator />
         <Typography variant="h6" gutterBottom>
           {translate('myroot.addressAndPhone')}
         </Typography>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.user.fields.address')}
+            </Typography>
         <TextField
           source="address"
           helperText={false}
         />
+        </Box>
+        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+        <Typography variant="h6" gutterBottom>
+              {translate('resources.user.fields.phone')}
+            </Typography>
         <TextField source="phone" fullWidth helperText={false} />
+        </Box>
+        </Box>
         <Separator />
 
-        <Typography variant="h6" gutterBottom>
-          {translate('myroot.password')}
-        </Typography>
         <Box display={{ xs: 'block', sm: 'flex' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+          {translate('myroot.password')}
+        </Typography>
             <TextField source="password" fullWidth />
           </Box>
         </Box>

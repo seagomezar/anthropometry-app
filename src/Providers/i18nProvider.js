@@ -25,6 +25,7 @@ export const es = {
       fields: {
         firstname: 'Nombre',
         lastname: 'Apellido',
+        email: 'correo eletronico',
         phone: 'Teléfono',
         address: 'Dirección',
         birthday: 'Fecha De Nacimiento',

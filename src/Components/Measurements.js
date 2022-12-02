@@ -52,6 +52,7 @@ export const MeasurementList = () => {
         <Datagrid rowClick="show">
           <TextField source="id" />
           <ReferenceField source="user_id" reference="user" />
+          <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" />
           <NumberField source="control" />
           <NumberField source="sport" />
           <NumberField source="height" />
@@ -83,7 +84,14 @@ export const MeasurementEdit = () => {
             <NumberInput source="sport" fullWidth />
           </Box>
         </Box>
-        <NumberInput source="control" fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="control" fullWidth />
+          </Box>
+        </Box>
         <Typography variant="h6" gutterBottom>
           {translate('myroot.mediciones')}
         </Typography>
@@ -233,7 +241,14 @@ export const MeasurementCreate = () => {
             <NumberInput source="sport" fullWidth />
           </Box>
         </Box>
-        <NumberInput source="control" fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="control" fullWidth />
+          </Box>
+        </Box>
         <Typography variant="h6" gutterBottom>
           {translate('myroot.mediciones')}
         </Typography>
@@ -383,7 +398,14 @@ export const MeasurementShow = () => {
             <NumberField source="sport" fullWidth />
           </Box>
         </Box>
-        <NumberField source="control" fullWidth />
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberField source="control" fullWidth />
+          </Box>
+        </Box>
         <Typography variant="h6" gutterBottom>
           {translate('myroot.mediciones')}
         </Typography>
