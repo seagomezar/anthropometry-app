@@ -7,6 +7,7 @@ import {
   Layout,
   ListGuesser,
   Resource,
+  useTranslate
 } from 'react-admin';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import {
@@ -111,7 +112,7 @@ const myClientWithAuth = new ApolloClient({
 
 const App = () => {
   const [dataProvider, setDataProvider] = useState(null);
-
+  const translate = useTranslate();
   useEffect(() => {
     const buildDataProvider = async () => {
       const dataProvider = await buildHasuraProvider({
@@ -239,6 +240,8 @@ const App = () => {
         edit={ReferencedSomatotypeEdit}
         create={ReferencedSomatotypeCreate}
         show={ReferencedSomatotypeShow}
+        recordRepresentation={(record) =>
+          `${record.sport} - ${(record.gender) ? translate('myroot.male') : translate('myroot.female')}`}
       />
     </Admin>
   );

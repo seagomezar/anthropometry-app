@@ -54,7 +54,6 @@ export const MeasurementList = () => {
           <ReferenceField source="user_id" reference="user" />
           <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" />
           <NumberField source="control" />
-          <NumberField source="sport" />
           <NumberField source="height" />
           <NumberField source="weight" />
           <DateField source="created_at" />
@@ -81,13 +80,10 @@ export const MeasurementEdit = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="sport" fullWidth />
+          <ReferenceInput source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
-          </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
           <NumberInput source="control" fullWidth />
           </Box>
@@ -238,13 +234,10 @@ export const MeasurementCreate = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="sport" fullWidth />
+          <ReferenceInput source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
-          </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
           <NumberInput source="control" fullWidth />
           </Box>
@@ -395,13 +388,10 @@ export const MeasurementShow = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberField source="sport" fullWidth />
+          <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
-          </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
           <NumberField source="control" fullWidth />
           </Box>
