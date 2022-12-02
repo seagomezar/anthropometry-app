@@ -381,6 +381,9 @@ export const MeasurementShow = () => {
       <SimpleShowLayout sx={{ maxWidth: 600 }}>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.user_id')}
+            </Typography>
             <ReferenceField
               source="user_id"
               reference="user"
@@ -388,11 +391,17 @@ export const MeasurementShow = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.referenced_somatotype_id')}
+            </Typography>
           <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.control')}
+            </Typography>
           <NumberField source="control" fullWidth />
           </Box>
         </Box>

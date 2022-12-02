@@ -67,7 +67,8 @@ export const es = {
         triglycerides: 'Triglicérios',
         uric_acid: 'Ácido úrico',
         user_id: 'Usuario',
-        sport: 'Deporte',
+        referenced_somatotype_id: 'Deporte',
+        control: 'Control',
       },
     },
     food_category: {
