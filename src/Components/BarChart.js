@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader } from '@mui/material';
-import { useDataProvider, useGetList, useGetMany } from 'react-admin';
 import { Chart } from 'chart.js/auto';
 
 const BarChart = ({ labels, data, title }) => {

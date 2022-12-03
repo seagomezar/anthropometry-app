@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { Card, CardContent, CardHeader } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 import {
   useRecordContext,
   useGetManyReference,
   useTranslate,
 } from 'react-admin';
-import { Chart } from 'chart.js/auto';
 import { MenuItem, Select } from '@mui/material';
+import LineChart from './LineChart';
 
 const LineChartField = ({ source }) => {
-  let graph;
   let options = [
     'creatinine',
     'dm_elbow',
@@ -42,53 +41,23 @@ const LineChartField = ({ source }) => {
   const translate = useTranslate();
   const [selectedOption, setSelectedOption] =
     React.useState('weight');
-  const [reset, setReset] = React.useState(true);
+  const [dataX, setX] = React.useState([]);
+  const [dataY, setY] = React.useState([]);
   const { data } = useGetManyReference('measurement', {
     target: 'user_id',
     id: record.id,
   });
 
   React.useEffect(() => {
-    paintChart('weight');
-    return () => {
-      if (graph) {
-        graph.destroy();
-      }
-    };
+    createData('weight');
   }, [data]);
 
-  const paintChart = (selectedOption) => {
-    setReset(false);
-
-    if (graph) {
-      graph.destroy();
+  const createData = (option) => {
+    if (data) {
+      setSelectedOption(option);
+      setX(data.map((e) => e.evaluation_date));
+      setY(data.map((e) => e[option]));
     }
-    setReset(true);
-
-    const ctx = document.getElementById('myCanvas');
-    graph = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: data?.map((e) => e.evaluation_date),
-        datasets: [
-          {
-            label: translate(
-              'resources.measurement.fields.' + selectedOption
-            ),
-            data: data?.map((e) => e[selectedOption]),
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: false,
-          },
-        },
-      },
-    });
-    setSelectedOption(selectedOption);
   };
 
   return (
@@ -98,7 +67,7 @@ const LineChartField = ({ source }) => {
         aria-label="outlined button group"
         size="small"
         onChange={(e) => {
-          paintChart(e.target.value);
+          createData(e.target.value);
         }}
         value={selectedOption}
       >
@@ -111,7 +80,7 @@ const LineChartField = ({ source }) => {
         })}
       </Select>
       <CardContent>
-        {reset && <canvas id="myCanvas"></canvas>}
+        <LineChart title={selectedOption} x={dataX} y={dataY} />
       </CardContent>
     </Card>
   );
