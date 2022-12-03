@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRecordContext } from 'react-admin';
 
 export const TimeField = ({ source }) => {
