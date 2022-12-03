@@ -19,10 +19,9 @@ import {
   useTranslate,
   Show,
   SimpleShowLayout,
+  AutocompleteInput,
 } from 'react-admin';
-import { useMediaQuery } from '@mui/material';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { useMediaQuery, Box, Typography } from '@mui/material';
 
 const measurementFilters = [
   <ReferenceInput source="user_id" label="User" reference="user" />,
@@ -52,10 +51,14 @@ export const MeasurementList = () => {
         <Datagrid rowClick="show">
           <TextField source="id" />
           <ReferenceField source="user_id" reference="user" />
-          <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" />
+          <ReferenceField
+            source="referenced_somatotype_id"
+            reference="referenced_somatotype"
+          />
           <NumberField source="control" />
           <NumberField source="height" />
           <NumberField source="weight" />
+          <DateField source="evaluation_date" />
           <DateField source="created_at" />
           <DateField source="updated_at" />
           <EditButton />
@@ -80,12 +83,21 @@ export const MeasurementEdit = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <ReferenceInput source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
+            <ReferenceInput
+              source="referenced_somatotype_id"
+              reference="referenced_somatotype"
+              fullWidth
+            />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="control" fullWidth />
+            <NumberInput source="control" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <DateInput source="evaluation_date" fullWidth />
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
@@ -220,6 +232,9 @@ export const MeasurementEdit = () => {
   );
 };
 
+const filterToQuery = (searchText) => ({
+  sport: `%${searchText}%`,
+});
 export const MeasurementCreate = () => {
   const translate = useTranslate();
   return (
@@ -234,12 +249,23 @@ export const MeasurementCreate = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <ReferenceInput source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
+            <ReferenceInput
+              source="referenced_somatotype_id"
+              reference="referenced_somatotype"
+              fullWidth
+            >
+              <AutocompleteInput filterToQuery={filterToQuery} />
+            </ReferenceInput>
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="control" fullWidth />
+            <NumberInput source="control" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <DateInput source="evaluation_date" fullWidth />
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
@@ -322,7 +348,7 @@ export const MeasurementCreate = () => {
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
-          {translate('myroot.diametro ')}
+          {translate('myroot.diametro')}
         </Typography>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -381,7 +407,7 @@ export const MeasurementShow = () => {
       <SimpleShowLayout sx={{ maxWidth: 600 }}>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.measurement.fields.user_id')}
             </Typography>
             <ReferenceField
@@ -391,18 +417,24 @@ export const MeasurementShow = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <Typography variant="h6" gutterBottom>
-              {translate('resources.measurement.fields.referenced_somatotype_id')}
+            <Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.measurement.fields.referenced_somatotype_id'
+              )}
             </Typography>
-          <ReferenceField source="referenced_somatotype_id" reference="referenced_somatotype" fullWidth />
+            <ReferenceField
+              source="referenced_somatotype_id"
+              reference="referenced_somatotype"
+              fullWidth
+            />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.measurement.fields.control')}
             </Typography>
-          <NumberField source="control" fullWidth />
+            <NumberField source="control" fullWidth />
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
@@ -429,7 +461,9 @@ export const MeasurementShow = () => {
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.measurement.fields.plg_abdominal')}
+              {translate(
+                'resources.measurement.fields.plg_abdominal'
+              )}
             </Typography>
             <NumberField source="plg_abdominal" fullWidth />
           </Box>
@@ -457,13 +491,17 @@ export const MeasurementShow = () => {
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.measurement.fields.plg_subscapular')}
+              {translate(
+                'resources.measurement.fields.plg_subscapular'
+              )}
             </Typography>
             <NumberField source="plg_subscapular" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.measurement.fields.plg_suprailiac')}
+              {translate(
+                'resources.measurement.fields.plg_suprailiac'
+              )}
             </Typography>
             <NumberField source="plg_suprailiac" fullWidth />
           </Box>
@@ -471,7 +509,9 @@ export const MeasurementShow = () => {
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.measurement.fields.plg_supraspinal')}
+              {translate(
+                'resources.measurement.fields.plg_supraspinal'
+              )}
             </Typography>
             <NumberField source="plg_supraspinal" fullWidth />
           </Box>
@@ -536,7 +576,7 @@ export const MeasurementShow = () => {
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
-          {translate('myroot.diametro ')}
+          {translate('myroot.diametro')}
         </Typography>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
@@ -586,7 +626,9 @@ export const MeasurementShow = () => {
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.measurement.fields.fitness_level')}
+              {translate(
+                'resources.measurement.fields.fitness_level'
+              )}
             </Typography>
             <NumberField source="fitness_level" fullWidth />
           </Box>
@@ -600,7 +642,9 @@ export const MeasurementShow = () => {
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.measurement.fields.triglycerides')}
+              {translate(
+                'resources.measurement.fields.triglycerides'
+              )}
             </Typography>
             <TextField source="triglycerides" fullWidth />
           </Box>
