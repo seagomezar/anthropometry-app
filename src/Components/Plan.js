@@ -5,7 +5,6 @@ import {
   List,
   ReferenceField,
   TextField,
-  DateInput,
   Edit,
   ReferenceInput,
   SimpleForm,
@@ -15,14 +14,11 @@ import {
   Show,
   SimpleShowLayout,
   ReferenceManyField,
-  NumberField,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Empty } from './Empty';
 import { TimeField } from './TimeField';
-
-const Separator = () => <Box pt="1em" />;
 
 export const PlanList = () => (
   <List>

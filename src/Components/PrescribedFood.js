@@ -22,8 +22,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { TimeField } from './TimeField';
 
-const Separator = () => <Box pt="1em" />;
-
 export const PrescribedFoodList = () => (
   <List>
     <Datagrid rowClick="show">

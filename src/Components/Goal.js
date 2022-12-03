@@ -4,7 +4,6 @@ import {
   DateField,
   List,
   TextField,
-  DateInput,
   Edit,
   SimpleForm,
   TextInput,
@@ -15,9 +14,6 @@ import {
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useMediaQuery } from '@mui/material';
-
-const Separator = () => <Box pt="1em" />;
 
 export const GoalList = () => (
   <List>
@@ -33,10 +29,10 @@ export const GoalList = () => (
 export const GoalEdit = () => (
   <Edit>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="name"fullWidth />
-      </Box>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="name" fullWidth />
+        </Box>
       </Box>
     </SimpleForm>
   </Edit>
@@ -44,10 +40,10 @@ export const GoalEdit = () => (
 export const GoalCreate = () => (
   <Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="name"fullWidth />
-      </Box>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="name" fullWidth />
+        </Box>
       </Box>
     </SimpleForm>
   </Create>
@@ -56,17 +52,17 @@ export const GoalCreate = () => (
 export const GoalShow = () => {
   const translate = useTranslate();
   return (
-  <Show>
-     <SimpleShowLayout sx={{ maxWidth: 500 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <Typography variant="h6" gutterBottom>
+    <Show>
+      <SimpleShowLayout sx={{ maxWidth: 500 }}>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.goal.fields.name')}
             </Typography>
-     <TextField source="name"fullWidth />
-      </Box>
-      </Box>
-     </SimpleShowLayout>
-  </Show>
+            <TextField source="name" fullWidth />
+          </Box>
+        </Box>
+      </SimpleShowLayout>
+    </Show>
   );
 };

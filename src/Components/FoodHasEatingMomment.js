@@ -5,11 +5,9 @@ import {
   List,
   ReferenceField,
   TextField,
-  DateInput,
   Edit,
   ReferenceInput,
   SimpleForm,
-  TextInput,
   useTranslate,
   Create,
   Show,
@@ -17,9 +15,6 @@ import {
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useMediaQuery } from '@mui/material';
-
-const Separator = () => <Box pt="1em" />;
 
 export const FoodHasEatingMomentList = () => (
   <List>
@@ -38,35 +33,43 @@ export const FoodHasEatingMomentList = () => (
 
 export const FoodHasEatingMomentEdit = () => (
   <Edit>
-   <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <ReferenceInput
-        source="eating_moment_id"
-        reference="eating_moment"
-      />
-     </Box>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <ReferenceInput source="food_id" reference="food"fullWidth />
-     </Box>
-    </Box>
+    <SimpleForm sx={{ maxWidth: 600 }}>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceInput
+            source="eating_moment_id"
+            reference="eating_moment"
+          />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceInput
+            source="food_id"
+            reference="food"
+            fullWidth
+          />
+        </Box>
+      </Box>
     </SimpleForm>
   </Edit>
 );
 export const FoodHasEatingMomentCreate = () => (
   <Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <ReferenceInput
-        source="eating_moment_id"
-        reference="eating_moment"
-      />
-     </Box>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <ReferenceInput source="food_id" reference="food"fullWidth />
-     </Box>
-    </Box>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceInput
+            source="eating_moment_id"
+            reference="eating_moment"
+          />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceInput
+            source="food_id"
+            reference="food"
+            fullWidth
+          />
+        </Box>
+      </Box>
     </SimpleForm>
   </Create>
 );
@@ -74,26 +77,34 @@ export const FoodHasEatingMomentCreate = () => (
 export const FoodHasEatingMomentShow = () => {
   const translate = useTranslate();
   return (
- <Show>
-  <SimpleShowLayout sx={{ maxWidth: 500 }}>
-  <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <Typography variant="h6" gutterBottom>
-              {translate('resources.food_has_eating_moment.fields.eating_moment_id')}
+    <Show>
+      <SimpleShowLayout sx={{ maxWidth: 500 }}>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.food_has_eating_moment.fields.eating_moment_id'
+              )}
             </Typography>
-     <ReferenceField
-        source="eating_moment_id"
-        reference="eating_moment"
-      />
-     </Box>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <Typography variant="h6" gutterBottom>
-              {translate('resources.food_has_eating_moment.fields.food_id')}
+            <ReferenceField
+              source="eating_moment_id"
+              reference="eating_moment"
+            />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.food_has_eating_moment.fields.food_id'
+              )}
             </Typography>
-      <ReferenceField source="food_id" reference="food"fullWidth />
-     </Box>
-    </Box>
-   </SimpleShowLayout>
- </Show>
- );
+            <ReferenceField
+              source="food_id"
+              reference="food"
+              fullWidth
+            />
+          </Box>
+        </Box>
+      </SimpleShowLayout>
+    </Show>
+  );
 };
