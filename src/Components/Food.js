@@ -14,6 +14,8 @@ import {
   Create,
   Show,
   SimpleShowLayout,
+  EditButton,
+  DeleteButton,
 } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -35,6 +37,8 @@ export const FoodList = () => (
       <NumberField source="quantity" />
       <DateField source="updated_at" />
       <DateField source="created_at" />
+      <EditButton />
+          <DeleteButton />
     </Datagrid>
   </List>
 );

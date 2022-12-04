@@ -14,6 +14,8 @@ import {
   Create,
   Show,
   SimpleShowLayout,
+  EditButton,
+  DeleteButton,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -31,6 +33,8 @@ export const PlanList = () => (
       <ReferenceField source="user_id" reference="user" />
       <DateField source="created_at" /> 
       <DateField source="updated_at" />
+      <EditButton />
+          <DeleteButton />
     </Datagrid>
   </List>
 );
