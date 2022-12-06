@@ -1,0 +1,142 @@
+import React from 'react';
+import {
+  Datagrid,
+  DateField,
+  TextField,
+  useRecordContext,
+  ReferenceManyField,
+  useTranslate,
+  Show,
+  SimpleShowLayout,
+  NumberField,
+  ReferenceField,
+  Tab,
+  TabbedShowLayout,
+} from 'react-admin';
+import { Typography, Box } from '@mui/material';
+import { Empty } from '../Empty';
+import LineChartField from '../LineChartField';
+import { Separator } from '../Separator';
+
+export const UserShow = () => {
+    const translate = useTranslate();
+    const record = useRecordContext();
+    return (
+      <Show>
+        <SimpleShowLayout sx={{ maxWidth: 500 }}>
+          <Typography variant="h6" gutterBottom>
+            {translate('myroot.identity')}
+          </Typography>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Typography variant="h6" gutterBottom>
+                {translate('resources.user.fields.firstname')}
+              </Typography>
+              <TextField source="firstname" />
+            </Box>
+          </Box>
+          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+              {translate('resources.user.fields.lastname')}
+            </Typography>
+            <TextField source="lastname" />
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+              <Typography variant="h6" gutterBottom>
+                {translate('resources.user.fields.email')}
+              </Typography>
+              <TextField source="email" />
+            </Box>
+            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+              <Typography variant="h6" gutterBottom>
+                {translate('resources.user.fields.gender')}
+              </Typography>
+              <TextField source="gender" />
+            </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+              <Typography variant="h6" gutterBottom>
+                {translate('resources.user.fields.birthday')}
+              </Typography>
+              <DateField source="birthday" />
+            </Box>
+          </Box>
+          <Separator />
+  
+          <Separator />
+          <Typography variant="h6" gutterBottom>
+            {translate('myroot.addressAndPhone')}
+          </Typography>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+              <Typography variant="h6" gutterBottom>
+                {translate('resources.user.fields.address')}
+              </Typography>
+              <TextField source="address" />
+            </Box>
+            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+              <Typography variant="h6" gutterBottom>
+                {translate('resources.user.fields.phone')}
+              </Typography>
+              <TextField source="phone" fullWidth />
+            </Box>
+          </Box>
+          <Separator />
+  
+          <Box display={{ xs: 'block', sm: 'flex' }}>
+            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Typography variant="h6" gutterBottom>
+                {translate('myroot.password')}
+              </Typography>
+              <TextField source="password" fullWidth />
+            </Box>
+          </Box>
+          <Separator />
+          <TabbedShowLayout>
+            <Tab label="Lista de Mediciones">
+              <ReferenceManyField
+                label={translate('resources.user.fields.measurements')}
+                reference="measurement"
+                target="user_id"
+              >
+                <Datagrid empty={<Empty />}>
+                  <NumberField source="control" />
+                  <ReferenceField
+                    source="referenced_somatotype_id"
+                    reference="referenced_somatotype"
+                    fullWidth
+                  />
+                  <NumberField source="weight" />
+                  <NumberField source="height" />
+                  <DateField source="evaluation_date" />
+                </Datagrid>
+              </ReferenceManyField>
+            </Tab>
+            <Tab label="Comparar Medidas" path="body">
+              <LineChartField source="id" />
+            </Tab>
+          </TabbedShowLayout>
+  
+          <Separator />
+          <ReferenceManyField
+            label={translate('resources.user.fields.plans')}
+            reference="plan"
+            target="user_id"
+          >
+            <Datagrid empty={<Empty />} rowClick="show">
+              <NumberField source="id" />
+              <TextField source="comments" />
+              <ReferenceField
+                source="goal_id"
+                reference="goal"
+                fullWidth
+              />
+              <DateField source="created_at" />
+            </Datagrid>
+          </ReferenceManyField>
+        </SimpleShowLayout>
+      </Show>
+    );
+  };

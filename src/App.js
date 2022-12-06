@@ -4,7 +4,6 @@ import buildHasuraProvider from 'ra-data-hasura';
 import { customBuildFields } from './Providers/dataProvider';
 import { Admin, Resource } from 'react-admin';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { UserCreate, UserEdit, UserShow } from './Components/Users';
 
 import UserIcon from '@mui/icons-material/Group';
 import StraightenIcon from '@mui/icons-material/Straighten';
@@ -87,6 +86,9 @@ import {
   PrescribedFoodShow,
 } from './Components/PrescribedFood';
 import { UserList } from './Components/Users/UserList';
+import { UserEdit } from './Components/Users/UserEdit';
+import { UserCreate } from './Components/Users/UserCreate';
+import { UserShow } from './Components/Users/UserShow';
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
