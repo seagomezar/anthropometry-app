@@ -24,7 +24,7 @@ import {
   Tab,
   TabbedShowLayout,
 } from 'react-admin';
-import { useMediaQuery, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import { Empty } from './Empty';
 import LineChartField from './LineChartField';
 import { Separator } from './Separator';
@@ -39,43 +39,6 @@ const UserTitle = () => {
   );
 };
 
-const userFilters = [
-  <TextInput label="Search" source="firstname@_like" alwaysOn />,
-];
-
-export const UserList = () => {
-  const isSmall = useMediaQuery((theme) =>
-    theme.breakpoints.down('sm')
-  );
-  return (
-    <List filters={userFilters}>
-      {isSmall ? (
-        <SimpleList
-          primaryText={(record) =>
-            record.firstname + ' ' + record.lastname
-          }
-        />
-      ) : (
-        <Datagrid rowClick="show">
-          <TextField source="id" />
-          <TextField source="firstname" />
-          <TextField source="lastname" />
-          <EmailField source="email" />
-          <TextField source="phone" />
-          <TextField source="address" />
-          <TextField source="birthday" />
-          <TextField source="gender" />
-          <DateField source="created_at" />
-          <DateField source="updated_at" />
-          <EditButton />
-          <DeleteButton />
-        </Datagrid>
-      )}
-    </List>
-  );
-};
-
-// TODO: Añadir el id a todos los formularios de edicion
 export const UserEdit = () => {
   const translate = useTranslate();
   return (
