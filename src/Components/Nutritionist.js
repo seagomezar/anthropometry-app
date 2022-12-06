@@ -5,7 +5,6 @@ import {
   EmailField,
   List,
   TextField,
-  DateInput,
   Edit,
   SimpleForm,
   TextInput,
@@ -19,8 +18,6 @@ import {
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-
-const Separator = () => <Box pt="1em" />;
 export const NutritionistList = () => (
   <List>
     <Datagrid rowClick="show">
@@ -41,54 +38,54 @@ export const NutritionistList = () => (
 export const NutritionistEdit = () => (
   <Edit>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="firstname"fullWidth />
-    </Box>
-    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="lastname"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="firstname" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="lastname" fullWidth />
+        </Box>
       </Box>
-    </Box>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="address"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="address" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="email" fullWidth />
+        </Box>
       </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="email"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="phone" fullWidth />
+        </Box>
       </Box>
-    </Box>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}> 
-     <TextInput source="phone"fullWidth />
-     </Box>
-    </Box>
     </SimpleForm>
   </Edit>
 );
 export const NutritionistCreate = () => (
   <Create>
-      <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="firstname"fullWidth />
-    </Box>
-    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="lastname"fullWidth />
+    <SimpleForm sx={{ maxWidth: 600 }}>
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="firstname" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="lastname" fullWidth />
+        </Box>
       </Box>
-    </Box>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <TextInput source="address"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="address" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="email" fullWidth />
+        </Box>
       </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="email"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="phone" fullWidth />
+        </Box>
       </Box>
-    </Box>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}> 
-     <TextInput source="phone"fullWidth />
-     </Box>
-    </Box>
     </SimpleForm>
   </Create>
 );
@@ -96,45 +93,45 @@ export const NutritionistCreate = () => (
 export const NutritionistShow = () => {
   const translate = useTranslate();
   return (
-  <Show>
-     <SimpleShowLayout sx={{ maxWidth: 500 }}>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <Typography variant="h6" gutterBottom>
+    <Show>
+      <SimpleShowLayout sx={{ maxWidth: 500 }}>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.nutritionist.fields.firstname')}
             </Typography>
-     <TextField source="firstname"fullWidth />
-    </Box>
-    <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-    <Typography variant="h6" gutterBottom>
+            <TextField source="firstname" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.nutritionist.fields.lastname')}
             </Typography>
-     <TextField source="lastname"fullWidth />
-      </Box>
-    </Box>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <Typography variant="h6" gutterBottom>
+            <TextField source="lastname" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.nutritionist.fields.address')}
             </Typography>
-     <TextField source="address"fullWidth />
-      </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+            <TextField source="address" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.nutritionist.fields.email')}
             </Typography>
-      <TextField source="email"fullWidth />
-      </Box>
-    </Box>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <Typography variant="h6" gutterBottom>
+            <TextField source="email" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.nutritionist.fields.phone')}
-            </Typography> 
-     <TextField source="phone"fullWidth />
-     </Box>
-    </Box>
-    </SimpleShowLayout>
-  </Show>
+            </Typography>
+            <TextField source="phone" fullWidth />
+          </Box>
+        </Box>
+      </SimpleShowLayout>
+    </Show>
   );
 };

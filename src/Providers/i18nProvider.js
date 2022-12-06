@@ -13,10 +13,11 @@ export const es = {
     female: 'Femenino',
     mediciones: 'Mediciones',
     AddressPhone: 'direccion y telefono',
-    pliegues:'Pliegues (m.m)',
-    perímetros:'Perímetros (cm)',
-    diametro:'Diametro (cm)',
-    somatotipo:'somatotipo de referencia',
+    pliegues: 'Pliegues (m.m)',
+    perímetros: 'Perímetros (cm)',
+    diametro: 'Diametro (cm)',
+    somatotipo: 'Somatotipo de Referencia',
+    empty: 'No hay elementos creados',
   },
   resources: {
     // TODO: Completar los nombres de todos
@@ -34,6 +35,8 @@ export const es = {
         updated_at: 'Actualizado',
         password: 'Contraseña',
         confirm_password: 'Confirmar Contraseña',
+        plans: 'Planes de Alimentación',
+        measurements: 'Mediciones',
       },
     },
     measurement: {
@@ -153,8 +156,8 @@ export const es = {
     prescribed_food: {
       name: 'Alimentos en plan |||| Alimentos en planes',
       fields: {
-        eating_moment_name: 'Eating_moment_name',
-        eating_moment_time: 'Eating_moment_time',
+        eating_moment_name: 'Momento',
+        eating_moment_time: 'Hora',
         food_id: 'Alimento',
         plan_id: 'plan',
         prescribed_quantity: 'Cantidad Prescrita',
@@ -181,6 +184,19 @@ export const es = {
 
 export const en = {
   ...englishMessages,
+  myroot: {
+    password: 'Contraseña',
+    addressAndPhone: 'Dirección & Teléfono',
+    identity: 'Identidad',
+    male: 'Masculino',
+    female: 'Femenino',
+    mediciones: 'Mediciones',
+    AddressPhone: 'direccion y telefono',
+    pliegues: 'Pliegues (m.m)',
+    perímetros: 'Perímetros (cm)',
+    diametro: 'Diametro (cm)',
+    somatotipo: 'somatotipo de referencia',
+  },
   resources: {
     food_has_food_category: {
       name: 'Food x Category',

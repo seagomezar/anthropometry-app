@@ -4,7 +4,6 @@ import {
   DateField,
   List,
   TextField,
-  DateInput,
   Edit,
   SimpleForm,
   TextInput,
@@ -18,11 +17,14 @@ import {
   SimpleShowLayout,
   EditButton,
   DeleteButton,
+  EditButton,
+  DeleteButton,
+  TimeInput,
+  AutocompleteInput,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
-const Separator = () => <Box pt="1em" />;
+import { TimeField } from './TimeField';
 
 export const PrescribedFoodList = () => (
   <List>
@@ -30,8 +32,11 @@ export const PrescribedFoodList = () => (
       <TextField source="id" />
       <ReferenceField source="plan_id" reference="plan" />
       <ReferenceField source="food_id" reference="food" />
-      <TextField source="eating_moment_time" />
-      <TextField source="eating_moment_name" />
+      <TimeField source="eating_moment_time" />
+      <ReferenceField
+        source="eating_moment_name"
+        reference="eating_moment"
+      />
       <TextField source="prescribed_quantity" />
       <DateField source="updated_at" />
       <DateField source="created_at" />
@@ -62,10 +67,14 @@ export const PrescribedFoodEdit = () => (
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <TextInput source="eating_moment_time" fullWidth />
+          <TimeInput source="eating_moment_time" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <TextInput source="eating_moment_name" fullWidth />
+          <ReferenceInput
+            source="eating_moment_name"
+            reference="eating_moment"
+            fullWidth
+          />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
@@ -76,6 +85,10 @@ export const PrescribedFoodEdit = () => (
     </SimpleForm>
   </Edit>
 );
+
+const filterToQuery = (searchText) => ({
+  description: `%${searchText}%`,
+});
 export const PrescribedFoodCreate = () => (
   <Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
@@ -88,19 +101,21 @@ export const PrescribedFoodCreate = () => (
           />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <ReferenceInput
-            source="food_id"
-            reference="food"
-            fullWidth
-          />
+          <ReferenceInput source="food_id" reference="food" fullWidth>
+            <AutocompleteInput filterToQuery={filterToQuery} />
+          </ReferenceInput>
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <TextInput source="eating_moment_time" fullWidth />
+          <TimeInput source="eating_moment_time" fullWidth />
         </Box>
         <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <TextInput source="eating_moment_name" fullWidth />
+          <ReferenceInput
+            source="eating_moment_name"
+            reference="eating_moment"
+            fullWidth
+          />
         </Box>
       </Box>
       <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
@@ -112,56 +127,66 @@ export const PrescribedFoodCreate = () => (
   </Create>
 );
 
-export const PrescribedFoodShow= () => {
+export const PrescribedFoodShow = () => {
   const translate = useTranslate();
   return (
-  <Show>
-    <SimpleShowLayout sx={{ maxWidth: 500 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <Typography variant="h6" gutterBottom>
+    <Show>
+      <SimpleShowLayout sx={{ maxWidth: 500 }}>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.prescribed_food.fields.plan_id')}
             </Typography>
-          <ReferenceField
-            source="plan_id"
-            reference="plan"
-            fullWidth
-          />
-        </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <Typography variant="h6" gutterBottom>
+            <ReferenceField
+              source="plan_id"
+              reference="plan"
+              fullWidth
+            />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.prescribed_food.fields.food_id')}
             </Typography>
-          <ReferenceField
-            source="food_id"
-            reference="food"
-            fullWidth
-          />
+            <ReferenceField
+              source="food_id"
+              reference="food"
+              fullWidth
+            />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <Typography variant="h6" gutterBottom>
-              {translate('resources.prescribed_food.fields.eating_moment_time')}
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.prescribed_food.fields.eating_moment_time'
+              )}
             </Typography>
-          <TextField source="eating_moment_time" fullWidth />
-        </Box>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <Typography variant="h6" gutterBottom>
-              {translate('resources.prescribed_food.fields.eating_moment_name')}
+            <TimeField source="eating_moment_time" />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.prescribed_food.fields.eating_moment_name'
+              )}
             </Typography>
-          <TextField source="eating_moment_name" fullWidth />
+            <ReferenceField
+              source="eating_moment_name"
+              reference="eating_moment"
+              fullWidth
+            />
+          </Box>
         </Box>
-      </Box>
-      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-        <Typography variant="h6" gutterBottom>
-              {translate('resources.prescribed_food.fields.prescribed_quantity')}
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.prescribed_food.fields.prescribed_quantity'
+              )}
             </Typography>
-          <NumberField source="prescribed_quantity" fullWidth />
+            <NumberField source="prescribed_quantity" fullWidth />
+          </Box>
         </Box>
-      </Box>
-    </SimpleShowLayout>
-  </Show>
- );
+      </SimpleShowLayout>
+    </Show>
+  );
 };
