@@ -13,14 +13,15 @@ import {
   Create,
   Show,
   SimpleShowLayout,
-  EditButton ,
-  DeleteButton ,
+  EditButton,
+  DeleteButton,
+  ReferenceManyField,
 } from 'react-admin';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { Box, Typography } from '@mui/material';
 import { Empty } from './Empty';
 import { TimeField } from './TimeField';
 import { Separator } from './Separator';
+import { PlanSummaryField } from './PlanSummary';
 
 export const PlanList = () => (
   <List>
@@ -32,7 +33,7 @@ export const PlanList = () => (
       <DateField source="created_at" />
       <DateField source="updated_at" />
       <EditButton />
-          <DeleteButton />
+      <DeleteButton />
     </Datagrid>
   </List>
 );

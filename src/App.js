@@ -1,14 +1,8 @@
 // Initialize the dataProvider before rendering react-admin resources.
 import React, { useState, useEffect } from 'react';
 import buildHasuraProvider from 'ra-data-hasura';
-import {
-  Admin,
-  EditGuesser,
-  Layout,
-  ListGuesser,
-  Resource,
-  useTranslate,
-} from 'react-admin';
+import { customBuildFields } from './Providers/dataProvider';
+import { Admin, Resource } from 'react-admin';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import {
   UserCreate,
@@ -16,6 +10,7 @@ import {
   UserList,
   UserShow,
 } from './Components/Users';
+
 import UserIcon from '@mui/icons-material/Group';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
@@ -112,15 +107,17 @@ const myClientWithAuth = new ApolloClient({
 
 const App = () => {
   const [dataProvider, setDataProvider] = useState(null);
-  const translate = useTranslate();
   useEffect(() => {
-    const buildDataProvider = async () => {
-      const dataProvider = await buildHasuraProvider({
-        client: myClientWithAuth,
-      });
+    const buildDataProvider = async (customBuildFields) => {
+      const dataProvider = await buildHasuraProvider(
+        {
+          client: myClientWithAuth,
+        },
+        customBuildFields
+      );
       setDataProvider(() => dataProvider);
     };
-    buildDataProvider();
+    buildDataProvider({ buildFields: customBuildFields });
   }, []);
 
   if (!dataProvider) return <p>Loading...</p>;

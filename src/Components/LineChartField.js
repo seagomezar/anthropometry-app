@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Card, CardContent } from '@mui/material';
 import {
   useRecordContext,
   useGetManyReference,
   useTranslate,
 } from 'react-admin';
-import { MenuItem, Select } from '@mui/material';
+import { MenuItem, Select, Card, CardContent } from '@mui/material';
 import LineChart from './LineChart';
 
 const LineChartField = ({ source }) => {
