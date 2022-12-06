@@ -21,7 +21,7 @@ export const PlanSummaryField = ({ source }) => {
   const [totalCalories, setTotalCalories] = useState(0);
 
   React.useEffect(() => {
-    if (data) {
+    if (data?.length) {
       const arrayOfData = data.map((f) => f.food_id);
       console.log(arrayOfData);
       dataProvider
