@@ -15,6 +15,8 @@ export const es = {
     diametro: 'Diametro (cm)',
     somatotipo: 'Somatotipo de Referencia',
     empty: 'No hay elementos creados',
+    grams: 'Gramos',
+    total_calories: 'Calorías Totales',
   },
   resources: {
     user: {
@@ -88,6 +90,8 @@ export const es = {
     },
     plan: {
       name: 'Plan |||| Planes',
+      summary: 'Resumen del Plan',
+      add_to_plan: 'Añadir alimento',
       fields: {
         comments: 'Comentario',
         goal_id: 'Meta',

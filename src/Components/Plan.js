@@ -16,6 +16,8 @@ import {
   EditButton,
   DeleteButton,
   ReferenceManyField,
+  NumberField,
+  CreateButton,
 } from 'react-admin';
 import { Box, Typography } from '@mui/material';
 import { Empty } from './Empty';
@@ -134,7 +136,7 @@ export const PlanShow = () => {
           reference="prescribed_food"
           target="plan_id"
         >
-          <Datagrid empty={<Empty />}>
+          <Datagrid empty={<Empty />} rowClick="edit">
             <TextField source="prescribed_quantity" />
             <ReferenceField source="food_id" reference="food" />
             <TimeField source="eating_moment_time" />
@@ -143,7 +145,11 @@ export const PlanShow = () => {
               reference="eating_moment"
             />
           </Datagrid>
+          <CreateButton
+            label={translate('resources.plan.add_to_plan')}
+          />
         </ReferenceManyField>
+        <PlanSummaryField source="id" label="Plan Summary" />
       </SimpleShowLayout>
     </Show>
   );
