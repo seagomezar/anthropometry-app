@@ -88,6 +88,8 @@ export const es = {
     },
     plan: {
       name: 'Plan |||| Planes',
+      summary: 'Resumen del Plan',
+      add_to_plan: 'Añadir alimento',
       fields: {
         comments: 'Comentario',
         goal_id: 'Meta',

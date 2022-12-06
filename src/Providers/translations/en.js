@@ -3,8 +3,8 @@ import englishMessages from 'ra-language-english';
 export const en = {
   ...englishMessages,
   myroot: {
-    password: 'Contraseña',
-    addressAndPhone: 'Dirección & Teléfono',
+    password: 'Password',
+    addressAndPhone: 'Address and telephone',
     identity: 'Identidad',
     male: 'Masculino',
     female: 'Femenino',
