@@ -2,25 +2,18 @@ import * as React from 'react';
 import { Card, CardContent, CardHeader } from '@mui/material';
 import { Chart } from 'chart.js/auto';
 
-const Dashboard = () => {
+const BarChart = ({ labels, data, title }) => {
   React.useEffect(() => {
     const ctx = document.getElementById('myChart');
 
     const graph = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [
-          'Red',
-          'Blue',
-          'Yellow',
-          'Green',
-          'Purple',
-          'Orange',
-        ],
+        labels,
         datasets: [
           {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: title,
+            data,
             borderWidth: 1,
           },
         ],
@@ -48,4 +41,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default BarChart;

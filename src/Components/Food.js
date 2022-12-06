@@ -5,7 +5,6 @@ import {
   List,
   NumberField,
   TextField,
-  DateInput,
   Edit,
   NumberInput,
   SimpleForm,
@@ -17,12 +16,8 @@ import {
   EditButton,
   DeleteButton,
 } from 'react-admin';
-import { useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
-
-const Separator = () => <Box pt="1em" />;
 
 export const FoodList = () => (
   <List>
@@ -46,70 +41,70 @@ export const FoodList = () => (
 export const FoodEdit = () => (
   <Edit>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="calories"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="calories" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="chos" fullWidth />
+        </Box>
       </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="chos"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="description" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="fat" fullWidth />
+        </Box>
       </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="description"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="measure_unit" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="protein" fullWidth />
+        </Box>
       </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="fat"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="quantity" fullWidth />
+        </Box>
       </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="measure_unit"fullWidth />
-      </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="protein"fullWidth />
-      </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <NumberInput source="quantity"fullWidth />
-     </Box>
-     </Box>
     </SimpleForm>
   </Edit>
 );
 export const FoodCreate = () => (
   <Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="calories"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="calories" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="chos" fullWidth />
+        </Box>
       </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="chos"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="description" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="fat" fullWidth />
+        </Box>
       </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="description"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="measure_unit" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="protein" fullWidth />
+        </Box>
       </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="fat"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="quantity" fullWidth />
+        </Box>
       </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="measure_unit"fullWidth />
-      </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <NumberInput source="protein"fullWidth />
-      </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-     <NumberInput source="quantity"fullWidth />
-     </Box>
-     </Box>
     </SimpleForm>
   </Create>
 );
@@ -117,58 +112,59 @@ export const FoodCreate = () => (
 export const FoodShow = () => {
   const translate = useTranslate();
   return (
- <Show>
-  <SimpleShowLayout sx={{ maxWidth: 500 }}>
-  <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+    <Show>
+      <SimpleShowLayout sx={{ maxWidth: 500 }}>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.food.fields.calories')}
             </Typography>
-      <NumberField source="calories"fullWidth />
-      </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+            <NumberField source="calories" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.food.fields.chos')}
             </Typography>
-      <NumberField source="chos"fullWidth />
-      </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+            <NumberField source="chos" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.food.fields.description')}
             </Typography>
-      <TextField source="description"fullWidth />
-      </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+            <TextField source="description" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.food.fields.fat')}
             </Typography>
-      <NumberField source="fat"fullWidth />
-      </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+            <NumberField source="fat" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.food.fields.measure_unit')}
             </Typography>
-      <TextField source="measure_unit"fullWidth />
-      </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+            <TextField source="measure_unit" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.food.fields.protein')}
             </Typography>
-      <NumberField source="protein"fullWidth />
-      </Box>
-     </Box>
-     <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-     <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}><Typography variant="h6" gutterBottom>
+            <NumberField source="protein" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.food.fields.quantity')}
             </Typography>
-     <NumberField source="quantity"fullWidth />
-     </Box>
-     </Box>
-  </SimpleShowLayout>
- </Show>
- );
+            <NumberField source="quantity" fullWidth />
+          </Box>
+        </Box>
+      </SimpleShowLayout>
+    </Show>
+  );
 };

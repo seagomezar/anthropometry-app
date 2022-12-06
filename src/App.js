@@ -7,7 +7,7 @@ import {
   Layout,
   ListGuesser,
   Resource,
-  useTranslate
+  useTranslate,
 } from 'react-admin';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import {
@@ -241,7 +241,8 @@ const App = () => {
         create={ReferencedSomatotypeCreate}
         show={ReferencedSomatotypeShow}
         recordRepresentation={(record) =>
-          `${record.sport} - ${(record.gender) ? translate('myroot.male') : translate('myroot.female')}`}
+          `${record.sport} - ${record.gender ? 'M' : 'F'}`
+        }
       />
     </Admin>
   );

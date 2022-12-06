@@ -4,7 +4,6 @@ import {
   DateField,
   List,
   TextField,
-  DateInput,
   Edit,
   SimpleForm,
   TextInput,
@@ -17,10 +16,6 @@ import {
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useMediaQuery } from '@mui/material';
-
-const Separator = () => <Box pt="1em" />;
-
 
 export const EatingMomentList = () => (
   <List>
@@ -40,14 +35,14 @@ export const EatingMomentList = () => (
 export const EatingMomentEdit = () => (
   <Edit>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="name"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="name" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="time" fullWidth />
+        </Box>
       </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="time"fullWidth />
-      </Box>
-    </Box>
     </SimpleForm>
   </Edit>
 );
@@ -55,14 +50,14 @@ export const EatingMomentEdit = () => (
 export const EatingMomentCreate = () => (
   <Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
-    <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="name"fullWidth />
+      <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="name" fullWidth />
+        </Box>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="time" fullWidth />
+        </Box>
       </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <TextInput source="time"fullWidth />
-      </Box>
-    </Box>
     </SimpleForm>
   </Create>
 );
@@ -70,23 +65,23 @@ export const EatingMomentCreate = () => (
 export const EatingMomentShow = () => {
   const translate = useTranslate();
   return (
- <Show>
-   <SimpleShowLayout sx={{ maxWidth: 500 }}>
-   <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+    <Show>
+      <SimpleShowLayout sx={{ maxWidth: 500 }}>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.eating_moment.fields.name')}
             </Typography>
-      <TextField source="name"fullWidth />
-      </Box>
-      <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-      <Typography variant="h6" gutterBottom>
+            <TextField source="name" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
               {translate('resources.eating_moment.fields.time')}
             </Typography>
-      <TextField source="time"fullWidth />
-      </Box>
-    </Box>
-   </SimpleShowLayout>
- </Show>
+            <TextField source="time" fullWidth />
+          </Box>
+        </Box>
+      </SimpleShowLayout>
+    </Show>
   );
 };
