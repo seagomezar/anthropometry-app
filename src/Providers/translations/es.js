@@ -15,6 +15,7 @@ export const es = {
     diametro: 'Diametro (cm)',
     somatotipo: 'Somatotipo de Referencia',
     empty: 'No hay elementos creados',
+    grams: 'Gramos',
   },
   resources: {
     user: {

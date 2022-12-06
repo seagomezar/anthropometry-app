@@ -5,7 +5,7 @@ import { Chart } from 'chart.js/auto';
 const PieChart = ({ x, y, title }) => {
   const translate = useTranslate();
   React.useEffect(() => {
-    const ctx = document.getElementById('pieChart');
+    const ctx = document.getElementById(title);
 
     const graph = new Chart(ctx, {
       type: 'pie',
@@ -13,7 +13,7 @@ const PieChart = ({ x, y, title }) => {
         labels: x,
         datasets: [
           {
-            label: translate('resources.plan.summary'),
+            label: translate(title),
             data: y,
             borderWidth: 1,
             backgroundColor: [
@@ -31,7 +31,7 @@ const PieChart = ({ x, y, title }) => {
     };
   }, [x, y]);
 
-  return x && <canvas id="pieChart"></canvas>;
+  return x && <canvas id={title}></canvas>;
 };
 
 export default PieChart;

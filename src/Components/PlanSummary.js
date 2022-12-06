@@ -18,6 +18,7 @@ export const PlanSummaryField = ({ source }) => {
     meta: { _embed: 'food' },
   });
   const [foods, setFoods] = useState([]);
+  const [totalCalories, setTotalCalories] = useState(0);
 
   React.useEffect(() => {
     if (data) {
@@ -28,26 +29,32 @@ export const PlanSummaryField = ({ source }) => {
         .then((foods) => {
           if (foods) {
             const dataY = [0, 0, 0];
+            let totalCalories = 0;
             foods.data.forEach((f, index) => {
+              console.log(f);
               dataY[0] += f.chos * data[index].prescribed_quantity;
               dataY[1] += f.fat * data[index].prescribed_quantity;
               dataY[2] += f.protein * data[index].prescribed_quantity;
+              totalCalories +=
+                f.calories * data[index].prescribed_quantity;
             });
             setFoods(dataY);
+            setTotalCalories(totalCalories);
           }
         });
     }
-  }, [data]);
-
-  React.useEffect(() => {
-    console.log('DATA', data);
   }, [data]);
 
   return (
     <Card>
       <CardContent>
         <PieChart
-          title="Food Distribution"
+          title="Total Calories"
+          x={[translate('resources.food.fields.calories')]}
+          y={[totalCalories]}
+        />
+        <PieChart
+          title={translate('myroot.grams')}
           x={[
             translate('resources.food.fields.chos'),
             translate('resources.food.fields.fat'),
