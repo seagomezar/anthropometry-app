@@ -17,8 +17,6 @@ import {
   SimpleShowLayout,
   EditButton,
   DeleteButton,
-  EditButton,
-  DeleteButton,
   TimeInput,
   AutocompleteInput,
 } from 'react-admin';
