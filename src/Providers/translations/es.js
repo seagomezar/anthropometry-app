@@ -16,6 +16,7 @@ export const es = {
     somatotipo: 'Somatotipo de Referencia',
     empty: 'No hay elementos creados',
     grams: 'Gramos',
+    total_calories: 'Calorías Totales',
   },
   resources: {
     user: {

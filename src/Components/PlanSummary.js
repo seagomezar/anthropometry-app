@@ -12,13 +12,12 @@ export const PlanSummaryField = ({ source }) => {
   const record = useRecordContext();
   const dataProvider = useDataProvider();
   const translate = useTranslate();
+  const [foods, setFoods] = useState([]);
+  const [totalCalories, setTotalCalories] = useState(0);
   const { data } = useGetManyReference('prescribed_food', {
     target: 'plan_id',
     id: record.id,
-    meta: { _embed: 'food' },
   });
-  const [foods, setFoods] = useState([]);
-  const [totalCalories, setTotalCalories] = useState(0);
 
   React.useEffect(() => {
     if (data?.length) {
@@ -49,7 +48,7 @@ export const PlanSummaryField = ({ source }) => {
     <Card>
       <CardContent>
         <PieChart
-          title="Total Calories"
+          title={translate('myroot.total_calories')}
           x={[translate('resources.food.fields.calories')]}
           y={[totalCalories]}
         />
