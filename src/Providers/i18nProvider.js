@@ -98,6 +98,7 @@ export const es = {
         user_id: 'Usuario',
         created_at: 'Creado',
         updated_at: 'Actualizado',
+        prescribed_food: 'Alimentos en Plan',
       },
     },
     food_has_eating_moment: {

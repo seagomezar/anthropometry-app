@@ -27,6 +27,7 @@ import {
 import { useMediaQuery, Typography, Box } from '@mui/material';
 import { Empty } from './Empty';
 import LineChartField from './LineChartField';
+import { Separator } from './Separator';
 
 const UserTitle = () => {
   const record = useRecordContext();
@@ -41,8 +42,6 @@ const UserTitle = () => {
 const userFilters = [
   <TextInput label="Search" source="firstname@_like" alwaysOn />,
 ];
-
-const Separator = () => <Box pt="1em" />;
 
 export const UserList = () => {
   const isSmall = useMediaQuery((theme) =>

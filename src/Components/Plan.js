@@ -19,6 +19,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Empty } from './Empty';
 import { TimeField } from './TimeField';
+import { Separator } from './Separator';
 
 export const PlanList = () => (
   <List>
@@ -125,7 +126,7 @@ export const PlanShow = () => {
         </Box>
         <Separator />
         <ReferenceManyField
-          label={translate('resources.user.fields.measurements')}
+          label={translate('resources.plan.fields.prescribed_food')}
           reference="prescribed_food"
           target="plan_id"
         >
