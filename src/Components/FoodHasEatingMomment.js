@@ -12,6 +12,8 @@ import {
   Create,
   Show,
   SimpleShowLayout,
+  EditButton,
+  DeleteButton,
 } from 'react-admin';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -27,6 +29,8 @@ export const FoodHasEatingMomentList = () => (
       <ReferenceField source="food_id" reference="food" />
       <DateField source="updated_at" />
       <DateField source="created_at" />
+      <EditButton />
+          <DeleteButton />
     </Datagrid>
   </List>
 );

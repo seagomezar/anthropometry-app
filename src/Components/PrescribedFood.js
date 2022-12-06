@@ -15,6 +15,8 @@ import {
   useTranslate,
   Show,
   SimpleShowLayout,
+  EditButton,
+  DeleteButton,
   TimeInput,
   AutocompleteInput,
 } from 'react-admin';
@@ -36,6 +38,8 @@ export const PrescribedFoodList = () => (
       <TextField source="prescribed_quantity" />
       <DateField source="updated_at" />
       <DateField source="created_at" />
+      <EditButton />
+          <DeleteButton />
     </Datagrid>
   </List>
 );
