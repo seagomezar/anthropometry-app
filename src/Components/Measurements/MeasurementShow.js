@@ -104,6 +104,9 @@ export const MeasurementShow = () => {
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
               <NumberField source="plg_triceps" fullWidth />
             </Box>
+            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberField source="plg_bicep" fullWidth />
+            </Box>
           </Box>
           <Typography variant="h6" gutterBottom>
             {translate('myroot.perímetros')}
@@ -130,6 +133,11 @@ export const MeasurementShow = () => {
             </Box>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
               <NumberField source="prm_waist" fullWidth />
+            </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <NumberField source="prm_wrist" fullWidth />
             </Box>
           </Box>
           <Typography variant="h6" gutterBottom>
