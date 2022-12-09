@@ -19,72 +19,62 @@ import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import { i18nProvider } from './Providers/i18nProvider';
-import {
-  MeasurementCreate,
-  MeasurementEdit,
-  MeasurementList,
-  MeasurementShow,
-} from './Components/Measurements';
-import {
-  FoodCategoryEdit,
-  FoodCategoryList,
-  FoodCategoryCreate,
-  FoodCategoryShow,
-} from './Components/FoodCategory';
-import {
-  FoodCreate,
-  FoodEdit,
-  FoodList,
-  FoodShow,
-} from './Components/Food';
-import {
-  GoalCreate,
-  GoalEdit,
-  GoalList,
-  GoalShow,
-} from './Components/Goal';
-import {
-  PlanCreate,
-  PlanEdit,
-  PlanList,
-  PlanShow,
-} from './Components/Plan';
-import {
-  FoodHasEatingMomentCreate,
-  FoodHasEatingMomentEdit,
-  FoodHasEatingMomentList,
-  FoodHasEatingMomentShow,
-} from './Components/FoodHasEatingMomment';
-import {
-  FoodHasFoodcategoryEdit,
-  FoodHasFoodCategoryList,
-  FoodHasFoodCategoryCreate,
-  FoodHasFoodCategoryShow,
-} from './Components/FoodHasFoodCategory';
-import {
-  EatingMomentCreate,
-  EatingMomentEdit,
-  EatingMomentList,
-  EatingMomentShow,
-} from './Components/EatingMoment';
-import {
-  NutritionistCreate,
-  NutritionistEdit,
-  NutritionistList,
-  NutritionistShow,
-} from './Components/Nutritionist';
-import {
-  ReferencedSomatotypeCreate,
-  ReferencedSomatotypeEdit,
-  ReferencedSomatotypeList,
-  ReferencedSomatotypeShow,
-} from './Components/ReferencedSomatotype';
-import {
-  PrescribedFoodCreate,
-  PrescribedFoodEdit,
-  PrescribedFoodList,
-  PrescribedFoodShow,
-} from './Components/PrescribedFood';
+
+import { MeasurementList } from './Components/Measurements/MeasurementsList';
+import { MeasurementEdit } from './Components/Measurements/MeasurementEdit';
+import { MeasurementCreate } from './Components/Measurements/MeasurementCreate';
+import { MeasurementShow } from './Components/Measurements/MeasurementShow';
+
+import { FoodCategoryList } from './Components/FoodCategory/FoodCategoryList';
+import { FoodCategoryEdit } from './Components/FoodCategory/FoodCategoryEdit';
+import { FoodCategoryCreate } from './Components/FoodCategory/FoodCategoryCreate';
+import { FoodCategoryShow } from './Components/FoodCategory/FoodCategoryShow';
+
+import { FoodList } from './Components/Food/FoodList';
+import { FoodEdit } from './Components/Food/FoodEdit';
+import { FoodCreate } from './Components/Food/FoodCreate';
+import { FoodShow } from './Components/Food/FoodShow';
+
+import { GoalList } from './Components/Goal/GoalList';
+import { GoalEdit } from './Components/Goal/GoalEdit';
+import { GoalCreate } from './Components/Goal/GoalCreate';
+import { GoalShow } from './Components/Goal/GoalShow';
+
+import { PlanList } from './Components/Plan/PlanList';
+import { PlanEdit } from './Components/Plan/PlanEdit';
+import { PlanCreate } from './Components/Plan/PlanCreate';
+import { PlanShow } from './Components/Plan/PlanShow';
+
+import { FoodHasEatingMomentList } from './Components/FoodHasEatingMoment/FoodHasEatingMomentList';
+import { FoodHasEatingMomentEdit } from './Components/FoodHasEatingMoment/FoodHasEatingMomentEdit';
+import { FoodHasEatingMomentCreate } from './Components/FoodHasEatingMoment/FoodHasEatingMomentCreate';
+import { FoodHasEatingMomentShow } from './Components/FoodHasEatingMoment/FoodHasEatingMomentShow';
+
+import { FoodHasFoodCategoryList } from './Components/FoodHasFoodCategory/FoodHasFoodCategoryList';
+import { FoodHasFoodcategoryEdit } from './Components/FoodHasFoodCategory/FoodHasFoodcategoryEdit';
+import { FoodHasFoodCategoryCreate } from './Components/FoodHasFoodCategory/FoodHasFoodCategoryCreate';
+import { FoodHasFoodCategoryShow } from './Components/FoodHasFoodCategory/FoodHasFoodCategoryShow';
+
+import { EatingMomentList } from './Components/EatingMoment/EatingMomentList';
+import { EatingMomentEdit } from './Components/EatingMoment/EatingMomentEdit';
+import { EatingMomentCreate } from './Components/EatingMoment/EatingMomentCreate';
+import { EatingMomentShow } from './Components/EatingMoment/EatingMomentShow';
+
+import { NutritionistList } from './Components/Nutritionist/NutritionistList';
+import { NutritionistEdit } from './Components/Nutritionist/NutritionistEdit';
+import { NutritionistCreate } from './Components/Nutritionist/NutritionistCreate';
+import { NutritionistShow } from './Components/Nutritionist/NutritionistShow';
+
+import { ReferencedSomatotypeList } from './Components/ReferencedSomatotype/ReferencedSomatotypeList';
+import { ReferencedSomatotypeEdit } from './Components/ReferencedSomatotype/ReferencedSomatotypeEdit';
+import { ReferencedSomatotypeCreate } from './Components/ReferencedSomatotype/ReferencedSomatotypeCreate';
+import { ReferencedSomatotypeShow } from './Components/ReferencedSomatotype/ReferencedSomatotypeShow';
+
+import { PrescribedFoodList } from './Components/PrescribedFood/PrescribedFoodList';
+import { PrescribedFoodEdit } from './Components/PrescribedFood/PrescribedFoodEdit';
+import { PrescribedFoodCreate } from './Components/PrescribedFood/PrescribedFoodCreate';
+import { PrescribedFoodShow } from './Components/PrescribedFood/PrescribedFoodShow';
+
 import { UserList } from './Components/Users/UserList';
 import { UserEdit } from './Components/Users/UserEdit';
 import { UserCreate } from './Components/Users/UserCreate';
