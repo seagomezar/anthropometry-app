@@ -21,7 +21,6 @@ export const UserCreate = () => {
           <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
               <TextInput source="firstname" isRequired fullWidth />
-              <TextInput source="image" isRequired fullWidth />
             </Box>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <TextInput
