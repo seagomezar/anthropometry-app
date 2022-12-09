@@ -20,7 +20,7 @@ import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import { i18nProvider } from './Providers/i18nProvider';
 
-import { MeasurementList } from './Components/Measurements/MeasurementsList';
+import { MeasurementList } from './Components/Measurements/MeasurementList';
 import { MeasurementEdit } from './Components/Measurements/MeasurementEdit';
 import { MeasurementCreate } from './Components/Measurements/MeasurementCreate';
 import { MeasurementShow } from './Components/Measurements/MeasurementShow';

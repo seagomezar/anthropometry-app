@@ -15,10 +15,6 @@ const filterToQuery = (searchText) => ({
   sport: `%${searchText}%`,
 });
 
-const measurementFilters = [
-  <ReferenceInput source="user_id" label="User" reference="user" />,
-];
-
 export const MeasurementCreate = () => {
     const translate = useTranslate();
     return (
@@ -33,11 +29,13 @@ export const MeasurementCreate = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <ReferenceInput
-              source="referenced_somatotype_id"
-              reference="referenced_somatotype"
-              fullWidth
-            />
+          <ReferenceInput
+                source="referenced_somatotype_id"
+                reference="referenced_somatotype"
+                fullWidth
+              >
+                <AutocompleteInput filterToQuery={filterToQuery} />
+              </ReferenceInput>
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>

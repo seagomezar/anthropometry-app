@@ -61,7 +61,6 @@ export const es = {
         prm_calf: 'Perímetro pierna (cms)',
         prm_chest: 'Perímetro pecho (cms)',
         prm_thigh: 'Perímetro muslo (cms)',
-
         x: 'x',
         y: 'y',
         fitness_level: 'Nivel de entrenamiento',
