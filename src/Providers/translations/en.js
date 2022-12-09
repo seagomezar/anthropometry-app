@@ -22,7 +22,7 @@ export const en = {
       fields: {
         firstname: 'Name',
         lastname: 'Last name',
-        email: 'email',
+        email: 'Email',
         phone: 'Telephone',
         address: 'Address',
         birthday: 'Birthday',
@@ -39,7 +39,7 @@ export const en = {
       name: 'Medición |||| Mediciones',
       fields: {
         dm_elbow: 'Elbow Diameter (cms)',
-        dm_knee: 'knee Diameter(cms)',
+        dm_knee: 'Knee Diameter(cms)',
         dm_wrist: 'Wrist Diameter (cms)',
         plg_abdominal: 'Abdominal fold (mm)',
         plg_armpit: 'Tuck Armpit (mm)',
@@ -62,7 +62,7 @@ export const en = {
         height: 'Height (Cms)',
         weight: 'Weight (Kg)',
         creatinine: 'Creatinine',
-        t3_t4: 'T3_T4/',
+        t3_t4: 'T3_T4',
         triglycerides: 'triglycerides',
         uric_acid: 'Uric acid',
         user_id: 'User',

@@ -39,7 +39,6 @@ export const MeasurementShow = () => {
                 reference="referenced_somatotype"
                 fullWidth
               >
-                <AutocompleteInput filterToQuery={filterToQuery} />
               </ReferenceField>
             </Box>
           </Box>
@@ -50,7 +49,10 @@ export const MeasurementShow = () => {
           </Box>
           <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-              <DateField source="evaluation_date" fullWidth />
+            <Typography variant="h6" gutterBottom>
+                {translate('resources.measurement.fields.evaluation_date')}
+              </Typography>
+              <DateField source="evaluation_date" />
             </Box>
           </Box>
           <Typography variant="h6" gutterBottom>
@@ -58,9 +60,15 @@ export const MeasurementShow = () => {
           </Typography>
           <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+                {translate('resources.measurement.fields.weight')}
+              </Typography>
               <NumberField source="weight" fullWidth />
             </Box>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+                {translate('resources.measurement.fields.height')}
+              </Typography>
               <NumberField source="height" fullWidth />
             </Box>
           </Box>

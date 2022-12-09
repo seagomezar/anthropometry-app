@@ -92,12 +92,12 @@ export const MeasurementEdit = () => {
             <NumberInput source="plg_thigh" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="plg_calf " fullWidth />
+            <NumberInput source="plg_calf" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="plg_chest " fullWidth />
+            <NumberInput source="plg_chest" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
           <NumberInput source="plg_armpit" fullWidth />
@@ -164,7 +164,7 @@ export const MeasurementEdit = () => {
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <DateInput source="creatinine" fullWidth />
+            <NumberInput source="creatinine" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <NumberInput source="fitness_level" fullWidth />
