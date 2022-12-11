@@ -55,6 +55,7 @@ export const es = {
         plg_armpit: 'Pliege Axila (mm)',
         plg_chest: 'Pliege pecho (mm)',
         prm_arm: 'Perímetro brazo (cms)',
+		prm_arm_contracted: 'Perímetro brazo contraido (cms)',
         prm_wrist: 'Perimetro muñeca (cms)',
         prm_waist: 'Perímetro cintura (cms)',
         prm_hip: 'Perímetro cadera (cms)',
