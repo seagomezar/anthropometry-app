@@ -157,42 +157,48 @@ export const MeasurementShow = () => {
             </Box>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
+                {translate('resources.measurement.fields.prm_arm_contracted')}
+              </Typography>
+              <NumberField source="prm_arm_contracted" fullWidth />
+            </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
                 {translate('resources.measurement.fields.prm_calf')}
               </Typography>
               <NumberField source="prm_calf" fullWidth />
             </Box>
-          </Box>
-          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
                 {translate('resources.measurement.fields.prm_chest')}
               </Typography>
               <NumberField source="prm_chest" fullWidth />
             </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
                 {translate('resources.measurement.fields.prm_hip')}
               </Typography>
               <NumberField source="prm_hip" fullWidth />
             </Box>
-          </Box>
-          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
                 {translate('resources.measurement.fields.prm_thigh')}
               </Typography>
               <NumberField source="prm_thigh" fullWidth />
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
-                {translate('resources.measurement.fields.prm_waist')}
-              </Typography>
-              <NumberField source="prm_waist" fullWidth />
-            </Box>
           </Box>
           <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
           <Typography variant="h6" gutterBottom>
+                {translate('resources.measurement.fields.prm_waist')}
+              </Typography>
+              <NumberField source="prm_waist" fullWidth />
+            </Box>
+            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
                 {translate('resources.measurement.fields.prm_wrist')}
               </Typography>
               <NumberField source="prm_wrist" fullWidth />
