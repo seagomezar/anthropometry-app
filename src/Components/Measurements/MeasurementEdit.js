@@ -111,26 +111,29 @@ export const MeasurementEdit = () => {
             <NumberInput source="prm_arm" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="prm_wrist" fullWidth />
+            <NumberInput source="prm_arm_contracted" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="prm_waist" fullWidth />
+          <NumberInput source="prm_wrist" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="prm_hip" fullWidth />
+          <NumberInput source="prm_waist" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="prm_calf " fullWidth />
+          <NumberInput source="prm_hip" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="prm_chest" fullWidth />
+          <NumberInput source="prm_calf" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <NumberInput source="prm_chest" fullWidth />
+          </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
           <NumberInput source="prm_thigh" fullWidth />
           </Box>
