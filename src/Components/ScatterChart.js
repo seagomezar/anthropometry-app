@@ -2,24 +2,22 @@ import * as React from 'react';
 import { useTranslate } from 'react-admin';
 import { Chart } from 'chart.js/auto';
 
-const PolarChart = ({ x, y, title }) => {
+const ScatterChart = ({ labels, points, title }) => {
   const translate = useTranslate();
   React.useEffect(() => {
     const ctx = document.getElementById(title);
 
     const graph = new Chart(ctx, {
-      type: 'bar',
+      type: 'scatter',
       data: {
-        labels: x,
+        labels: labels,
         datasets: [
           {
-            label: translate(title),
-            data: y,
-            borderWidth: 1,
+            label: title,
+            data: points,
             backgroundColor: [
               'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
+              'rgb(0, 255, 132)',
             ],
             hoverOffset: 4,
           },
@@ -29,9 +27,9 @@ const PolarChart = ({ x, y, title }) => {
     return () => {
       graph.destroy();
     };
-  }, [x, y]);
+  }, [labels, points]);
 
-  return x && <canvas id={title}></canvas>;
+  return points && <canvas id={title}></canvas>;
 };
 
-export default PolarChart;
+export default ScatterChart;

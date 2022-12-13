@@ -8,7 +8,7 @@ const PolarChart = ({ x, y, title }) => {
     const ctx = document.getElementById(title);
 
     const graph = new Chart(ctx, {
-      type: 'bar',
+      type: 'polarArea',
       data: {
         labels: x,
         datasets: [

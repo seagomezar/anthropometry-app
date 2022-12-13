@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import buildHasuraProvider from 'ra-data-hasura';
 import { customBuildFields } from './Providers/dataProvider';
-import { Admin, Resource } from 'react-admin';
+import { Admin, CustomRoutes, Resource } from 'react-admin';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { Route } from 'react-router-dom';
 
 import UserIcon from '@mui/icons-material/Group';
 import StraightenIcon from '@mui/icons-material/Straighten';
@@ -16,6 +17,7 @@ import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+import NearMeIcon from '@mui/icons-material/NearMe';
 import Dashboard from './Components/Dashboard';
 import authProvider from './Providers/authProvider';
 import { i18nProvider } from './Providers/i18nProvider';
@@ -79,6 +81,7 @@ import { UserList } from './Components/Users/UserList';
 import { UserEdit } from './Components/Users/UserEdit';
 import { UserCreate } from './Components/Users/UserCreate';
 import { UserShow } from './Components/Users/UserShow';
+import { Results } from './Components/Results/Results';
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -220,7 +223,7 @@ const App = () => {
       />
       <Resource
         name="referenced_somatotype"
-        icon={LocalPharmacyIcon}
+        icon={NearMeIcon}
         list={ReferencedSomatotypeList}
         edit={ReferencedSomatotypeEdit}
         create={ReferencedSomatotypeCreate}
@@ -229,6 +232,9 @@ const App = () => {
           `${record.sport} - ${record.gender ? 'M' : 'F'}`
         }
       />
+      <CustomRoutes>
+        <Route path="/results/:measurementId" element={<Results />} />
+      </CustomRoutes>
     </Admin>
   );
 };

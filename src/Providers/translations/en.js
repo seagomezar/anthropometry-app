@@ -88,6 +88,7 @@ export const en = {
     },
     plan: {
       name: 'Plan |||| Planes',
+
       fields: {
         comments: 'Comment',
         goal_id: 'Goal',
