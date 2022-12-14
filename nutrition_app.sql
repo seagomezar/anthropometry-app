@@ -1,363 +1,3 @@
---
--- PostgreSQL database cluster dump
---
-
-SET default_transaction_read_only = off;
-
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-
---
--- Drop databases (except postgres and template1)
---
-
-
-
-
-
---
--- Drop roles
---
-
-DROP ROLE postgres;
-
-
---
--- Roles
---
-
-CREATE ROLE postgres;
-ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'md5d870fdc733701e62d2e02d9ab278c235';
-
-
-
-
-
-
---
--- Databases
---
-
---
--- Database "template1" dump
---
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 12.13 (Debian 12.13-1.pgdg110+1)
--- Dumped by pg_dump version 12.13 (Debian 12.13-1.pgdg110+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-UPDATE pg_catalog.pg_database SET datistemplate = false WHERE datname = 'template1';
-DROP DATABASE template1;
---
--- Name: template1; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.utf8' LC_CTYPE = 'en_US.utf8';
-
-
-ALTER DATABASE template1 OWNER TO postgres;
-
-\connect template1
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON DATABASE template1 IS 'default template for new databases';
-
-
---
--- Name: template1; Type: DATABASE PROPERTIES; Schema: -; Owner: postgres
---
-
-ALTER DATABASE template1 IS_TEMPLATE = true;
-
-
-\connect template1
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE CONNECT,TEMPORARY ON DATABASE template1 FROM PUBLIC;
-GRANT CONNECT ON DATABASE template1 TO PUBLIC;
-
-
---
--- PostgreSQL database dump complete
---
-
---
--- Database "postgres" dump
---
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 12.13 (Debian 12.13-1.pgdg110+1)
--- Dumped by pg_dump version 12.13 (Debian 12.13-1.pgdg110+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-DROP DATABASE postgres;
---
--- Name: postgres; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.utf8' LC_CTYPE = 'en_US.utf8';
-
-
-ALTER DATABASE postgres OWNER TO postgres;
-
-\connect postgres
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON DATABASE postgres IS 'default administrative connection database';
-
-
---
--- Name: hdb_catalog; Type: SCHEMA; Schema: -; Owner: postgres
---
-
-CREATE SCHEMA hdb_catalog;
-
-
-ALTER SCHEMA hdb_catalog OWNER TO postgres;
-
---
--- Name: gen_hasura_uuid(); Type: FUNCTION; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE FUNCTION hdb_catalog.gen_hasura_uuid() RETURNS uuid
-    LANGUAGE sql
-    AS $$select gen_random_uuid()$$;
-
-
-ALTER FUNCTION hdb_catalog.gen_hasura_uuid() OWNER TO postgres;
-
---
--- Name: set_current_timestamp_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION public.set_current_timestamp_updated_at() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-  _new record;
-BEGIN
-  _new := NEW;
-  _new."updated_at" = NOW();
-  RETURN _new;
-END;
-$$;
-
-
-ALTER FUNCTION public.set_current_timestamp_updated_at() OWNER TO postgres;
-
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: hdb_action_log; Type: TABLE; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE TABLE hdb_catalog.hdb_action_log (
-    id uuid DEFAULT hdb_catalog.gen_hasura_uuid() NOT NULL,
-    action_name text,
-    input_payload jsonb NOT NULL,
-    request_headers jsonb NOT NULL,
-    session_variables jsonb NOT NULL,
-    response_payload jsonb,
-    errors jsonb,
-    created_at timestamp with time zone DEFAULT now() NOT NULL,
-    response_received_at timestamp with time zone,
-    status text NOT NULL,
-    CONSTRAINT hdb_action_log_status_check CHECK ((status = ANY (ARRAY['created'::text, 'processing'::text, 'completed'::text, 'error'::text])))
-);
-
-
-ALTER TABLE hdb_catalog.hdb_action_log OWNER TO postgres;
-
---
--- Name: hdb_cron_event_invocation_logs; Type: TABLE; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE TABLE hdb_catalog.hdb_cron_event_invocation_logs (
-    id text DEFAULT hdb_catalog.gen_hasura_uuid() NOT NULL,
-    event_id text,
-    status integer,
-    request json,
-    response json,
-    created_at timestamp with time zone DEFAULT now()
-);
-
-
-ALTER TABLE hdb_catalog.hdb_cron_event_invocation_logs OWNER TO postgres;
-
---
--- Name: hdb_cron_events; Type: TABLE; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE TABLE hdb_catalog.hdb_cron_events (
-    id text DEFAULT hdb_catalog.gen_hasura_uuid() NOT NULL,
-    trigger_name text NOT NULL,
-    scheduled_time timestamp with time zone NOT NULL,
-    status text DEFAULT 'scheduled'::text NOT NULL,
-    tries integer DEFAULT 0 NOT NULL,
-    created_at timestamp with time zone DEFAULT now(),
-    next_retry_at timestamp with time zone,
-    CONSTRAINT valid_status CHECK ((status = ANY (ARRAY['scheduled'::text, 'locked'::text, 'delivered'::text, 'error'::text, 'dead'::text])))
-);
-
-
-ALTER TABLE hdb_catalog.hdb_cron_events OWNER TO postgres;
-
---
--- Name: hdb_metadata; Type: TABLE; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE TABLE hdb_catalog.hdb_metadata (
-    id integer NOT NULL,
-    metadata json NOT NULL,
-    resource_version integer DEFAULT 1 NOT NULL
-);
-
-
-ALTER TABLE hdb_catalog.hdb_metadata OWNER TO postgres;
-
---
--- Name: hdb_scheduled_event_invocation_logs; Type: TABLE; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE TABLE hdb_catalog.hdb_scheduled_event_invocation_logs (
-    id text DEFAULT hdb_catalog.gen_hasura_uuid() NOT NULL,
-    event_id text,
-    status integer,
-    request json,
-    response json,
-    created_at timestamp with time zone DEFAULT now()
-);
-
-
-ALTER TABLE hdb_catalog.hdb_scheduled_event_invocation_logs OWNER TO postgres;
-
---
--- Name: hdb_scheduled_events; Type: TABLE; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE TABLE hdb_catalog.hdb_scheduled_events (
-    id text DEFAULT hdb_catalog.gen_hasura_uuid() NOT NULL,
-    webhook_conf json NOT NULL,
-    scheduled_time timestamp with time zone NOT NULL,
-    retry_conf json,
-    payload json,
-    header_conf json,
-    status text DEFAULT 'scheduled'::text NOT NULL,
-    tries integer DEFAULT 0 NOT NULL,
-    created_at timestamp with time zone DEFAULT now(),
-    next_retry_at timestamp with time zone,
-    comment text,
-    CONSTRAINT valid_status CHECK ((status = ANY (ARRAY['scheduled'::text, 'locked'::text, 'delivered'::text, 'error'::text, 'dead'::text])))
-);
-
-
-ALTER TABLE hdb_catalog.hdb_scheduled_events OWNER TO postgres;
-
---
--- Name: hdb_schema_notifications; Type: TABLE; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE TABLE hdb_catalog.hdb_schema_notifications (
-    id integer NOT NULL,
-    notification json NOT NULL,
-    resource_version integer DEFAULT 1 NOT NULL,
-    instance_id uuid NOT NULL,
-    updated_at timestamp with time zone DEFAULT now(),
-    CONSTRAINT hdb_schema_notifications_id_check CHECK ((id = 1))
-);
-
-
-ALTER TABLE hdb_catalog.hdb_schema_notifications OWNER TO postgres;
-
---
--- Name: hdb_version; Type: TABLE; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE TABLE hdb_catalog.hdb_version (
-    hasura_uuid uuid DEFAULT hdb_catalog.gen_hasura_uuid() NOT NULL,
-    version text NOT NULL,
-    upgraded_on timestamp with time zone NOT NULL,
-    cli_state jsonb DEFAULT '{}'::jsonb NOT NULL,
-    console_state jsonb DEFAULT '{}'::jsonb NOT NULL
-);
-
-
-ALTER TABLE hdb_catalog.hdb_version OWNER TO postgres;
-
---
--- Name: eating_moment; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.eating_moment (
     id integer NOT NULL,
@@ -366,10 +6,6 @@ CREATE TABLE public.eating_moment (
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL
 );
-
-
-ALTER TABLE public.eating_moment OWNER TO postgres;
-
 --
 -- Name: eating_moment_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -381,9 +17,6 @@ CREATE SEQUENCE public.eating_moment_id_seq
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
-
-
-ALTER TABLE public.eating_moment_id_seq OWNER TO postgres;
 
 --
 -- Name: eating_moment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -409,13 +42,6 @@ CREATE TABLE public.food (
     updated_at timestamp with time zone DEFAULT now() NOT NULL
 );
 
-
-ALTER TABLE public.food OWNER TO postgres;
-
---
--- Name: food_category; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE public.food_category (
     id integer NOT NULL,
     name text NOT NULL,
@@ -424,7 +50,7 @@ CREATE TABLE public.food_category (
 );
 
 
-ALTER TABLE public.food_category OWNER TO postgres;
+
 
 --
 -- Name: food_category_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -439,7 +65,7 @@ CREATE SEQUENCE public.food_category_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.food_category_id_seq OWNER TO postgres;
+
 
 --
 -- Name: food_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -461,7 +87,7 @@ CREATE TABLE public.food_has_eating_moment (
 );
 
 
-ALTER TABLE public.food_has_eating_moment OWNER TO postgres;
+
 
 --
 -- Name: food_has_eating_moment_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -476,7 +102,7 @@ CREATE SEQUENCE public.food_has_eating_moment_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.food_has_eating_moment_id_seq OWNER TO postgres;
+
 
 --
 -- Name: food_has_eating_moment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -498,7 +124,7 @@ CREATE TABLE public.food_has_food_category (
 );
 
 
-ALTER TABLE public.food_has_food_category OWNER TO postgres;
+
 
 --
 -- Name: food_has_food_category_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -513,7 +139,7 @@ CREATE SEQUENCE public.food_has_food_category_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.food_has_food_category_id_seq OWNER TO postgres;
+
 
 --
 -- Name: food_has_food_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -535,7 +161,7 @@ CREATE SEQUENCE public.food_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.food_id_seq OWNER TO postgres;
+
 
 --
 -- Name: food_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -556,7 +182,7 @@ CREATE TABLE public.goal (
 );
 
 
-ALTER TABLE public.goal OWNER TO postgres;
+
 
 --
 -- Name: goal_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -571,7 +197,7 @@ CREATE SEQUENCE public.goal_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.goal_id_seq OWNER TO postgres;
+
 
 --
 -- Name: goal_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -620,7 +246,7 @@ CREATE TABLE public.measurement (
 );
 
 
-ALTER TABLE public.measurement OWNER TO postgres;
+
 
 --
 -- Name: measurement_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -635,7 +261,7 @@ CREATE SEQUENCE public.measurement_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.measurement_id_seq OWNER TO postgres;
+
 
 --
 -- Name: measurement_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -661,7 +287,7 @@ CREATE TABLE public.nutritionist (
 );
 
 
-ALTER TABLE public.nutritionist OWNER TO postgres;
+
 
 --
 -- Name: nutritionist_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -676,7 +302,7 @@ CREATE SEQUENCE public.nutritionist_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.nutritionist_id_seq OWNER TO postgres;
+
 
 --
 -- Name: nutritionist_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -700,7 +326,7 @@ CREATE TABLE public.plan (
 );
 
 
-ALTER TABLE public.plan OWNER TO postgres;
+
 
 --
 -- Name: plan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -715,7 +341,7 @@ CREATE SEQUENCE public.plan_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.plan_id_seq OWNER TO postgres;
+
 
 --
 -- Name: plan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -740,7 +366,7 @@ CREATE TABLE public.prescribed_food (
 );
 
 
-ALTER TABLE public.prescribed_food OWNER TO postgres;
+
 
 --
 -- Name: prescribed_food_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -755,7 +381,7 @@ CREATE SEQUENCE public.prescribed_food_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.prescribed_food_id_seq OWNER TO postgres;
+
 
 --
 -- Name: prescribed_food_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -782,7 +408,7 @@ CREATE TABLE public."user" (
 );
 
 
-ALTER TABLE public."user" OWNER TO postgres;
+
 
 --
 -- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -797,7 +423,7 @@ CREATE SEQUENCE public.user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.user_id_seq OWNER TO postgres;
+
 
 --
 -- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -881,57 +507,6 @@ ALTER TABLE ONLY public.prescribed_food ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public."user" ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
-
-
---
--- Data for Name: hdb_action_log; Type: TABLE DATA; Schema: hdb_catalog; Owner: postgres
---
-
-
-
---
--- Data for Name: hdb_cron_event_invocation_logs; Type: TABLE DATA; Schema: hdb_catalog; Owner: postgres
---
-
-
-
---
--- Data for Name: hdb_cron_events; Type: TABLE DATA; Schema: hdb_catalog; Owner: postgres
---
-
-
-
---
--- Data for Name: hdb_metadata; Type: TABLE DATA; Schema: hdb_catalog; Owner: postgres
---
-
-INSERT INTO hdb_catalog.hdb_metadata VALUES (1, '{"sources":[{"configuration":{"connection_info":{"database_url":"postgres://postgres:postgrespassword@postgres:5432/postgres","isolation_level":"read-committed","use_prepared_statements":false}},"customization":{"naming_convention":"hasura-default"},"kind":"postgres","name":"nutrition","tables":[{"array_relationships":[{"name":"food_has_eating_moments","using":{"foreign_key_constraint_on":{"column":"eating_moment_id","table":{"name":"food_has_eating_moment","schema":"public"}}}}],"table":{"name":"eating_moment","schema":"public"}},{"array_relationships":[{"name":"food_has_eating_moments","using":{"foreign_key_constraint_on":{"column":"food_id","table":{"name":"food_has_eating_moment","schema":"public"}}}},{"name":"food_has_food_categories","using":{"foreign_key_constraint_on":{"column":"food_id","table":{"name":"food_has_food_category","schema":"public"}}}}],"object_relationships":[{"name":"prescribed_food","using":{"foreign_key_constraint_on":{"column":"food_id","table":{"name":"prescribed_food","schema":"public"}}}}],"table":{"name":"food","schema":"public"}},{"array_relationships":[{"name":"food_has_food_categories","using":{"foreign_key_constraint_on":{"column":"food_category_id","table":{"name":"food_has_food_category","schema":"public"}}}}],"table":{"name":"food_category","schema":"public"}},{"object_relationships":[{"name":"eating_moment","using":{"foreign_key_constraint_on":"eating_moment_id"}},{"name":"food","using":{"foreign_key_constraint_on":"food_id"}}],"table":{"name":"food_has_eating_moment","schema":"public"}},{"object_relationships":[{"name":"food","using":{"foreign_key_constraint_on":"food_id"}},{"name":"food_category","using":{"foreign_key_constraint_on":"food_category_id"}}],"table":{"name":"food_has_food_category","schema":"public"}},{"array_relationships":[{"name":"plans","using":{"foreign_key_constraint_on":{"column":"goal_id","table":{"name":"plan","schema":"public"}}}}],"table":{"name":"goal","schema":"public"}},{"object_relationships":[{"name":"user","using":{"foreign_key_constraint_on":"user_id"}}],"table":{"name":"measurement","schema":"public"}},{"array_relationships":[{"name":"plans","using":{"foreign_key_constraint_on":{"column":"nutritionist_id","table":{"name":"plan","schema":"public"}}}}],"table":{"name":"nutritionist","schema":"public"}},{"array_relationships":[{"name":"prescribed_foods","using":{"foreign_key_constraint_on":{"column":"plan_id","table":{"name":"prescribed_food","schema":"public"}}}}],"object_relationships":[{"name":"goal","using":{"foreign_key_constraint_on":"goal_id"}},{"name":"nutritionist","using":{"foreign_key_constraint_on":"nutritionist_id"}},{"name":"user","using":{"foreign_key_constraint_on":"user_id"}}],"table":{"name":"plan","schema":"public"}},{"object_relationships":[{"name":"food","using":{"foreign_key_constraint_on":"food_id"}},{"name":"plan","using":{"foreign_key_constraint_on":"plan_id"}}],"table":{"name":"prescribed_food","schema":"public"}},{"array_relationships":[{"name":"measurements","using":{"foreign_key_constraint_on":{"column":"user_id","table":{"name":"measurement","schema":"public"}}}},{"name":"plans","using":{"foreign_key_constraint_on":{"column":"user_id","table":{"name":"plan","schema":"public"}}}}],"table":{"name":"user","schema":"public"}}]}],"version":3}', 8);
-
-
---
--- Data for Name: hdb_scheduled_event_invocation_logs; Type: TABLE DATA; Schema: hdb_catalog; Owner: postgres
---
-
-
-
---
--- Data for Name: hdb_scheduled_events; Type: TABLE DATA; Schema: hdb_catalog; Owner: postgres
---
-
-
-
---
--- Data for Name: hdb_schema_notifications; Type: TABLE DATA; Schema: hdb_catalog; Owner: postgres
---
-
-INSERT INTO hdb_catalog.hdb_schema_notifications VALUES (1, '{"metadata":false,"remote_schemas":[],"sources":[],"data_connectors":[]}', 8, '0108e7d6-7748-424a-a47f-d5795c774f77', '2022-11-12 20:36:04.296439+00');
-
-
---
--- Data for Name: hdb_version; Type: TABLE DATA; Schema: hdb_catalog; Owner: postgres
---
-
-INSERT INTO hdb_catalog.hdb_version VALUES ('ceae87fb-e37e-45d8-90eb-6855a38d0e07', '47', '2022-11-12 20:33:11.972737+00', '{}', '{"console_notifications": {"admin": {"date": "2022-11-16T00:09:39.799Z", "read": "default", "showBadge": false}}, "telemetryNotificationShown": true}');
 
 
 --
@@ -1128,20 +703,6 @@ INSERT INTO public.food_has_food_category VALUES (1, 1, '2022-10-19 19:14:12.210
 
 
 --
--- Data for Name: goal; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.goal VALUES (1, 's', '2022-10-19 19:02:26.677334+00', '2022-10-19 19:02:26.677334+00');
-
-
---
--- Data for Name: measurement; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.measurement VALUES (11, 1, 88, 185, 12, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, '3', '3', '', '3', 136, '2022-10-19 17:09:49.604761+00', '2022-10-19 17:23:02.489713+00');
-
-
---
 -- Data for Name: nutritionist; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1149,180 +710,10 @@ INSERT INTO public.nutritionist VALUES (1, 'Wilson', 'Rave', 'WILRAVEC18@GMAIL.C
 
 
 --
--- Data for Name: plan; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.plan VALUES (2, 1, 's', 1, '2022-10-19 19:06:49.938742+00', '2022-10-19 19:15:04.440112+00', NULL);
-
-
---
 -- Data for Name: prescribed_food; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.prescribed_food VALUES (1, 2, 1, 's', 's', '2022-10-19 19:16:54.073572+00', '2022-10-19 19:16:54.073572+00', 1);
-
-
---
--- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public."user" VALUES (2, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:20:48.024618+00', '2022-10-14 19:20:48.024618+00');
-INSERT INTO public."user" VALUES (5, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:22:31.575727+00', '2022-10-14 19:22:31.575727+00');
-INSERT INTO public."user" VALUES (6, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:22:31.664091+00', '2022-10-14 19:22:31.664091+00');
-INSERT INTO public."user" VALUES (7, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:26:04.791959+00', '2022-10-14 19:26:04.791959+00');
-INSERT INTO public."user" VALUES (8, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:26:05.239406+00', '2022-10-14 19:26:05.239406+00');
-INSERT INTO public."user" VALUES (9, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:12.595381+00', '2022-10-14 19:28:12.595381+00');
-INSERT INTO public."user" VALUES (10, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:13.072708+00', '2022-10-14 19:28:13.072708+00');
-INSERT INTO public."user" VALUES (11, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:25.367819+00', '2022-10-14 19:28:25.367819+00');
-INSERT INTO public."user" VALUES (12, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:25.812338+00', '2022-10-14 19:28:25.812338+00');
-INSERT INTO public."user" VALUES (13, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:28.484383+00', '2022-10-14 19:28:28.484383+00');
-INSERT INTO public."user" VALUES (14, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:28.48439+00', '2022-10-14 19:28:28.48439+00');
-INSERT INTO public."user" VALUES (15, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:30.439793+00', '2022-10-14 19:28:30.439793+00');
-INSERT INTO public."user" VALUES (16, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:30.440519+00', '2022-10-14 19:28:30.440519+00');
-INSERT INTO public."user" VALUES (17, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:32.479236+00', '2022-10-14 19:28:32.479236+00');
-INSERT INTO public."user" VALUES (18, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:32.676515+00', '2022-10-14 19:28:32.676515+00');
-INSERT INTO public."user" VALUES (19, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:33.938693+00', '2022-10-14 19:28:33.938693+00');
-INSERT INTO public."user" VALUES (20, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:33.945092+00', '2022-10-14 19:28:33.945092+00');
-INSERT INTO public."user" VALUES (21, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:36.353273+00', '2022-10-14 19:28:36.353273+00');
-INSERT INTO public."user" VALUES (22, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:36.356072+00', '2022-10-14 19:28:36.356072+00');
-INSERT INTO public."user" VALUES (23, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:39.417307+00', '2022-10-14 19:28:39.417307+00');
-INSERT INTO public."user" VALUES (24, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:39.417797+00', '2022-10-14 19:28:39.417797+00');
-INSERT INTO public."user" VALUES (25, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:42.176271+00', '2022-10-14 19:28:42.176271+00');
-INSERT INTO public."user" VALUES (26, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:42.195977+00', '2022-10-14 19:28:42.195977+00');
-INSERT INTO public."user" VALUES (27, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:57.43142+00', '2022-10-14 19:28:57.43142+00');
-INSERT INTO public."user" VALUES (28, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:28:57.452213+00', '2022-10-14 19:28:57.452213+00');
-INSERT INTO public."user" VALUES (29, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:39:19.576465+00', '2022-10-14 19:39:19.576465+00');
-INSERT INTO public."user" VALUES (30, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:39:52.263064+00', '2022-10-14 19:39:52.263064+00');
-INSERT INTO public."user" VALUES (31, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:40:00.135226+00', '2022-10-14 19:40:00.135226+00');
-INSERT INTO public."user" VALUES (32, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:40:06.171455+00', '2022-10-14 19:40:06.171455+00');
-INSERT INTO public."user" VALUES (33, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:40:07.495751+00', '2022-10-14 19:40:07.495751+00');
-INSERT INTO public."user" VALUES (34, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:40:57.218428+00', '2022-10-14 19:40:57.218428+00');
-INSERT INTO public."user" VALUES (35, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:40:58.182861+00', '2022-10-14 19:40:58.182861+00');
-INSERT INTO public."user" VALUES (36, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:40:59.379337+00', '2022-10-14 19:40:59.379337+00');
-INSERT INTO public."user" VALUES (37, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:41:01.339791+00', '2022-10-14 19:41:01.339791+00');
-INSERT INTO public."user" VALUES (38, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:41:03.573011+00', '2022-10-14 19:41:03.573011+00');
-INSERT INTO public."user" VALUES (39, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:41:06.466112+00', '2022-10-14 19:41:06.466112+00');
-INSERT INTO public."user" VALUES (40, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:41:16.157701+00', '2022-10-14 19:41:16.157701+00');
-INSERT INTO public."user" VALUES (41, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:41:19.316088+00', '2022-10-14 19:41:19.316088+00');
-INSERT INTO public."user" VALUES (42, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:43:41.153306+00', '2022-10-14 19:43:41.153306+00');
-INSERT INTO public."user" VALUES (43, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:44:04.006321+00', '2022-10-14 19:44:04.006321+00');
-INSERT INTO public."user" VALUES (44, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:44:11.185969+00', '2022-10-14 19:44:11.185969+00');
-INSERT INTO public."user" VALUES (45, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:44:14.310986+00', '2022-10-14 19:44:14.310986+00');
-INSERT INTO public."user" VALUES (46, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:44:16.453749+00', '2022-10-14 19:44:16.453749+00');
-INSERT INTO public."user" VALUES (47, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-14 19:44:22.869853+00', '2022-10-14 19:44:22.869853+00');
-INSERT INTO public."user" VALUES (48, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:23.512251+00', '2022-10-18 19:41:23.512251+00');
-INSERT INTO public."user" VALUES (49, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:25.451747+00', '2022-10-18 19:41:25.451747+00');
-INSERT INTO public."user" VALUES (50, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:33.30146+00', '2022-10-18 19:41:33.30146+00');
-INSERT INTO public."user" VALUES (51, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:36.422171+00', '2022-10-18 19:41:36.422171+00');
-INSERT INTO public."user" VALUES (52, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:37.552641+00', '2022-10-18 19:41:37.552641+00');
-INSERT INTO public."user" VALUES (53, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:45.283333+00', '2022-10-18 19:41:45.283333+00');
-INSERT INTO public."user" VALUES (54, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:48.610068+00', '2022-10-18 19:41:48.610068+00');
-INSERT INTO public."user" VALUES (55, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:54.06067+00', '2022-10-18 19:41:54.06067+00');
-INSERT INTO public."user" VALUES (56, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:41:58.261146+00', '2022-10-18 19:41:58.261146+00');
-INSERT INTO public."user" VALUES (57, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:03.024709+00', '2022-10-18 19:42:03.024709+00');
-INSERT INTO public."user" VALUES (58, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:13.792985+00', '2022-10-18 19:42:13.792985+00');
-INSERT INTO public."user" VALUES (59, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:22.035023+00', '2022-10-18 19:42:22.035023+00');
-INSERT INTO public."user" VALUES (60, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:34.368579+00', '2022-10-18 19:42:34.368579+00');
-INSERT INTO public."user" VALUES (61, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:37.809883+00', '2022-10-18 19:42:37.809883+00');
-INSERT INTO public."user" VALUES (62, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:41.178013+00', '2022-10-18 19:42:41.178013+00');
-INSERT INTO public."user" VALUES (63, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:49.394453+00', '2022-10-18 19:42:49.394453+00');
-INSERT INTO public."user" VALUES (64, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:55.186879+00', '2022-10-18 19:42:55.186879+00');
-INSERT INTO public."user" VALUES (65, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:42:58.769208+00', '2022-10-18 19:42:58.769208+00');
-INSERT INTO public."user" VALUES (66, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:43:00.948813+00', '2022-10-18 19:43:00.948813+00');
-INSERT INTO public."user" VALUES (67, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:43:09.184891+00', '2022-10-18 19:43:09.184891+00');
-INSERT INTO public."user" VALUES (68, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:43:11.772252+00', '2022-10-18 19:43:11.772252+00');
-INSERT INTO public."user" VALUES (69, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:43:19.169902+00', '2022-10-18 19:43:19.169902+00');
-INSERT INTO public."user" VALUES (70, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:43:36.684193+00', '2022-10-18 19:43:36.684193+00');
-INSERT INTO public."user" VALUES (71, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:43:39.645906+00', '2022-10-18 19:43:39.645906+00');
-INSERT INTO public."user" VALUES (72, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:44:05.153487+00', '2022-10-18 19:44:05.153487+00');
-INSERT INTO public."user" VALUES (73, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:44:12.521976+00', '2022-10-18 19:44:12.521976+00');
-INSERT INTO public."user" VALUES (74, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:44:24.274645+00', '2022-10-18 19:44:24.274645+00');
-INSERT INTO public."user" VALUES (75, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:44:32.799928+00', '2022-10-18 19:44:32.799928+00');
-INSERT INTO public."user" VALUES (76, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:44:37.957087+00', '2022-10-18 19:44:37.957087+00');
-INSERT INTO public."user" VALUES (77, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:44:50.975627+00', '2022-10-18 19:44:50.975627+00');
-INSERT INTO public."user" VALUES (78, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:44:53.602682+00', '2022-10-18 19:44:53.602682+00');
-INSERT INTO public."user" VALUES (79, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:45:02.280968+00', '2022-10-18 19:45:02.280968+00');
-INSERT INTO public."user" VALUES (80, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:45:05.838142+00', '2022-10-18 19:45:05.838142+00');
-INSERT INTO public."user" VALUES (81, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:45:14.19352+00', '2022-10-18 19:45:14.19352+00');
-INSERT INTO public."user" VALUES (82, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:45:16.988884+00', '2022-10-18 19:45:16.988884+00');
-INSERT INTO public."user" VALUES (83, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:45:19.616008+00', '2022-10-18 19:45:19.616008+00');
-INSERT INTO public."user" VALUES (84, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:46:12.799947+00', '2022-10-18 19:46:12.799947+00');
-INSERT INTO public."user" VALUES (85, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:46:17.756926+00', '2022-10-18 19:46:17.756926+00');
-INSERT INTO public."user" VALUES (86, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:46:20.130181+00', '2022-10-18 19:46:20.130181+00');
-INSERT INTO public."user" VALUES (87, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:46:22.964261+00', '2022-10-18 19:46:22.964261+00');
-INSERT INTO public."user" VALUES (88, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:46:27.074561+00', '2022-10-18 19:46:27.074561+00');
-INSERT INTO public."user" VALUES (89, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 19:47:21.297672+00', '2022-10-18 19:47:21.297672+00');
-INSERT INTO public."user" VALUES (90, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:29:12.471734+00', '2022-10-18 20:29:12.471734+00');
-INSERT INTO public."user" VALUES (91, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:37:37.733524+00', '2022-10-18 20:37:37.733524+00');
-INSERT INTO public."user" VALUES (92, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:42:05.773426+00', '2022-10-18 20:42:05.773426+00');
-INSERT INTO public."user" VALUES (93, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:42:06.354495+00', '2022-10-18 20:42:06.354495+00');
-INSERT INTO public."user" VALUES (94, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:42:08.897482+00', '2022-10-18 20:42:08.897482+00');
-INSERT INTO public."user" VALUES (95, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:42:12.097384+00', '2022-10-18 20:42:12.097384+00');
-INSERT INTO public."user" VALUES (96, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:42:15.032782+00', '2022-10-18 20:42:15.032782+00');
-INSERT INTO public."user" VALUES (97, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:43:23.527689+00', '2022-10-18 20:43:23.527689+00');
-INSERT INTO public."user" VALUES (1, 'hola', 'hola', 'Sebastian', 'hola', 'Alonso', 'hola', 'hola', '2022-10-19 16:23:27.360476+00', '2022-10-14 19:20:47.519466+00');
-INSERT INTO public."user" VALUES (98, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:43:26.42825+00', '2022-10-18 20:43:26.42825+00');
-INSERT INTO public."user" VALUES (100, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:43:49.724215+00', '2022-10-18 20:43:49.724215+00');
-INSERT INTO public."user" VALUES (103, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:44:10.90326+00', '2022-10-18 20:44:10.90326+00');
-INSERT INTO public."user" VALUES (99, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:43:32.512117+00', '2022-10-18 20:43:32.512117+00');
-INSERT INTO public."user" VALUES (101, 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:43:52.682215+00', '2022-10-18 20:43:52.682215+00');
-INSERT INTO public."user" VALUES (146, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:54:02.738167+00', '2022-10-18 20:54:02.738167+00');
-INSERT INTO public."user" VALUES (102, 'hola', 'hola', 'h', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:44:07.677356+00', '2022-10-18 20:44:07.677356+00');
-INSERT INTO public."user" VALUES (104, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:44:14.880136+00', '2022-10-18 20:44:14.880136+00');
-INSERT INTO public."user" VALUES (147, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:54:05.607256+00', '2022-10-18 20:54:05.607256+00');
-INSERT INTO public."user" VALUES (105, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:47:03.119535+00', '2022-10-18 20:47:03.119535+00');
-INSERT INTO public."user" VALUES (106, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:47:03.953105+00', '2022-10-18 20:47:03.953105+00');
-INSERT INTO public."user" VALUES (148, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:54:05.967531+00', '2022-10-18 20:54:05.967531+00');
-INSERT INTO public."user" VALUES (107, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:47:31.794607+00', '2022-10-18 20:47:31.794607+00');
-INSERT INTO public."user" VALUES (149, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:54:48.798244+00', '2022-10-18 20:54:48.798244+00');
-INSERT INTO public."user" VALUES (108, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:49:22.746125+00', '2022-10-18 20:49:22.746125+00');
-INSERT INTO public."user" VALUES (109, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:49:22.932819+00', '2022-10-18 20:49:22.932819+00');
-INSERT INTO public."user" VALUES (110, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:49:24.237782+00', '2022-10-18 20:49:24.237782+00');
-INSERT INTO public."user" VALUES (111, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:49:27.512534+00', '2022-10-18 20:49:27.512534+00');
-INSERT INTO public."user" VALUES (112, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:49:35.016401+00', '2022-10-18 20:49:35.016401+00');
-INSERT INTO public."user" VALUES (150, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:55:31.284718+00', '2022-10-18 20:55:31.284718+00');
-INSERT INTO public."user" VALUES (151, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:55:31.737995+00', '2022-10-18 20:55:31.737995+00');
-INSERT INTO public."user" VALUES (113, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:26.967407+00', '2022-10-18 20:50:26.967407+00');
-INSERT INTO public."user" VALUES (114, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:27.312726+00', '2022-10-18 20:50:27.312726+00');
-INSERT INTO public."user" VALUES (115, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:29.20392+00', '2022-10-18 20:50:29.20392+00');
-INSERT INTO public."user" VALUES (152, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:55:34.613093+00', '2022-10-18 20:55:34.613093+00');
-INSERT INTO public."user" VALUES (116, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:30.64941+00', '2022-10-18 20:50:30.64941+00');
-INSERT INTO public."user" VALUES (117, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:30.971339+00', '2022-10-18 20:50:30.971339+00');
-INSERT INTO public."user" VALUES (118, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:31.85135+00', '2022-10-18 20:50:31.85135+00');
-INSERT INTO public."user" VALUES (153, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:55:35.091587+00', '2022-10-18 20:55:35.091587+00');
-INSERT INTO public."user" VALUES (119, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:38.664762+00', '2022-10-18 20:50:38.664762+00');
-INSERT INTO public."user" VALUES (120, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:41.416625+00', '2022-10-18 20:50:41.416625+00');
-INSERT INTO public."user" VALUES (154, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:55:40.611173+00', '2022-10-18 20:55:40.611173+00');
-INSERT INTO public."user" VALUES (121, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:45.205767+00', '2022-10-18 20:50:45.205767+00');
-INSERT INTO public."user" VALUES (155, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:55:41.72974+00', '2022-10-18 20:55:41.72974+00');
-INSERT INTO public."user" VALUES (122, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:50:48.688566+00', '2022-10-18 20:50:48.688566+00');
-INSERT INTO public."user" VALUES (156, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:55:42.445588+00', '2022-10-18 20:55:42.445588+00');
-INSERT INTO public."user" VALUES (123, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:51:53.521012+00', '2022-10-18 20:51:53.521012+00');
-INSERT INTO public."user" VALUES (124, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:51:54.835564+00', '2022-10-18 20:51:54.835564+00');
-INSERT INTO public."user" VALUES (125, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:51:55.983842+00', '2022-10-18 20:51:55.983842+00');
-INSERT INTO public."user" VALUES (126, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:51:58.541378+00', '2022-10-18 20:51:58.541378+00');
-INSERT INTO public."user" VALUES (157, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:56:14.935371+00', '2022-10-18 20:56:14.935371+00');
-INSERT INTO public."user" VALUES (158, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:56:15.303238+00', '2022-10-18 20:56:15.303238+00');
-INSERT INTO public."user" VALUES (127, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:51:58.884401+00', '2022-10-18 20:51:58.884401+00');
-INSERT INTO public."user" VALUES (4, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:56:15.304579+00', '2022-10-14 19:21:38.786794+00');
-INSERT INTO public."user" VALUES (128, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:02.966667+00', '2022-10-18 20:52:02.966667+00');
-INSERT INTO public."user" VALUES (129, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:03.632476+00', '2022-10-18 20:52:03.632476+00');
-INSERT INTO public."user" VALUES (136, 'hola', 'hola', 'Juan', 'hola', 'Perez', 'hola', 'hola', '2022-10-19 17:23:24.733418+00', '2022-10-18 20:52:12.489851+00');
-INSERT INTO public."user" VALUES (130, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:04.07629+00', '2022-10-18 20:52:04.07629+00');
-INSERT INTO public."user" VALUES (131, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:04.460597+00', '2022-10-18 20:52:04.460597+00');
-INSERT INTO public."user" VALUES (132, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:06.126297+00', '2022-10-18 20:52:06.126297+00');
-INSERT INTO public."user" VALUES (133, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:06.775003+00', '2022-10-18 20:52:06.775003+00');
-INSERT INTO public."user" VALUES (134, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:09.100088+00', '2022-10-18 20:52:09.100088+00');
-INSERT INTO public."user" VALUES (135, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:09.40184+00', '2022-10-18 20:52:09.40184+00');
-INSERT INTO public."user" VALUES (137, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:52:12.762031+00', '2022-10-18 20:52:12.762031+00');
-INSERT INTO public."user" VALUES (138, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:53:50.209426+00', '2022-10-18 20:53:50.209426+00');
-INSERT INTO public."user" VALUES (139, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:53:51.459206+00', '2022-10-18 20:53:51.459206+00');
-INSERT INTO public."user" VALUES (140, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:53:52.126862+00', '2022-10-18 20:53:52.126862+00');
-INSERT INTO public."user" VALUES (141, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:53:52.516259+00', '2022-10-18 20:53:52.516259+00');
-INSERT INTO public."user" VALUES (142, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:54:00.618674+00', '2022-10-18 20:54:00.618674+00');
-INSERT INTO public."user" VALUES (143, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:54:01.408541+00', '2022-10-18 20:54:01.408541+00');
-INSERT INTO public."user" VALUES (144, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:54:01.778368+00', '2022-10-18 20:54:01.778368+00');
-INSERT INTO public."user" VALUES (145, 'hola', 'hola', 'chao', 'hola', 'hola', 'hola', 'hola', '2022-10-18 20:54:02.489697+00', '2022-10-18 20:54:02.489697+00');
 
 
 --
@@ -1401,82 +792,6 @@ SELECT pg_catalog.setval('public.prescribed_food_id_seq', 33, true);
 
 SELECT pg_catalog.setval('public.user_id_seq', 159, true);
 
-
---
--- Name: hdb_action_log hdb_action_log_pkey; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_action_log
-    ADD CONSTRAINT hdb_action_log_pkey PRIMARY KEY (id);
-
-
---
--- Name: hdb_cron_event_invocation_logs hdb_cron_event_invocation_logs_pkey; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_cron_event_invocation_logs
-    ADD CONSTRAINT hdb_cron_event_invocation_logs_pkey PRIMARY KEY (id);
-
-
---
--- Name: hdb_cron_events hdb_cron_events_pkey; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_cron_events
-    ADD CONSTRAINT hdb_cron_events_pkey PRIMARY KEY (id);
-
-
---
--- Name: hdb_metadata hdb_metadata_pkey; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_metadata
-    ADD CONSTRAINT hdb_metadata_pkey PRIMARY KEY (id);
-
-
---
--- Name: hdb_metadata hdb_metadata_resource_version_key; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_metadata
-    ADD CONSTRAINT hdb_metadata_resource_version_key UNIQUE (resource_version);
-
-
---
--- Name: hdb_scheduled_event_invocation_logs hdb_scheduled_event_invocation_logs_pkey; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_scheduled_event_invocation_logs
-    ADD CONSTRAINT hdb_scheduled_event_invocation_logs_pkey PRIMARY KEY (id);
-
-
---
--- Name: hdb_scheduled_events hdb_scheduled_events_pkey; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_scheduled_events
-    ADD CONSTRAINT hdb_scheduled_events_pkey PRIMARY KEY (id);
-
-
---
--- Name: hdb_schema_notifications hdb_schema_notifications_pkey; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_schema_notifications
-    ADD CONSTRAINT hdb_schema_notifications_pkey PRIMARY KEY (id);
-
-
---
--- Name: hdb_version hdb_version_pkey; Type: CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_version
-    ADD CONSTRAINT hdb_version_pkey PRIMARY KEY (hasura_uuid);
-
-
---
--- Name: eating_moment eating_moment_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.eating_moment
     ADD CONSTRAINT eating_moment_pkey PRIMARY KEY (id);
@@ -1585,215 +900,6 @@ ALTER TABLE ONLY public.prescribed_food
 ALTER TABLE ONLY public."user"
     ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 
-
---
--- Name: hdb_cron_event_invocation_event_id; Type: INDEX; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE INDEX hdb_cron_event_invocation_event_id ON hdb_catalog.hdb_cron_event_invocation_logs USING btree (event_id);
-
-
---
--- Name: hdb_cron_event_status; Type: INDEX; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE INDEX hdb_cron_event_status ON hdb_catalog.hdb_cron_events USING btree (status);
-
-
---
--- Name: hdb_cron_events_unique_scheduled; Type: INDEX; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE UNIQUE INDEX hdb_cron_events_unique_scheduled ON hdb_catalog.hdb_cron_events USING btree (trigger_name, scheduled_time) WHERE (status = 'scheduled'::text);
-
-
---
--- Name: hdb_scheduled_event_status; Type: INDEX; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE INDEX hdb_scheduled_event_status ON hdb_catalog.hdb_scheduled_events USING btree (status);
-
-
---
--- Name: hdb_version_one_row; Type: INDEX; Schema: hdb_catalog; Owner: postgres
---
-
-CREATE UNIQUE INDEX hdb_version_one_row ON hdb_catalog.hdb_version USING btree (((version IS NOT NULL)));
-
-
---
--- Name: eating_moment set_public_eating_moment_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_eating_moment_updated_at BEFORE UPDATE ON public.eating_moment FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_eating_moment_updated_at ON eating_moment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_eating_moment_updated_at ON public.eating_moment IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: food_category set_public_food_category_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_food_category_updated_at BEFORE UPDATE ON public.food_category FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_food_category_updated_at ON food_category; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_food_category_updated_at ON public.food_category IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: food_has_eating_moment set_public_food_has_eating_moment_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_food_has_eating_moment_updated_at BEFORE UPDATE ON public.food_has_eating_moment FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_food_has_eating_moment_updated_at ON food_has_eating_moment; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_food_has_eating_moment_updated_at ON public.food_has_eating_moment IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: food_has_food_category set_public_food_hs_food_category_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_food_hs_food_category_updated_at BEFORE UPDATE ON public.food_has_food_category FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_food_hs_food_category_updated_at ON food_has_food_category; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_food_hs_food_category_updated_at ON public.food_has_food_category IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: food set_public_food_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_food_updated_at BEFORE UPDATE ON public.food FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_food_updated_at ON food; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_food_updated_at ON public.food IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: goal set_public_goal_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_goal_updated_at BEFORE UPDATE ON public.goal FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_goal_updated_at ON goal; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_goal_updated_at ON public.goal IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: measurement set_public_measurement_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_measurement_updated_at BEFORE UPDATE ON public.measurement FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_measurement_updated_at ON measurement; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_measurement_updated_at ON public.measurement IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: nutritionist set_public_nutritionist_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_nutritionist_updated_at BEFORE UPDATE ON public.nutritionist FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_nutritionist_updated_at ON nutritionist; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_nutritionist_updated_at ON public.nutritionist IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: plan set_public_plan_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_plan_updated_at BEFORE UPDATE ON public.plan FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_plan_updated_at ON plan; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_plan_updated_at ON public.plan IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: prescribed_food set_public_prescribed_food_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_prescribed_food_updated_at BEFORE UPDATE ON public.prescribed_food FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_prescribed_food_updated_at ON prescribed_food; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_prescribed_food_updated_at ON public.prescribed_food IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: user set_public_user_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER set_public_user_updated_at BEFORE UPDATE ON public."user" FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
-
-
---
--- Name: TRIGGER set_public_user_updated_at ON "user"; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TRIGGER set_public_user_updated_at ON public."user" IS 'trigger to set value of column "updated_at" to current timestamp on row update';
-
-
---
--- Name: hdb_cron_event_invocation_logs hdb_cron_event_invocation_logs_event_id_fkey; Type: FK CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_cron_event_invocation_logs
-    ADD CONSTRAINT hdb_cron_event_invocation_logs_event_id_fkey FOREIGN KEY (event_id) REFERENCES hdb_catalog.hdb_cron_events(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: hdb_scheduled_event_invocation_logs hdb_scheduled_event_invocation_logs_event_id_fkey; Type: FK CONSTRAINT; Schema: hdb_catalog; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_catalog.hdb_scheduled_event_invocation_logs
-    ADD CONSTRAINT hdb_scheduled_event_invocation_logs_event_id_fkey FOREIGN KEY (event_id) REFERENCES hdb_catalog.hdb_scheduled_events(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: food_has_eating_moment food_has_eating_moment_eating_moment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.food_has_eating_moment
     ADD CONSTRAINT food_has_eating_moment_eating_moment_id_fkey FOREIGN KEY (eating_moment_id) REFERENCES public.eating_moment(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
