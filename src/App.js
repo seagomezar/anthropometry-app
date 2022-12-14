@@ -88,13 +88,9 @@ const myClientWithAuth = new ApolloClient({
   cache: new InMemoryCache(),
   headers: {
     'x-hasura-admin-secret':
-      'CLc8hYc2WXlT803cRh718KIV6PpHECfEChKn66Aa68Am7mxg05gaBtYYwkyrFIhk',
+      process.env.REACT_APP_HASHURA_API_KEY || '',
   },
 });
-/* const myClientWithAuth = new ApolloClient({
-  uri: 'http://localhost:8080/v1/graphql',
-  cache: new InMemoryCache(),
-}); */
 
 const App = () => {
   const [dataProvider, setDataProvider] = useState(null);

@@ -710,13 +710,6 @@ INSERT INTO public.nutritionist VALUES (1, 'Wilson', 'Rave', 'WILRAVEC18@GMAIL.C
 
 
 --
--- Data for Name: prescribed_food; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.prescribed_food VALUES (1, 2, 1, 's', 's', '2022-10-19 19:16:54.073572+00', '2022-10-19 19:16:54.073572+00', 1);
-
-
---
 -- Name: eating_moment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
