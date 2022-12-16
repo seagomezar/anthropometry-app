@@ -3,6 +3,7 @@ import {
   TextInput,
   List,
   SimpleList,
+  ReferenceField,
   Datagrid,
   TextField,
   EmailField,
@@ -38,6 +39,7 @@ export const UserList = () => {
           <TextField source="address" />
           <TextField source="birthday" />
           <TextField source="gender" />
+          <ReferenceField source="nutritionist_id" reference="nutritionist" />
           <DateField source="created_at" />
           <DateField source="updated_at" />
           <EditButton />

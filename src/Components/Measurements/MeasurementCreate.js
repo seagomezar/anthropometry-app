@@ -42,6 +42,13 @@ export const MeasurementCreate = () => {
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <NumberInput source="control" fullWidth />
           </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceInput
+              source="nutritionist_id"
+              reference="nutritionist"
+              fullWidth
+            />
+          </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>

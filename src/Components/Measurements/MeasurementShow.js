@@ -41,6 +41,9 @@ export const MeasurementShow = () => {
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <NumberField source="control" fullWidth />
           </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <ReferenceField source="nutritionist_id" reference="nutritionist" />
+          </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>

@@ -39,14 +39,23 @@ export const UserEdit = () => {
               <TextInput source="lastname" isRequired fullWidth />
             </Box>
           </Box>
-          <TextInput
-            type="gender"
-            source="gender"
-            isRequired
-            fullWidth
-          />
-          <TextInput type="email" source="email" isRequired fullWidth />
-          <DateInput source="birthday" />
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+            <TextInput
+            type="gender" source="gender" isRequired fullWidth />
+            </Box>
+            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+            <TextInput type="email" source="email" isRequired fullWidth />
+            </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+           <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+           <DateInput source="birthday" />
+           </Box>
+           <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+           <TextInput source="nutritionist" isRequired fullWidth />
+           </Box>
+          </Box>
           <Separator />
   
           <Typography variant="h6" gutterBottom>

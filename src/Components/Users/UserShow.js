@@ -62,6 +62,12 @@ export const UserShow = () => {
               </Typography>
               <DateField source="birthday" />
             </Box>
+            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
+              <Typography variant="h6" gutterBottom>
+                {translate('resources.user.fields.nutritionist')}
+              </Typography>
+              <ReferenceField source="nutritionist"/>
+            </Box>
           </Box>
           <Separator />
   

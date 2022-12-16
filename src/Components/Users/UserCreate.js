@@ -35,6 +35,9 @@ export const UserCreate = () => {
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <TextInput source="lastname" isRequired fullWidth />
             </Box>
+            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <TextInput source="nutritionist" isRequired fullWidth />
+            </Box>
             </Box>
             <Separator />
             <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>

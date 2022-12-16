@@ -46,6 +46,7 @@ export const MeasurementList = () => {
               source="referenced_somatotype_id"
               reference="referenced_somatotype"
             />
+            <ReferenceField source="nutritionist_id" reference="nutritionist" />
             <NumberField source="control" />
             <NumberField source="height" />
             <NumberField source="weight" />
