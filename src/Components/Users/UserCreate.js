@@ -2,6 +2,7 @@ import React from 'react';
 import {
   DateInput,
   SimpleForm,
+  ReferenceInput,
   TextInput,
   Create,
   PasswordInput,
@@ -36,7 +37,11 @@ export const UserCreate = () => {
             <TextInput source="lastname" isRequired fullWidth />
             </Box>
             <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <TextInput source="nutritionist" isRequired fullWidth />
+            <ReferenceInput
+              source="nutritionist_id"
+              reference="nutritionist"
+              fullWidth
+            />
             </Box>
             </Box>
             <Separator />

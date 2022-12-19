@@ -4,6 +4,7 @@ import {
   DateInput,
   Edit,
   SimpleForm,
+  ReferenceInput,
   TextInput,
   PasswordInput,
   useTranslate,
@@ -53,7 +54,11 @@ export const UserEdit = () => {
            <DateInput source="birthday" />
            </Box>
            <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-           <TextInput source="nutritionist" isRequired fullWidth />
+           <ReferenceInput
+              source="nutritionist_id"
+              reference="nutritionist"
+              fullWidth
+            />
            </Box>
           </Box>
           <Separator />
