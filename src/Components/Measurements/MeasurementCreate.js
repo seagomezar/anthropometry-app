@@ -8,7 +8,7 @@ import {
   Create,
   useTranslate,
   AutocompleteInput,
-  AutocompleteField
+  AutocompleteField,
 } from 'react-admin';
 import { Box, Typography } from '@mui/material';
 const filterToQuery = (searchText) => ({
@@ -16,10 +16,10 @@ const filterToQuery = (searchText) => ({
 });
 
 export const MeasurementCreate = () => {
-    const translate = useTranslate();
-    return (
-      <Create>
-        <SimpleForm sx={{ maxWidth: 600 }}>
+  const translate = useTranslate();
+  return (
+    <Create>
+      <SimpleForm sx={{ maxWidth: 600 }}>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <ReferenceInput
@@ -29,13 +29,13 @@ export const MeasurementCreate = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <ReferenceInput
-                source="referenced_somatotype_id"
-                reference="referenced_somatotype"
-                fullWidth
-              >
-                <AutocompleteInput filterToQuery={filterToQuery} />
-              </ReferenceInput>
+            <ReferenceInput
+              source="referenced_somatotype_id"
+              reference="referenced_somatotype"
+              fullWidth
+            >
+              <AutocompleteInput filterToQuery={filterToQuery} />
+            </ReferenceInput>
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
@@ -43,7 +43,7 @@ export const MeasurementCreate = () => {
             <NumberInput source="control" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <ReferenceInput
+            <ReferenceInput
               source="nutritionist_id"
               reference="nutritionist"
               fullWidth
@@ -83,7 +83,7 @@ export const MeasurementCreate = () => {
             <NumberInput source="plg_subscapular" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="plg_suprailiaco" fullWidth />
+            <NumberInput source="plg_suprailiac" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
@@ -107,7 +107,7 @@ export const MeasurementCreate = () => {
             <NumberInput source="plg_chest" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="plg_armpit" fullWidth />
+            <NumberInput source="plg_armpit" fullWidth />
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
@@ -123,26 +123,26 @@ export const MeasurementCreate = () => {
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="prm_wrist" fullWidth />
+            <NumberInput source="prm_wrist" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="prm_waist" fullWidth />
-          </Box>
-        </Box>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="prm_hip" fullWidth />
-          </Box>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="prm_calf" fullWidth />
+            <NumberInput source="prm_waist" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="prm_chest" fullWidth />
+            <NumberInput source="prm_hip" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-          <NumberInput source="prm_thigh" fullWidth />
+            <NumberInput source="prm_calf" fullWidth />
+          </Box>
+        </Box>
+        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="prm_chest" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <NumberInput source="prm_thigh" fullWidth />
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
@@ -174,7 +174,7 @@ export const MeasurementCreate = () => {
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <NumberInput source="creatinine" fullWidth />
+            <TextInput source="creatinine" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <NumberInput source="fitness_level" fullWidth />
@@ -194,6 +194,6 @@ export const MeasurementCreate = () => {
           </Box>
         </Box>
       </SimpleForm>
-      </Create>
-    );
-  };
+    </Create>
+  );
+};
