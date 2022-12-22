@@ -18,6 +18,8 @@ export const es = {
     grams: 'Gramos',
     total_calories: 'Calorías Totales',
     simulate_results: 'Simular Resultados',
+	welcomelogin: "Bienvenido al portal del nutricionista",
+	login: "Autenticarse"
   },
   resources: {
     user: {
