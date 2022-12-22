@@ -75,6 +75,8 @@ export const es = {
         user_id: 'Usuario',
         referenced_somatotype_id: 'Deporte',
         control: 'Control',
+        nutritionist_id: 'nutricionista',
+        notes: 'notas'
       },
     },
     food_category: {

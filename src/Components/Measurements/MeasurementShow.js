@@ -23,6 +23,9 @@ export const MeasurementShow = () => {
       <SimpleShowLayout sx={{ maxWidth: 500 }}>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.user_id')}
+            </Typography>
             <ReferenceField
               source="user_id"
               reference="user"
@@ -30,6 +33,9 @@ export const MeasurementShow = () => {
             />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.referenced_somatotype_id')}
+            </Typography>
             <ReferenceField
               source="referenced_somatotype_id"
               reference="referenced_somatotype"
@@ -39,9 +45,15 @@ export const MeasurementShow = () => {
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.control')}
+            </Typography>
             <NumberField source="control" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.nutritionist_id')}
+            </Typography>
           <ReferenceField source="nutritionist_id" reference="nutritionist" />
           </Box>
         </Box>
@@ -53,6 +65,12 @@ export const MeasurementShow = () => {
               )}
             </Typography>
             <DateField source="evaluation_date" />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.notes')}
+            </Typography>
+          <textField source="notes" />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>

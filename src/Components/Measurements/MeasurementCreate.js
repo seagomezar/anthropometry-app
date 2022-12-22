@@ -15,6 +15,10 @@ const filterToQuery = (searchText) => ({
   sport: `%${searchText}%`,
 });
 
+const userToQuery = (searchText) => ({
+  firstname: `%${searchText}%`,
+});
+
 export const MeasurementCreate = () => {
   const translate = useTranslate();
   return (
@@ -26,7 +30,9 @@ export const MeasurementCreate = () => {
               source="user_id"
               reference="user"
               fullWidth
-            />
+            >
+            <AutocompleteInput filterToQuery={userToQuery} />
+          </ReferenceInput>
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <ReferenceInput
@@ -53,6 +59,9 @@ export const MeasurementCreate = () => {
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <DateInput source="evaluation_date" fullWidth />
+          </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="notes" fullWidth />
           </Box>
         </Box>
         <Typography variant="h6" gutterBottom>

@@ -54,6 +54,9 @@ export const MeasurementEdit = () => {
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <DateInput source="evaluation_date" fullWidth />
           </Box>
+          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="notes" fullWidth />
+          </Box>
         </Box>
         <Typography variant="h6" gutterBottom>
           {translate('myroot.mediciones')}

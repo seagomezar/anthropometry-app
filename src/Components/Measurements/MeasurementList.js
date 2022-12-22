@@ -51,6 +51,7 @@ export const MeasurementList = () => {
             <NumberField source="height" />
             <NumberField source="weight" />
             <DateField source="evaluation_date" />
+            <TextField source="notes" />
             <DateField source="created_at" />
             <DateField source="updated_at" />
             <EditButton />
