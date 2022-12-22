@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardContent, CardHeader } from '@mui/material';
+import { Card, CardContent, CardHeader, Container, Box  } from '@mui/material';
 import { Chart } from 'chart.js/auto';
 
 const Dashboard = () => {
@@ -39,12 +39,15 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Card>
+	<Box  maxWidth="sm">
+		<Card>
       <CardHeader title="Welcome to the administration" />
       <CardContent>
         <canvas id="myChart"></canvas>
       </CardContent>
     </Card>
+	</Box >
+    
   );
 };
 

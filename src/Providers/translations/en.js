@@ -15,6 +15,8 @@ export const en = {
     diametro: 'Diameter (cm)',
     somatotipo: 'Reference Somatotype',
     empty: 'No items created',
+	welcomelogin: "Welcome to the Nutritionist portal",
+	login: "Login"
   },
   resources: {
     user: {

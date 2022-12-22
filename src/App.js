@@ -82,6 +82,7 @@ import { UserEdit } from './Components/Users/UserEdit';
 import { UserCreate } from './Components/Users/UserCreate';
 import { UserShow } from './Components/Users/UserShow';
 import { Results } from './Components/Results/Results';
+import LoginPage from './Components/LoginPage';
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -115,6 +116,7 @@ const App = () => {
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       dataProvider={dataProvider}
+	  loginPage={LoginPage}
     >
       <Resource
         name="user"
