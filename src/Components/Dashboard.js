@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useAuthenticated } from 'react-admin';
 import { Card, CardContent, CardHeader, Container, Box  } from '@mui/material';
 import { Chart } from 'chart.js/auto';
 
 const Dashboard = () => {
+	useAuthenticated();
   React.useEffect(() => {
     const ctx = document.getElementById('myChart');
 
