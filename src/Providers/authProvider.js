@@ -30,7 +30,7 @@ const authProvider = {
 		return auth0.isAuthenticated().then(function (isAuthenticated) {
 			if (isAuthenticated) { // need to check for this as react-admin calls logout in case checkAuth failed
 				return auth0.logout({
-					redirect_uri: window.location.origin,
+					redirect_uri: window.location.origin + "/login",
 					federated: true // have to be enabled to invalidate refresh token
 				});
 			}
@@ -50,11 +50,10 @@ const authProvider = {
 		if (isAuthenticated) {
 			return Promise.resolve();
 		}
-		return await auth0.checkSession()
+		return auth0.getTokenSilently()
 	},
 	getIdentity: async () => {
 		const user = await auth0.getUser();
-		console.log(user)
 		return Promise.resolve({ user });
 	},
 	// called when the user navigates to a new location, to check for permissions / roles
