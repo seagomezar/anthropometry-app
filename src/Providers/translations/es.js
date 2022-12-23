@@ -38,6 +38,7 @@ export const es = {
         confirm_password: 'Confirmar Contraseña',
         plans: 'Planes de Alimentación',
         measurements: 'Mediciones',
+        nutritionist: 'Nutricionista'
       },
     },
     measurement: {
@@ -198,6 +199,7 @@ export const es = {
       x_y_compairson: 'Comparacion X / Y',
       x_y_actual: 'Resulado Actual',
       x_y_referenced: 'Referencia',
+      historic: "Histórico de Resultados",
       fields: {
         endomorph: 'Endomorfo',
         mesomorph: 'Mesomorfo',

@@ -70,7 +70,7 @@ export const MeasurementShow = () => {
           <Typography variant="h6" gutterBottom>
               {translate('resources.measurement.fields.notes')}
             </Typography>
-          <textField source="notes" />
+          <TextField source="notes" />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>

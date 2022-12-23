@@ -16,6 +16,7 @@ import {
 import { Typography, Box } from '@mui/material';
 import { Empty } from '../Empty';
 import LineChartField from '../LineChartField';
+import ResultsFieldChart from '../Results/ResultsFieldChart';
 import { Separator } from '../Separator';
 
 export const UserShow = () => {
@@ -66,7 +67,9 @@ export const UserShow = () => {
               <Typography variant="h6" gutterBottom>
                 {translate('resources.user.fields.nutritionist')}
               </Typography>
-              <ReferenceField source="nutritionist"/>
+              <ReferenceField source="nutritionist_id"
+                    reference="nutritionist"
+                    fullWidth/>
             </Box>
           </Box>
           <Separator />
@@ -122,6 +125,9 @@ export const UserShow = () => {
             </Tab>
             <Tab label="Comparar Medidas" path="body">
               <LineChartField source="id" />
+            </Tab>
+            <Tab label="Comparar Resultados" path="results">
+              <ResultsFieldChart source="id" />
             </Tab>
           </TabbedShowLayout>
   

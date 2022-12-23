@@ -17,6 +17,7 @@ import {
 import PolarChart from '../PolarChart';
 import BarChart from '../BarChart';
 import ScatterChart from '../ScatterChart';
+import ResultsChart from './ResultsChart';
 
 // La formula de Yuhasz para hombres es:  Porcentaje de Grasa Corporal (%) = (0.1051 x suma de los pliegues ) + 2.585
 // y para mujeres es Porcentaje de Grasa Corporal (%) = (0.1548 x suma de los pliegues) + 3.580.
@@ -288,7 +289,7 @@ function desiredFat2MethodPercentage(measurement, weight, gender) {
   return desiredFat2MethodPercentage;
 }
 
-function generateResults(measurement, height, weight, gender) {
+export function generateResults(measurement, height, weight, gender) {
   const results = {
     endomorph: endomorph(measurement, height),
     mesomorph: mesomorph(measurement, height),
@@ -359,6 +360,7 @@ export const Results = () => {
   const { data } = useGetOne('measurement', {
     id: measurementId,
   });
+  const [user, setUser] = React.useState();
   const [result, setResult] = React.useState({
     activeMass: 0,
     complexion: 0,
@@ -398,6 +400,8 @@ export const Results = () => {
           user.gender == 'Femenino' ? false : true
         )
       );
+      console.log(user)
+      setUser(user);
     });
     dataProvider
       .getOne('referenced_somatotype', {
@@ -703,6 +707,21 @@ export const Results = () => {
           </Box>
         </AccordionDetails>
       </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>
+            {translate('resources.result.historic')}
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+            {user && <ResultsChart user={user.data} />}
+        </AccordionDetails>
+      </Accordion>
+
     </div>
   );
 };

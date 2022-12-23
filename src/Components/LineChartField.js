@@ -79,7 +79,7 @@ const LineChartField = ({ source }) => {
         })}
       </Select>
       <CardContent>
-        <LineChart title={selectedOption} x={dataX} y={dataY} />
+        <LineChart title={selectedOption} x={dataX} y={dataY} translationSource={'resources.measurement.fields.'} />
       </CardContent>
     </Card>
   );

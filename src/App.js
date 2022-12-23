@@ -218,6 +218,9 @@ const App = () => {
         edit={NutritionistEdit}
         create={NutritionistCreate}
         show={NutritionistShow}
+        recordRepresentation={(record) =>
+          `${record.firstname} ${record.lastname}`
+        }
       />
       <Resource
         name="referenced_somatotype"
