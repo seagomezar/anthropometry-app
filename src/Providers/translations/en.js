@@ -2,6 +2,7 @@ import englishMessages from 'ra-language-english';
 
 export const en = {
   ...englishMessages,
+  "Missing Refresh Token (audience: '', scope: 'openid profile email offline_access')": "Please Log in",
   myroot: {
     password: 'Password',
     addressAndPhone: 'Address Phone',
@@ -15,6 +16,8 @@ export const en = {
     diametro: 'Diameter (cm)',
     somatotipo: 'Reference Somatotype',
     empty: 'No items created',
+	total_calories: 'Calorías Totales',
+    simulate_results: 'Simular Resultados',
 	welcomelogin: "Welcome to the Nutritionist portal",
 	login: "Login"
   },

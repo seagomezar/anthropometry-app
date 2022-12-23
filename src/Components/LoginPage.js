@@ -20,7 +20,7 @@ const LoginPage = ({ theme }) => {
 			flexDirection= "column"
 			style={{ minHeight: '100vh', paddingTop: "8%" }}
 		>
-			<Grid item xs={3} direction= "column" >
+			<Grid item xs={3} >
 
 				<Card sx={{ maxWidth: 345 }}>
 					<CardHeader style={{ textAlign: 'center' }} title={translate('myroot.welcomelogin')}/>

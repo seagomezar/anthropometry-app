@@ -1,7 +1,10 @@
 import spanishMessages from '@blackbox-vision/ra-language-spanish';
 
+
+
 export const es = {
   ...spanishMessages,
+  "Missing Refresh Token (audience: '', scope: 'openid profile email offline_access')": "Por favor inicie sesion para ingresar!",
   myroot: {
     password: 'Contraseña',
     addressAndPhone: 'Dirección & Teléfono',
@@ -44,6 +47,7 @@ export const es = {
     measurement: {
       name: 'Medición |||| Mediciones',
       fields: {
+		nutritionist_id: "Nutricionista",
         evaluation_date: 'Fecha de Evaluación',
         dm_elbow: 'Diámetro Codo (cms)',
         dm_knee: 'Diámetro rodilla (cms)',
@@ -78,7 +82,6 @@ export const es = {
         user_id: 'Usuario',
         referenced_somatotype_id: 'Deporte',
         control: 'Control',
-        nutritionist_id: 'nutricionista',
         notes: 'notas'
       },
     },

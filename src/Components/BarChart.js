@@ -13,7 +13,7 @@ const PolarChart = ({ x, y, title }) => {
         labels: x,
         datasets: [
           {
-            label: translate(title),
+            label: title,
             data: y,
             borderWidth: 1,
             backgroundColor: [
