@@ -27,14 +27,17 @@ const ResultsChart = ({ user }) => {
     const createData = (option) => {
 
         if (data) {
-            const results = data.map((d) => generateResults(
+			const sortedData = data.sort(function(a, b) {
+				return parseInt(a.control) - parseInt(b.control);
+		  });
+            const results = sortedData.map((d) => generateResults(
                 d,
                 d.height,
                 d.weight,
                 user.gender == 'Femenino' ? false : true
             ))
             setSelectedOption(option);
-            setX(data.map((e) => e.evaluation_date));
+            setX(sortedData.map((e) => e.evaluation_date));
             setY(results.map((e) => e[option]));
         }
     };

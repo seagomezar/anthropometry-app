@@ -36,7 +36,6 @@ const LoginPage = ({ theme }) => {
 								notify('Invalid email or password')
 							);
 						}} variant="contained">{translate('myroot.login')}</Button>
-						<Typography>Hola: {process.env.REACT_APP_AUTH0_REDIRECT_URI}</Typography>
 					</CardContent>
 				</Card>
 			</Grid>

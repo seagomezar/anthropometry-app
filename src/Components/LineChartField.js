@@ -54,8 +54,11 @@ const LineChartField = ({ source }) => {
   const createData = (option) => {
     if (data) {
       setSelectedOption(option);
-      setX(data.map((e) => e.evaluation_date));
-      setY(data.map((e) => e[option]));
+	  const sortedData = data.sort(function(a, b) {
+			return parseInt(a.control) - parseInt(b.control);
+	  });
+      setX(sortedData.map((e) => e.evaluation_date));
+      setY(sortedData.map((e) => e[option]));
     }
   };
 

@@ -14,10 +14,11 @@ const auth0 = new Auth0Client({
 const authProvider = {
 	// called when the user attempts to log in
 	login: async (url) => {
+		// return Promise.resolve()
 		console.log(process.env.REACT_APP_HASHURA_API_KEY)
 		await auth0.loginWithPopup({
 			authorizationParams: {
-				redirect_uri: 'http://localhost:3000/'
+				redirect_uri: process.env.REACT_APP_AUTH0_REDIRECT_URI
 			}
 		});
 		//logged in. you can get the user profile like this:

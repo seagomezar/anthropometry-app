@@ -102,15 +102,14 @@ export const UserShow = () => {
               <TextField source="password" fullWidth />
             </Box>
           </Box>
-          <Separator />
-          <TabbedShowLayout>
-            <Tab label="Lista de Mediciones">
-              <ReferenceManyField
+		  <Separator />
+          <ReferenceManyField
                 label={translate('resources.user.fields.measurements')}
                 reference="measurement"
                 target="user_id"
+				
               >
-                <Datagrid empty={<Empty />}>
+                <Datagrid empty={<Empty />} rowClick="show">
                   <NumberField source="control" />
                   <ReferenceField
                     source="referenced_somatotype_id"
@@ -122,14 +121,12 @@ export const UserShow = () => {
                   <DateField source="evaluation_date" />
                 </Datagrid>
               </ReferenceManyField>
-            </Tab>
-            <Tab label="Comparar Medidas" path="body">
-              <LineChartField source="id" />
-            </Tab>
-            <Tab label="Comparar Resultados" path="results">
-              <ResultsFieldChart source="id" />
-            </Tab>
-          </TabbedShowLayout>
+
+		  <Separator />
+          <LineChartField source="id" label=""/>
+  
+          <Separator />
+          <ResultsFieldChart source="id" label="" />
   
           <Separator />
           <ReferenceManyField

@@ -5,7 +5,7 @@ import { Chart } from 'chart.js/auto';
 const LineChart = ({ x, y, title, translationSource }) => {
   const translate = useTranslate();
   React.useEffect(() => {
-    const ctx = document.getElementById('compairsonChart');
+    const ctx = document.getElementById(title);
 
     const graph = new Chart(ctx, {
       type: 'line',
@@ -32,7 +32,7 @@ const LineChart = ({ x, y, title, translationSource }) => {
     };
   }, [x, y]);
 
-  return x && <canvas id="compairsonChart"></canvas>;
+  return x && <canvas id={title}></canvas>;
 };
 
 export default LineChart;
