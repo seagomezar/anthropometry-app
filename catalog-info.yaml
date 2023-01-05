@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nutrition-app
+  description: Una aplicacion para nutricion deportiva
+spec:
+  type: website
+  lifecycle: production
+  owner: Sebastian Gomez
