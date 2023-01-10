@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   TextInput,
   List,
@@ -10,24 +10,20 @@ import {
   DateField,
   EditButton,
   DeleteButton,
-} from 'react-admin';
-import { useMediaQuery } from '@mui/material';
+} from "react-admin";
+import { useMediaQuery } from "@mui/material";
 
 const userFilters = [
   <TextInput label="Search" source="firstname@_like" alwaysOn />,
 ];
 
 export const UserList = () => {
-  const isSmall = useMediaQuery((theme) =>
-    theme.breakpoints.down('sm')
-  );
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   return (
     <List filters={userFilters}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) =>
-            record.firstname + ' ' + record.lastname
-          }
+          primaryText={(record) => record.firstname + " " + record.lastname}
         />
       ) : (
         <Datagrid rowClick="show">

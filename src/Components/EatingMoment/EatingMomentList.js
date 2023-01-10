@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Datagrid,
   DateField,
@@ -6,7 +6,7 @@ import {
   TextField,
   EditButton,
   DeleteButton,
-} from 'react-admin';
+} from "react-admin";
 
 export const EatingMomentList = () => (
   <List>
@@ -18,7 +18,7 @@ export const EatingMomentList = () => (
       <DateField source="updated_at" />
       <DateField source="created_at" />
       <EditButton />
-          <DeleteButton />
+      <DeleteButton />
     </Datagrid>
   </List>
 );

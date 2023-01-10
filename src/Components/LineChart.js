@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { useTranslate } from 'react-admin';
-import { Chart } from 'chart.js/auto';
+import * as React from "react";
+import { useTranslate } from "react-admin";
+import { Chart } from "chart.js/auto";
 
 const LineChart = ({ x, y, title, translationSource }) => {
   const translate = useTranslate();
@@ -8,7 +8,7 @@ const LineChart = ({ x, y, title, translationSource }) => {
     const ctx = document.getElementById(title);
 
     const graph = new Chart(ctx, {
-      type: 'line',
+      type: "line",
       data: {
         labels: x,
         datasets: [

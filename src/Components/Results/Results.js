@@ -1,23 +1,19 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Typography,
   Accordion,
   AccordionDetails,
   AccordionSummary,
-} from '@mui/material';
+} from "@mui/material";
 
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useParams } from 'react-router-dom';
-import {
-  useGetOne,
-  useDataProvider,
-  useTranslate,
-} from 'react-admin';
-import PolarChart from '../PolarChart';
-import BarChart from '../BarChart';
-import ScatterChart from '../ScatterChart';
-import ResultsChart from './ResultsChart';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useParams } from "react-router-dom";
+import { useGetOne, useDataProvider, useTranslate } from "react-admin";
+import PolarChart from "../PolarChart";
+import BarChart from "../BarChart";
+import ScatterChart from "../ScatterChart";
+import ResultsChart from "./ResultsChart";
 
 // La formula de Yuhasz para hombres es:  Porcentaje de Grasa Corporal (%) = (0.1051 x suma de los pliegues ) + 2.585
 // y para mujeres es Porcentaje de Grasa Corporal (%) = (0.1548 x suma de los pliegues) + 3.580.
@@ -60,12 +56,8 @@ function yhaszFatPercentage(measurement, gender) {
 }
 
 function faulknerFatPercentage(measurement, gender) {
-  const {
-    plg_subscapular,
-    plg_triceps,
-    plg_suprailiac,
-    plg_abdominal,
-  } = measurement;
+  const { plg_subscapular, plg_triceps, plg_suprailiac, plg_abdominal } =
+    measurement;
 
   // Calculate the sum of all measurements
   const sumOfMeasurements =
@@ -94,26 +86,23 @@ function parizcovaFatPercentage(measurement) {
 }
 
 function sumaPlieguesEndo(measurement) {
-  const { plg_subscapular, plg_triceps, plg_supraspinal } =
-    measurement;
+  const { plg_subscapular, plg_triceps, plg_supraspinal } = measurement;
 
   // Calculate the sum of all measurements
-  const sumOfMeasurements =
-    plg_subscapular + plg_triceps + plg_supraspinal;
-  console.log('sumaPlieguesEndo', sumOfMeasurements);
+  const sumOfMeasurements = plg_subscapular + plg_triceps + plg_supraspinal;
+  console.log("sumaPlieguesEndo", sumOfMeasurements);
   return sumOfMeasurements;
 }
 
 function endoFactor(measurement, height) {
-  const endoFactor =
-    sumaPlieguesEndo(measurement) * (170.18 / height);
-  console.log('endoFactor', endoFactor);
+  const endoFactor = sumaPlieguesEndo(measurement) * (170.18 / height);
+  console.log("endoFactor", endoFactor);
   return endoFactor;
 }
 
 function ponderalIndex(height, weight) {
   const ponderalIndex = height / Math.pow(weight, 1 / 3);
-  console.log('ponderalIndex', ponderalIndex);
+  console.log("ponderalIndex", ponderalIndex);
   return ponderalIndex;
 }
 
@@ -185,8 +174,7 @@ function activeMass(measurement, weight) {
 
 function iaks(measurement, height, weight) {
   const iaks =
-    (activeMass(measurement, weight) * 100000) /
-    (height * height * height);
+    (activeMass(measurement, weight) * 100000) / (height * height * height);
   console.log({ iaks });
   return iaks;
 }
@@ -206,8 +194,7 @@ function raizPT(weight, height) {
 
 function conicIndex(measurement, weight, height) {
   const { prm_waist } = measurement;
-  const conicIndex =
-    prm_waist / 100 / (0.109 * raizPT(weight, height));
+  const conicIndex = prm_waist / 100 / (0.109 * raizPT(weight, height));
   return conicIndex;
 }
 
@@ -233,15 +220,14 @@ function sumOfPlgs(measurement) {
 
 function fatWeight(measurement, weight, gender) {
   const fatPercentage = yhaszFatPercentage(measurement, gender);
-  console.log('% ', fatPercentage);
+  console.log("% ", fatPercentage);
   const fatWeight = (fatPercentage * weight) / 100;
   console.log({ fatWeight });
   return fatWeight;
 }
 
 function freeFatWeight(measurement, weight, gender) {
-  const freeFatWeight =
-    weight - fatWeight(measurement, weight, gender);
+  const freeFatWeight = weight - fatWeight(measurement, weight, gender);
   console.log({ freeFatWeight });
   return freeFatWeight;
 }
@@ -357,7 +343,7 @@ const gender = true;
 export const Results = () => {
   let { measurementId } = useParams();
   const translate = useTranslate();
-  const { data } = useGetOne('measurement', {
+  const { data } = useGetOne("measurement", {
     id: measurementId,
   });
   const [user, setUser] = React.useState();
@@ -387,24 +373,26 @@ export const Results = () => {
     sumaPlieguesEndo: 0,
     yhaszFatPercentage: 0,
   });
-  const [referecedSomatotype, setReferencedSomatotype] =
-    React.useState({ x: 0, y: 0 });
+  const [referecedSomatotype, setReferencedSomatotype] = React.useState({
+    x: 0,
+    y: 0,
+  });
   const dataProvider = useDataProvider();
   React.useEffect(() => {
-    dataProvider.getOne('user', { id: data.user_id }).then((user) => {
+    dataProvider.getOne("user", { id: data.user_id }).then((user) => {
       setResult(
         generateResults(
           data,
           data.height,
           data.weight,
-          user.gender == 'Femenino' ? false : true
+          user.gender == "Femenino" ? false : true
         )
       );
-      console.log(user)
+      console.log(user);
       setUser(user);
     });
     dataProvider
-      .getOne('referenced_somatotype', {
+      .getOne("referenced_somatotype", {
         id: data.referenced_somatotype_id,
       })
       .then((r) => {
@@ -419,188 +407,176 @@ export const Results = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>
-            {translate('resources.result.tabbed_data')}
-          </Typography>
+          <Typography>{translate("resources.result.tabbed_data")}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <div>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.activeMass')}
+                {translate("resources.result.fields.activeMass")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.activeMass).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.complexion')}
+                {translate("resources.result.fields.complexion")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.complexion).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.conicIndex')}
+                {translate("resources.result.fields.conicIndex")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.conicIndex).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
                 {translate(
-                  'resources.result.fields.desiredFat2MethodPercentage'
+                  "resources.result.fields.desiredFat2MethodPercentage"
                 )}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-                {parseFloat(
-                  result.desiredFat2MethodPercentage
-                ).toFixed(2)}
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
+                {parseFloat(result.desiredFat2MethodPercentage).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.desiredWeight')}
+                {translate("resources.result.fields.desiredWeight")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.desiredWeight).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.ectomorph')}
+                {translate("resources.result.fields.ectomorph")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.ectomorph).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.endoFactor')}
+                {translate("resources.result.fields.endoFactor")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.endoFactor).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.endomorph')}
+                {translate("resources.result.fields.endomorph")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.endomorph).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.fatWeight')}
+                {translate("resources.result.fields.fatWeight")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.fatWeight).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate(
-                  'resources.result.fields.faulknerFatPercentage'
-                )}
+                {translate("resources.result.fields.faulknerFatPercentage")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.faulknerFatPercentage).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.freeFatWeight')}
+                {translate("resources.result.fields.freeFatWeight")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.freeFatWeight).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.iaks')}
+                {translate("resources.result.fields.iaks")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.iaks).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.imc')}
+                {translate("resources.result.fields.imc")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.imc).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.mesomorph')}
+                {translate("resources.result.fields.mesomorph")}
               </Typography>
-              <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
                 {parseFloat(result.mesomorph).toFixed(2)}
               </Box>
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate(
-                  'resources.result.fields.parizcovaFatPercentage'
-                )}
-              </Typography>{' '}
+                {translate("resources.result.fields.parizcovaFatPercentage")}
+              </Typography>{" "}
               {parseFloat(result.parizcovaFatPercentage).toFixed(2)}
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.ponderalIndex')}
-              </Typography>{' '}
+                {translate("resources.result.fields.ponderalIndex")}
+              </Typography>{" "}
               {parseFloat(result.ponderalIndex).toFixed(2)}
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.raizPT')}
-              </Typography>{' '}
+                {translate("resources.result.fields.raizPT")}
+              </Typography>{" "}
               {parseFloat(result.raizPT).toFixed(2)}
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.residualWeight')}
-              </Typography>{' '}
+                {translate("resources.result.fields.residualWeight")}
+              </Typography>{" "}
               {parseFloat(result.residualWeight).toFixed(2)}
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.resultX')}
-              </Typography>{' '}
+                {translate("resources.result.fields.resultX")}
+              </Typography>{" "}
               {parseFloat(result.resultX).toFixed(2)}
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.resultY')}
-              </Typography>{' '}
+                {translate("resources.result.fields.resultY")}
+              </Typography>{" "}
               {parseFloat(result.resultY).toFixed(2)}
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate('resources.result.fields.sumOfPlgs')}
-              </Typography>{' '}
+                {translate("resources.result.fields.sumOfPlgs")}
+              </Typography>{" "}
               {parseFloat(result.sumOfPlgs).toFixed(2)}
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate(
-                  'resources.result.fields.sumaPlieguesEndo'
-                )}
-              </Typography>{' '}
+                {translate("resources.result.fields.sumaPlieguesEndo")}
+              </Typography>{" "}
               {parseFloat(result.sumaPlieguesEndo).toFixed(2)}
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <Typography variant="h6" gutterBottom>
-                {translate(
-                  'resources.result.fields.yhaszFatPercentage'
-                )}
-              </Typography>{' '}
+                {translate("resources.result.fields.yhaszFatPercentage")}
+              </Typography>{" "}
               {parseFloat(result.yhaszFatPercentage).toFixed(2)}
             </Box>
           </div>
@@ -612,31 +588,25 @@ export const Results = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>
-            {translate('resources.result.body_type')}
-          </Typography>
+          <Typography>{translate("resources.result.body_type")}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Box sx={{ maxWidth: 500 }}>
             <PolarChart
               x={[
-                translate('resources.result.fields.ectomorph'),
-                translate('resources.result.fields.endomorph'),
-                translate('resources.result.fields.mesomorph'),
+                translate("resources.result.fields.ectomorph"),
+                translate("resources.result.fields.endomorph"),
+                translate("resources.result.fields.mesomorph"),
               ]}
-              y={[
-                result.ectomorph,
-                result.endomorph,
-                result.mesomorph,
-              ]}
-              title={translate('resources.result.body_type')}
+              y={[result.ectomorph, result.endomorph, result.mesomorph]}
+              title={translate("resources.result.body_type")}
             />
           </Box>
           <Box sx={{ maxWidth: 500 }}>
             <ScatterChart
               labels={[
-                translate('resources.result.x_y_actual'),
-                translate('resources.result.x_y_referenced'),
+                translate("resources.result.x_y_actual"),
+                translate("resources.result.x_y_referenced"),
               ]}
               points={[
                 { x: result.resultX, y: result.resultY },
@@ -645,7 +615,7 @@ export const Results = () => {
                   y: referecedSomatotype.y,
                 },
               ]}
-              title={translate('resources.result.x_y_compairson')}
+              title={translate("resources.result.x_y_compairson")}
             />
           </Box>
         </AccordionDetails>
@@ -657,29 +627,23 @@ export const Results = () => {
           id="panel1a-header"
         >
           <Typography>
-            {translate('resources.result.fat_percentages')}
+            {translate("resources.result.fat_percentages")}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Box sx={{ maxWidth: 500 }}>
             <BarChart
               x={[
-                translate(
-                  'resources.result.fields.yhaszFatPercentage'
-                ),
-                translate(
-                  'resources.result.fields.faulknerFatPercentage'
-                ),
-                translate(
-                  'resources.result.fields.parizcovaFatPercentage'
-                ),
+                translate("resources.result.fields.yhaszFatPercentage"),
+                translate("resources.result.fields.faulknerFatPercentage"),
+                translate("resources.result.fields.parizcovaFatPercentage"),
               ]}
               y={[
                 result.yhaszFatPercentage,
                 result.faulknerFatPercentage,
                 result.parizcovaFatPercentage,
               ]}
-              title={translate('resources.result.fat_percentages')}
+              title={translate("resources.result.fat_percentages")}
             />
           </Box>
         </AccordionDetails>
@@ -690,19 +654,17 @@ export const Results = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>
-            {translate('resources.result.imc_analysis')}
-          </Typography>
+          <Typography>{translate("resources.result.imc_analysis")}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Box sx={{ maxWidth: 500 }}>
             <BarChart
               x={[
-                translate('resources.result.fields.desiredIMC'),
-                translate('resources.result.fields.imc'),
+                translate("resources.result.fields.desiredIMC"),
+                translate("resources.result.fields.imc"),
               ]}
               y={[result.desiredIMC, result.imc]}
-              title={translate('resources.result.imc_analysis')}
+              title={translate("resources.result.imc_analysis")}
             />
           </Box>
         </AccordionDetails>
@@ -713,15 +675,12 @@ export const Results = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>
-            {translate('resources.result.historic')}
-          </Typography>
+          <Typography>{translate("resources.result.historic")}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            {user && <ResultsChart user={user.data} />}
+          {user && <ResultsChart user={user.data} />}
         </AccordionDetails>
       </Accordion>
-
     </div>
   );
 };

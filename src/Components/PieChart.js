@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { useTranslate } from 'react-admin';
-import { Chart } from 'chart.js/auto';
+import * as React from "react";
+import { useTranslate } from "react-admin";
+import { Chart } from "chart.js/auto";
 
 const PieChart = ({ x, y, title }) => {
   const translate = useTranslate();
@@ -8,7 +8,7 @@ const PieChart = ({ x, y, title }) => {
     const ctx = document.getElementById(title);
 
     const graph = new Chart(ctx, {
-      type: 'pie',
+      type: "pie",
       data: {
         labels: x,
         datasets: [
@@ -17,9 +17,9 @@ const PieChart = ({ x, y, title }) => {
             data: y,
             borderWidth: 1,
             backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
+              "rgb(255, 99, 132)",
+              "rgb(54, 162, 235)",
+              "rgb(255, 205, 86)",
             ],
             hoverOffset: 4,
           },

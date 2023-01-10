@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Datagrid,
   DateField,
@@ -9,7 +9,7 @@ import {
   useTranslate,
   EditButton,
   DeleteButton,
-} from 'react-admin';
+} from "react-admin";
 
 export const ReferencedSomatotypeList = () => {
   const translate = useTranslate();
@@ -21,8 +21,8 @@ export const ReferencedSomatotypeList = () => {
         <SelectField
           source="gender"
           choices={[
-            { id: true, name: translate('myroot.male') },
-            { id: false, name: translate('myroot.female') },
+            { id: true, name: translate("myroot.male") },
+            { id: false, name: translate("myroot.female") },
           ]}
         />
         <NumberField source="endomorph" />

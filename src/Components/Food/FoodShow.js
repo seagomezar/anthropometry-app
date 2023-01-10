@@ -1,66 +1,65 @@
-import React from 'react';
+import React from "react";
 import {
   NumberField,
   TextField,
   useTranslate,
   Show,
   SimpleShowLayout,
-} from 'react-admin';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-
+} from "react-admin";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 export const FoodShow = () => {
   const translate = useTranslate();
   return (
     <Show>
       <SimpleShowLayout sx={{ maxWidth: 500 }}>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.food.fields.calories')}
+              {translate("resources.food.fields.calories")}
             </Typography>
             <NumberField source="calories" fullWidth />
           </Box>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.food.fields.chos')}
+              {translate("resources.food.fields.chos")}
             </Typography>
             <NumberField source="chos" fullWidth />
           </Box>
         </Box>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.food.fields.description')}
+              {translate("resources.food.fields.description")}
             </Typography>
             <TextField source="description" fullWidth />
           </Box>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.food.fields.fat')}
+              {translate("resources.food.fields.fat")}
             </Typography>
             <NumberField source="fat" fullWidth />
           </Box>
         </Box>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.food.fields.measure_unit')}
+              {translate("resources.food.fields.measure_unit")}
             </Typography>
             <TextField source="measure_unit" fullWidth />
           </Box>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.food.fields.protein')}
+              {translate("resources.food.fields.protein")}
             </Typography>
             <NumberField source="protein" fullWidth />
           </Box>
         </Box>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.food.fields.quantity')}
+              {translate("resources.food.fields.quantity")}
             </Typography>
             <NumberField source="quantity" fullWidth />
           </Box>

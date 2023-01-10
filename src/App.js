@@ -116,7 +116,7 @@ const App = () => {
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       dataProvider={dataProvider}
-	  loginPage={LoginPage}
+      loginPage={LoginPage}
     >
       <Resource
         name="user"

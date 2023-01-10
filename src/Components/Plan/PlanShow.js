@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Datagrid,
   ReferenceField,
@@ -8,53 +8,43 @@ import {
   SimpleShowLayout,
   ReferenceManyField,
   CreateButton,
-} from 'react-admin';
-import { Box, Typography } from '@mui/material';
-import { Empty } from '../Empty';
-import { TimeField } from '../TimeField';
-import { Separator } from '../Separator';
-import { PlanSummaryField } from '../PlanSummary';
-
-
+} from "react-admin";
+import { Box, Typography } from "@mui/material";
+import { Empty } from "../Empty";
+import { TimeField } from "../TimeField";
+import { Separator } from "../Separator";
+import { PlanSummaryField } from "../PlanSummary";
 
 export const PlanShow = () => {
   const translate = useTranslate();
   return (
     <Show>
       <SimpleShowLayout sx={{ maxWidth: 500 }}>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.plan.fields.comments')}
+              {translate("resources.plan.fields.comments")}
             </Typography>
             <TextField source="comments" fullWidth />
           </Box>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.plan.fields.goal_id')}
+              {translate("resources.plan.fields.goal_id")}
             </Typography>
-            <ReferenceField
-              source="goal_id"
-              reference="goal"
-              fullWidth
-            />
+            <ReferenceField source="goal_id" reference="goal" fullWidth />
           </Box>
         </Box>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+        <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
+          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <Typography variant="h6" gutterBottom>
-              {translate('resources.plan.fields.user_id')}
+              {translate("resources.plan.fields.user_id")}
             </Typography>
-            <ReferenceField
-              source="user_id"
-              reference="user"
-              fullWidth
-            />
+            <ReferenceField source="user_id" reference="user" fullWidth />
           </Box>
         </Box>
         <Separator />
         <ReferenceManyField
-          label={translate('resources.plan.fields.prescribed_food')}
+          label={translate("resources.plan.fields.prescribed_food")}
           reference="prescribed_food"
           target="plan_id"
         >
@@ -67,9 +57,7 @@ export const PlanShow = () => {
               reference="eating_moment"
             />
           </Datagrid>
-          <CreateButton
-            label={translate('resources.plan.add_to_plan')}
-          />
+          <CreateButton label={translate("resources.plan.add_to_plan")} />
         </ReferenceManyField>
         <PlanSummaryField source="id" label="Plan Summary" />
       </SimpleShowLayout>

@@ -1,5 +1,5 @@
-import { buildFields } from 'ra-data-hasura';
-import gql from 'graphql-tag';
+import { buildFields } from "ra-data-hasura";
+import gql from "graphql-tag";
 
 const extractFieldsFromQuery = (queryAst) => {
   return queryAst.definitions[0].selectionSet.selections;
@@ -30,10 +30,8 @@ export const customBuildFields = (type, fetchType) => {
   // First take the default fields (all, but no related or nested).
   const defaultFields = buildFields(type, fetchType);
 
-  if (resourceName === 'plans' && fetchType === 'GET_ONE') {
-    const relatedEntities = extractFieldsFromQuery(
-      EXTENDED_GET_ONE_PLAN
-    );
+  if (resourceName === "plans" && fetchType === "GET_ONE") {
+    const relatedEntities = extractFieldsFromQuery(EXTENDED_GET_ONE_PLAN);
     defaultFields.push(...relatedEntities);
   }
   // Extend other queries for other resources/fetchTypes here...
