@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useGetManyReference, useTranslate } from 'react-admin';
 import { MenuItem, Select, Card, CardContent } from '@mui/material';
 import LineChart from '../LineChart';
-import { generateResults } from './Results';
+import { generateResults } from '../../Providers/retultsProvider';
 
 const ResultsChart = ({ user }) => {
   let options = [

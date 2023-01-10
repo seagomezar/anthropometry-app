@@ -6,7 +6,7 @@ import {
 } from 'react-admin';
 import { MenuItem, Select, Card, CardContent } from '@mui/material';
 import LineChart from '../LineChart';
-import { generateResults } from './Results';
+import { generateResults } from '../../Providers/retultsProvider';
 
 const ResultsFieldChart = ({ source }) => {
   let options = [
