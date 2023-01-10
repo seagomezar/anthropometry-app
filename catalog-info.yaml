@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: nutrition-app
   description: Una aplicacion para nutricion deportiva
+annotations:
+    backstage.io/techdocs-ref: nutrition-app
 spec:
   type: website
   lifecycle: production
