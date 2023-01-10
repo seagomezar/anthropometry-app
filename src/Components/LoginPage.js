@@ -1,18 +1,15 @@
 // in src/MyLoginPage.js
-import * as React from "react";
-import { useState } from "react";
-import { useLogin, useNotify, Notification, useTranslate } from "react-admin";
+import * as React from 'react';
+import { useLogin, useNotify, useTranslate } from 'react-admin';
 import {
   Card,
   CardContent,
   CardHeader,
-  Img,
   Grid,
   CardMedia,
-  Typography,
   Button,
-} from "@mui/material";
-import logo from "./logo.jpeg";
+} from '@mui/material';
+import logo from './logo.jpeg';
 
 const LoginPage = ({ theme }) => {
   const login = useLogin();
@@ -27,23 +24,25 @@ const LoginPage = ({ theme }) => {
       alignItems="center"
       justify="center"
       flexDirection="column"
-      style={{ minHeight: "100vh", paddingTop: "8%" }}
+      style={{ minHeight: '100vh', paddingTop: '8%' }}
     >
       <Grid item xs={3}>
         <Card sx={{ maxWidth: 345 }}>
           <CardHeader
-            style={{ textAlign: "center" }}
-            title={translate("myroot.welcomelogin")}
+            style={{ textAlign: 'center' }}
+            title={translate('myroot.welcomelogin')}
           />
           <CardMedia component="img" image={logo} alt="Paella dish" />
           <CardContent>
             <Button
               onClick={() => {
-                login().catch(() => notify("Invalid email or password"));
+                login().catch(() =>
+                  notify('Invalid email or password')
+                );
               }}
               variant="contained"
             >
-              {translate("myroot.login")}
+              {translate('myroot.login')}
             </Button>
           </CardContent>
         </Card>

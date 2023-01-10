@@ -1,48 +1,48 @@
-import * as React from "react";
-import { useGetManyReference, useTranslate } from "react-admin";
-import { MenuItem, Select, Card, CardContent } from "@mui/material";
-import LineChart from "../LineChart";
-import { generateResults } from "./Results";
+import * as React from 'react';
+import { useGetManyReference, useTranslate } from 'react-admin';
+import { MenuItem, Select, Card, CardContent } from '@mui/material';
+import LineChart from '../LineChart';
+import { generateResults } from './Results';
 
 const ResultsChart = ({ user }) => {
   let options = [
-    "endomorph",
-    "mesomorph",
-    "ectomorph",
-    "resultX",
-    "resultY",
-    "imc",
-    "iaks",
-    "complexion",
-    "raizPT",
-    "conicIndex",
-    "sumOfPlgs",
-    "sumaPlieguesEndo",
-    "endoFactor",
-    "yhaszFatPercentage",
-    "ponderalIndex",
-    "faulknerFatPercentage",
-    "parizcovaFatPercentage",
-    "fatWeight",
-    "freeFatWeight",
-    "activeMass",
-    "residualWeight",
-    "desiredWeight",
-    "desiredIMC",
-    "desiredFat2MethodPercentage",
+    'endomorph',
+    'mesomorph',
+    'ectomorph',
+    'resultX',
+    'resultY',
+    'imc',
+    'iaks',
+    'complexion',
+    'raizPT',
+    'conicIndex',
+    'sumOfPlgs',
+    'sumaPlieguesEndo',
+    'endoFactor',
+    'yhaszFatPercentage',
+    'ponderalIndex',
+    'faulknerFatPercentage',
+    'parizcovaFatPercentage',
+    'fatWeight',
+    'freeFatWeight',
+    'activeMass',
+    'residualWeight',
+    'desiredWeight',
+    'desiredIMC',
+    'desiredFat2MethodPercentage',
   ];
   const translate = useTranslate();
-  const [selectedOption, setSelectedOption] = React.useState("imc");
+  const [selectedOption, setSelectedOption] = React.useState('imc');
   const [dataX, setX] = React.useState([]);
   const [dataY, setY] = React.useState([]);
-  console.log("Llego el usuario", user);
-  const { data } = useGetManyReference("measurement", {
-    target: "user_id",
+  const { data } = useGetManyReference('measurement', {
+    target: 'user_id',
     id: user.id,
   });
 
   React.useEffect(() => {
-    createData("imc");
+    createData('imc');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const createData = (option) => {
@@ -55,7 +55,7 @@ const ResultsChart = ({ user }) => {
           d,
           d.height,
           d.weight,
-          user.gender == "Femenino" ? false : true
+          user.gender === 'Femenino' ? false : true
         )
       );
       setSelectedOption(option);
@@ -78,7 +78,7 @@ const ResultsChart = ({ user }) => {
         {options.map((o) => {
           return (
             <MenuItem value={o} key={o}>
-              {translate("resources.result.fields." + o)}
+              {translate('resources.result.fields.' + o)}
             </MenuItem>
           );
         })}

@@ -1,14 +1,12 @@
-import * as React from "react";
-import { useTranslate } from "react-admin";
-import { Chart } from "chart.js/auto";
+import * as React from 'react';
+import { Chart } from 'chart.js/auto';
 
 const PolarChart = ({ x, y, title }) => {
-  const translate = useTranslate();
   React.useEffect(() => {
     const ctx = document.getElementById(title);
 
     const graph = new Chart(ctx, {
-      type: "bar",
+      type: 'bar',
       data: {
         labels: x,
         datasets: [
@@ -17,9 +15,9 @@ const PolarChart = ({ x, y, title }) => {
             data: y,
             borderWidth: 1,
             backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
             ],
             hoverOffset: 4,
           },
@@ -29,7 +27,7 @@ const PolarChart = ({ x, y, title }) => {
     return () => {
       graph.destroy();
     };
-  }, [x, y]);
+  }, [x, y, title]);
 
   return x && <canvas id={title}></canvas>;
 };

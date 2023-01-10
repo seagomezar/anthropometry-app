@@ -1,53 +1,55 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   useRecordContext,
   useGetManyReference,
   useTranslate,
-} from "react-admin";
-import { MenuItem, Select, Card, CardContent } from "@mui/material";
-import LineChart from "./LineChart";
+} from 'react-admin';
+import { MenuItem, Select, Card, CardContent } from '@mui/material';
+import LineChart from './LineChart';
 
 const LineChartField = ({ source }) => {
   let options = [
-    "creatinine",
-    "dm_elbow",
-    "dm_knee",
-    "dm_wrist",
-    "height",
-    "plg_abdominal",
-    "plg_armpit",
-    "plg_calf",
-    "plg_chest",
-    "plg_subscapular",
-    "plg_suprailiac",
-    "plg_supraspinal",
-    "plg_thigh",
-    "plg_triceps",
-    "prm_arm",
-    "prm_calf",
-    "prm_chest",
-    "prm_hip",
-    "prm_thigh",
-    "prm_waist",
-    "t3_t4",
-    "triglycerides",
-    "uric_acid",
-    "weight",
-    "x",
-    "y",
+    'creatinine',
+    'dm_elbow',
+    'dm_knee',
+    'dm_wrist',
+    'height',
+    'plg_abdominal',
+    'plg_armpit',
+    'plg_calf',
+    'plg_chest',
+    'plg_subscapular',
+    'plg_suprailiac',
+    'plg_supraspinal',
+    'plg_thigh',
+    'plg_triceps',
+    'prm_arm',
+    'prm_calf',
+    'prm_chest',
+    'prm_hip',
+    'prm_thigh',
+    'prm_waist',
+    't3_t4',
+    'triglycerides',
+    'uric_acid',
+    'weight',
+    'x',
+    'y',
   ];
   const record = useRecordContext();
   const translate = useTranslate();
-  const [selectedOption, setSelectedOption] = React.useState("weight");
+  const [selectedOption, setSelectedOption] =
+    React.useState('weight');
   const [dataX, setX] = React.useState([]);
   const [dataY, setY] = React.useState([]);
-  const { data } = useGetManyReference("measurement", {
-    target: "user_id",
+  const { data } = useGetManyReference('measurement', {
+    target: 'user_id',
     id: record.id,
   });
 
   React.useEffect(() => {
-    createData("weight");
+    createData('weight');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const createData = (option) => {
@@ -75,7 +77,7 @@ const LineChartField = ({ source }) => {
         {options.map((o) => {
           return (
             <MenuItem value={o} key={o}>
-              {translate("resources.measurement.fields." + o)}
+              {translate('resources.measurement.fields.' + o)}
             </MenuItem>
           );
         })}
@@ -85,7 +87,7 @@ const LineChartField = ({ source }) => {
           title={selectedOption}
           x={dataX}
           y={dataY}
-          translationSource={"resources.measurement.fields."}
+          translationSource={'resources.measurement.fields.'}
         />
       </CardContent>
     </Card>

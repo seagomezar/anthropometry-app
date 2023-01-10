@@ -1,20 +1,27 @@
-import * as React from "react";
-import { useAuthenticated } from "react-admin";
-import { Card, CardContent, CardHeader, Container, Box } from "@mui/material";
-import { Chart } from "chart.js/auto";
+import * as React from 'react';
+import { useAuthenticated } from 'react-admin';
+import { Card, CardContent, CardHeader, Box } from '@mui/material';
+import { Chart } from 'chart.js/auto';
 
 const Dashboard = () => {
   useAuthenticated();
   React.useEffect(() => {
-    const ctx = document.getElementById("myChart");
+    const ctx = document.getElementById('myChart');
 
     const graph = new Chart(ctx, {
-      type: "bar",
+      type: 'bar',
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow',
+          'Green',
+          'Purple',
+          'Orange',
+        ],
         datasets: [
           {
-            label: "# of Votes",
+            label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
             borderWidth: 1,
           },
