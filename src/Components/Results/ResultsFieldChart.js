@@ -37,7 +37,7 @@ const ResultsFieldChart = ({ source }) => {
   ];
   const record = useRecordContext();
   const translate = useTranslate();
-  const [selectedOption] = React.useState('imc');
+  const [selectedOption, setSelectedOption] = React.useState('imc');
   const [dataX, setX] = React.useState([]);
   const [dataY, setY] = React.useState([]);
   const { data } = useGetManyReference('measurement', {
@@ -51,6 +51,7 @@ const ResultsFieldChart = ({ source }) => {
   }, [data]);
 
   const createData = (option) => {
+    console.log('----->', option);
     if (data) {
       const results = data.map((d) =>
         generateResults(
@@ -62,6 +63,7 @@ const ResultsFieldChart = ({ source }) => {
       );
       setX(data.map((e) => e.evaluation_date));
       setY(results.map((e) => e[option]));
+      setSelectedOption(option);
     }
   };
 

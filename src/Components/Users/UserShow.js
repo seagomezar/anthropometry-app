@@ -9,6 +9,7 @@ import {
   SimpleShowLayout,
   NumberField,
   ReferenceField,
+  FunctionField,
 } from 'react-admin';
 import { Typography, Box } from '@mui/material';
 import { Empty } from '../Empty';
@@ -20,7 +21,7 @@ export const UserShow = () => {
   const translate = useTranslate();
   return (
     <Show>
-      <SimpleShowLayout sx={{ maxWidth: 500 }}>
+      <SimpleShowLayout>
         <Typography variant="h6" gutterBottom>
           {translate('myroot.identity')}
         </Typography>
@@ -49,7 +50,14 @@ export const UserShow = () => {
             <Typography variant="h6" gutterBottom>
               {translate('resources.user.fields.gender')}
             </Typography>
-            <TextField source="gender" />
+            <FunctionField
+              source="gender"
+              render={(record) =>
+                record.gender
+                  ? translate('myroot.male')
+                  : translate('myroot.female')
+              }
+            />
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>

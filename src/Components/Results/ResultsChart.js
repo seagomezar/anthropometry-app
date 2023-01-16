@@ -46,6 +46,7 @@ const ResultsChart = ({ user }) => {
   }, [data]);
 
   const createData = (option) => {
+    console.log(option);
     if (data) {
       const sortedData = data.sort(function (a, b) {
         return parseInt(a.control) - parseInt(b.control);

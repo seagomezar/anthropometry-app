@@ -33,7 +33,7 @@ const LineChart = ({ x, y, title, translationSource }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [x, y, title]);
 
-  return x && <canvas id={title}></canvas>;
+  return x && <canvas id={title} style={{ width: '100%' }}></canvas>;
 };
 
 export default LineChart;

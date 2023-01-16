@@ -5,7 +5,17 @@ import {
   useTranslate,
   useDataProvider,
 } from 'react-admin';
-import { Card, CardContent } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import PieChart from './PieChart';
 
 export const PlanSummaryField = ({ source }) => {
@@ -18,6 +28,7 @@ export const PlanSummaryField = ({ source }) => {
     target: 'plan_id',
     id: record.id,
   });
+  const [prescribed, setPrescribed] = useState([]);
 
   React.useEffect(() => {
     if (data?.length) {
@@ -29,14 +40,21 @@ export const PlanSummaryField = ({ source }) => {
           if (foods) {
             const dataY = [0, 0, 0];
             let totalCalories = 0;
-            foods.data.forEach((f, index) => {
+            const p = foods.data.map((f, index) => {
               console.log(f);
               dataY[0] += f.chos * data[index].prescribed_quantity;
               dataY[1] += f.fat * data[index].prescribed_quantity;
               dataY[2] += f.protein * data[index].prescribed_quantity;
               totalCalories +=
                 f.calories * data[index].prescribed_quantity;
+              return {
+                ...f,
+                totalCalories:
+                  f.calories * data[index].prescribed_quantity,
+                prescribedQuantity: data[index].prescribed_quantity,
+              };
             });
+            setPrescribed(p);
             setFoods(dataY);
             setTotalCalories(totalCalories);
           }
@@ -47,6 +65,58 @@ export const PlanSummaryField = ({ source }) => {
 
   return (
     <Card>
+      <CardContent>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell></TableCell>
+                <TableCell align="right">Calories</TableCell>
+                <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                <TableCell align="right">
+                  Prescribed Quantity
+                </TableCell>
+                <TableCell align="right">Total Calories(g)</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {prescribed.map((row) => (
+                <TableRow
+                  key={row.description}
+                  sx={{
+                    '&:last-child td, &:last-child th': { border: 0 },
+                  }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.description}
+                  </TableCell>
+                  <TableCell align="right">{row.calories}</TableCell>
+                  <TableCell align="right">{row.fat}</TableCell>
+                  <TableCell align="right">{row.chos}</TableCell>
+                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="right">
+                    {row.prescribedQuantity} ({row.measure_unit})
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.totalCalories}
+                  </TableCell>
+                </TableRow>
+              ))}
+              <TableRow>
+                <TableCell>Totales</TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">{totalCalories}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </CardContent>
       <CardContent>
         <PieChart
           title={translate('myroot.total_calories')}
