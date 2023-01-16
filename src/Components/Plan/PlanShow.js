@@ -8,8 +8,6 @@ import {
   SimpleShowLayout,
   ReferenceManyField,
   CreateButton,
-  NumberField,
-  FunctionField,
 } from 'react-admin';
 import { Box, Typography } from '@mui/material';
 import { Empty } from '../Empty';

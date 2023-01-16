@@ -11,7 +11,6 @@ import {
   AppointmentTooltip,
   WeekView,
   EditRecurrenceMenu,
-  AllDayPanel,
   ConfirmationDialog,
   DateNavigator,
   Toolbar,
