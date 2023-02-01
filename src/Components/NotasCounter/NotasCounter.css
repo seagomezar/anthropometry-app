@@ -1,0 +1,9 @@
+.NotasCounter {
+  font-size:35px;
+  text-align: center;
+  margin: 0;
+  padding: 50px
+}
+.NotasCounter--loading {
+  opacity: 25%;
+}

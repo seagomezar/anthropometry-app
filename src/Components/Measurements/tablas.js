@@ -2,6 +2,7 @@
 import React from 'react';
 import {
   DateField,
+  FunctionField,
   NumberField,
   TextField,
   useTranslate,
@@ -21,6 +22,7 @@ export const HelloWorld = () => {
     <tr>
     <td>WILSON ANDRES RAVE CIFUENTES</td>
     </tr>
+
     <tr>
       <td><Typography variant="h6" gutterBottom>
               {translate('resources.measurement.fields.user_id')}
@@ -33,6 +35,7 @@ export const HelloWorld = () => {
             />
       </td>
     </tr>
+
     <tr>
       <td>
       <Typography variant="h6" gutterBottom>
@@ -40,34 +43,168 @@ export const HelloWorld = () => {
                 'resources.measurement.fields.referenced_somatotype_id'
               )}
             </Typography>
-            <ReferenceField
+      </td>
+      <td>
+      <ReferenceField
               source="referenced_somatotype_id"
               reference="referenced_somatotype"
               fullWidth
             ></ReferenceField>
       </td>
     </tr>
+
     <tr>
-      <td>fecha de evalucion</td>
+      <td><Typography variant="h6" gutterBottom>
+      {translate('resources.measurement.fields.modalidad')}
+        </Typography>
+        </td>
+      <td> <ReferenceField
+              source="referenced_somatotype_id"
+              reference="referenced_somatotype"
+              fullWidth
+            ></ReferenceField>
+      </td>
     </tr>
+
     <tr>
-      <td>fecha de nacimiento</td>
+      <td>
+      <Typography variant="h6" gutterBottom>
+      {translate('resources.measurement.fields.periodo_de_entrenamiento')}
+        </Typography>
+        </td>
+      <td><DateField source="periodo_de_entrenamiento" /></td>
     </tr>
+
+    <tr>
+      <td><Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.measurement.fields.evaluation_date'
+              )}
+              </Typography>
+      </td>
+      <td>
+            <DateField source="evaluation_date" />
+      </td>
+    </tr>
+
+    <tr>
+      <td><Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.birthday')}
+            </Typography>
+      </td>
+      <td>
+      <DateField source="birthday" />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.gender')}
+            </Typography>
+            </td>
+      <td>
+            <FunctionField
+              source="gender"
+              render={(record) =>
+                record.gender
+                  ? translate('myroot.male')
+                  : translate('myroot.female')
+              }
+            />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.edad')}
+            </Typography>
+      </td>
+      <td>
+      <DateField source="edad" />
+      </td>
+    </tr>
+
     <tr>
       <td>
         <Typography variant="h6" gutterBottom>
-          {translate('myroot.perímetros')}
+          {translate('')}
         </Typography>
       </td>
     </tr>
+
     <tr>
-      <td>edad</td>
+      <td><Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.weight')}
+            </Typography>
+      </td>
+      <td>
+            <NumberField source="weight" fullWidth />
+      </td>
     </tr>
+
     <tr>
-      <td> </td>
+      <td>
+      <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.height')}
+            </Typography>
+      </td>
+      <td>
+      <NumberField source="height" fullWidth />
+      </td>
     </tr>
+
     <tr>
-      <td>peso </td>
+      <td>
+      <Typography variant="h6" gutterBottom>
+          {translate('myroot.pliegues')}
+        </Typography>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+            <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.plg_triceps')}
+            </Typography>
+      </td>
+      <td>
+      <NumberField source="plg_triceps" fullWidth />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      <Typography variant="h6" gutterBottom>
+              {translate('resources.measurement.fields.plg_bicep')}
+            </Typography>
+      </td>
+      <td>
+      <NumberField source="plg_bicep" fullWidth />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      <Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.measurement.fields.plg_subscapular'
+              )}
+            </Typography>
+      </td>
+      <td>
+      <NumberField source="plg_subscapular" fullWidth />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+      <td>
+        
+      </td>
     </tr>
   </table>
   </Show>

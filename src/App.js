@@ -83,6 +83,10 @@ import { UserCreate } from './Components/Users/UserCreate';
 import { UserShow } from './Components/Users/UserShow';
 import { Results } from './Components/Results/Results';
 import LoginPage from './Components/LoginPage';
+import Notes from './Components/Notes/Notes';
+
+/*import { Notes } from './Components/Notes/Notes';
+/*import { ChangeAlert } from './Components/Notes/ChangeAlert ';*/
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -233,9 +237,13 @@ const App = () => {
           `${record.sport} - ${record.gender ? 'M' : 'F'}`
         }
       />
+
       <CustomRoutes>
         <Route path="/results/:measurementId" element={<Results />} />
+        <Route path="/notes" element={<Notes />} />
       </CustomRoutes>
+
+      
     </Admin>
   );
 };

@@ -1,0 +1,28 @@
+.NotasSearch {
+  background: #9be0f1;
+  border-radius: 2px;
+  border: 2px solid #111311;
+  margin: 0 24px;
+  height: 64px;
+  width: calc(100% - 62px);
+  font-size: 24px;
+  text-align: center;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  color: #080707;
+  box-shadow: 0px 5px 50px rgba(12, 11, 11, 0.25);
+}
+
+.NotasSearch::placeholder {
+  color: #0d0808;
+  font-family: 'Montserrat';
+  font-weight: 400;
+}
+
+.NotasSearch:focus {
+  outline-color: #ece40c;
+}
+
+.NotasSearch:disabled {
+  opacity: 30%;
+}
