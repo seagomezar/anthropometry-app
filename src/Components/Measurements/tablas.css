@@ -1,9 +1,12 @@
 .n{
-    background-color: rgb(61, 132, 239);
+    background-color: rgb(97, 161, 235);
+}
+.t{
+   font-weight: bold;
 }
 .pli{
-    background-color: yellow;
+    background-color: rgb(252, 236, 147);
 }
 .med{
-    background-color: green;
+    background-color: rgb(38, 100, 38);
 }
