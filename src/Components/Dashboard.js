@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { useAuthenticated } from 'react-admin';
+import { useAuthenticated, useTranslate } from 'react-admin';
 import { Card, CardContent, CardHeader, Box } from '@mui/material';
-import Demo from './Scheduler/Scheduler';
+import NutritionistScheduler from './Scheduler/Scheduler';
 
 const Dashboard = () => {
+  const translate = useTranslate();
   useAuthenticated();
   return (
     <Box>
       <Card>
-        <CardHeader title="Welcome to the administration" />
+        <CardHeader title={translate('myroot.welcomeScheduler')} />
         <CardContent>
-          <Demo />
+          <NutritionistScheduler />
         </CardContent>
       </Card>
     </Box>

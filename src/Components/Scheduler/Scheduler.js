@@ -1,9 +1,6 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import {
-  ViewState,
-  EditingState,
-} from '@devexpress/dx-react-scheduler';
+import * as React from "react";
+import Paper from "@mui/material/Paper";
+import { ViewState, EditingState } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
   Appointments,
@@ -17,45 +14,65 @@ import {
   TodayButton,
   ViewSwitcher,
   MonthView,
-} from '@devexpress/dx-react-scheduler-material-ui';
-import { appointments } from './appointments';
-import { useLocaleState } from 'react-admin';
+} from "@devexpress/dx-react-scheduler-material-ui";
+import { useGetList, useDataProvider } from "react-admin";
 
-const Demo = () => {
-  const [locale] = useLocaleState();
-  const [data, setData] = React.useState(appointments);
+const NutritionistScheduler = () => {
+  const dataProvider = useDataProvider();
+  const [appointments, setAppointments] = React.useState([]);
   const [currentDate, setCurrentDate] = React.useState(Date.now());
 
   const [addedAppointment, setAddedAppointment] = React.useState({});
-  const [appointmentChanges, setAppointmentChanges] = React.useState(
-    {}
-  );
-  const [editingAppointment, setEditingAppointment] =
-    React.useState(undefined);
+  const [appointmentChanges, setAppointmentChanges] = React.useState({});
+
+  const { data } = useGetList("appointment");
+
+  React.useEffect(() => {
+    if (data?.length) {
+      setAppointments(data);
+    }
+  }, [data]);
+  const [editingAppointment, setEditingAppointment] = React.useState(undefined);
 
   const commitChanges = ({ added, changed, deleted }) => {
-    setData((data) => {
-      if (added) {
-        const startingAddedId =
-          (data && data.length) > 0
-            ? data[data.length - 1].id + 1
-            : 0;
-        data = [...data, { id: startingAddedId, ...added }];
-      }
-      if (changed) {
-        data = data.map((appointment) =>
-          changed[appointment.id]
-            ? { ...appointment, ...changed[appointment.id] }
-            : appointment
-        );
-      }
-      if (deleted !== undefined) {
-        data = data.filter(
-          (appointment) => appointment.id !== deleted
-        );
-      }
-      return data;
-    });
+    console.log(added);
+    if (added) {
+      dataProvider
+        .create("appointment", {
+          data: {
+            ...added,
+            nutritionist_id: 1,
+          },
+        })
+        .then(({ data }) => {
+          const newAppointments = [...appointments, { ...data }];
+          setAppointments(newAppointments);
+        });
+    } else {
+      setAppointments((appointments) => {
+        if (changed) {
+          console.log(changed);
+          appointments = appointments.map((appointment) => {
+            if(changed[appointment.id]) {
+              dataProvider.update("appointment", {
+                id: appointment.id,
+                data: { ...appointment, ...changed[appointment.id] },
+              });
+              return { ...appointment, ...changed[appointment.id] }
+            } else {
+              return appointment;
+            }
+          });
+        }
+        if (deleted !== undefined) {
+          dataProvider.delete("appointment", { id: deleted });
+          appointments = appointments.filter(
+            (appointment) => appointment.id !== deleted
+          );
+        }
+        return appointments;
+      });
+    }
   };
 
   const changeAddedAppointment = (addedAppointment) => {
@@ -76,7 +93,11 @@ const Demo = () => {
 
   return (
     <Paper>
-      <Scheduler data={data} height={660} locale={locale}>
+      <Scheduler
+        data={appointments}
+        height={660}
+        defaultCurrentDate={currentDate}
+      >
         <ViewState
           currentDate={currentDate}
           defaultCurrentDate={currentDate}
@@ -91,7 +112,7 @@ const Demo = () => {
           editingAppointment={editingAppointment}
           onEditingAppointmentChange={changeEditingAppointment}
         />
-        <WeekView startDayHour={6} endDayHour={20} />
+        <WeekView startDayHour={6} endDayHour={23}/>
         <MonthView />
         <Toolbar />
         <DateNavigator />
@@ -107,4 +128,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default NutritionistScheduler;
