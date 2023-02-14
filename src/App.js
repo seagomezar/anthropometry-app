@@ -84,6 +84,7 @@ import { UserShow } from './Components/Users/UserShow';
 import { Results } from './Components/Results/Results';
 import LoginPage from './Components/LoginPage';
 import Notes from './Components/Notes/Notes';
+import { NutritionAppLayout } from './Components/Layout/NutritionAppLayout';
 
 /*import { Notes } from './Components/Notes/Notes';
 /*import { ChangeAlert } from './Components/Notes/ChangeAlert ';*/
@@ -116,6 +117,7 @@ const App = () => {
 
   return (
     <Admin
+      layout={NutritionAppLayout}
       dashboard={Dashboard}
       authProvider={authProvider}
       i18nProvider={i18nProvider}

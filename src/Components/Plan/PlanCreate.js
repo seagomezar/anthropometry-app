@@ -2,6 +2,9 @@ import React from "react";
 import { ReferenceInput, SimpleForm, TextInput, Create } from "react-admin";
 import { Box } from "@mui/material";
 
+// TODO: Seguir desde aqui: https://www.bedca.net/bdpub/
+// Github: https://github.com/statickidz/bedca-api
+
 export const PlanCreate = () => (
   <Create>
     <SimpleForm sx={{ maxWidth: 600 }}>
