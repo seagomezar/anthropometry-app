@@ -25,7 +25,7 @@ import { i18nProvider } from './Providers/i18nProvider';
 import { MeasurementList } from './Components/Measurements/MeasurementList';
 import { MeasurementEdit } from './Components/Measurements/MeasurementEdit';
 import { MeasurementCreate } from './Components/Measurements/MeasurementCreate';
-import { HelloWorld} from './Components/Measurements/tablas';
+import { MeasurementShowPageTable } from './Components/Measurements/tablas';
 
 import { FoodCategoryList } from './Components/FoodCategory/FoodCategoryList';
 import { FoodCategoryEdit } from './Components/FoodCategory/FoodCategoryEdit';
@@ -141,7 +141,7 @@ const App = () => {
         list={MeasurementList}
         edit={MeasurementEdit}
         create={MeasurementCreate}
-        show={HelloWorld}
+        show={MeasurementShowPageTable}
       />
       <Resource
         name="food_category"

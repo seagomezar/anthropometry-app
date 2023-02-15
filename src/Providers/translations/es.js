@@ -25,7 +25,10 @@ export const es = {
     bodyComposition: 'composicion corporal',
     fatPercentageIndices: 'indices de porcentaje de grasa',
     welcomeScheduler: 'Citas para evaluaciones esta semana',
-    ExpectedValues: 'valores esperados',
+    ExpectedValues: 'Valores Esperados',
+    "somatotipo de referencia": "Somatotipo de Referencia",
+    "somatotipo actual": "Somatotipo Actual",
+    endomorph: "Sebas"
   },
   resources: {
     user: {

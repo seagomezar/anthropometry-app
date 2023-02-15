@@ -22,6 +22,7 @@ export const en = {
     welcomelogin: 'Welcome to the Nutritionist portal',
     welcomeScheduler: 'This week evaluations appointments',
     login: 'Login',
+    endomorph: "Sebas"
   },
   resources: {
     user: {
