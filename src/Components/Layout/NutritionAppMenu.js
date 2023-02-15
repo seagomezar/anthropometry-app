@@ -8,6 +8,6 @@ export const NutritionAppMenu = () => (
         <Menu.ResourceItem name="user" />
         <Menu.ResourceItem name="measurement" />
         <Menu.ResourceItem name="plan" />
-        <Menu.Item to="/custom-route" primaryText="Miscellaneous" leftIcon={<LabelIcon />}/>
+        <Menu.Item to="/notes" primaryText="Notes" leftIcon={<LabelIcon />}/>
     </Menu>
 ); 

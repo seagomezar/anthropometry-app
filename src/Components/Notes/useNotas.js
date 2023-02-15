@@ -32,19 +32,20 @@ function useNotas(){
       newNotas.push({
         completed: false,
         text,
+        id: Date.now()
       })
       saveNotas(newNotas);
      };
     
-    const completeNota = (text) => {
-     const NotaIndex = notas.findIndex(nota => nota.text === text);
+    const completeNota = (id) => {
+     const NotaIndex = notas.findIndex(nota => nota.id === id);
      const newNotas = [...notas]
-     newNotas [NotaIndex].completed = true;
+     newNotas[NotaIndex].completed = true;
      saveNotas(newNotas);
     };
     
-    const deleteNota = (text) => {
-      const NotaIndex = notas.findIndex(nota => nota.text === text);
+    const deleteNota = (id) => {
+      const NotaIndex = notas.findIndex(nota => nota.id === id);
       const newNotas = [...notas]
       newNotas.splice(NotaIndex, 1);
       saveNotas(newNotas);

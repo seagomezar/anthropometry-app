@@ -1,22 +1,22 @@
-import React from 'react';
-import './NotasForm.css';
+import React from "react";
+import "./NotasForm.css";
 
-function NotasForm({ addNotas,setOpenModal }) {
-  const [newNotasValue, setNewNotasValue] = React.useState('');
-  
+function NotasForm({ addNotas, setOpenModal }) {
+  const [newNotasValue, setNewNotasValue] = React.useState("");
+
   const onChange = (event) => {
     setNewNotasValue(event.target.value);
   };
-  
+
   const onCancel = () => {
     setOpenModal(false);
   };
-  
+
   const onSubmit = (event) => {
     event.preventDefault();
     addNotas(newNotasValue);
     setOpenModal(false);
-    setNewNotasValue('')
+    setNewNotasValue("");
   };
 
   return (
@@ -32,7 +32,7 @@ function NotasForm({ addNotas,setOpenModal }) {
           type="button"
           className="NotasForm-button NotasForm-button--cancel"
           onClick={onCancel}
-          >
+        >
           Cancelar
         </button>
         <button
