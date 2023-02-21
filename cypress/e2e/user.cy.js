@@ -27,6 +27,7 @@ describe('User', () => {
       cy.get("#nutritionist_id").click();
       cy.get("#nutritionist_id-option-0").click();
       cy.get("#email").type("ejemplo@ejemplo.com");
+      cy.get("#address").type("cll 28c#3823");
     });
 
     /*
