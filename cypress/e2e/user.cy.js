@@ -28,6 +28,11 @@ describe('User', () => {
       cy.get("#nutritionist_id-option-0").click();
       cy.get("#email").type("ejemplo@ejemplo.com");
       cy.get("#address").type("cll 28c#3823");
+      cy.get("#phone").type("311232234");
+      cy.get("#password").type("3112");
+      cy.get("#confirm_password").type("3112");
+      cy.get("#main-content > div > div > div > form > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.RaToolbar-desktopToolbar.css-qmvuda-MuiToolbar-root-RaToolbar-root").click();
+    
     });
 
     /*
