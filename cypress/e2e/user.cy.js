@@ -27,12 +27,17 @@ describe('User', () => {
       cy.get("#nutritionist_id").click();
       cy.get("#nutritionist_id-option-0").click();
       cy.get("#email").type("ejemplo@ejemplo.com");
+      cy.get("#birthday").click();
+      cy.get("#birthday").type("2002-03-02");
       cy.get("#address").type("cll 28c#3823");
       cy.get("#phone").type("311232234");
       cy.get("#password").type("3112");
       cy.get("#confirm_password").type("3112");
-      cy.get("#main-content > div > div > div > form > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.RaToolbar-desktopToolbar.css-qmvuda-MuiToolbar-root-RaToolbar-root").click();
-    
+      cy.get("#main-content > div > div > div > form > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.RaToolbar-desktopToolbar.css-qmvuda-MuiToolbar-root-RaToolbar-root > div > button").click();
+      cy.get("#root > div > div > div > div > main > div.MuiDrawer-root.MuiDrawer-docked.RaSidebar-docked.css-9lo51-MuiDrawer-docked-RaSidebar-root > div > div > ul > a.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.RaMenuItemLink-active.css-krc73u-MuiButtonBase-root-MuiMenuItem-root-RaMenuItemLink-root").click();
+      cy.get("#main-content > div > div > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-vunk5k-MuiToolbar-root-RaListToolbar-root > form > div.filter-field.RaFilterForm-filterFormInput.css-10jrt4l-RaFilterFormInput-root > div.MuiFormControl-root.MuiFormControl-marginDense.MuiTextField-root.ra-input.ra-input-firstname\@_like.css-1xyy4xb-MuiFormControl-root-MuiTextField-root-RaResettableTextField-root > div").click();
+      cy.get("#main-content > div > div > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-vunk5k-MuiToolbar-root-RaListToolbar-root > form > div.filter-field.RaFilterForm-filterFormInput.css-10jrt4l-RaFilterFormInput-root > div.MuiFormControl-root.MuiFormControl-marginDense.MuiTextField-root.ra-input.ra-input-firstname\@_like.css-1xyy4xb-MuiFormControl-root-MuiTextField-root-RaResettableTextField-root > div").type("cypress");
+
     });
 
     /*
