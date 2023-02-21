@@ -20,7 +20,7 @@ function NotasForm({ addNotas, setOpenModal }) {
   };
 
   return (
-    <div className="notes">
+    <div className="notas">
       <form onSubmit={onSubmit}>
         <label>Escribe tu nuevas Notas</label>
         <textarea
