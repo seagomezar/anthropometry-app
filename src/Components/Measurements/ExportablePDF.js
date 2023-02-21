@@ -24,7 +24,10 @@ import ReactPDF, {
       fontSize: 12
     },
     columnaCompleta:{
-      width:'50%'
+      border: '1px solid black',
+      width: "100%",
+      padding: "5px 5px 5px 5px",
+      fontWeight: "bold",
     },
     row: { // Fila
       flexDirection: 'row'
@@ -54,6 +57,12 @@ import ReactPDF, {
       border: '1px solid black',
       borderLeftColor: "rgb(97, 161, 235)",
       backgroundColor: "rgb(97, 161, 235)"
+    },
+    valores: {
+      width: "20%",
+      padding: "5px 5px 5px 5px",
+      fontWeight: "bold",
+      border: '1px solid black',
     }
   });
 
@@ -73,10 +82,10 @@ export const ExportablePDF = ({ record, results, translate }) => {
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.column}>
+              <Text style={{...styles.column, ...styles.borde}}>
                 {translate("resources.measurement.fields.user_id")}
               </Text>
-              <Text style={{...styles.column, ...styles.fondoAzul}}>
+              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valor}}>
                 {record.user_id}
               </Text>
             </View>
@@ -86,9 +95,9 @@ export const ExportablePDF = ({ record, results, translate }) => {
             <View style={styles.row}>
 
             <Text style={styles.column}>
-              {translate(
-                "resources.measurement.fields.desiredFat2MethodPercentage"
-              )}
+            {translate(
+                    "resources.measurement.fields.referenced_somatotype_id"
+                  )}
             </Text>
 
             <Text style={styles.text}>{results.desiredFat2MethodPercentage.toFixed(2)}</Text>
@@ -106,54 +115,54 @@ export const ExportablePDF = ({ record, results, translate }) => {
                 </View>
 
                 <View style={styles.row}>
-                <Text style={{...styles.column, ...styles.fondoAmarillo}}>
+                <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.borde}}>
                 {translate("myroot.somatotipo actual")}
               </Text>
-              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.columnaCompleta}}>
+              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valor}}>
                 {" "}</Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.endomorph")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.endomorph.toFixed(2)}
                   </Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.mesomorph")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.mesomorph.toFixed(2)}
                   </Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.ectomorph")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.ectomorph.toFixed(2)}
                   </Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.x")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {record.x}
                   </Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.y")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {record.y}
                   </Text>
                 </View>
@@ -166,24 +175,22 @@ export const ExportablePDF = ({ record, results, translate }) => {
                 <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
                 {translate("myroot.somatotipo de referencia")}
               </Text>
-              <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta}}>
-                {" "}</Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.resultX")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.resultX.toFixed(2)}
                   </Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.resultY")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.resultY.toFixed(2)}
                   </Text>
                 </View>
@@ -196,33 +203,31 @@ export const ExportablePDF = ({ record, results, translate }) => {
                 <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
                 {translate("myroot.fatPercentageIndices")}
               </Text>
-              <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta}}>
-                {" "}</Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.imc")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.imc.toFixed(2)}
                   </Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.iaks")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.iaks.toFixed(2)}
                   </Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.complexion")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.complexion.toFixed(2)}
                   </Text>
                 </View>
@@ -231,26 +236,26 @@ export const ExportablePDF = ({ record, results, translate }) => {
                   <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.conicIndex")}
                   </Text>
-                  <Text style={{...styles.column, ...styles.valor}}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.conicIndex.toFixed(2)}
                   </Text>
                 </View>
 
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.sumOfPlgs")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.sumOfPlgs.toFixed(2)}
                   </Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.yhaszFatPercentage")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.yhaszFatPercentage.toFixed(2)}
                   </Text>
                   </View>
@@ -259,24 +264,22 @@ export const ExportablePDF = ({ record, results, translate }) => {
                 <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
                 {translate("myroot.bodyComposition")}
               </Text>
-              <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta}}>
-                {" "}</Text>
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.fatWeight")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.fatWeight.toFixed(2)}
                   </Text>
                   </View>
 
                   <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.freeFatWeight")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.freeFatWeight.toFixed(2)}
                   </Text>
                   </View>
@@ -285,64 +288,62 @@ export const ExportablePDF = ({ record, results, translate }) => {
                 <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
                 {translate("myroot.ExpectedValues")}
               </Text>
-              <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta}}>
-                {" "}</Text>
                 </View>
 
                   <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.sumaPlieguesEndo")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valor}}>
                   {results.sumaPlieguesEndo.toFixed(2)}
                   </Text>
                   </View>
 
                   <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.yhaszFatPercentageSumaPliegues")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.faulknerFatPercentage.toFixed(2)}
                   </Text>
                   </View>
 
                   <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate(
                     "resources.measurement.fields.fatPercentageForPerformance"
                   )}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valor}}>
                   {results.parizcovaFatPercentage.toFixed(2)}
                   </Text>
                   </View>
 
                   <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.desiredIMC")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valor}}>
                   {results.desiredIMC.toFixed(2)}
                   </Text>
                   </View>
 
                   <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.desiredWeight")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.desiredWeight.toFixed(2)}
                   </Text>
                   </View>
 
                   <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate(
                     "resources.measurement.fields.desiredFat2MethodPercentage"
                   )}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valores}}>
                   {results.desiredFat2MethodPercentage.toFixed(2)}
                   </Text>
                   </View>
