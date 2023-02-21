@@ -1,39 +1,39 @@
 .App {
-    text-align: center;
-  }
-  
+  text-align: center;
+}
+
+.Notes-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
   .Notes-logo {
-    height: 40vmin;
-    pointer-events: none;
+    animation: App-logo-spin infinite 20s linear;
   }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .Notes-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
+}
+
+.Notes-header {
+  background-color: #343a46;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(220, 212, 212);
+}
+
+.Notes-link {
+  color: #61dafb;
+}
+
+@keyframes Notes-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .Notes-header {
-    background-color: #343a46;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: rgb(220, 212, 212);
+
+  to {
+    transform: rotate(360deg);
   }
-  
-  .Notes-link {
-    color: #61dafb;
-  }
-  
-  @keyframes Notes-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
+}
