@@ -23,6 +23,9 @@ import ReactPDF, {
     column:{ // Columna
       fontSize: 12
     },
+    columnaCompleta:{
+      width:'50%'
+    },
     row: { // Fila
       flexDirection: 'row'
     },
@@ -31,6 +34,12 @@ import ReactPDF, {
     },
     fondVerde: {
       backgroundColor: 'rgb(38, 100, 38)'
+    },
+    fondoAmarillo: {
+      backgroundColor: 'rgb(252, 236, 147)'
+    },
+    fondBlanco: {
+      backgroundColor: 'rgb(254, 254, 254)'
     }
   });
 
@@ -81,7 +90,248 @@ export const ExportablePDF = ({ record, results, translate }) => {
                 <View style={{...styles.row, ...styles.fondVerde}}>
                   <Text>{" "}</Text>
                 </View>
-            
+
+                <View style={styles.row}>
+                <Text style={{...styles.column, ...styles.fondoAmarillo}}>
+                {translate("myroot.somatotipo actual")}
+              </Text>
+              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.columnaCompleta}}>
+                {" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.endomorph")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.endomorph.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.mesomorph")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.mesomorph.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.ectomorph")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.ectomorph.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.x")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {record.x}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.y")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {record.y}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text>{" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
+                {translate("myroot.somatotipo de referencia")}
+              </Text>
+              <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta}}>
+                {" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.resultX")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.resultX.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.resultY")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.resultY.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text>{" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
+                {translate("myroot.fatPercentageIndices")}
+              </Text>
+              <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta}}>
+                {" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.imc")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.imc.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.iaks")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.iaks.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.complexion")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.complexion.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.conicIndex")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.conicIndex.toFixed(2)}
+                  </Text>
+                </View>
+
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.sumOfPlgs")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.sumOfPlgs.toFixed(2)}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.yhaszFatPercentage")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.yhaszFatPercentage.toFixed(2)}
+                  </Text>
+                  </View>
+
+                  <View style={styles.row}>
+                <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
+                {translate("myroot.bodyComposition")}
+              </Text>
+              <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta}}>
+                {" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.fatWeight")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.fatWeight.toFixed(2)}
+                  </Text>
+                  </View>
+
+                  <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.freeFatWeight")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.freeFatWeight.toFixed(2)}
+                  </Text>
+                  </View>
+
+                  <View style={styles.row}>
+                <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
+                {translate("myroot.ExpectedValues")}
+              </Text>
+              <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta}}>
+                {" "}</Text>
+                </View>
+
+                  <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.sumaPlieguesEndo")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.sumaPlieguesEndo.toFixed(2)}
+                  </Text>
+                  </View>
+
+                  <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.yhaszFatPercentageSumaPliegues")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.faulknerFatPercentage.toFixed(2)}
+                  </Text>
+                  </View>
+
+                  <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate(
+                    "resources.measurement.fields.fatPercentageForPerformance"
+                  )}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.parizcovaFatPercentage.toFixed(2)}
+                  </Text>
+                  </View>
+
+                  <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.desiredIMC")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.desiredIMC.toFixed(2)}
+                  </Text>
+                  </View>
+
+                  <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate("resources.measurement.fields.desiredWeight")}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.desiredWeight.toFixed(2)}
+                  </Text>
+                  </View>
+
+                  <View style={styles.row}>
+                  <Text style={styles.column}>
+                  {translate(
+                    "resources.measurement.fields.desiredFat2MethodPercentage"
+                  )}
+                  </Text>
+                  <Text style={styles.column}>
+                  {results.desiredFat2MethodPercentage.toFixed(2)}
+                  </Text>
+                  </View>
           </View>
         </Page>
       </Document>
