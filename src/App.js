@@ -85,9 +85,12 @@ import { Results } from './Components/Results/Results';
 import LoginPage from './Components/LoginPage';
 import Notes from './Components/Notes/Notes';
 import { NutritionAppLayout } from './Components/Layout/NutritionAppLayout';
+import byPassAuthProvider from './Providers/byPassAuthProvider';
 
 /*import { Notes } from './Components/Notes/Notes';
 /*import { ChangeAlert } from './Components/Notes/ChangeAlert ';*/
+
+const isLoginEnabled = process.env.REACT_APP_ENABLE_LOGIN;
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -119,7 +122,7 @@ const App = () => {
     <Admin
       layout={NutritionAppLayout}
       dashboard={Dashboard}
-      authProvider={authProvider}
+      authProvider={(isLoginEnabled) ? authProvider: byPassAuthProvider}
       i18nProvider={i18nProvider}
       dataProvider={dataProvider}
       loginPage={LoginPage}
