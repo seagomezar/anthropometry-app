@@ -94,13 +94,15 @@ export const ExportablePDF = ({ record, results, translate }) => {
 
             <View style={styles.row}>
 
-            <Text style={styles.column}>
+            <Text style={{...styles.column, ...styles.borde}}>
             {translate(
                     "resources.measurement.fields.referenced_somatotype_id"
                   )}
             </Text>
 
-            <Text style={styles.text}>{results.desiredFat2MethodPercentage.toFixed(2)}</Text>
+            <Text style={styles.text}>
+              {results.referenced_somatotype_id.toFixed(2)}
+              </Text>
 
           </View>
             

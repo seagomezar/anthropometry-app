@@ -35,9 +35,11 @@ describe('User', () => {
       cy.get("#confirm_password").type("3112");
       cy.get("#main-content > div > div > div > form > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.RaToolbar-desktopToolbar.css-qmvuda-MuiToolbar-root-RaToolbar-root > div > button").click();
       cy.get("#root > div > div > div > div > main > div.MuiDrawer-root.MuiDrawer-docked.RaSidebar-docked.css-9lo51-MuiDrawer-docked-RaSidebar-root > div > div > ul > a.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.RaMenuItemLink-active.css-krc73u-MuiButtonBase-root-MuiMenuItem-root-RaMenuItemLink-root").click();
-      cy.get("#main-content > div > div > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-vunk5k-MuiToolbar-root-RaListToolbar-root > form > div.filter-field.RaFilterForm-filterFormInput.css-10jrt4l-RaFilterFormInput-root > div.MuiFormControl-root.MuiFormControl-marginDense.MuiTextField-root.ra-input.ra-input-firstname\@_like.css-1xyy4xb-MuiFormControl-root-MuiTextField-root-RaResettableTextField-root > div").click();
-      cy.get("#main-content > div > div > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-vunk5k-MuiToolbar-root-RaListToolbar-root > form > div.filter-field.RaFilterForm-filterFormInput.css-10jrt4l-RaFilterFormInput-root > div.MuiFormControl-root.MuiFormControl-marginDense.MuiTextField-root.ra-input.ra-input-firstname\@_like.css-1xyy4xb-MuiFormControl-root-MuiTextField-root-RaResettableTextField-root > div").type("cypress");
-
+      cy.get("#" + Cypress.$.escapeSelector("firstname@_like")).click();
+      cy.get("#" + Cypress.$.escapeSelector("firstname@_like")).type("Cypress");
+      cy.get("tr").should('have.length', 2);
+      cy.get("#main-content > div > div > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.RaList-content.css-bhp9pd-MuiPaper-root-MuiCard-root > div > div.RaDatagrid-tableWrapper > table > tbody > tr:nth-child(1) > td:nth-child(14) > button").click();
+      cy.get("tr").should('have.length', 0);
     });
 
     /*
