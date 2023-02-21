@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "measurement",
-        "e2e"
+        "e2e",
+        "users"
     ]
 }

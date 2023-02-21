@@ -91,6 +91,7 @@ import byPassAuthProvider from './Providers/byPassAuthProvider';
 /*import { ChangeAlert } from './Components/Notes/ChangeAlert ';*/
 
 const isLoginEnabled = process.env.REACT_APP_ENABLE_LOGIN;
+console.log({isLoginEnabled})
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -122,7 +123,7 @@ const App = () => {
     <Admin
       layout={NutritionAppLayout}
       dashboard={Dashboard}
-      authProvider={(isLoginEnabled) ? authProvider: byPassAuthProvider}
+      authProvider={(isLoginEnabled==='true') ? authProvider: byPassAuthProvider}
       i18nProvider={i18nProvider}
       dataProvider={dataProvider}
       loginPage={LoginPage}

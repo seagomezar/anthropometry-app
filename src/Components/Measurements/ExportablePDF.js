@@ -40,6 +40,20 @@ import ReactPDF, {
     },
     fondBlanco: {
       backgroundColor: 'rgb(254, 254, 254)'
+    },
+    borde:{
+      border: '1px solid black',
+      width: "80%",
+      padding: "5px 5px 5px 5px",
+      fontWeight: "bold",
+    },
+    valor: {
+      width: "20%",
+      padding: "5px 5px 5px 5px",
+      fontWeight: "bold",
+      border: '1px solid black',
+      borderLeftColor: "rgb(97, 161, 235)",
+      backgroundColor: "rgb(97, 161, 235)"
     }
   });
 
@@ -214,10 +228,10 @@ export const ExportablePDF = ({ record, results, translate }) => {
                 </View>
 
                 <View style={styles.row}>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.conicIndex")}
                   </Text>
-                  <Text style={styles.column}>
+                  <Text style={{...styles.column, ...styles.valor}}>
                   {results.conicIndex.toFixed(2)}
                   </Text>
                 </View>
