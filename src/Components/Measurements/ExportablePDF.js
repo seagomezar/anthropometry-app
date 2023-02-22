@@ -41,14 +41,17 @@ import ReactPDF, {
     fondoAmarillo: {
       backgroundColor: 'rgb(252, 236, 147)'
     },
-    fondBlanco: {
-      backgroundColor: 'rgb(254, 254, 254)'
-    },
     borde:{
       border: '1px solid black',
       width: "80%",
       padding: "5px 5px 5px 5px",
       fontWeight: "bold",
+    },
+    bord:{
+      border: '1px solid black',
+      width: "70%",
+      padding: "5px 5px 5px 5px",
+      fontWeight: "bold"
     },
     valor: {
       width: "20%",
@@ -63,6 +66,14 @@ import ReactPDF, {
       padding: "5px 5px 5px 5px",
       fontWeight: "bold",
       border: '1px solid black',
+    },
+    valore: {
+      width: "30%",
+      padding: "5px 5px 5px 5px",
+      fontWeight: "bold",
+      border: '1px solid black',
+      borderLeftColor: "rgb(97, 161, 235)",
+      backgroundColor: "rgb(97, 161, 235)"
     }
   });
 
@@ -82,10 +93,10 @@ export const ExportablePDF = ({ record, results, translate }) => {
             </View>
 
             <View style={styles.row}>
-              <Text style={{...styles.column, ...styles.borde}}>
+              <Text style={{...styles.column, ...styles.bord}}>
                 {translate("resources.measurement.fields.user_id")}
               </Text>
-              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valor}}>
+              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
                 {record.user_id}
               </Text>
             </View>
@@ -93,22 +104,64 @@ export const ExportablePDF = ({ record, results, translate }) => {
 
 
             <View style={styles.row}>
-
-            <Text style={{...styles.column, ...styles.borde}}>
+            <Text style={{...styles.column, ...styles.bord}}>
             {translate(
                     "resources.measurement.fields.referenced_somatotype_id"
                   )}
             </Text>
-
-            <Text style={styles.text}>
-              {results.referenced_somatotype_id}
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.referenced_somatotype_id}
               </Text>
-
           </View>
             
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.modality")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.referenced_somatotype}
+              </Text>
           </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.trainingPeriod")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.trainingPeriod}
+              </Text>
+          </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.evaluation_date")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.evaluation_date}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.birthdayDate")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.birthdayDate}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.gender")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {results.gender
+                    ? translate("myroot.male")
+                    : translate("myroot.female")}
+              </Text>
+          </View>
+
+          </View>
           {/* Este es el otro lado */}
           <View style={styles.section}>
 
