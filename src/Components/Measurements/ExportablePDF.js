@@ -62,7 +62,7 @@ import ReactPDF, {
       backgroundColor: "rgb(97, 161, 235)"
     },
     valores: {
-      width: "20%",
+      width: "30%",
       padding: "5px 5px 5px 5px",
       fontWeight: "bold",
       border: '1px solid black',
@@ -160,6 +160,120 @@ export const ExportablePDF = ({ record, results, translate }) => {
                     : translate("myroot.female")}
               </Text>
           </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.age")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.age}
+              </Text>
+          </View>
+          
+                <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord, ...styles.fondVerde, ...styles.columnaCompleta}}>
+            {translate("myroot.mediciones")}
+            </Text>
+          </View>            
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.weight")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.weight}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.height")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.height}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.bord}}>
+            {translate("myroot.pliegues")}
+            </Text>
+            <Text style={{...styles.column, ...styles.valores}}>
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_triceps")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_triceps}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_bicep")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_bicep}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_subscapular")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_subscapular}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_suprailiact")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_suprailiac}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_supraspinal")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_supraspinal}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_abdominal")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_abdominal}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_thigh")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_thigh}
+              </Text>
+          </View>
+
+
+
+
+
+
+
+
+
+
 
           </View>
           {/* Este es el otro lado */}
