@@ -101,7 +101,7 @@ export const ExportablePDF = ({ record, results, translate }) => {
             </Text>
 
             <Text style={styles.text}>
-              {results.referenced_somatotype_id.toFixed(2)}
+              {results.referenced_somatotype_id}
               </Text>
 
           </View>
