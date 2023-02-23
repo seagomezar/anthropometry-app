@@ -10,11 +10,12 @@ import {
   EditButton,
   DeleteButton,
   SimpleList,
+  TextInput
 } from "react-admin";
 import { useMediaQuery } from "@mui/material";
 
 const measurementFilters = [
-  <ReferenceInput source="user_id" label="User" reference="user" />,
+  <TextInput  label="Search" source="notes@_like" alwaysOn />,
 ];
 
 export const MeasurementList = () => {

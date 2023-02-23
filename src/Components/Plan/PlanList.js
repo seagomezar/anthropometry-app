@@ -1,16 +1,30 @@
 import React from "react";
 import {
-  Datagrid,
-  DateField,
+  TextInput,
   List,
+  SimpleList,
   ReferenceField,
+  Datagrid,
   TextField,
+  DateField,
   EditButton,
   DeleteButton,
 } from "react-admin";
+import { useMediaQuery } from "@mui/material";
 
-export const PlanList = () => (
-  <List>
+const userFilters = [
+  <TextInput label="Search" source="comments@_like" alwaysOn />,
+];
+
+export const PlanList = () => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  return (
+    <List filters={userFilters}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => record.comments + " " + record.lastname}
+        />
+        ) : (
     <Datagrid rowClick="show">
       <TextField source="id" />
       <TextField source="comments" />
@@ -21,5 +35,7 @@ export const PlanList = () => (
       <EditButton />
       <DeleteButton />
     </Datagrid>
-  </List>
-);
+    )}
+    </List>
+  );
+};
