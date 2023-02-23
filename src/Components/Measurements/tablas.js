@@ -421,17 +421,6 @@ const MeasurementShowLayout = () => {
             </td>
           </tr>
 
-          <tr>
-            <td>
-              <Typography variant="h6" gutterBottom>
-                <b>{translate("resources.measurement.fields.plg_triceps")}</b>
-              </Typography>
-            </td>
-            <td className="n">
-              <NumberField source="plg_triceps" fullWidth />
-            </td>
-          </tr>
-
           <tr className="pli">
             <td>
               <Typography variant="h6" gutterBottom>

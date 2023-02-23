@@ -26,7 +26,7 @@ import ReactPDF, {
     columnaCompleta:{
       border: '1px solid black',
       width: "100%",
-      padding: "5px 5px 5px 5px",
+      padding: "3px 3px 3px 3px",
       fontWeight: "bold",
     },
     row: { // Fila
@@ -44,18 +44,18 @@ import ReactPDF, {
     borde:{
       border: '1px solid black',
       width: "80%",
-      padding: "5px 5px 5px 5px",
+      padding: "3px 3px 3px 3px",
       fontWeight: "bold",
     },
     bord:{
       border: '1px solid black',
       width: "70%",
-      padding: "5px 5px 5px 5px",
+      padding: "3px 3px 3px 3px",
       fontWeight: "bold"
     },
     valor: {
       width: "20%",
-      padding: "5px 5px 5px 5px",
+      padding: "3px 3px 3px 3px",
       fontWeight: "bold",
       border: '1px solid black',
       borderLeftColor: "rgb(97, 161, 235)",
@@ -63,13 +63,13 @@ import ReactPDF, {
     },
     valores: {
       width: "30%",
-      padding: "5px 5px 5px 5px",
+      padding: "3px 3px 3px 3px",
       fontWeight: "bold",
       border: '1px solid black',
     },
     valore: {
       width: "30%",
-      padding: "5px 5px 5px 5px",
+      padding: "3px 3px 3px 3px",
       fontWeight: "bold",
       border: '1px solid black',
       borderLeftColor: "rgb(97, 161, 235)",
@@ -265,12 +265,146 @@ export const ExportablePDF = ({ record, results, translate }) => {
               </Text>
           </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_calf")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_calf}
+              </Text>
+          </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_chest")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_chest}
+              </Text>
+          </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_armpit")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_armpit}
+              </Text>
+          </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.bord}}>
+            {translate("myroot.perímetros")}
+            </Text>
+            <Text style={{...styles.column, ...styles.valores}}>
+              </Text>
+          </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.prm_arm")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.prm_arm}
+              </Text>
+          </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.prm_arm_contracted")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.prm_arm_contracted}
+              </Text>
+          </View>
 
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.prm_wrist")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.prm_wrist}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.prm_waist")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.prm_waist}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.prm_hip")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.prm_hip}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.prm_calf")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.prm_calf}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.prm_chest")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.prm_chest}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.plg_armpit")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.plg_armpit}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.bord}}>
+            {translate("myroot.diametro")}
+            </Text>
+            <Text style={{...styles.column, ...styles.valores}}>
+              </Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.dm_elbow")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.dm_elbow}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.dm_knee")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.dm_knee}
+              </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{...styles.column, ...styles.bord}}>
+            {translate("resources.measurement.fields.dm_wrist")}
+            </Text>
+            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+              {record.dm_wrist}
+              </Text>
+          </View>
 
 
 
@@ -278,6 +412,22 @@ export const ExportablePDF = ({ record, results, translate }) => {
           </View>
           {/* Este es el otro lado */}
           <View style={styles.section}>
+                
+          <View style={styles.row}>
+                  <Text>{" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text>{" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text>{" "}</Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Text>{" "}</Text>
+                </View>
 
                 <View style={{...styles.row, ...styles.fondVerde}}>
                   <Text>{" "}</Text>
@@ -287,7 +437,7 @@ export const ExportablePDF = ({ record, results, translate }) => {
                 <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.borde}}>
                 {translate("myroot.somatotipo actual")}
               </Text>
-              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valor}}>
+              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
                 {" "}</Text>
                 </View>
 
@@ -463,7 +613,7 @@ export const ExportablePDF = ({ record, results, translate }) => {
                   <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.sumaPlieguesEndo")}
                   </Text>
-                  <Text style={{...styles.column, ...styles.valor}}>
+                  <Text style={{...styles.column, ...styles.valore}}>
                   {results.sumaPlieguesEndo.toFixed(2)}
                   </Text>
                   </View>
@@ -483,7 +633,7 @@ export const ExportablePDF = ({ record, results, translate }) => {
                     "resources.measurement.fields.fatPercentageForPerformance"
                   )}
                   </Text>
-                  <Text style={{...styles.column, ...styles.valor}}>
+                  <Text style={{...styles.column, ...styles.valore}}>
                   {results.parizcovaFatPercentage.toFixed(2)}
                   </Text>
                   </View>
@@ -492,7 +642,7 @@ export const ExportablePDF = ({ record, results, translate }) => {
                   <Text style={{...styles.column, ...styles.borde}}>
                   {translate("resources.measurement.fields.desiredIMC")}
                   </Text>
-                  <Text style={{...styles.column, ...styles.valor}}>
+                  <Text style={{...styles.column, ...styles.valore}}>
                   {results.desiredIMC.toFixed(2)}
                   </Text>
                   </View>
