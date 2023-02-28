@@ -6,6 +6,7 @@
         "PrescribedFood",
         "FoodCategory",
         "Goal",
-        "nutritionist"
+        "nutritionist",
+        "referencedSomatotype"
     ]
 }

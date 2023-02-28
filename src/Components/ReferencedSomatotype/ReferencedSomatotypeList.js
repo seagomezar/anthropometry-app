@@ -9,12 +9,25 @@ import {
   useTranslate,
   EditButton,
   DeleteButton,
+  TextInput,
+  SimpleList,
 } from "react-admin";
+import { useMediaQuery } from "@mui/material";
+
+const ReferencedSomatotypeFilters = [
+  <TextInput label="Search" source="sport@_like" alwaysOn />,
+];
 
 export const ReferencedSomatotypeList = () => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const translate = useTranslate();
   return (
-    <List>
+    <List filters={ReferencedSomatotypeFilters}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => record.sport + " " + record.lastname}
+        />
+      ) : (
       <Datagrid rowClick="show">
         <TextField source="id" />
         <TextField source="sport" />
@@ -35,6 +48,7 @@ export const ReferencedSomatotypeList = () => {
         <EditButton />
         <DeleteButton />
       </Datagrid>
+    )}
     </List>
   );
-};
+  };
