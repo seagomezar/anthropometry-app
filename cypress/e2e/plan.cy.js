@@ -35,7 +35,7 @@ describe('Plan', () => {
        cy.get("tr").should('have.length', 2); 
        cy.get("#main-content > div > div > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.RaList-content.css-bhp9pd-MuiPaper-root-MuiCard-root > div > div.RaDatagrid-tableWrapper > table > tbody > tr.MuiTableRow-root.MuiTableRow-hover.RaDatagrid-row.RaDatagrid-rowEven.RaDatagrid-selectable.RaDatagrid-clickableRow.css-1q1u3t4-MuiTableRow-root > td:nth-child(9) > button").click();
        cy.get("tr").should('have.length', 0); 
-    })
+    });
     /*
     it('Buscar Usuario', ()=>{
     });
