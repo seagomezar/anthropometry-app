@@ -5,6 +5,7 @@
         "users",
         "PrescribedFood",
         "FoodCategory",
-        "Goal"
+        "Goal",
+        "nutritionist"
     ]
 }
