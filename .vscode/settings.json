@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "measurement",
         "e2e",
-        "users"
+        "users",
+        "PrescribedFood"
     ]
 }
