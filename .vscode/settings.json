@@ -3,6 +3,7 @@
         "measurement",
         "e2e",
         "users",
-        "PrescribedFood"
+        "PrescribedFood",
+        "FoodCategory"
     ]
 }
