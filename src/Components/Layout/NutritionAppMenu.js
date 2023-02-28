@@ -11,6 +11,7 @@ export const NutritionAppMenu = () => (
         <Menu.ResourceItem name="food" />
         <Menu.ResourceItem name="prescribed_food" />
         <Menu.ResourceItem name="food_category" />
+        <Menu.ResourceItem name="goal" />
         <Menu.Item to="/notes" primaryText="Notes" leftIcon={<LabelIcon />}/>
     </Menu>
 ); 

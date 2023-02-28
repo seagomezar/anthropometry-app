@@ -4,6 +4,7 @@
         "e2e",
         "users",
         "PrescribedFood",
-        "FoodCategory"
+        "FoodCategory",
+        "Goal"
     ]
 }
