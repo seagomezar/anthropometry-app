@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  TextInput,
+  SimpleList,
   Datagrid,
   DateField,
   List,
@@ -8,9 +10,21 @@ import {
   EditButton,
   DeleteButton,
 } from "react-admin";
+import { useMediaQuery } from "@mui/material";
 
-export const FoodList = () => (
-  <List>
+const FoodFilters = [
+  <TextInput label="Search" source="description@_like" alwaysOn />,
+];
+
+export const FoodList = () => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  return (
+    <List filters={FoodFilters}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => record.description+ " " + record.lastname}
+        />
+      ) : (
     <Datagrid rowClick="show">
       <TextField source="id" />
       <NumberField source="calories" />
@@ -25,5 +39,7 @@ export const FoodList = () => (
       <EditButton />
       <DeleteButton />
     </Datagrid>
+    )}
   </List>
 );
+};
