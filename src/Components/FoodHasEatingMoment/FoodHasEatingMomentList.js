@@ -7,10 +7,24 @@ import {
   TextField,
   EditButton,
   DeleteButton,
+  TextInput,
+  SimpleList,
 } from "react-admin";
+import { useMediaQuery } from "@mui/material";
 
-export const FoodHasEatingMomentList = () => (
-  <List>
+const FoodHasEatingMomentFilters = [
+  <TextInput label="Search" source="food_id" alwaysOn />,
+];
+
+export const  FoodHasEatingMomentList = () => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  return (
+    <List filters={FoodHasEatingMomentFilters}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => record.name + " " + record.lastname}
+        />
+      ) : (
     <Datagrid rowClick="show">
       <TextField source="id" />
       <ReferenceField source="eating_moment_id" reference="eating_moment" />
@@ -20,5 +34,7 @@ export const FoodHasEatingMomentList = () => (
       <EditButton />
       <DeleteButton />
     </Datagrid>
+  )}
   </List>
 );
+};

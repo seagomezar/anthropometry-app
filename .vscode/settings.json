@@ -8,6 +8,7 @@
         "Goal",
         "nutritionist",
         "referencedSomatotype",
-        "EantingMoment"
+        "EantingMoment",
+        "FoodHasEatingMoment"
     ]
 }
