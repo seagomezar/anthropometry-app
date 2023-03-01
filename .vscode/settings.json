@@ -9,6 +9,7 @@
         "nutritionist",
         "referencedSomatotype",
         "EantingMoment",
-        "FoodHasEatingMoment"
+        "FoodHasEatingMoment",
+        "FoodHasFoodCategory"
     ]
 }
