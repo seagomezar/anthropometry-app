@@ -6,10 +6,24 @@ import {
   TextField,
   EditButton,
   DeleteButton,
+  TextInput,
+  SimpleList,
 } from "react-admin";
+import { useMediaQuery } from "@mui/material";
 
-export const EatingMomentList = () => (
-  <List>
+const EatingMomentFilters = [
+  <TextInput label="Search" source="name@_like" alwaysOn />,
+];
+
+export const EatingMomentList = () => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  return (
+    <List filters={EatingMomentFilters}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => record.name + " " + record.lastname}
+        />
+      ) : (
     <Datagrid rowClick="show">
       <TextField source="id" />
       <DateField source="created_at" />
@@ -20,5 +34,8 @@ export const EatingMomentList = () => (
       <EditButton />
       <DeleteButton />
     </Datagrid>
-  </List>
-);
+   )}
+   </List>
+ );
+};
+
