@@ -1,0 +1,66 @@
+name: Cypress Tests with installation job
+
+on: [push]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node18.12.0-chrome106-ff106
+      options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Yarn install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+      
+      - name: yarn build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build # will run `yarn install` command
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: build
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v5 # use the explicit version number
+        with:
+          # Disable running of tests within install job
+          runTests: false
+          build: yarn build
+  cypress-run:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node18.12.0-chrome106-ff106
+      options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v5 # use the explicit version number
+        with:
+          build: yarn build
+          start: yarn start
+          wait-on: "http://localhost:3000"
+        env:
+          REACT_APP_HASHURA_API_KEY: ${{ secrets.REACT_APP_HASHURA_API_KEY }}
+          REACT_APP_AUTH0_DOMAIN: ${{ secrets.REACT_APP_AUTH0_DOMAIN }}
+          REACT_APP_AUTH0_CLIENT_ID: ${{ secrets.REACT_APP_AUTH0_CLIENT_ID }}
+          REACT_APP_AUTH0_REDIRECT_URI: ${{ secrets.REACT_APP_AUTH0_REDIRECT_URI }}
+          REACT_APP_ENABLE_LOGIN: ${{ secrets.REACT_APP_ENABLE_LOGIN }}

@@ -6,7 +6,6 @@ import {
   NumberField,
   ReferenceField,
   TextField,
-  ReferenceInput,
   EditButton,
   DeleteButton,
   SimpleList,
