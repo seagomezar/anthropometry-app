@@ -64,6 +64,14 @@ export const MeasurementShow = () => {
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+            <Typography variant="h6" gutterBottom>
+              {translate(
+                'resources.measurement.fields.training_period'
+              )}
+            </Typography>
+            <DateField source="training_period" />
+            </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
               {translate(
@@ -72,6 +80,8 @@ export const MeasurementShow = () => {
             </Typography>
             <DateField source="evaluation_date" />
           </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <Typography variant="h6" gutterBottom>
               {translate('resources.measurement.fields.notes')}

@@ -56,9 +56,14 @@ export const MeasurementCreate = () => {
           </Box>
         </Box>
         <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
+        <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
+          <TextInput source="training_period" fullWidth />
+          </Box>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <DateInput source="evaluation_date" fullWidth />
           </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
           <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
             <TextInput source="notes" fullWidth />
           </Box>

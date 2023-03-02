@@ -118,12 +118,12 @@ const MeasurementShowLayout = () => {
             <td>
               <Typography variant="h6" gutterBottom>
                 <b>
-                  {translate("resources.measurement.fields.trainingPeriod")}
+                  {translate("resources.measurement.fields.training_period")}
                 </b>
               </Typography>
             </td>
             <td className="n">
-              <DateField source="trainingPeriod" />
+              <TextField source="training_period" />
             </td>
           </tr>
 

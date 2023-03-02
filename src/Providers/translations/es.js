@@ -106,12 +106,9 @@ export const es = {
         sumOfPlgs: 'Suma de Pliegues',
         yhaszFatPercentage: 'Porcentaje de Grasa Yhasz',
         sumaPlieguesEndo: 'Suma de Pliegues Endo',
-        desiredFat2MethodPercentage:
-          'Porcentaje Deseado del Método 2 de Grasa',
-        yhaszFatPercentageSumaPliegues:
-          'Porcentaje de Grasa Yhasz Suma de Pliegues',
-        fatPercentageForPerformance:
-          'Porcentaje graso para rendimiento',
+        desiredFat2MethodPercentage:'Porcentaje Deseado del Método 2 de Grasa',
+        yhaszFatPercentageSumaPliegues:'Porcentaje de Grasa Yhasz Suma de Pliegues',
+        fatPercentageForPerformance:'Porcentaje graso para rendimiento',
         trainingPeriod: 'Periodo de entrenamiento',
         modality: 'Modalidad',
         birthdayDate: 'Fecha de nacimiento',
@@ -119,6 +116,7 @@ export const es = {
         age: 'Edad',
         parizcovaFatPercentage: 'Porcentaje de Grasa Parizcova',
         faulknerFatPercentage: 'Porcentaje de Grasa Faulkner',
+        training_period:'periodo de entrenamiento',
       },
     },
     food_category: {

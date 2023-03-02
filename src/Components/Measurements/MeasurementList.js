@@ -46,10 +46,11 @@ export const MeasurementList = () => {
           <NumberField source="weight" />
           <DateField source="evaluation_date" />
           <TextField source="notes" />
+          <TextField source="training_period" />
           <DateField source="created_at" />
           <DateField source="updated_at" />
           <EditButton />
-          <DeleteButton />
+          <DeleteButton className="delete-button" />
         </Datagrid>
       )}
     </List>
