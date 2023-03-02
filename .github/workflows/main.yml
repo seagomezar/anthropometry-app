@@ -5,7 +5,9 @@ on: [push]
 jobs:
   install:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node18.12.0-chrome107
+    container:
+      image: cypress/browsers:node18.12.0-chrome106-ff106
+      options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,14 +30,16 @@ jobs:
           path: build
 
       - name: Cypress install
-        uses: cypress-io/github-action@v5.1.0 # use the explicit version number
+        uses: cypress-io/github-action@v5 # use the explicit version number
         with:
           # Disable running of tests within install job
           runTests: false
           build: yarn build
   cypress-run:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node18.12.0-chrome107
+    container:
+      image: cypress/browsers:node18.12.0-chrome106-ff106
+      options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -49,6 +53,6 @@ jobs:
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v5.1.0 # use the explicit version number
+        uses: cypress-io/github-action@v5 # use the explicit version number
         with:
           build: yarn build
