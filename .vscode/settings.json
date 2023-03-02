@@ -11,5 +11,6 @@
         "EantingMoment",
         "FoodHasEatingMoment",
         "FoodHasFoodCategory"
-    ]
+    ],
+    "java.server.launchMode": "Standard"
 }

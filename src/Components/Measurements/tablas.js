@@ -1,11 +1,5 @@
 import React from "react";
-import ReactPDF, {
-  Page,
-  Text,
-  View,
-  Document,
-  StyleSheet,
-  PDFViewer,
+import{
   PDFDownloadLink,
 } from "@react-pdf/renderer";
 import {
@@ -16,6 +10,7 @@ import {
   Show,
   ReferenceField,
   useShowContext,
+  TextField
 } from "react-admin";
 import { Typography } from "@mui/material";
 import "./tablas.css";
@@ -55,8 +50,13 @@ const MeasurementShowLayout = () => {
         </PDFDownloadLink>
         <table border="2">
           <tbody>
-          <tr className="n">
-            <td>
+          <tr >
+          <td className="n">
+          <Typography variant="h6" gutterBottom>
+                <b>{translate("resources.user.fields.nutritionist")}</b>
+              </Typography>
+          </td>
+            <td className="n">
               <ReferenceField
                 source="nutritionist_id"
                 reference="nutritionist"
@@ -147,7 +147,9 @@ const MeasurementShowLayout = () => {
               </Typography>
             </td>
             <td className="n">
-              <DateField source="birthdayDate" />
+            <ReferenceField source="user_id" reference="user">
+                <TextField source="birthday" />
+            </ReferenceField>
             </td>
           </tr>
 
@@ -158,14 +160,18 @@ const MeasurementShowLayout = () => {
               </Typography>
             </td>
             <td className="n">
+            <ReferenceField source="user_id" reference="user">
               <FunctionField
+                
                 source="gender"
-                render={(record) =>
-                  record.gender
+                render={(record) =>{
+                  return record.gender
                     ? translate("myroot.male")
                     : translate("myroot.female")
                 }
+                }
               />
+              </ReferenceField>
             </td>
           </tr>
 
@@ -176,7 +182,19 @@ const MeasurementShowLayout = () => {
               </Typography>
             </td>
             <td className="n">
-              <DateField source="age" />
+              <ReferenceField source="user_id" reference="user">
+              <FunctionField
+                source="gender"
+                render={(record) =>{
+                  const dob = new Date(record.birthday);
+                  const diff_ms = Date.now() - dob.getTime();
+                  const age_dt = new Date(diff_ms); 
+                
+                  return Math.abs(age_dt.getUTCFullYear() - 1970);
+                }
+                }
+              />
+              </ReferenceField>
             </td>
           </tr>
 
