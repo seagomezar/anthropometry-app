@@ -103,7 +103,6 @@ export const es = {
         desiredIMC: 'IMC Deseado',
         complexion: 'Compleción',
         desiredWeight: 'Peso Deseado',
-        sumOfPlgs: 'Suma de Pliegues',
         yhaszFatPercentage: 'Porcentaje de Grasa Yhasz',
         sumaPlieguesEndo: 'Suma de Pliegues Endo',
         desiredFat2MethodPercentage:
