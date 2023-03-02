@@ -5,10 +5,20 @@ on: [push]
 jobs:
   install:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node12.18.3-chrome87-ff82
+    container: cypress/browsers:node18.12.0-chrome107
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Yarn install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+      
+      - name: yarn build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build # will run `yarn install` command
 
       - name: Save build folder
         uses: actions/upload-artifact@v3
@@ -42,5 +52,5 @@ jobs:
         uses: cypress-io/github-action@v5.1.0 # use the explicit version number
         with:
           # Specify Browser since container image is compile with Firefox
-          browser: firefox
+          browser: chrome107
           build: yarn build
