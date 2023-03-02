@@ -18,7 +18,7 @@ jobs:
           path: build
 
       - name: Cypress install
-        uses: cypress-io/github-action@v5.x.x # use the explicit version number
+        uses: cypress-io/github-action@v5.1.0 # use the explicit version number
         with:
           # Disable running of tests within install job
           runTests: false
@@ -39,7 +39,7 @@ jobs:
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v5.x.x # use the explicit version number
+        uses: cypress-io/github-action@v5.1.0 # use the explicit version number
         with:
           # Specify Browser since container image is compile with Firefox
           browser: firefox
