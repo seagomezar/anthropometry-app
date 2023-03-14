@@ -77,6 +77,21 @@ import { PrescribedFoodEdit } from './Components/PrescribedFood/PrescribedFoodEd
 import { PrescribedFoodCreate } from './Components/PrescribedFood/PrescribedFoodCreate';
 import { PrescribedFoodShow } from './Components/PrescribedFood/PrescribedFoodShow';
 
+import { SkillTestList } from './Components/SkillTest/SkillTestList';
+import { SkillTestEdit } from './Components/SkillTest/SkillTestEdit';
+import { SkillTestCreate } from './Components/SkillTest/SkillTestCreate';
+import { SkillTestShow } from './Components/SkillTest/SkillTestShow';
+
+import { AthleteList } from './Components/Athlete/AthleteList';
+import { AthleteEdit } from './Components/Athlete/AthleteEdit';
+import { AthleteCreate } from './Components/Athlete/AthleteCreate';
+import { AthleteShow } from './Components/Athlete/AthleteShow';
+
+import { PhysicalTestList } from './Components/PhysicalTest/PhysicalTestList';
+import { PhysicalTestEdit } from './Components/PhysicalTest/PhysicalTestEdit';
+import { PhysicalTestCreate } from './Components/PhysicalTest/PhysicalTestCreate';
+import { PhysicalTestShow } from './Components/PhysicalTest/PhysicalTestShow';
+
 import { UserList } from './Components/Users/UserList';
 import { UserEdit } from './Components/Users/UserEdit';
 import { UserCreate } from './Components/Users/UserCreate';
@@ -243,6 +258,33 @@ const App = () => {
           `${record.sport} - ${record.gender ? 'M' : 'F'}`
         }
       />
+      <Resource
+        name="skill_test"
+        icon={NearMeIcon}
+        list={SkillTestList}
+        edit={SkillTestEdit}
+        create={SkillTestCreate}
+        show={SkillTestShow}
+      />
+      <Resource
+        name="athlete"
+        icon={NearMeIcon}
+        list={AthleteList}
+        edit={AthleteEdit}
+        create={AthleteCreate}
+        show={AthleteShow}
+        recordRepresentation={(record) =>
+          `${record.name}`}
+      />
+      <Resource
+        name="physical_test"
+        icon={NearMeIcon}
+        list={PhysicalTestList}
+        edit={PhysicalTestEdit}
+        create={PhysicalTestCreate}
+        show={PhysicalTestShow}
+      />
+
 
       <CustomRoutes>
         <Route path="/results/:measurementId" element={<Results />} />

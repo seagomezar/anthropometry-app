@@ -10,7 +10,8 @@
         "referencedSomatotype",
         "EantingMoment",
         "FoodHasEatingMoment",
-        "FoodHasFoodCategory"
+        "FoodHasFoodCategory",
+        "Athlete"
     ],
     "java.server.launchMode": "Standard"
 }
