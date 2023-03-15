@@ -23,13 +23,19 @@ describe('Athlete', () => {
     it('Crear Athlete', () => {
        cy.get("#root > div > div > div > div > main > div.MuiDrawer-root.MuiDrawer-docked.RaSidebar-docked.css-9lo51-MuiDrawer-docked-RaSidebar-root > div > div > ul > a.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.RaMenuItemLink-active.css-krc73u-MuiButtonBase-root-MuiMenuItem-root-RaMenuItemLink-root").click();
        cy.get("#main-content > div > div > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-vunk5k-MuiToolbar-root-RaListToolbar-root > div > a").click();
-       cy.get("#name").type("carlos");
+       cy.get("#name").type("tomas");
+       cy.get("#document").type("102022");
+       cy.get("#birth_date").type("2022-11-10");
+       cy.get("#email").type("ejemplo@ejemplo");
+       cy.get("#phone").type("312");
+       cy.get("#club").type("inder");
+       cy.get("#position").type("defenza");
        cy.get("#main-content > div > div > div > form > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.RaToolbar-desktopToolbar.css-qmvuda-MuiToolbar-root-RaToolbar-root > div > button").click();
        cy.get("#root > div > div > div > div > main > div.MuiDrawer-root.MuiDrawer-docked.RaSidebar-docked.css-9lo51-MuiDrawer-docked-RaSidebar-root > div > div > ul > a.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.RaMenuItemLink-active.css-krc73u-MuiButtonBase-root-MuiMenuItem-root-RaMenuItemLink-root ").click(); 
        cy.get("#" + Cypress.$.escapeSelector("name@_like")).click();
-       cy.get("#" + Cypress.$.escapeSelector("name@_like")).type("carlos");
+       cy.get("#" + Cypress.$.escapeSelector("name@_like")).type("tomas");
        cy.get("tr").should('have.length', 2); 
-       cy.get("#main-content > div > div > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.RaList-content.css-bhp9pd-MuiPaper-root-MuiCard-root > div > div.RaDatagrid-tableWrapper > table > tbody > tr.MuiTableRow-root.MuiTableRow-hover.RaDatagrid-row.RaDatagrid-rowEven.RaDatagrid-selectable.RaDatagrid-clickableRow.css-1q1u3t4-MuiTableRow-root > td:nth-child(5) > button").click();
+       cy.get("#main-content > div > div > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.RaList-content.css-bhp9pd-MuiPaper-root-MuiCard-root > div > div.RaDatagrid-tableWrapper > table > tbody > tr > td:nth-child(11) > button").click();
        cy.get("tr").should('have.length', 0); 
     });
     /*

@@ -25,7 +25,13 @@ export const AthleteList = () => {
       ) : (
     <Datagrid rowClick="show">
       <TextField source="id" />
-      <TextField source="name" />
+      <TextField source="name"/>
+      <TextField source="document" />
+      <TextField source="birth_date" />
+      <TextField source="email" />
+      <TextField source="phone" />
+      <TextField source="club" />
+      <TextField source="position" />
       <EditButton />
       <DeleteButton />
     </Datagrid>

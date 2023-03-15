@@ -227,6 +227,12 @@ export const en = {
       name: 'Atleta |||| Atletas',
       fields: {
         name: 'Name',
+        document: 'Document',
+        birth_date: 'Birth Date ',
+        email: 'Email',
+        phone: 'phone',
+        club: 'Club',
+        position: 'position',
       },
     },
     skill_test:{
