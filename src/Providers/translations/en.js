@@ -132,9 +132,9 @@ export const en = {
     },
     food_has_food_category: {
       name: 'Categoria de alimento |||| Categoria de alimentos',
-      fields: {
+      
         food_id: 'Food',
-        food_category_id: 'Categoria',
+        food_categofields: {ry_id: 'Categoria',
         created_at: 'Created',
         updated_at: 'Updated',
       },
@@ -220,8 +220,42 @@ export const en = {
         residualWeight: 'Peso Residual',
         desiredWeight: 'Peso Deseado',
         desiredIMC: 'IMC Deseado',
-        desiredFat2MethodPercentage:
-          'Porcentaje Deseado del Método 2 de Grasa',
+        desiredFat2MethodPercentage:'Porcentaje Deseado del Método 2 de Grasa',
+      },
+    },
+    athlete:{
+      name: 'Atleta |||| Atletas',
+      fields: {
+        name: 'Name',
+      },
+    },
+    skill_test:{
+      name: 'Prueba de habilidad |||| Prueba de habilidad',
+      fields: {
+        cod_sin: 'Cod Sin',
+        cod_con_el: 'Cod Con El',
+        diff_percentage: 'Diff_percentage',
+        d_der: 'D Der',
+        d_izq: 'D Izq',
+        tl: 'Tl',
+        athlete: 'Athlete',
+        position: 'Position',
+      },
+    },
+    physical_test:{
+      name: 'examen fisico |||| examenes fisicos',
+      fields:{
+        position: 'Position',
+        weight: 'Weight',
+        height: 'Height',
+        wingspan: 'Wingspan',
+        five_mt: 'Five Mt',
+        ten_mt: 'Ten Mt',
+        t_test_left: 'T Test Left',
+        t_test_right: 'T Test Right',
+        cmj: 'Cmj',
+        legger: 'Legger',
+        athlete: 'Athlete',
       },
     },
   },

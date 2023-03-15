@@ -264,5 +264,40 @@ export const es = {
           'Porcentaje Deseado del Método 2 de Grasa',
       },
     },
+    athlete:{
+      name: 'Atleta |||| Atletas',
+      fields: {
+        name: 'Nombre',
+      },
+    },
+    skill_test:{
+      name: 'Prueba de habilidad |||| Prueba de habilidad',
+      fields: {
+        cod_sin: 'Cod Sin',
+        cod_con_el: 'Cod Con El',
+        diff_percentage: 'Diff_percentage',
+        d_der: 'D Der',
+        d_izq: 'D Izq',
+        tl: 'Tl',
+        athlete: 'Atleta',
+        position: 'posición',
+      },
+    },
+    physical_test:{
+      name: 'examen fisico |||| examenes fisicos',
+      fields:{
+        position: 'Posición',
+        weight: 'Peso',
+        height: 'Altura',
+        wingspan: 'Wingspan',
+        five_mt: 'Five Mt',
+        ten_mt: 'Ten Mt',
+        t_test_left: 'T Test Left',
+        t_test_right: 'T Test Right',
+        cmj: 'Cmj',
+        legger: 'Legger',
+        athlete: 'Atleta',
+      },
+    },
   },
 };
