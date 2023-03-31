@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/nutrition-app/static/css/main.e6c13ad2.css",
-    "main.js": "/nutrition-app/static/js/main.5657eeda.js",
-    "static/js/787.b34c94fa.chunk.js": "/nutrition-app/static/js/787.b34c94fa.chunk.js",
-    "static/media/logo.jpeg": "/nutrition-app/static/media/logo.e1ca4601aab6f35e0025.jpeg",
+    "main.css": "/nutrition-app/static/css/main.7ae0f04a.css",
+    "main.js": "/nutrition-app/static/js/main.dfca4b6c.js",
+    "static/js/496.83836f1e.chunk.js": "/nutrition-app/static/js/496.83836f1e.chunk.js",
+    "static/media/Logo.png": "/nutrition-app/static/media/Logo.22eaa52147b096bb5ede.png",
     "index.html": "/nutrition-app/index.html",
-    "main.e6c13ad2.css.map": "/nutrition-app/static/css/main.e6c13ad2.css.map",
-    "main.5657eeda.js.map": "/nutrition-app/static/js/main.5657eeda.js.map",
-    "787.b34c94fa.chunk.js.map": "/nutrition-app/static/js/787.b34c94fa.chunk.js.map"
+    "main.7ae0f04a.css.map": "/nutrition-app/static/css/main.7ae0f04a.css.map",
+    "main.dfca4b6c.js.map": "/nutrition-app/static/js/main.dfca4b6c.js.map",
+    "496.83836f1e.chunk.js.map": "/nutrition-app/static/js/496.83836f1e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.5657eeda.js"
+    "static/css/main.7ae0f04a.css",
+    "static/js/main.dfca4b6c.js"
   ]
 }
