@@ -9,7 +9,7 @@ import {
   CardMedia,
   Button,
 } from '@mui/material';
-import logo from './logo.jpeg';
+import logo from './Logo.png';
 
 const LoginPage = ({ theme }) => {
   const login = useLogin();

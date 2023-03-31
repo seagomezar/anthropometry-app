@@ -54,7 +54,14 @@ const authProvider = {
   },
   getIdentity: async () => {
     const user = await auth0.getUser();
-    return Promise.resolve({ user });
+    if(user && user.sub){
+      const id = user.sub;
+      const fullName = `${user.given_name} ${user.family_name}`;
+      const avatar = user.picture; 
+      return Promise.resolve({ id, fullName, avatar });
+    } 
+    return Promise.resolve({ user }); 
+    
   },
   // called when the user navigates to a new location, to check for permissions / roles
   getPermissions: () => Promise.resolve(),

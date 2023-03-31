@@ -7,7 +7,7 @@ const translations = { en, es };
 
 export const i18nProvider = polyglotI18nProvider(
   (locale) => translations[locale],
-  "en", // default locale
+  "es", // default locale
   [
     { locale: "en", name: "English" },
     { locale: "es", name: "Español" },

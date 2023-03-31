@@ -4,8 +4,8 @@ import LabelIcon from '@mui/icons-material/Label';
 
 export const NutritionAppMenu = () => (
     <Menu>
-        <Menu.DashboardItem />
-        <Menu.ResourceItem name="user" />
+        {<Menu.DashboardItem />
+        /*<Menu.ResourceItem name="user" />
         <Menu.ResourceItem name="measurement" />
         <Menu.ResourceItem name="plan" />
         <Menu.ResourceItem name="food" />
@@ -17,9 +17,11 @@ export const NutritionAppMenu = () => (
         <Menu.ResourceItem name="eating_moment" />
         <Menu.ResourceItem name="food_has_eating_moment" />
         <Menu.ResourceItem name="food_has_food_category" />
-        <Menu.ResourceItem name="skill_test" />
+        <Menu.Item to="/notes" primaryText="Notes" leftIcon={<LabelIcon />}/>*/}
         <Menu.ResourceItem name="athlete" />
         <Menu.ResourceItem name="physical_test" />
-        <Menu.Item to="/notes" primaryText="Notes" leftIcon={<LabelIcon />}/>
+        <Menu.ResourceItem name="skill_test" />
+        <Menu.ResourceItem name="psychological_test" />
+        
     </Menu>
 ); 

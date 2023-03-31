@@ -20,12 +20,8 @@ export const SkillTestList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   return (
     <List filters={SkillTestFilters}>
-      {isSmall ? (
-        <SimpleList
-          primaryText={(record) => record.firstname + " " + record.lastname}
-        />
-      ) : (
         <Datagrid rowClick="show">
+          <ReferenceField source="athlete_id" reference="athlete" />
           <TextField source="id" />
           <NumberField source="cod_sin" />
           <NumberField source="cod_con_el" />
@@ -33,12 +29,9 @@ export const SkillTestList = () => {
           <NumberField  source="d_der" />
           <NumberField  source="d_izq" />
           <NumberField source="tl" />
-          <ReferenceField source="athlete_id" reference="athlete" />
+          
           <TextField source="position" />
           <EditButton />
           <DeleteButton />
-        </Datagrid>
+        </Datagrid></List>
       )}
-    </List>
-  );
-};

@@ -92,6 +92,11 @@ import { PhysicalTestEdit } from './Components/PhysicalTest/PhysicalTestEdit';
 import { PhysicalTestCreate } from './Components/PhysicalTest/PhysicalTestCreate';
 import { PhysicalTestShow } from './Components/PhysicalTest/PhysicalTestShow';
 
+import { PsychologicalTestList } from './Components/PsychologicalTest/PsychologicalTestList';
+import { PsychologicalTestEdit } from './Components/PsychologicalTest/PsychologicalTestEdit';
+import { PsychologicalTestCreate } from './Components/PsychologicalTest/PsychologicalTestCreate';
+import { PsychologicalTestShow } from './Components/PsychologicalTest/PsychologicalTestShow';
+
 import { UserList } from './Components/Users/UserList';
 import { UserEdit } from './Components/Users/UserEdit';
 import { UserCreate } from './Components/Users/UserCreate';
@@ -283,6 +288,14 @@ const App = () => {
         edit={PhysicalTestEdit}
         create={PhysicalTestCreate}
         show={PhysicalTestShow}
+      />
+      <Resource
+        name="psychological_test"
+        icon={NearMeIcon}
+        list={PsychologicalTestList}
+        edit={PsychologicalTestEdit}
+        create={PsychologicalTestCreate}
+        show={PsychologicalTestShow}
       />
 
 

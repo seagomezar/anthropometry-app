@@ -19,7 +19,7 @@ export const en = {
     empty: 'No items created',
     total_calories: 'Calorías Totales',
     simulate_results: 'Simular Resultados',
-    welcomelogin: 'Welcome to the Nutritionist portal',
+    welcomelogin: 'Welcome to the Test portal',
     welcomeScheduler: 'This week evaluations appointments',
     login: 'Login',
     endomorph: "Sebas"

@@ -6,6 +6,7 @@ import {
   Create,
   useTranslate,
   ReferenceInput,
+  AutocompleteInput
 } from "react-admin";
 import Box from "@mui/material/Box";
 
@@ -44,7 +45,9 @@ export const SkillTestCreate = () => {
               source="athlete_id"
               reference="athlete"
               fullWidth
-            />
+            >
+            <AutocompleteInput optionText="name" optionValue="id" filterToQuery={searchText => ({name: searchText})} />
+          </ReferenceInput>
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
           <TextInput source="position" fullWidth />

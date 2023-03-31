@@ -18,11 +18,6 @@ export const AthleteList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   return (
     <List filters={AthleteFilters}>
-      {isSmall ? (
-        <SimpleList
-          primaryText={(record) => record.name + " " + record.lastname}
-        />
-      ) : (
     <Datagrid rowClick="show">
       <TextField source="id" />
       <TextField source="name"/>
@@ -35,7 +30,5 @@ export const AthleteList = () => {
       <EditButton />
       <DeleteButton />
     </Datagrid>
-  )}
   </List>
-);
-};
+)};

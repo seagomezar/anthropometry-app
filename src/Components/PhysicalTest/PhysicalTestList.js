@@ -20,6 +20,7 @@ export const PhysicalTestList = () => {
   return (
     <List filters={physicalTestFilters}>
         <Datagrid rowClick="show">
+        <ReferenceField source="athlete_id" reference="athlete" />
           <TextField source="id" />
           <TextField source="position" />
           <NumberField source="weight" />
@@ -31,7 +32,6 @@ export const PhysicalTestList = () => {
           <NumberField source="t_test_right" />
           <NumberField source="cmj" />
           <NumberField source="legger" />
-          <ReferenceField source="athlete_id" reference="athlete" />
           <EditButton />
           <DeleteButton />
         </Datagrid>
