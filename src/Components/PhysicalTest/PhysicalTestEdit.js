@@ -38,14 +38,14 @@ export const PhysicalTestEdit = () => {
             <NumberInput source="ten_mt" fullWidth />
           </Box>
           </Box>
-          <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
+          {/*<Box display={{ xs: "block", sm: "flex", width: "100%" }}>
           <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <NumberInput source="t_test_left" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
           <NumberInput source="t_test_right" fullWidth />
-          </Box>
-        </Box>
+  </Box>
+        </Box>*/}
         <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
           <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <NumberInput source="cmj" fullWidth />

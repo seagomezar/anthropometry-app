@@ -27,8 +27,6 @@ export const SkillTestList = () => {
           <NumberField source="cod_con_el" />
           <NumberField  source="diff_percentage" />
           <NumberField  source="d_der" />
-          <NumberField  source="d_izq" />
-          <NumberField source="tl" />
           
           <TextField source="position" />
           <EditButton />

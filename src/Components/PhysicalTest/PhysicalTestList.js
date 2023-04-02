@@ -28,8 +28,8 @@ export const PhysicalTestList = () => {
           <NumberField  source="wingspan" />
           <NumberField  source="five_mt" />
           <NumberField  source="ten_mt" />
-          <NumberField source="t_test_left" />
-          <NumberField source="t_test_right" />
+          {/*<NumberField source="t_test_left" />
+          <NumberField source="t_test_right" />*/}
           <NumberField source="cmj" />
           <NumberField source="legger" />
           <EditButton />

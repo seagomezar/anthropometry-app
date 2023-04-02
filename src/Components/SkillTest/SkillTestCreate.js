@@ -20,7 +20,7 @@ export const SkillTestCreate = () => {
             <NumberInput source="cod_sin" fullWidth />
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
-          <NumberInput source="cod_con_el" fullWidth />
+            <NumberInput source="cod_con_el" fullWidth />
           </Box>
         </Box>
         <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
@@ -33,24 +33,16 @@ export const SkillTestCreate = () => {
         </Box>
         <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
           <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
-            <NumberInput source="d_izq" fullWidth />
-          </Box>
-          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
-            <NumberInput source="tl" fullWidth />
-          </Box>
-          </Box>
-          <Box display={{ xs: "block", sm: "flex", width: "100%" }}>
-          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
-          <ReferenceInput
+            <ReferenceInput
               source="athlete_id"
               reference="athlete"
               fullWidth
             >
-            <AutocompleteInput optionText="name" optionValue="id" filterToQuery={searchText => ({name: searchText})} />
-          </ReferenceInput>
+              <AutocompleteInput optionText="name" optionValue="id" filterToQuery={searchText => ({ name: searchText })} />
+            </ReferenceInput>
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
-          <TextInput source="position" fullWidth />
+            <TextInput source="position" fullWidth />
           </Box>
         </Box>
       </SimpleForm>
