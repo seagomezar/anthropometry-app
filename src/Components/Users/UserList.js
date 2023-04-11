@@ -17,27 +17,10 @@ const userFilters = [
   <TextInput label="Search" source="firstname@_like" alwaysOn />,
 ];
 
-const UserRow = ({ record }) => {
-  return (
-    <Card>
-      <CardContent>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" padding={2}>
-          <Typography variant="h6">
-            {record.firstname} {record.lastname}
-          </Typography>
-          <Typography>Email: {record.email}</Typography>
-          <Typography>Phone: {record.phone}</Typography>
-          <Typography>Address: {record.address}</Typography>
-          <Typography>Birthday: {record.birthday}</Typography>
-          <Typography>Gender: {record.gender}</Typography>
-        </Box>
-      </CardContent>
-    </Card>
-  );
-};
-
 export const UserList = () => {
-  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isSmall = useMediaQuery((theme) => {
+    return theme.breakpoints.down("sm");
+  });
 
   return (
     <List filters={userFilters}>
@@ -47,10 +30,9 @@ export const UserList = () => {
           linkType="show"
           secondaryText={(record) => record.email}
           rowStyle={(record) => ({ backgroundColor: record.gender ? "lightblue" : "pink" })}
-          row={<UserRow />}
         />
       ) : (
-        <Datagrid rowClick="show">
+        <Datagrid rowClick="show" data-testid={"userListRow"} >
           <TextField source="id" />
           <TextField source="firstname" />
           <TextField source="lastname" />

@@ -68,6 +68,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
     "cypress": "^12.6.0",
     "gh-pages": "^4.0.0"
   },
