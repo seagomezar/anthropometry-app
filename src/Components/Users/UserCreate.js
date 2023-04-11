@@ -42,6 +42,7 @@ export const UserCreate = () => {
           </Box>
           <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
             <ReferenceInput
+              label={translate("resources.user.fields.nutritionist")}
               source="nutritionist_id"
               reference="nutritionist"
               fullWidth
@@ -63,19 +64,6 @@ export const UserCreate = () => {
         </Typography>
         <TextInput source="address" multiline fullWidth helperText={false} />
         <TextInput source="phone" fullWidth helperText={false} />
-        <Separator />
-
-        <Typography variant="h6" gutterBottom>
-          {translate("myroot.password")}
-        </Typography>
-        <Box display={{ xs: "block", sm: "flex" }}>
-          <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
-            <PasswordInput source="password" fullWidth />
-          </Box>
-          <Box flex={1} ml={{ xs: 0, sm: "0.5em" }}>
-            <PasswordInput source="confirm_password" fullWidth />
-          </Box>
-        </Box>
       </SimpleForm>
     </Create>
   );

@@ -64,7 +64,7 @@ const LineChartField = ({ source }) => {
   };
 
   return (
-    <Card>
+    <Card sx={{ maxWidth: "100%" }}>
       <Select
         variant="outlined"
         aria-label="outlined button group"

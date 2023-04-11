@@ -10,8 +10,9 @@ import {
   NumberField,
   ReferenceField,
   FunctionField,
+  SimpleList
 } from 'react-admin';
-import { Typography, Box } from '@mui/material';
+import { Typography, Grid, useMediaQuery } from '@mui/material';
 import { Empty } from '../Empty';
 import LineChartField from '../LineChartField';
 import ResultsFieldChart from '../Results/ResultsFieldChart';
@@ -19,35 +20,64 @@ import { Separator } from '../Separator';
 
 export const UserShow = () => {
   const translate = useTranslate();
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
+  const MeasurementList = isSmallScreen ? (
+    <ReferenceManyField
+      label={translate('resources.user.fields.measurements')}
+      reference="measurement"
+      target="user_id"
+    >
+      <SimpleList
+          primaryText={(record) => `${record.weight} kg, ${record.height} cm`}
+          linkType="show"
+          secondaryText={(record) => `Control: #${record.control} - ${record.evaluation_date}`}
+          rowStyle={(record) => ({ backgroundColor: record.gender ? "lightblue" : "pink" })}
+        />
+    </ReferenceManyField>
+  ) : (
+    <ReferenceManyField
+      label={translate('resources.user.fields.measurements')}
+      reference="measurement"
+      target="user_id"
+    >
+      <Datagrid empty={<Empty />} rowClick="show">
+        <NumberField source="control" />
+        <ReferenceField
+          source="referenced_somatotype_id"
+          reference="referenced_somatotype"
+        />
+        <NumberField source="weight" />
+        <NumberField source="height" />
+        <DateField source="evaluation_date" />
+      </Datagrid>
+    </ReferenceManyField>
+  );
+
   return (
     <Show>
       <SimpleShowLayout>
-        <Typography variant="h6" gutterBottom>
-          {translate('myroot.identity')}
-        </Typography>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" gutterBottom>
               {translate('resources.user.fields.firstname')}
             </Typography>
             <TextField source="firstname" />
-          </Box>
-        </Box>
-        <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-          <Typography variant="h6" gutterBottom>
-            {translate('resources.user.fields.lastname')}
-          </Typography>
-          <TextField source="lastname" />
-        </Box>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" gutterBottom>
+              {translate('resources.user.fields.lastname')}
+            </Typography>
+            <TextField source="lastname" />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" gutterBottom>
               {translate('resources.user.fields.email')}
             </Typography>
             <TextField source="email" />
-          </Box>
-          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" gutterBottom>
               {translate('resources.user.fields.gender')}
             </Typography>
             <FunctionField
@@ -58,99 +88,49 @@ export const UserShow = () => {
                   : translate('myroot.female')
               }
             />
-          </Box>
-        </Box>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" gutterBottom>
               {translate('resources.user.fields.birthday')}
             </Typography>
             <DateField source="birthday" />
-          </Box>
-          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" gutterBottom>
               {translate('resources.user.fields.nutritionist')}
             </Typography>
             <ReferenceField
               source="nutritionist_id"
               reference="nutritionist"
-              fullWidth
             />
-          </Box>
-        </Box>
-        <Separator />
-
-        <Separator />
-        <Typography variant="h6" gutterBottom>
-          {translate('myroot.addressAndPhone')}
-        </Typography>
-        <Box display={{ xs: 'block', sm: 'flex', width: '100%' }}>
-          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
+          </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" gutterBottom>
               {translate('resources.user.fields.address')}
             </Typography>
             <TextField source="address" />
-          </Box>
-          <Box flex={1} ml={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" gutterBottom>
               {translate('resources.user.fields.phone')}
             </Typography>
-            <TextField source="phone" fullWidth />
-          </Box>
-        </Box>
+            <TextField source="phone" />
+            </Grid>
+        </Grid>
         <Separator />
 
-        <Box display={{ xs: 'block', sm: 'flex' }}>
-          <Box flex={1} mr={{ xs: 0, sm: '0.5em' }}>
-            <Typography variant="h6" gutterBottom>
-              {translate('myroot.password')}
-            </Typography>
-            <TextField source="password" fullWidth />
-          </Box>
-        </Box>
-        <Separator />
-        <ReferenceManyField
-          label={translate('resources.user.fields.measurements')}
-          reference="measurement"
-          target="user_id"
-        >
-          <Datagrid empty={<Empty />} rowClick="show">
-            <NumberField source="control" />
-            <ReferenceField
-              source="referenced_somatotype_id"
-              reference="referenced_somatotype"
-              fullWidth
-            />
-            <NumberField source="weight" />
-            <NumberField source="height" />
-            <DateField source="evaluation_date" />
-          </Datagrid>
-        </ReferenceManyField>
+        {MeasurementList}
 
         <Separator />
         <LineChartField source="id" label="" />
 
         <Separator />
         <ResultsFieldChart source="id" label="" />
-
-        <Separator />
-        <ReferenceManyField
-          label={translate('resources.user.fields.plans')}
-          reference="plan"
-          target="user_id"
-        >
-          <Datagrid empty={<Empty />} rowClick="show">
-            <NumberField source="id" />
-            <TextField source="comments" />
-            <ReferenceField
-              source="goal_id"
-              reference="goal"
-              fullWidth
-            />
-            <DateField source="created_at" />
-          </Datagrid>
-        </ReferenceManyField>
       </SimpleShowLayout>
     </Show>
   );
 };
+
+         
