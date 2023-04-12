@@ -13,7 +13,8 @@
         "FoodHasFoodCategory",
         "Athlete",
         "food",
-        "plan"
+        "plan",
+        "PhaysicalTest"
     ],
     "java.server.launchMode": "Standard"
 }
