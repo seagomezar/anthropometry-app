@@ -7,6 +7,7 @@ import {
   TextField,
   EditButton,
   DeleteButton,
+  DateField,
 } from "react-admin";
 import { useMediaQuery } from "@mui/material";
 
@@ -20,8 +21,8 @@ export const AthleteList = () => {
     <List filters={AthleteFilters}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.name + " " + record.lastname}
-          secondaryText={(record) => `Control # ${record.control} - ${record.weight} Kg, ${record.height} cms`}
+          primaryText={(record) => record.name }
+          secondaryText={(record) => `${record.email} ${record.phone} ${record.position} `}
           tertiaryText={(record) => (
             <DateField record={record} source="created_at" />
           )}
