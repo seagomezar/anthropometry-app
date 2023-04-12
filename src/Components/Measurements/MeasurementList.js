@@ -26,10 +26,11 @@ export const MeasurementList = () => {
           primaryText={(record) => (
             <ReferenceField source="user_id" record={record} reference="user" />
           )}
-          secondaryText={(record) => `Control # ${record.control}`}
+          secondaryText={(record) => `Control # ${record.control} - ${record.weight} Kg, ${record.height} cms`}
           tertiaryText={(record) => (
             <DateField record={record} source="created_at" />
           )}
+          rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
         <Datagrid rowClick="show">
