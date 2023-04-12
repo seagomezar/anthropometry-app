@@ -21,6 +21,11 @@ export const AthleteList = () => {
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.name + " " + record.lastname}
+          secondaryText={(record) => `Control # ${record.control} - ${record.weight} Kg, ${record.height} cms`}
+          tertiaryText={(record) => (
+            <DateField record={record} source="created_at" />
+          )}
+          rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
     <Datagrid rowClick="show">

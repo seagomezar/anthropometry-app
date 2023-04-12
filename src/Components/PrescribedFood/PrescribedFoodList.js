@@ -22,7 +22,12 @@ export const PrescribedFoodList = () => {
     <List filters={PrescribedFoodFilters}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.food_id + " " + record.lastname}
+          primaryText={(record) => <ReferenceField record={record} source="plan_id" reference="plan" /> }
+          secondaryText={(record) => <ReferenceField record={record} source="food_id" reference="food" /> }
+          tertiaryText={(record) => (
+            <DateField record={record} source="created_at" />
+          )}
+          rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
     <Datagrid rowClick="show">
