@@ -25,7 +25,12 @@ export const ReferencedSomatotypeList = () => {
     <List filters={ReferencedSomatotypeFilters}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.sport + " " + record.lastname}
+          primaryText={(record) => record.sport }
+          secondaryText={(record) => `${record.gender } - endomorph${record.endomorph} ,y ${record.y}`}
+          tertiaryText={(record) => (
+            <DateField record={record} source="created_at" />
+          )}
+          rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
       <Datagrid rowClick="show">
