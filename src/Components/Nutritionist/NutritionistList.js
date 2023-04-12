@@ -23,6 +23,11 @@ export const NutritionistList = () => {
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.firstname + " " + record.lastname}
+          secondaryText={(record) => `${record.email} ${record.phone} `}
+          tertiaryText={(record) => (
+            <DateField record={record} source="created_at" />
+          )}
+          rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
     <Datagrid rowClick="show">
