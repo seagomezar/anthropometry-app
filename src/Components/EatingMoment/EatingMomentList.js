@@ -21,7 +21,12 @@ export const EatingMomentList = () => {
     <List filters={EatingMomentFilters}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.name + " " + record.lastname}
+          primaryText={(record) => record.name}
+          secondaryText={(record) => ` ${record.time}`}
+          tertiaryText={(record) => (
+            <DateField record={record} source="created_at" />
+          )}
+          rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
     <Datagrid rowClick="show">
