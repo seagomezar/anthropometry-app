@@ -21,7 +21,10 @@ export const FoodCategoryList = () => {
     <List filters={FoodCategoryFilters}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.firstname + " " + record.lastname}
+          primaryText={(record) => record.name }
+          secondaryText={(record) => `id # ${record.id}`}
+          tertiaryText={(record) => <DateField record={record} source="created_at" /> }
+          rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
     <Datagrid rowClick="show">
