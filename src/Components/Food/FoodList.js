@@ -23,6 +23,8 @@ export const FoodList = () => {
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.description+ " " + record.lastname}
+           secondaryText={(record) => `calories ${record.calories} - protein ${record.protein}`}
+           rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
     <Datagrid rowClick="show">
