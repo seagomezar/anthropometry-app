@@ -12,7 +12,8 @@
         "FoodHasEatingMoment",
         "FoodHasFoodCategory",
         "Athlete",
-        "food"
+        "food",
+        "plan"
     ],
     "java.server.launchMode": "Standard"
 }
