@@ -23,6 +23,8 @@ export const PlanList = () => {
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.comments + " " + record.lastname}
+          secondaryText={(record) => `user ${record.user_id} -  ${record.goal_id}`}
+           rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
         ) : (
     <Datagrid rowClick="show">
