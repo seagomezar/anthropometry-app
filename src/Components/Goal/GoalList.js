@@ -21,7 +21,10 @@ export const GoalList = () => {
     <List filters={goalFilters}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.name + " " + record.lastname}
+          primaryText={(record) => record.name }
+          secondaryText={(record) => `id # ${record.id}`}
+          tertiaryText={(record) => (<DateField record={record} source="created_at" />)}
+          rowStyle={(record) => ({backgroundColor: "lightblue"})}
         />
       ) : (
     <Datagrid rowClick="show">
