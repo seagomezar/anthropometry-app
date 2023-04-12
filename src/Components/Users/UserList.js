@@ -25,7 +25,7 @@ export const UserList = () => {
   return (
     <List filters={userFilters}>
       {isSmall ? (
-        <SimpleList
+        <SimpleList data-testid={"userListRow"}
           primaryText={(record) => record.firstname + " " + record.lastname}
           linkType="show"
           secondaryText={(record) => record.email}
