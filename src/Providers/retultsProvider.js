@@ -32,7 +32,7 @@ function yhaszFatPercentage(measurement, gender) {
   const fatPercentage = gender
     ? 0.1051 * sumOfMeasurements + 2.585
     : 0.1548 * sumOfMeasurements + 3.58;
-  console.log({ yhaszFatPercentage: fatPercentage });
+  // console.log(({ yhaszFatPercentage: fatPercentage }));
   return fatPercentage;
 }
 
@@ -52,7 +52,7 @@ function faulknerFatPercentage(measurement, gender) {
   const fatPercentage = gender
     ? 0.153 * sumOfMeasurements + 5.783
     : 0.213 * sumOfMeasurements + 7.9;
-  console.log({ faulknerFatPercentage: fatPercentage });
+  // console.log(({ faulknerFatPercentage: fatPercentage }));
   return fatPercentage;
 }
 
@@ -66,7 +66,7 @@ function parizcovaFatPercentage(measurement) {
     0.002 * plg_subscapular +
     0.637 * plg_suprailiac +
     0.809 * plg_bicep;
-  console.log({ parizcovaFatPercentage: fatPercentage });
+  // console.log(({ parizcovaFatPercentage: fatPercentage }));
   return fatPercentage;
 }
 
@@ -77,20 +77,20 @@ function sumaPlieguesEndo(measurement) {
   // Calculate the sum of all measurements
   const sumOfMeasurements =
     plg_subscapular + plg_triceps + plg_supraspinal;
-  console.log('sumaPlieguesEndo', sumOfMeasurements);
+  // console.log(('sumaPlieguesEndo', sumOfMeasurements));
   return sumOfMeasurements;
 }
 
 function endoFactor(measurement, height) {
   const endoFactor =
     sumaPlieguesEndo(measurement) * (170.18 / height);
-  console.log('endoFactor', endoFactor);
+  // console.log(('endoFactor', endoFactor));
   return endoFactor;
 }
 
 function ponderalIndex(height, weight) {
   const ponderalIndex = height / Math.pow(weight, 1 / 3);
-  console.log('ponderalIndex', ponderalIndex);
+  // console.log(('ponderalIndex', ponderalIndex));
   return ponderalIndex;
 }
 
@@ -101,7 +101,7 @@ function endomorph(measurement, height) {
     0.1451 * factor -
     0.00068 * Math.pow(factor, 2) +
     0.0000014 * Math.pow(factor, 3);
-  console.log({ endomorph });
+  // console.log(({ endomorph }));
   return endomorph;
 }
 
@@ -121,7 +121,7 @@ function mesomorph(measurement, height) {
     0.161 * (prm_calf - plg_calf / 10) -
     height * 0.131 +
     4.5;
-  console.log({ mesomorph });
+  // console.log(({ mesomorph }));
   return mesomorph;
 }
 
@@ -132,19 +132,19 @@ function ectomorph(ponderalIndex) {
   } else {
     ectomorph = ponderalIndex * 0.463 - 17.63;
   }
-  console.log({ ectomorph });
+  // console.log(({ ectomorph }));
   return ectomorph;
 }
 
 function resultX(ectomorph, endomorph) {
   const x = ectomorph - endomorph;
-  console.log({ x });
+  // console.log(({ x }));
   return x;
 }
 
 function resultY(ectomorph, endomorph, mesomorph) {
   const y = 2 * mesomorph - (ectomorph + endomorph);
-  console.log({ y });
+  // console.log(({ y }));
   return y;
 }
 
@@ -156,7 +156,7 @@ function imc(weight, height) {
 function activeMass(measurement, weight) {
   const activeMass =
     weight - (parizcovaFatPercentage(measurement) * weight) / 100;
-  console.log({ activeMass });
+  // console.log(({ activeMass }));
   return activeMass;
 }
 
@@ -164,7 +164,7 @@ function iaks(measurement, height, weight) {
   const iaks =
     (activeMass(measurement, weight) * 100000) /
     (height * height * height);
-  console.log({ iaks });
+  // console.log(({ iaks }));
   return iaks;
 }
 
@@ -172,7 +172,7 @@ function complexion(measurement, height) {
   const { prm_wrist } = measurement;
   if (prm_wrist) {
     const complexion = height / prm_wrist;
-    console.log({ complexion });
+    // console.log(({ complexion }));
     return complexion;
   } else {
     return 0;
@@ -181,7 +181,7 @@ function complexion(measurement, height) {
 
 function raizPT(weight, height) {
   const raizPt = Math.sqrt(weight / (height / 100));
-  console.log({ raizPt });
+  // console.log(({ raizPt }));
   return raizPt;
 }
 
@@ -208,22 +208,22 @@ function sumOfPlgs(measurement) {
     plg_abdominal +
     plg_thigh +
     plg_calf;
-  console.log({ sumOfPlgs });
+  // console.log(({ sumOfPlgs }));
   return sumOfPlgs;
 }
 
 function fatWeight(measurement, weight, gender) {
   const fatPercentage = yhaszFatPercentage(measurement, gender) || 1;
-  console.log('% ', fatPercentage);
+  // console.log(('% ', fatPercentage));
   const fatWeight = (fatPercentage * weight) / 100;
-  console.log({ fatWeight });
+  // console.log(({ fatWeight }));
   return fatWeight;
 }
 
 function freeFatWeight(measurement, weight, gender) {
   const freeFatWeight =
     weight - fatWeight(measurement, weight, gender);
-  console.log({ freeFatWeight });
+  // console.log(({ freeFatWeight }));
   return freeFatWeight;
 }
 
@@ -235,7 +235,7 @@ function residualWeight(weight, gender) {
   } else {
     residualWeight = weight * 0.241;
   }
-  console.log({ residualWeight });
+  // console.log(({ residualWeight }));
   return residualWeight;
 }
 
@@ -250,7 +250,7 @@ function desiredIMC(gender) {
 function desiredWeight(height, gender) {
   const dIMC = desiredIMC(gender);
   const desiredWeight = dIMC * ((height / 100) * (height / 100));
-  console.log({ desiredWeight });
+  // console.log(({ desiredWeight }));
   return desiredWeight;
 }
 
@@ -266,7 +266,7 @@ function desiredFat2MethodPercentage(measurement, weight, gender) {
   const plg = freeFatWeight(measurement, weight, gender);
   const desiredFat2MethodPercentage =
     plg / (1 - desiredFatPercentage(gender) / 100);
-  console.log({ desiredFat2MethodPercentage });
+  // console.log(({ desiredFat2MethodPercentage }));
   return desiredFat2MethodPercentage;
 }
 
@@ -308,6 +308,6 @@ export function generateResults(measurement, height, weight, gender) {
       gender
     ),
   };
-  console.log({ results });
+  // console.log(({ results }));
   return results;
 }

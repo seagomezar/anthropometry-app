@@ -25,7 +25,7 @@ import { i18nProvider } from './Providers/i18nProvider';
 import { MeasurementList } from './Components/Measurements/MeasurementList';
 import { MeasurementEdit } from './Components/Measurements/MeasurementEdit';
 import { MeasurementCreate } from './Components/Measurements/MeasurementCreate';
-import { MeasurementShowPageTable } from './Components/Measurements/tablas';
+import { MeasurementShowPageTable } from './Components/Measurements/MeasurementShow';
 
 import { FoodCategoryList } from './Components/FoodCategory/FoodCategoryList';
 import { FoodCategoryEdit } from './Components/FoodCategory/FoodCategoryEdit';
@@ -137,7 +137,6 @@ const App = () => {
   return (
     <Admin
       layout={NutritionAppLayout}
-      dashboard={Dashboard}
       authProvider={(isLoginEnabled==='true') ? authProvider: byPassAuthProvider}
       i18nProvider={i18nProvider}
       dataProvider={dataProvider}
@@ -162,6 +161,18 @@ const App = () => {
         create={MeasurementCreate}
         show={MeasurementShowPageTable}
       />
+      <Resource
+        name="nutritionist"
+        icon={LocalPharmacyIcon}
+        list={NutritionistList}
+        edit={NutritionistEdit}
+        create={NutritionistCreate}
+        show={NutritionistShow}
+        recordRepresentation={(record) =>
+          `${record.firstname} ${record.lastname}`
+        }
+      />
+      {/*
       <Resource
         name="food_category"
         icon={MenuBookIcon}
@@ -236,17 +247,7 @@ const App = () => {
         show={EatingMomentShow}
         recordRepresentation={(record) => `${record.name}`}
       />
-      <Resource
-        name="nutritionist"
-        icon={LocalPharmacyIcon}
-        list={NutritionistList}
-        edit={NutritionistEdit}
-        create={NutritionistCreate}
-        show={NutritionistShow}
-        recordRepresentation={(record) =>
-          `${record.firstname} ${record.lastname}`
-        }
-      />
+      
       <Resource
         name="referenced_somatotype"
         icon={NearMeIcon}
@@ -284,11 +285,11 @@ const App = () => {
         create={PhysicalTestCreate}
         show={PhysicalTestShow}
       />
-
+      <Route path="/notes" element={<Notes />} />
+        */}
 
       <CustomRoutes>
         <Route path="/results/:measurementId" element={<Results />} />
-        <Route path="/notes" element={<Notes />} />
       </CustomRoutes>
 
       

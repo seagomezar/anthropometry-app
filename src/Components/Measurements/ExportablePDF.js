@@ -229,7 +229,7 @@ export const ExportablePDF = ({ record, results, translate }) => {
 
           <View style={styles.row}>
             <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_suprailiact")}
+            {translate("resources.measurement.fields.plg_suprailiac")}
             </Text>
             <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
               {record.plg_suprailiac}

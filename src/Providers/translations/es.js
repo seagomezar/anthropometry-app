@@ -5,6 +5,8 @@ export const es = {
   "Missing Refresh Token (audience: '', scope: 'openid profile email offline_access')":
     'Por favor inicie sesion para ingresar!',
   myroot: {
+    download: "Descargar",
+    results: "Ver Resultados",
     password: 'Contraseña',
     addressAndPhone: 'Dirección & Teléfono',
     identity: 'Identidad',
@@ -115,7 +117,7 @@ export const es = {
         age: 'Edad',
         parizcovaFatPercentage: 'Porcentaje de Grasa Parizcova',
         faulknerFatPercentage: 'Porcentaje de Grasa Faulkner',
-        training_period:'periodo de entrenamiento',
+        training_period:'Periodo de entrenamiento',
       },
     },
     food_category: {
