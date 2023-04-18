@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useGetManyReference, useTranslate } from 'react-admin';
 import { MenuItem, Select, Card, CardContent } from '@mui/material';
-import LineChart from '../LineChart';
+import LineChart from '../LineChart/LineChart';
 import { generateResults } from '../../Providers/retultsProvider';
 
 const ResultsChart = ({ user }) => {
@@ -46,7 +46,6 @@ const ResultsChart = ({ user }) => {
   }, [data]);
 
   const createData = (option) => {
-    console.log(option);
     if (data) {
       const sortedData = data.sort(function (a, b) {
         return parseInt(a.control) - parseInt(b.control);

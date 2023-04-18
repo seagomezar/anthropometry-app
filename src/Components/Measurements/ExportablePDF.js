@@ -8,7 +8,7 @@ import {
   Image
 } from "@react-pdf/renderer";
 
-import logo from '../../Components/logo-2.jpg';
+import logo from '../../Components/logo.jpg';
 
 
 const styles = StyleSheet.create({
@@ -84,7 +84,6 @@ const calculateAge = (birthday) => {
   const diff_ms = Date.now() - dob.getTime();
   const age_dt = new Date(diff_ms);
   const age = Math.abs(age_dt.getUTCFullYear() - 1970);
-  console.log({ age })
   return age;
 }
 

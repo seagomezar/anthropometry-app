@@ -5,7 +5,7 @@ import {
   useTranslate,
 } from 'react-admin';
 import { MenuItem, Select, Card, CardContent } from '@mui/material';
-import LineChart from '../LineChart';
+import LineChart from '../LineChart/LineChart';
 import { generateResults } from '../../Providers/retultsProvider';
 
 const ResultsFieldChart = ({ source }) => {
@@ -51,7 +51,6 @@ const ResultsFieldChart = ({ source }) => {
   }, [data]);
 
   const createData = (option) => {
-    console.log('----->', option);
     if (data) {
       const results = data.map((d) =>
         generateResults(

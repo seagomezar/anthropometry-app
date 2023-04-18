@@ -13,10 +13,10 @@ import {
   SimpleList
 } from 'react-admin';
 import { Typography, Grid, useMediaQuery } from '@mui/material';
-import { Empty } from '../Empty';
-import LineChartField from '../LineChartField';
+import { Empty } from '../Empty/Empty';
+import LineChartField from '../LineChartField/LineChartField';
 import ResultsFieldChart from '../Results/ResultsFieldChart';
-import { Separator } from '../Separator';
+import { Separator } from "../Separator/Separator";
 
 export const UserShow = () => {
   const translate = useTranslate();

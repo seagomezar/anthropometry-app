@@ -11,7 +11,7 @@ import {
   SelectInput,
 } from "react-admin";
 import { Typography, Box } from "@mui/material";
-import { Separator } from "../Separator";
+import { Separator } from "../Separator/Separator";
 
 const UserTitle = () => {
   const record = useRecordContext();

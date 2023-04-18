@@ -31,7 +31,6 @@ const MeasurementShowLayout = React.memo(() => {
   const dataProvider = useDataProvider();
   React.useEffect(() => {
     dataProvider.getOne('user', { id: record.user_id }).then((user) => {
-      console.log({user})
       setUser(user.data);
     });
     dataProvider.getOne('nutritionist', { id: record.nutritionist_id }).then((nutritionist) => {
@@ -41,7 +40,6 @@ const MeasurementShowLayout = React.memo(() => {
       id: record.referenced_somatotype_id,
     })
     .then((r) => {
-      console.log({r})
       setReferencedSomatotype(r.data);
       setLoading(false)
     });

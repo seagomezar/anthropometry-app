@@ -5,12 +5,11 @@ import {
   ReferenceInput,
   TextInput,
   Create,
-  PasswordInput,
   useTranslate,
   SelectInput,
 } from "react-admin";
 import { Typography, Box } from "@mui/material";
-import { Separator } from "../Separator";
+import { Separator } from "../Separator/Separator";
 
 export const UserCreate = () => {
   const translate = useTranslate();

@@ -1,4 +1,3 @@
-// in src/MyLayout.js
 import { Layout } from 'react-admin';
 
 import { NutritionAppMenu } from './NutritionAppMenu';

@@ -24,7 +24,7 @@ export const MeasurementList = () => {
       {isSmall ? (
         <SimpleList
           primaryText={(record) => (
-            <ReferenceField source="user_id" record={record} reference="user" />
+            <ReferenceField source="user_id" reference="user" link={false}/>
           )}
           secondaryText={(record) => `Control # ${record.control} - ${record.weight} Kg, ${record.height} cms`}
           tertiaryText={(record) => (

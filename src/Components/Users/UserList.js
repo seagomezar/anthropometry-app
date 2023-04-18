@@ -11,7 +11,7 @@ import {
   EditButton,
   DeleteButton,
 } from "react-admin";
-import { useMediaQuery, Card, CardContent, Typography, Box } from "@mui/material";
+import { useMediaQuery} from "@mui/material";
 
 const userFilters = [
   <TextInput label="Search" source="firstname@_like" alwaysOn />,

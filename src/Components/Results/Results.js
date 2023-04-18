@@ -16,9 +16,9 @@ import {
   useDataProvider,
   useTranslate,
 } from 'react-admin';
-import PolarChart from '../PolarChart';
-import BarChart from '../BarChart';
-import ScatterChart from '../ScatterChart';
+import PolarChart from '../PolarChart/PolarChart';
+import BarChart from '../BarChart/BarChart';
+import ScatterChart from '../ScatterChart/ScatterChart';
 import ResultsChart from './ResultsChart';
 
 export const Results = React.memo(() => {
@@ -70,7 +70,6 @@ export const Results = React.memo(() => {
           user.gender === 'Femenino' ? false : true
         )
       );
-      console.log(user);
       setUser(user);
     });
     dataProvider
