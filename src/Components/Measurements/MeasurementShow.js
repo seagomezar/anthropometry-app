@@ -9,6 +9,7 @@ import {
   ReferenceField,
   useShowContext,
   TextField,
+  useDataProvider
 } from "react-admin";
 import { Typography } from "@mui/material";
 import "./MeasurementShow.css";
@@ -20,11 +21,34 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
 
-const MeasurementShowLayout = () => {
+const MeasurementShowLayout = React.memo(() => {
   const translate = useTranslate();
-  const { error, isLoading, record } = useShowContext();
+  const { error, record } = useShowContext();
+  const [user, setUser] = React.useState({});
+  const [referencedSomatotype, setReferencedSomatotype] = React.useState({});
+  const [loading, setLoading] = React.useState(true)
+  const [nutritionist, setNutritionist] = React.useState({});
+  const dataProvider = useDataProvider();
+  React.useEffect(() => {
+    dataProvider.getOne('user', { id: record.user_id }).then((user) => {
+      console.log({user})
+      setUser(user.data);
+    });
+    dataProvider.getOne('nutritionist', { id: record.nutritionist_id }).then((nutritionist) => {
+      setNutritionist(nutritionist.data);
+    });
+    dataProvider.getOne('referenced_somatotype', {
+      id: record.referenced_somatotype_id,
+    })
+    .then((r) => {
+      console.log({r})
+      setReferencedSomatotype(r.data);
+      setLoading(false)
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [record]);
 
-  if (isLoading) {
+  if (loading) {
     return <div>Loading...</div>;
   }
   if (error) {
@@ -39,9 +63,12 @@ const MeasurementShowLayout = () => {
               record={record}
               results={results}
               translate={translate}
+              user={user}
+              nutritionist={nutritionist}
+              referencedSomatotype={referencedSomatotype}
             />
           }
-          fileName="somename.pdf"
+          fileName={`${user.firstname} ${user.lastname} - ${record.control}`}
           style={{ textDecoration: "none" }}
         >
           {({ blob, url, loading, error }) =>
@@ -754,15 +781,15 @@ const MeasurementShowLayout = () => {
       </React.Fragment>
     );
   }
-};
+});
 
-export const MeasurementShowPageTable = () => {
+export const MeasurementShowPageTable = React.memo(() => {
   return (
     <Show>
       <MeasurementShowLayout />
     </Show>
   );
-};
+});
 
 
 

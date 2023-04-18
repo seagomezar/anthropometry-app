@@ -21,7 +21,7 @@ import BarChart from '../BarChart';
 import ScatterChart from '../ScatterChart';
 import ResultsChart from './ResultsChart';
 
-export const Results = () => {
+export const Results = React.memo(() => {
   let { measurementId } = useParams();
   const translate = useTranslate();
   const { data } = useGetOne('measurement', {
@@ -394,4 +394,4 @@ export const Results = () => {
       </Accordion>
     </div>
   );
-};
+});

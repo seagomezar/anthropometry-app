@@ -1,672 +1,665 @@
+import React from "react";
 import {
-    Page,
-    Text,
-    View,
-    Document,
-    StyleSheet
-  } from "@react-pdf/renderer";
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image
+} from "@react-pdf/renderer";
+
+import logo from '../../Components/logo-2.jpg';
 
 
-  const styles = StyleSheet.create({
-    page: {
-      flexDirection: "row",
-      backgroundColor: "#E4E4E4",
-    },
-    section: {
-      margin: 10,
-      padding: 10,
-      flexGrow: 1,
-      width: '50%'
-    },
-    column:{ // Columna
-      fontSize: 12
-    },
-    columnaCompleta:{
-      border: '1px solid black',
-      width: "100%",
-      padding: "3px 3px 3px 3px",
-      fontWeight: "bold",
-    },
-    row: { // Fila
-      flexDirection: 'row'
-    },
-    fondoAzul: {
-      backgroundColor: "rgb(97, 161, 235)"
-    },
-    fondVerde: {
-      backgroundColor: 'rgb(38, 100, 38)'
-    },
-    fondoAmarillo: {
-      backgroundColor: 'rgb(252, 236, 147)'
-    },
-    borde:{
-      border: '1px solid black',
-      width: "80%",
-      padding: "3px 3px 3px 3px",
-      fontWeight: "bold",
-    },
-    bord:{
-      border: '1px solid black',
-      width: "70%",
-      padding: "3px 3px 3px 3px",
-      fontWeight: "bold"
-    },
-    valor: {
-      width: "20%",
-      padding: "3px 3px 3px 3px",
-      fontWeight: "bold",
-      border: '1px solid black',
-      borderLeftColor: "rgb(97, 161, 235)",
-      backgroundColor: "rgb(97, 161, 235)"
-    },
-    valores: {
-      width: "30%",
-      padding: "3px 3px 3px 3px",
-      fontWeight: "bold",
-      border: '1px solid black',
-    },
-    valore: {
-      width: "30%",
-      padding: "3px 3px 3px 3px",
-      fontWeight: "bold",
-      border: '1px solid black',
-      borderLeftColor: "rgb(97, 161, 235)",
-      backgroundColor: "rgb(97, 161, 235)"
-    }
-  });
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: "row",
+    backgroundColor: "#E4E4E4",
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    flexGrow: 1,
+    width: '50%'
+  },
+  column: { // Columna
+    fontSize: 12
+  },
+  columnaCompleta: {
+    border: '1px solid black',
+    width: "100%",
+    padding: "3px 3px 3px 3px",
+    fontWeight: "bold",
+  },
+  row: { // Fila
+    flexDirection: 'row'
+  },
+  fondoAzul: {
+    backgroundColor: "rgb(97, 161, 235)"
+  },
+  fondVerde: {
+    backgroundColor: 'rgb(38, 100, 38)'
+  },
+  fondoAmarillo: {
+    backgroundColor: 'rgb(252, 236, 147)'
+  },
+  borde: {
+    border: '1px solid black',
+    width: "80%",
+    padding: "3px 3px 3px 3px",
+    fontWeight: "bold",
+  },
+  bord: {
+    border: '1px solid black',
+    width: "70%",
+    padding: "3px 3px 3px 3px",
+    fontWeight: "bold"
+  },
+  valor: {
+    width: "20%",
+    padding: "3px 3px 3px 3px",
+    fontWeight: "bold",
+    border: '1px solid black',
+    borderLeftColor: "rgb(97, 161, 235)",
+    backgroundColor: "rgb(97, 161, 235)"
+  },
+  valores: {
+    width: "30%",
+    padding: "3px 3px 3px 3px",
+    fontWeight: "bold",
+    border: '1px solid black',
+  },
+  valore: {
+    width: "30%",
+    padding: "3px 3px 3px 3px",
+    fontWeight: "bold",
+    border: '1px solid black',
+    borderLeftColor: "rgb(97, 161, 235)",
+    backgroundColor: "rgb(97, 161, 235)"
+  }
+});
+
+const calculateAge = (birthday) => {
+  const dob = new Date(birthday);
+  const diff_ms = Date.now() - dob.getTime();
+  const age_dt = new Date(diff_ms);
+  const age = Math.abs(age_dt.getUTCFullYear() - 1970);
+  console.log({ age })
+  return age;
+}
 
 
-  // Create Document Component
-export const ExportablePDF = ({ record, results, translate }) => {
-    // TODO: Implement this propertly to display the data on PDF
-    return (
-      <Document>
-        <Page size="A4" style={styles.page}>
-          <View style={styles.section}>
+// Create Document Component
+export const ExportablePDF = React.memo(({ record, results, translate, user, nutritionist, referencedSomatotype }) => {
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
 
-            <View style={{...styles.row, ...styles.fondoAzul}}>
-              <Text style={styles.column}>
-                {record.nutritionist_id}
-              </Text>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={{...styles.column, ...styles.bord}}>
-                {translate("resources.measurement.fields.user_id")}
-              </Text>
-              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
-                {record.user_id}
-              </Text>
-            </View>
-
-
-
-            <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate(
-                    "resources.measurement.fields.referenced_somatotype_id"
-                  )}
+          <View style={{ ...styles.row, ...styles.fondoAzul }}>
+            <Text style={styles.column}>
+              {translate("resources.user.fields.nutritionist")}: {`${nutritionist.firstname} ${nutritionist.lastname}`}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
-              {record.referenced_somatotype_id}
-              </Text>
-          </View>
-            
-          <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.modality")}
-            </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
-              {record.referenced_somatotype}
-              </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.trainingPeriod")}
+            <Text style={{ ...styles.column, ...styles.bord, ...styles.columnaCompleta }}>
+              {translate("resources.measurement.fields.user_id")}: 
+              {`${user.firstname} ${user.lastname}`}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+          </View>
+
+
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.bord, ...styles.columnaCompleta }}>
+              {translate(
+                "resources.measurement.fields.referenced_somatotype_id"
+              )}: 
+              {referencedSomatotype.sport}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.modality")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
+              {referencedSomatotype.gender
+                ? translate("myroot.male")
+                : translate("myroot.female")}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.trainingPeriod")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.trainingPeriod}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.evaluation_date")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.evaluation_date")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.evaluation_date}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.birthdayDate")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.birthdayDate")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
-              {record.birthdayDate}
-              </Text>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
+              {user.birthday}
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.gender")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.gender")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {results.gender
-                    ? translate("myroot.male")
-                    : translate("myroot.female")}
-              </Text>
+                ? translate("myroot.male")
+                : translate("myroot.female")}
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.age")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.age")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
-              {record.age}
-              </Text>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
+              {calculateAge(user.birthday)}
+            </Text>
           </View>
-          
-                <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord, ...styles.fondVerde, ...styles.columnaCompleta}}>
-            {translate("myroot.mediciones")}
-            </Text>
-          </View>            
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.weight")}
+            <Text style={{ ...styles.column, ...styles.bord, ...styles.fondVerde, ...styles.columnaCompleta }}>
+              {translate("myroot.mediciones")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.weight")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.weight}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.height")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.height")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.height}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.bord}}>
-            {translate("myroot.pliegues")}
+            <Text style={{ ...styles.column, ...styles.fondoAmarillo, ...styles.bord }}>
+              {translate("myroot.pliegues")}
             </Text>
-            <Text style={{...styles.column, ...styles.valores}}>
-              </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_triceps")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_triceps")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_triceps}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_bicep")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_bicep")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_bicep}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_subscapular")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_subscapular")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_subscapular}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_suprailiac")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_suprailiac")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_suprailiac}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_supraspinal")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_supraspinal")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_supraspinal}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_abdominal")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_abdominal")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_abdominal}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_thigh")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_thigh")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_thigh}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_calf")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_calf")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_calf}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_chest")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_chest")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_chest}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_armpit")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_armpit")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_armpit}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.bord}}>
-            {translate("myroot.perímetros")}
+            <Text style={{ ...styles.column, ...styles.fondoAmarillo, ...styles.bord }}>
+              {translate("myroot.perímetros")}
             </Text>
-            <Text style={{...styles.column, ...styles.valores}}>
-              </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.prm_arm")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.prm_arm")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.prm_arm}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.prm_arm_contracted")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.prm_arm_contracted")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.prm_arm_contracted}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.prm_wrist")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.prm_wrist")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.prm_wrist}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.prm_waist")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.prm_waist")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.prm_waist}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.prm_hip")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.prm_hip")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.prm_hip}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.prm_calf")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.prm_calf")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.prm_calf}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.prm_chest")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.prm_chest")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.prm_chest}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.plg_armpit")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.plg_armpit")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.plg_armpit}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.bord}}>
-            {translate("myroot.diametro")}
+            <Text style={{ ...styles.column, ...styles.fondoAmarillo, ...styles.bord }}>
+              {translate("myroot.diametro")}
             </Text>
-            <Text style={{...styles.column, ...styles.valores}}>
-              </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+            </Text>
           </View>
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.dm_elbow")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.dm_elbow")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.dm_elbow}
-              </Text>
+            </Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.dm_knee")}
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.dm_knee")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
               {record.dm_knee}
-              </Text>
-          </View>
-
-          <View style={styles.row}>
-            <Text style={{...styles.column, ...styles.bord}}>
-            {translate("resources.measurement.fields.dm_wrist")}
             </Text>
-            <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
-              {record.dm_wrist}
-              </Text>
           </View>
 
-
-
-
-          </View>
-          {/* Este es el otro lado */}
-          <View style={styles.section}>
-                
           <View style={styles.row}>
-                  <Text>{" "}</Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text>{" "}</Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text>{" "}</Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text>{" "}</Text>
-                </View>
-
-                <View style={{...styles.row, ...styles.fondVerde}}>
-                  <Text>{" "}</Text>
-                </View>
-
-                <View style={styles.row}>
-                <Text style={{...styles.column, ...styles.fondoAmarillo, ...styles.borde}}>
-                {translate("myroot.somatotipo actual")}
-              </Text>
-              <Text style={{...styles.column, ...styles.fondoAzul, ...styles.valore}}>
-                {" "}</Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.endomorph")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.endomorph.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.mesomorph")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.mesomorph.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.ectomorph")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.ectomorph.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.x")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {record.x}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.y")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {record.y}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text>{" "}</Text>
-                </View>
-
-                <View style={styles.row}>
-                <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
-                {translate("myroot.somatotipo de referencia")}
-              </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.resultX")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.resultX.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.resultY")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.resultY.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text>{" "}</Text>
-                </View>
-
-                <View style={styles.row}>
-                <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
-                {translate("myroot.fatPercentageIndices")}
-              </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.imc")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.imc.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.iaks")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.iaks.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.complexion")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.complexion.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.conicIndex")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.conicIndex.toFixed(2)}
-                  </Text>
-                </View>
-
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.sumOfPlgs")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.sumOfPlgs.toFixed(2)}
-                  </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.yhaszFatPercentage")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.yhaszFatPercentage.toFixed(2)}
-                  </Text>
-                  </View>
-
-                  <View style={styles.row}>
-                <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
-                {translate("myroot.bodyComposition")}
-              </Text>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.fatWeight")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.fatWeight.toFixed(2)}
-                  </Text>
-                  </View>
-
-                  <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.freeFatWeight")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.freeFatWeight.toFixed(2)}
-                  </Text>
-                  </View>
-
-                  <View style={styles.row}>
-                <Text style={{...styles.column, ...styles.fondoAmarillo,...styles.columnaCompleta}}>
-                {translate("myroot.ExpectedValues")}
-              </Text>
-                </View>
-
-                  <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.sumaPlieguesEndo")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valore}}>
-                  {results.sumaPlieguesEndo.toFixed(2)}
-                  </Text>
-                  </View>
-
-                  <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.yhaszFatPercentageSumaPliegues")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.faulknerFatPercentage.toFixed(2)}
-                  </Text>
-                  </View>
-
-                  <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate(
-                    "resources.measurement.fields.fatPercentageForPerformance"
-                  )}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valore}}>
-                  {results.parizcovaFatPercentage.toFixed(2)}
-                  </Text>
-                  </View>
-
-                  <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.desiredIMC")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valore}}>
-                  {results.desiredIMC.toFixed(2)}
-                  </Text>
-                  </View>
-
-                  <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate("resources.measurement.fields.desiredWeight")}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.desiredWeight.toFixed(2)}
-                  </Text>
-                  </View>
-
-                  <View style={styles.row}>
-                  <Text style={{...styles.column, ...styles.borde}}>
-                  {translate(
-                    "resources.measurement.fields.desiredFat2MethodPercentage"
-                  )}
-                  </Text>
-                  <Text style={{...styles.column, ...styles.valores}}>
-                  {results.desiredFat2MethodPercentage.toFixed(2)}
-                  </Text>
-                  </View>
+            <Text style={{ ...styles.column, ...styles.bord }}>
+              {translate("resources.measurement.fields.dm_wrist")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
+              {record.dm_wrist}
+            </Text>
           </View>
-        </Page>
-      </Document>
-    );
-  };
-  
+
+
+
+
+        </View>
+        {/* Este es el otro lado */}
+        <View style={styles.section}>
+
+          <View style={styles.row}>
+            <Image src={logo} style={{ width: "100%" }} />
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.fondoAmarillo, ...styles.borde }}>
+              {translate("myroot.somatotipo actual")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>
+              {" "}</Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.endomorph")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.endomorph.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.mesomorph")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.mesomorph.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.ectomorph")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.ectomorph.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.x")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {record.x}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.y")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {record.y}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text>{" "}</Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta }}>
+              {translate("myroot.somatotipo de referencia")}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.resultX")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.resultX.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.resultY")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.resultY.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text>{" "}</Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta }}>
+              {translate("myroot.fatPercentageIndices")}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.imc")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.imc.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.iaks")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.iaks.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.complexion")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.complexion.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.conicIndex")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.conicIndex.toFixed(2)}
+            </Text>
+          </View>
+
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.sumOfPlgs")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.sumOfPlgs.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.yhaszFatPercentage")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.yhaszFatPercentage.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta }}>
+              {translate("myroot.bodyComposition")}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.fatWeight")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.fatWeight.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.freeFatWeight")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.freeFatWeight.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.fondoAmarillo, ...styles.columnaCompleta }}>
+              {translate("myroot.ExpectedValues")}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.sumaPlieguesEndo")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valore }}>
+              {results.sumaPlieguesEndo.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.yhaszFatPercentageSumaPliegues")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.faulknerFatPercentage.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate(
+                "resources.measurement.fields.fatPercentageForPerformance"
+              )}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valore }}>
+              {results.parizcovaFatPercentage.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.desiredIMC")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valore }}>
+              {results.desiredIMC.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate("resources.measurement.fields.desiredWeight")}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.desiredWeight.toFixed(2)}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={{ ...styles.column, ...styles.borde }}>
+              {translate(
+                "resources.measurement.fields.desiredFat2MethodPercentage"
+              )}
+            </Text>
+            <Text style={{ ...styles.column, ...styles.valores }}>
+              {results.desiredFat2MethodPercentage.toFixed(2)}
+            </Text>
+          </View>
+        </View>
+      </Page>
+    </Document>
+  );
+});

@@ -7,18 +7,9 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { Route } from 'react-router-dom';
 
 import UserIcon from '@mui/icons-material/Group';
-import StraightenIcon from '@mui/icons-material/Straighten';
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import SportsScoreIcon from '@mui/icons-material/SportsScore';
-import NextPlanIcon from '@mui/icons-material/NextPlan';
-import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
-import AlarmOnIcon from '@mui/icons-material/AlarmOn';
-import KitchenIcon from '@mui/icons-material/Kitchen';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
 import NearMeIcon from '@mui/icons-material/NearMe';
-import Dashboard from './Components/Dashboard';
+import StraightenIcon from '@mui/icons-material/Straighten';
+import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
 import authProvider from './Providers/authProvider';
 import { i18nProvider } from './Providers/i18nProvider';
 
@@ -27,6 +18,26 @@ import { MeasurementEdit } from './Components/Measurements/MeasurementEdit';
 import { MeasurementCreate } from './Components/Measurements/MeasurementCreate';
 import { MeasurementShowPageTable } from './Components/Measurements/MeasurementShow';
 
+import { NutritionistList } from './Components/Nutritionist/NutritionistList';
+import { NutritionistEdit } from './Components/Nutritionist/NutritionistEdit';
+import { NutritionistCreate } from './Components/Nutritionist/NutritionistCreate';
+import { NutritionistShow } from './Components/Nutritionist/NutritionistShow';
+
+import { ReferencedSomatotypeList } from './Components/ReferencedSomatotype/ReferencedSomatotypeList';
+import { ReferencedSomatotypeEdit } from './Components/ReferencedSomatotype/ReferencedSomatotypeEdit';
+import { ReferencedSomatotypeCreate } from './Components/ReferencedSomatotype/ReferencedSomatotypeCreate';
+import { ReferencedSomatotypeShow } from './Components/ReferencedSomatotype/ReferencedSomatotypeShow';
+
+import { UserList } from './Components/Users/UserList';
+import { UserEdit } from './Components/Users/UserEdit';
+import { UserCreate } from './Components/Users/UserCreate';
+import { UserShow } from './Components/Users/UserShow';
+import { Results } from './Components/Results/Results';
+import LoginPage from './Components/LoginPage';
+import { NutritionAppLayout } from './Components/Layout/NutritionAppLayout';
+import byPassAuthProvider from './Providers/byPassAuthProvider';
+
+/*
 import { FoodCategoryList } from './Components/FoodCategory/FoodCategoryList';
 import { FoodCategoryEdit } from './Components/FoodCategory/FoodCategoryEdit';
 import { FoodCategoryCreate } from './Components/FoodCategory/FoodCategoryCreate';
@@ -62,15 +73,7 @@ import { EatingMomentEdit } from './Components/EatingMoment/EatingMomentEdit';
 import { EatingMomentCreate } from './Components/EatingMoment/EatingMomentCreate';
 import { EatingMomentShow } from './Components/EatingMoment/EatingMomentShow';
 
-import { NutritionistList } from './Components/Nutritionist/NutritionistList';
-import { NutritionistEdit } from './Components/Nutritionist/NutritionistEdit';
-import { NutritionistCreate } from './Components/Nutritionist/NutritionistCreate';
-import { NutritionistShow } from './Components/Nutritionist/NutritionistShow';
 
-import { ReferencedSomatotypeList } from './Components/ReferencedSomatotype/ReferencedSomatotypeList';
-import { ReferencedSomatotypeEdit } from './Components/ReferencedSomatotype/ReferencedSomatotypeEdit';
-import { ReferencedSomatotypeCreate } from './Components/ReferencedSomatotype/ReferencedSomatotypeCreate';
-import { ReferencedSomatotypeShow } from './Components/ReferencedSomatotype/ReferencedSomatotypeShow';
 
 import { PrescribedFoodList } from './Components/PrescribedFood/PrescribedFoodList';
 import { PrescribedFoodEdit } from './Components/PrescribedFood/PrescribedFoodEdit';
@@ -92,21 +95,13 @@ import { PhysicalTestEdit } from './Components/PhysicalTest/PhysicalTestEdit';
 import { PhysicalTestCreate } from './Components/PhysicalTest/PhysicalTestCreate';
 import { PhysicalTestShow } from './Components/PhysicalTest/PhysicalTestShow';
 
-import { UserList } from './Components/Users/UserList';
-import { UserEdit } from './Components/Users/UserEdit';
-import { UserCreate } from './Components/Users/UserCreate';
-import { UserShow } from './Components/Users/UserShow';
-import { Results } from './Components/Results/Results';
-import LoginPage from './Components/LoginPage';
-import Notes from './Components/Notes/Notes';
-import { NutritionAppLayout } from './Components/Layout/NutritionAppLayout';
-import byPassAuthProvider from './Providers/byPassAuthProvider';
-
 /*import { Notes } from './Components/Notes/Notes';
 /*import { ChangeAlert } from './Components/Notes/ChangeAlert ';*/
 
+
+
+
 const isLoginEnabled = process.env.REACT_APP_ENABLE_LOGIN;
-console.log({isLoginEnabled})
 
 const myClientWithAuth = new ApolloClient({
   uri: 'https://nutrition-app.hasura.app/v1/graphql',
@@ -170,6 +165,17 @@ const App = () => {
         show={NutritionistShow}
         recordRepresentation={(record) =>
           `${record.firstname} ${record.lastname}`
+        }
+      />
+      <Resource
+        name="referenced_somatotype"
+        icon={NearMeIcon}
+        list={ReferencedSomatotypeList}
+        edit={ReferencedSomatotypeEdit}
+        create={ReferencedSomatotypeCreate}
+        show={ReferencedSomatotypeShow}
+        recordRepresentation={(record) =>
+          `${record.sport} - ${record.gender ? 'M' : 'F'}`
         }
       />
       {/*
@@ -248,17 +254,7 @@ const App = () => {
         recordRepresentation={(record) => `${record.name}`}
       />
       
-      <Resource
-        name="referenced_somatotype"
-        icon={NearMeIcon}
-        list={ReferencedSomatotypeList}
-        edit={ReferencedSomatotypeEdit}
-        create={ReferencedSomatotypeCreate}
-        show={ReferencedSomatotypeShow}
-        recordRepresentation={(record) =>
-          `${record.sport} - ${record.gender ? 'M' : 'F'}`
-        }
-      />
+      
       <Resource
         name="skill_test"
         icon={NearMeIcon}

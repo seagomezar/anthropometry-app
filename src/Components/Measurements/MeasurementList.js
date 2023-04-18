@@ -30,7 +30,8 @@ export const MeasurementList = () => {
           tertiaryText={(record) => (
             <DateField record={record} source="created_at" />
           )}
-          rowStyle={(record) => ({backgroundColor: "lightblue"})}
+          rowStyle={() => ({backgroundColor: "lightblue"})}
+          linkType="show"
         />
       ) : (
         <Datagrid rowClick="show">
