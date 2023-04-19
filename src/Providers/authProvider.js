@@ -19,7 +19,7 @@ const authProvider = {
     });
     //logged in. you can get the user profile like this:
     const user = await auth0.getUser();
-    return Promise.resolve();
+    return Promise.resolve({user});
   },
   // called when the user clicks on the logout button
   logout: () => {
