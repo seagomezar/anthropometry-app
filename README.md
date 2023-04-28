@@ -1,20 +1,20 @@
 # Anthropometry App (Rave-Nutrition) 🥗📊
 
-Rave-Nutrition es una aplicación open-source creada a petición de un cliente, quien dio permiso para compartirla con la comunidad. Esta aplicación está diseñada para facilitar la gestión y seguimiento de aspectos relacionados con la medición antropometrica que es parte del proceso nutricional de deportistas de alto rendimiento..
+Rave-Nutrition is an open-source application created at the request of a client, who granted permission to share it with the community. This application is designed to facilitate the management and monitoring of aspects related to anthropometric measurements, which are part of the nutritional process for high-performance athletes.
 
-## 🌟 Funcionalidades principales
+## 🌟 Main Features
 
-La aplicación se compone de 5 módulos principales:
+The application consists of 5 main modules:
 
-1.  **Usuarios** 👥: Gestión de usuarios y sus roles en la aplicación.
-2.  **Nutricionistas** 🥼: Registro y seguimiento de los profesionales de la nutrición.
-3.  **Medidas Antropométricas** 📏: Registro y seguimiento de las medidas corporales de los usuarios.
-4.  **Resultados de la Evaluación** 📈: Presentación de los resultados obtenidos en las evaluaciones de los usuarios.
-5.  **Somatotipos de referencia** 📚: Referencia a los diferentes tipos de cuerpos para comparación y análisis.
+1.  **Users** 👥: User management and their roles within the application.
+2.  **Nutritionists** 🥼: Registration and monitoring of nutrition professionals.
+3.  **Anthropometric Measurements** 📏: Recording and monitoring of users' body measurements.
+4.  **Evaluation Results** 📈: Presentation of the results obtained in users' evaluations.
+5.  **Reference Somatotypes** 📚: Reference to different body types for comparison and analysis.
 
-## 🛠️ Stack tecnológico
+## 🛠️ Technology Stack
 
-Para el desarrollo de Rave-Nutrition, se ha utilizado el siguiente conjunto de tecnologías:
+The following set of technologies has been used in the development of Rave-Nutrition:
 
 -   React ⚛️
 -   React Admin 📚
@@ -22,51 +22,49 @@ Para el desarrollo de Rave-Nutrition, se ha utilizado el siguiente conjunto de t
 -   Jest 🃏
 -   Hasura 🌀
 
-## 🚀 Inicio rápido
+## 🚀 Quick Start
 
-Para comenzar a utilizar Rave-Nutrition en tu entorno local, sigue estos pasos:
+To start using Rave-Nutrition in your local environment, follow these steps:
 
-1.  Clona el repositorio:
+1.  Clone the repository:
 
-`git clone https://github.com/seagomezar/anthropometry-app.git` 
+`git clone https://github.com/seagomezar/anthropometry-app.git`
 
-2.  Instala las dependencias:
+2.  Install the dependencies:
 
-`npm install` 
+`npm install`
 
-3.  Inicia la aplicación en modo de desarrollo:
+3.  Start the application in development mode:
 
-`npm start` 
+`npm start`
 
-Esto abrirá la aplicación en tu navegador por defecto en la dirección `http://localhost:3000`.
+This will open the application in your default browser at the address `http://localhost:3000`.
 
-## 🧪 Pruebas
+## 🧪 Testing
 
-Para ejecutar las pruebas unitarias y de integración, utiliza el siguiente comando:
+To run unit and integration tests, use the following command:
 
-`npm test` 
+`npm test`
 
-Para ejecutar las pruebas de extremo a extremo (e2e) con Cypress, utiliza el siguiente comando:
+To run end-to-end (e2e) tests with Cypress, use the following command:
 
-arduinoCopy code
+`npm run e2e`
 
-`npm run e2e` 
+## 📜 Available Scripts in package.json
 
-## 📜 Scripts disponibles en package.json
+-   `predeploy`: Prepares the application for deployment.
+-   `deploy`: Deploys the application on GitHub Pages.
+-   `start`: Starts the application in development mode.
+-   `build`: Builds the application for production.
+-   `test`: Runs unit and integration tests.
+-   `eject`: Ejects the React configuration.
+-   `e2e`: Opens the Cypress testing environment.
+-   `lint`: Runs the ESLint linter on the code.
 
--   `predeploy`: Prepara la aplicación para el despliegue.
--   `deploy`: Despliega la aplicación en GitHub Pages.
--   `start`: Inicia la aplicación en modo de desarrollo.
--   `build`: Compila la aplicación para producción.
--   `test`: Ejecuta las pruebas unitarias y de integración.
--   `eject`: Expulsa la configuración de React.
--   `e2e`: Abre el entorno de pruebas Cypress.
--   `lint`: Ejecuta el linter ESLint en el código.
+## 📝 Contributions
 
-## 📝 Contribuciones
+Contributions are welcome. If you want to collaborate with Rave-Nutrition, feel free to fork the repository, make your changes, and submit a Pull Request.
 
-Las contribuciones son bienvenidas. Si deseas colaborar con Rave-Nutrition, no dudes en hacer un fork del repositorio, realizar tus cambios y enviar un Pull Request.
+## License
 
-## Licencia
-
-Rave-Nutrition se distribuye bajo la licencia [MIT](./LICENCE.md)
+Rave-Nutrition is distributed under the [MIT](./LICENCE.md) license
