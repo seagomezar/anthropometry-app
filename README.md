@@ -1,4 +1,4 @@
-# Rave-Nutrition 🥗📊
+# Anthropometry App (Rave-Nutrition) 🥗📊
 
 Rave-Nutrition es una aplicación open-source creada a petición de un cliente, quien dio permiso para compartirla con la comunidad. Esta aplicación está diseñada para facilitar la gestión y seguimiento de aspectos relacionados con la medición antropometrica que es parte del proceso nutricional de deportistas de alto rendimiento..
 
@@ -28,7 +28,7 @@ Para comenzar a utilizar Rave-Nutrition en tu entorno local, sigue estos pasos:
 
 1.  Clona el repositorio:
 
-`git clone https://github.com/seagomezar/rave-nutrition.git` 
+`git clone https://github.com/seagomezar/anthropometry-app.git` 
 
 2.  Instala las dependencias:
 
