@@ -1,7 +1,7 @@
 {
-  "name": "rave-nutrition",
+  "name": "anthropometry",
   "version": "0.1.0",
-  "homepage": "https://seagomezar.github.io/rave-nutrition",
+  "homepage": "https://anthropometry.sebastian-gomez.com",
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",
