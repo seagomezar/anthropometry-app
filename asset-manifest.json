@@ -1,17 +1,16 @@
 {
   "files": {
-    "main.css": "/nutrition-app/static/css/main.27eadb8a.css",
-    "main.js": "/nutrition-app/static/js/main.5ae2f122.js",
-    "static/js/496.83836f1e.chunk.js": "/nutrition-app/static/js/496.83836f1e.chunk.js",
-    "static/media/logo-2.jpg": "/nutrition-app/static/media/logo-2.d6678b0ee6fc121e63a7.jpg",
-    "static/media/logo.jpeg": "/nutrition-app/static/media/logo.e1ca4601aab6f35e0025.jpeg",
-    "index.html": "/nutrition-app/index.html",
-    "main.27eadb8a.css.map": "/nutrition-app/static/css/main.27eadb8a.css.map",
-    "main.5ae2f122.js.map": "/nutrition-app/static/js/main.5ae2f122.js.map",
-    "496.83836f1e.chunk.js.map": "/nutrition-app/static/js/496.83836f1e.chunk.js.map"
+    "main.css": "/static/css/main.0139aad1.css",
+    "main.js": "/static/js/main.e60eed48.js",
+    "static/js/496.132f35ec.chunk.js": "/static/js/496.132f35ec.chunk.js",
+    "static/media/logo.jpg": "/static/media/logo.d6678b0ee6fc121e63a7.jpg",
+    "index.html": "/index.html",
+    "main.0139aad1.css.map": "/static/css/main.0139aad1.css.map",
+    "main.e60eed48.js.map": "/static/js/main.e60eed48.js.map",
+    "496.132f35ec.chunk.js.map": "/static/js/496.132f35ec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.27eadb8a.css",
-    "static/js/main.5ae2f122.js"
+    "static/css/main.0139aad1.css",
+    "static/js/main.e60eed48.js"
   ]
 }
