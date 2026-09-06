@@ -12,9 +12,11 @@ import {
   TextInput,
   useTranslate,
   useListContext,
+  usePermissions,
 } from "react-admin";
 import { useMediaQuery, Box, Typography, Paper, Chip } from "@mui/material";
 import StraightenIcon from "@mui/icons-material/Straighten";
+import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
 
 const measurementFilters = [
   <TextInput
@@ -44,7 +46,9 @@ const measurementFilters = [
 const MeasurementListHeader = () => {
   const translate = useTranslate();
   const { total, data } = useListContext();
+  const { permissions } = usePermissions();
   const count = total !== undefined ? total : (data ? Object.keys(data).length : 0);
+  const isNutritionist = permissions?.role === "nutritionist";
 
   return (
     <Paper
@@ -113,24 +117,43 @@ const MeasurementListHeader = () => {
         </Box>
       </Box>
 
-      <Chip
-        label={translate("measurement_list.total_evaluations", {
-          count,
-          _: `Evaluaciones Totales: ${count}`,
-        })}
-        size="small"
-        sx={{
-          backgroundColor: "rgba(194, 155, 56, 0.15)",
-          color: "#775a00",
-          border: "1px solid rgba(194, 155, 56, 0.4)",
-          fontFamily: "'JetBrains Mono', monospace",
-          fontWeight: 700,
-          fontSize: "12px",
-          px: 1,
-          py: 0.5,
-          borderRadius: "2px",
-        }}
-      />
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+        {isNutritionist && (
+          <Chip
+            icon={<LocalPharmacyIcon fontSize="small" sx={{ color: "#1b3b2b !important" }} />}
+            label={translate("auth.specialist_assigned", {
+              _: "Asignado a su consulta profesional",
+            })}
+            size="small"
+            sx={{
+              backgroundColor: "rgba(27, 59, 43, 0.08)",
+              border: "1px solid rgba(27, 59, 43, 0.3)",
+              color: "#1b3b2b",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 600,
+              fontSize: "11.5px",
+            }}
+          />
+        )}
+        <Chip
+          label={translate("measurement_list.total_evaluations", {
+            count,
+            _: `Evaluaciones Totales: ${count}`,
+          })}
+          size="small"
+          sx={{
+            backgroundColor: "rgba(194, 155, 56, 0.15)",
+            color: "#775a00",
+            border: "1px solid rgba(194, 155, 56, 0.4)",
+            fontFamily: "'JetBrains Mono', monospace",
+            fontWeight: 700,
+            fontSize: "12px",
+            px: 1,
+            py: 0.5,
+            borderRadius: "2px",
+          }}
+        />
+      </Box>
     </Paper>
   );
 };
@@ -165,13 +188,13 @@ const MeasurementListLedgerFooter = () => {
         }}
       >
         {translate("measurement_list.ledger_folio", {
-          _: "Protocolo ISAK Oficial • Registro Longitudinal de Evaluaciones",
+          _: "Registro Oficial del Cuaderno Antropométrico • Folio de Archivo Activo",
         })}
       </Typography>
       <Chip
         label={translate("measurement_list.active_entries", {
           count,
-          _: `Total Evaluaciones: ${count}`,
+          _: `Total Registrados: ${count}`,
         })}
         size="small"
         sx={{
@@ -190,10 +213,17 @@ const MeasurementListLedgerFooter = () => {
 
 export const MeasurementList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const { permissions } = usePermissions();
+
+  const isNutritionist = permissions?.role === "nutritionist";
+  const permanentFilter =
+    isNutritionist && permissions?.nutritionistId
+      ? { nutritionist_id: permissions.nutritionistId }
+      : undefined;
 
   return (
     <Box sx={{ p: { xs: 1, sm: 2 } }}>
-      <List filters={measurementFilters} component="div" {...props}>
+      <List filters={measurementFilters} filter={permanentFilter} component="div" {...props}>
         <MeasurementListHeader />
         {isSmall ? (
           <SimpleList

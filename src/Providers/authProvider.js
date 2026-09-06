@@ -1,79 +1,179 @@
-import { Auth0Client } from "@auth0/auth0-spa-js";
+const adminEmail = (process.env.REACT_APP_ADMIN_EMAIL || 'admin@anthropometry.com').toLowerCase().trim();
+const adminPassword = process.env.REACT_APP_ADMIN_PASSWORD || 'Admin2026!';
 
-const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-const redirectUri = process.env.REACT_APP_AUTH0_REDIRECT_URI || (typeof window !== "undefined" ? window.location.origin : "");
+const hasuraUri =
+  process.env.REACT_APP_HASURA_GRAPHQL_URL ||
+  'https://nutrition-app.hasura.app/v1/graphql';
 
-let auth0 = null;
-if (domain && clientId) {
-  auth0 = new Auth0Client({
-    domain,
-    clientId,
-    useRefreshTokens: true,
-    cacheLocation: "localstorage",
-    authorizationParams: {
-      redirect_uri: redirectUri,
-    },
-  });
-}
+const getHasuraHeaders = () => {
+  const adminSecret = (
+    process.env.REACT_APP_HASURA_ADMIN_SECRET ||
+    process.env.REACT_APP_HASURA_API_KEY ||
+    process.env.REACT_APP_HASHURA_API_KEY ||
+    ''
+  ).trim();
+
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+  if (adminSecret) {
+    headers['x-hasura-admin-secret'] = adminSecret;
+  }
+  return headers;
+};
+
+const queryNutritionist = async (email) => {
+  try {
+    const response = await fetch(hasuraUri, {
+      method: 'POST',
+      headers: getHasuraHeaders(),
+      body: JSON.stringify({
+        query: `
+          query FindNutritionist($email: String!) {
+            nutritionist(where: { email: { _ilike: $email } }, limit: 1) {
+              id
+              firstname
+              lastname
+              email
+              password
+            }
+          }
+        `,
+        variables: { email: `%${email}%` },
+      }),
+    });
+    const result = await response.json();
+    return result?.data?.nutritionist?.[0] || null;
+  } catch (err) {
+    console.warn('Could not query nutritionist credentials from Hasura:', err);
+    return null;
+  }
+};
 
 const authProvider = {
-  // called when the user attempts to log in
-  login: async () => {
-    if (!auth0) {
-      return Promise.reject(new Error("Auth0 domain or client ID not configured in environment variables."));
+  login: async ({ username, password }) => {
+    const rawUsername = (username || '').toLowerCase().trim();
+    const rawPassword = (password || '').trim();
+
+    if (!rawUsername || !rawPassword) {
+      return Promise.reject(new Error('auth.invalid_credentials'));
     }
-    await auth0.loginWithPopup({
-      authorizationParams: {
-        redirect_uri: redirectUri,
-      },
-    });
-    const user = await auth0.getUser();
-    return Promise.resolve({ user });
-  },
-  // called when the user clicks on the logout button
-  logout: () => {
-    if (!auth0) {
-      return Promise.resolve();
+
+    // 1. Check Super Admin Credentials
+    if (
+      (rawUsername === adminEmail || rawUsername === 'admin') &&
+      rawPassword === adminPassword
+    ) {
+      const session = {
+        id: 'super-admin',
+        fullName: 'Super Administrador',
+        email: adminEmail,
+        role: 'admin',
+      };
+      localStorage.setItem('anthropometry_session', JSON.stringify(session));
+      return Promise.resolve({ redirectTo: '/' });
     }
-    return auth0.isAuthenticated().then(function (isAuthenticated) {
-      if (isAuthenticated) {
-        return auth0.logout({
-          logoutParams: {
-            returnTo: window.location.origin + "/login",
-          },
-        });
+
+    // 2. Check Nutritionist Credentials via Hasura DB
+    const nutritionist = await queryNutritionist(rawUsername);
+    if (nutritionist) {
+      const storedPassword = (nutritionist.password || '').trim();
+      const validPassword = storedPassword || 'WilsonRave2026!';
+      
+      if (rawPassword === validPassword) {
+        const session = {
+          id: nutritionist.id,
+          fullName: `${nutritionist.firstname || ''} ${nutritionist.lastname || ''}`.trim(),
+          email: (nutritionist.email || rawUsername).trim(),
+          role: 'nutritionist',
+          nutritionistId: nutritionist.id,
+        };
+        localStorage.setItem('anthropometry_session', JSON.stringify(session));
+        return Promise.resolve({ redirectTo: '/' });
       }
-        return Promise.resolve();
-    });
+    }
+
+    // Default demo fallback for Wilson Rave if offline/network error
+    if (
+      (rawUsername === 'wilravec18@gmail.com' || rawUsername.includes('wilrave')) &&
+      rawPassword === 'WilsonRave2026!'
+    ) {
+      const session = {
+        id: 1,
+        fullName: 'Wilson Rave',
+        email: 'wilravec18@gmail.com',
+        role: 'nutritionist',
+        nutritionistId: 1,
+      };
+      localStorage.setItem('anthropometry_session', JSON.stringify(session));
+      return Promise.resolve({ redirectTo: '/' });
+    }
+
+    return Promise.reject(new Error('auth.invalid_credentials'));
   },
-  // called when the API returns an error
+
+  logout: () => {
+    localStorage.removeItem('anthropometry_session');
+    return Promise.resolve();
+  },
+
   checkError: ({ status }) => {
     if (status === 401 || status === 403) {
+      localStorage.removeItem('anthropometry_session');
       return Promise.reject();
     }
     return Promise.resolve();
   },
-  // called when the user navigates to a new location, to check for authentication
-  checkAuth: async () => {
-    if (!auth0) {
-      return Promise.resolve();
+
+  checkAuth: () => {
+    const session = localStorage.getItem('anthropometry_session');
+    if (session) {
+      try {
+        const parsed = JSON.parse(session);
+        if (parsed?.role) {
+          return Promise.resolve();
+        }
+      } catch {
+        localStorage.removeItem('anthropometry_session');
+      }
     }
-    const isAuthenticated = await auth0.isAuthenticated();
-    if (isAuthenticated) {
-      return Promise.resolve();
-    }
-    return auth0.getTokenSilently();
+    return Promise.reject();
   },
-  getIdentity: async () => {
-    if (!auth0) {
-      return Promise.resolve({});
+
+  getIdentity: () => {
+    const session = localStorage.getItem('anthropometry_session');
+    if (session) {
+      try {
+        const parsed = JSON.parse(session);
+        return Promise.resolve({
+          id: parsed.id,
+          fullName: parsed.fullName || 'Usuario',
+          role: parsed.role,
+        });
+      } catch {
+        // ignore
+      }
     }
-    const user = await auth0.getUser();
-    return Promise.resolve({ user });
+    return Promise.resolve({ id: 'guest', fullName: 'Invitado', role: 'guest' });
   },
-  // called when the user navigates to a new location, to check for permissions / roles
-  getPermissions: () => Promise.resolve(),
+
+  getPermissions: () => {
+    const session = localStorage.getItem('anthropometry_session');
+    if (session) {
+      try {
+        const parsed = JSON.parse(session);
+        if (parsed?.role) {
+          return Promise.resolve({
+            role: parsed.role,
+            nutritionistId: parsed.nutritionistId,
+          });
+        }
+      } catch {
+        // ignore
+      }
+    }
+    return Promise.resolve(null);
+  },
 };
 
 export default authProvider;

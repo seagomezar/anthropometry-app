@@ -1,11 +1,16 @@
 import React from "react";
-import { Create, SimpleForm, useTranslate } from "react-admin";
+import { Create, SimpleForm, useTranslate, usePermissions } from "react-admin";
 import { Box, Typography, Paper } from "@mui/material";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import { MeasurementFormFields } from "./MeasurementFormFields";
 
 export const MeasurementCreate = (props) => {
   const translate = useTranslate();
+  const { permissions } = usePermissions();
+  const isNutritionist = permissions?.role === "nutritionist";
+  const defaultValues = isNutritionist && permissions?.nutritionistId
+    ? { nutritionist_id: permissions.nutritionistId }
+    : {};
 
   return (
     <Box sx={{ p: { xs: 1.5, sm: 3 }, maxWidth: 920, margin: "0 auto" }}>
@@ -74,6 +79,7 @@ export const MeasurementCreate = (props) => {
 
       <Create component="div" {...props}>
         <SimpleForm
+          defaultValues={defaultValues}
           sx={{
             "& .MuiCardContent-root": { p: 0 },
             backgroundColor: "transparent",

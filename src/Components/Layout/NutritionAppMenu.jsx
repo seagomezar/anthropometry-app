@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, useTranslate } from 'react-admin';
+import { Menu, useTranslate, usePermissions } from 'react-admin';
 import { Box, MenuItem, ListItemIcon, ListItemText, Typography, Divider } from '@mui/material';
 import TuneIcon from '@mui/icons-material/Tune';
 
@@ -8,13 +8,16 @@ import { FeatureSettingsModal } from '../Settings/FeatureSettingsModal';
 
 export const NutritionAppMenu = (props) => {
   const { isFeatureEnabled } = useFeaturePreferences();
+  const { permissions } = usePermissions();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const translate = useTranslate();
+
+  const isAdmin = !permissions || permissions?.role === 'admin';
 
   const hasAnyResource =
     isFeatureEnabled('user') ||
     isFeatureEnabled('measurement') ||
-    isFeatureEnabled('nutritionist') ||
+    (isFeatureEnabled('nutritionist') && isAdmin) ||
     isFeatureEnabled('referenced_somatotype');
 
   return (
@@ -22,7 +25,9 @@ export const NutritionAppMenu = (props) => {
       <Menu {...props}>
         {isFeatureEnabled('user') && <Menu.ResourceItem name="user" />}
         {isFeatureEnabled('measurement') && <Menu.ResourceItem name="measurement" />}
-        {isFeatureEnabled('nutritionist') && <Menu.ResourceItem name="nutritionist" />}
+        {isFeatureEnabled('nutritionist') && isAdmin && (
+          <Menu.ResourceItem name="nutritionist" />
+        )}
         {isFeatureEnabled('referenced_somatotype') && (
           <Menu.ResourceItem name="referenced_somatotype" />
         )}

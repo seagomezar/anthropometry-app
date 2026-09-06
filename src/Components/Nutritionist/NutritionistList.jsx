@@ -9,6 +9,7 @@ import {
   TextField,
   EditButton,
   DeleteButton,
+  CreateButton,
   useTranslate,
   useListContext,
 } from "react-admin";
@@ -112,24 +113,45 @@ const NutritionistListHeader = () => {
         </Box>
       </Box>
 
-      <Chip
-        label={translate("nutritionist_list.specialists_count", {
-          count,
-          _: `Especialistas Activos: ${count}`,
-        })}
-        size="small"
-        sx={{
-          backgroundColor: "rgba(194, 155, 56, 0.15)",
-          color: "#775a00",
-          border: "1px solid rgba(194, 155, 56, 0.4)",
-          fontFamily: "'JetBrains Mono', monospace",
-          fontWeight: 700,
-          fontSize: "12px",
-          px: 1,
-          py: 0.5,
-          borderRadius: "2px",
-        }}
-      />
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexWrap: "wrap" }}>
+        <CreateButton
+          label={translate("auth.create_specialist", { _: "Nuevo Especialista" })}
+          sx={{
+            backgroundColor: "#1b3b2b",
+            color: "#fcf9f4",
+            border: "1px solid #c29b38",
+            borderRadius: "2px",
+            fontFamily: "'EB Garamond', serif",
+            fontWeight: 700,
+            fontSize: "13.5px",
+            letterSpacing: "0.03em",
+            py: 0.4,
+            px: 1.5,
+            "&:hover": {
+              backgroundColor: "#032517",
+              borderColor: "#fed269",
+            },
+          }}
+        />
+        <Chip
+          label={translate("nutritionist_list.specialists_count", {
+            count,
+            _: `Especialistas Activos: ${count}`,
+          })}
+          size="small"
+          sx={{
+            backgroundColor: "rgba(194, 155, 56, 0.15)",
+            color: "#775a00",
+            border: "1px solid rgba(194, 155, 56, 0.4)",
+            fontFamily: "'JetBrains Mono', monospace",
+            fontWeight: 700,
+            fontSize: "12px",
+            px: 1,
+            py: 0.5,
+            borderRadius: "2px",
+          }}
+        />
+      </Box>
     </Paper>
   );
 };

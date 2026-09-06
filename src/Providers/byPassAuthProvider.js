@@ -8,9 +8,9 @@ const byPassAuthProvider = {
     // remove local credentials and notify the auth server that the user logged out
     logout: () => Promise.resolve(),
     // get the user's profile
-    getIdentity: () => Promise.resolve(),
+    getIdentity: () => Promise.resolve({ id: 'admin', fullName: 'Super Administrador', role: 'admin' }),
     // get the user permissions (optional)
-    getPermissions: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve({ role: 'admin' }),
 };
 
 export default byPassAuthProvider;

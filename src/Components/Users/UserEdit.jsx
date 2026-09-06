@@ -9,6 +9,7 @@ import {
   useTranslate,
   useRecordContext,
   SelectInput,
+  usePermissions,
 } from "react-admin";
 import { Typography, Box, Paper } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
@@ -23,6 +24,8 @@ const UserTitle = () => {
 
 export const UserEdit = (props) => {
   const translate = useTranslate();
+  const { permissions } = usePermissions();
+  const isNutritionist = permissions?.role === "nutritionist";
 
   return (
     <Box sx={{ p: { xs: 1.5, sm: 3 }, maxWidth: 800, margin: "0 auto" }}>
@@ -136,13 +139,15 @@ export const UserEdit = (props) => {
             <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <DateInput source="birthday" fullWidth />
             </Box>
-            <Box flex={1} ml={{ xs: 0, sm: "0.5em" }}>
-              <ReferenceInput
-                source="nutritionist_id"
-                reference="nutritionist"
-                fullWidth
-              />
-            </Box>
+            {!isNutritionist && (
+              <Box flex={1} ml={{ xs: 0, sm: "0.5em" }}>
+                <ReferenceInput
+                  source="nutritionist_id"
+                  reference="nutritionist"
+                  fullWidth
+                />
+              </Box>
+            )}
           </Box>
           <Separator />
 

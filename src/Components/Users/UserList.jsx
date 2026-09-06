@@ -12,10 +12,31 @@ import {
   DeleteButton,
   useTranslate,
   useListContext,
+  usePermissions,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 import { useMediaQuery, Box, Typography, Paper, Chip } from "@mui/material";
 import FolderSharedIcon from "@mui/icons-material/FolderShared";
+import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
 import { useFeaturePreferences } from "../../config/features";
+
+const filterInputStyles = {
+  "& .MuiOutlinedInput-root": {
+    backgroundColor: "#fcf9f4",
+    borderRadius: "2px",
+    fontFamily: "'Inter', sans-serif",
+    "& fieldset": {
+      borderColor: "rgba(3, 37, 23, 0.25)",
+    },
+    "&:hover fieldset": {
+      borderColor: "#1b3b2b",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#c29b38",
+    },
+  },
+};
 
 const userFilters = [
   <TextInput
@@ -23,29 +44,37 @@ const userFilters = [
     label="Search"
     source="firstname@_like"
     alwaysOn
-    sx={{
-      "& .MuiOutlinedInput-root": {
-        backgroundColor: "#fcf9f4",
-        borderRadius: "2px",
-        fontFamily: "'Inter', sans-serif",
-        "& fieldset": {
-          borderColor: "rgba(3, 37, 23, 0.25)",
-        },
-        "&:hover fieldset": {
-          borderColor: "#1b3b2b",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#c29b38",
-        },
-      },
-    }}
+    sx={filterInputStyles}
   />,
+];
+
+const adminUserFilters = [
+  <TextInput
+    key="search"
+    label="Search"
+    source="firstname@_like"
+    alwaysOn
+    sx={filterInputStyles}
+  />,
+  <ReferenceInput
+    key="nutritionist_filter"
+    label="Filtrar por Especialista"
+    source="nutritionist_id"
+    reference="nutritionist"
+    sx={{ minWidth: 200, ...filterInputStyles }}
+  >
+    <SelectInput
+      optionText={(r) => `${r.firstname || ""} ${r.lastname || ""}`}
+    />
+  </ReferenceInput>,
 ];
 
 const UserListHeader = () => {
   const translate = useTranslate();
   const { total, data } = useListContext();
+  const { permissions } = usePermissions();
   const count = total !== undefined ? total : (data ? Object.keys(data).length : 0);
+  const isNutritionist = permissions?.role === "nutritionist";
 
   return (
     <Paper
@@ -112,24 +141,43 @@ const UserListHeader = () => {
         </Box>
       </Box>
 
-      <Chip
-        label={translate("user_list.total_badge", {
-          count,
-          _: `Expedientes Archivados: ${count}`,
-        })}
-        size="small"
-        sx={{
-          backgroundColor: "rgba(194, 155, 56, 0.15)",
-          color: "#775a00",
-          border: "1px solid rgba(194, 155, 56, 0.4)",
-          fontFamily: "'JetBrains Mono', monospace",
-          fontWeight: 700,
-          fontSize: "12px",
-          px: 1,
-          py: 0.5,
-          borderRadius: "2px",
-        }}
-      />
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+        {isNutritionist && (
+          <Chip
+            icon={<LocalPharmacyIcon fontSize="small" sx={{ color: "#1b3b2b !important" }} />}
+            label={translate("auth.specialist_assigned", {
+              _: "Asignado a su consulta profesional",
+            })}
+            size="small"
+            sx={{
+              backgroundColor: "rgba(27, 59, 43, 0.08)",
+              border: "1px solid rgba(27, 59, 43, 0.3)",
+              color: "#1b3b2b",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 600,
+              fontSize: "11.5px",
+            }}
+          />
+        )}
+        <Chip
+          label={translate("user_list.total_badge", {
+            count,
+            _: `Expedientes Archivados: ${count}`,
+          })}
+          size="small"
+          sx={{
+            backgroundColor: "rgba(194, 155, 56, 0.15)",
+            color: "#775a00",
+            border: "1px solid rgba(194, 155, 56, 0.4)",
+            fontFamily: "'JetBrains Mono', monospace",
+            fontWeight: 700,
+            fontSize: "12px",
+            px: 1,
+            py: 0.5,
+            borderRadius: "2px",
+          }}
+        />
+      </Box>
     </Paper>
   );
 };
@@ -187,13 +235,25 @@ const UserListLedgerFooter = () => {
   );
 };
 
-export const UserList = () => {
+export const UserList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const { isFeatureEnabled } = useFeaturePreferences();
+  const { permissions } = usePermissions();
+
+  const isNutritionist = permissions?.role === "nutritionist";
+  const permanentFilter =
+    isNutritionist && permissions?.nutritionistId
+      ? { nutritionist_id: permissions.nutritionistId }
+      : undefined;
 
   return (
     <Box sx={{ p: { xs: 1, sm: 2 } }}>
-      <List filters={userFilters} component="div">
+      <List
+        {...props}
+        filters={permissions?.role === "admin" ? adminUserFilters : userFilters}
+        filter={permanentFilter}
+        component="div"
+      >
         <UserListHeader />
         {isSmall ? (
           <SimpleList

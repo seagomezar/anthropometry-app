@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
-import { Layout, AppBar, UserMenu, useTranslate, useLocaleState } from 'react-admin';
-import { Box, Typography, Button, IconButton, Tooltip } from '@mui/material';
+import {
+  Layout,
+  AppBar,
+  UserMenu,
+  useTranslate,
+  useLocaleState,
+  useGetIdentity,
+  usePermissions,
+  useLogout,
+} from 'react-admin';
+import { Box, Typography, Button, IconButton, Tooltip, Chip } from '@mui/material';
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
+import ShieldIcon from '@mui/icons-material/Shield';
+import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import { NutritionAppMenu } from './NutritionAppMenu';
 import { FeatureSettingsModal } from '../Settings/FeatureSettingsModal';
@@ -12,6 +24,9 @@ const NutritionAppBar = (props) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const translate = useTranslate();
   const [locale, setLocale] = useLocaleState();
+  const { data: identity } = useGetIdentity();
+  const { permissions } = usePermissions();
+  const logout = useLogout();
 
   const handleToggleLocale = () => {
     setLocale(locale === 'es' ? 'en' : 'es');
@@ -120,6 +135,57 @@ const NutritionAppBar = (props) => {
           >
             <TuneIcon />
           </IconButton>
+
+          {identity?.fullName && (
+            <Tooltip
+              title={`${identity.fullName} • ${
+                permissions?.role === 'admin'
+                  ? translate('auth.role_super_admin', { _: 'Super Administrador' })
+                  : translate('auth.role_nutritionist', { _: 'Especialista Nutricionista' })
+              }`}
+            >
+              <Chip
+                size="small"
+                icon={
+                  permissions?.role === 'admin' ? (
+                    <ShieldIcon sx={{ fontSize: '15px !important', color: '#fed269 !important' }} />
+                  ) : (
+                    <LocalPharmacyIcon sx={{ fontSize: '15px !important', color: '#fed269 !important' }} />
+                  )
+                }
+                label={identity.fullName}
+                sx={{
+                  backgroundColor: 'rgba(254, 210, 105, 0.15)',
+                  border: '1px solid #c29b38',
+                  color: '#fcf9f4',
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600,
+                  fontSize: '11.5px',
+                  display: { xs: 'none', md: 'inline-flex' },
+                }}
+              />
+            </Tooltip>
+          )}
+
+          <Tooltip title={translate('auth.logout', { _: 'Cerrar Sesión' })}>
+            <IconButton
+              onClick={() => logout()}
+              size="small"
+              sx={{
+                color: '#fed269',
+                border: '1px solid rgba(194, 155, 56, 0.4)',
+                borderRadius: '2px',
+                p: 0.6,
+                '&:hover': {
+                  backgroundColor: 'rgba(194, 155, 56, 0.2)',
+                  borderColor: '#c29b38',
+                },
+              }}
+              aria-label={translate('auth.logout', { _: 'Cerrar Sesión' })}
+            >
+              <ExitToAppIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
         </Box>
       </AppBar>
 

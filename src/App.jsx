@@ -108,65 +108,69 @@ const App = () => {
     <Admin
       theme={vintageTheme}
       layout={NutritionAppLayout}
-      authProvider={(isLoginEnabled==='true') ? authProvider: byPassAuthProvider}
+      authProvider={isLoginEnabled === 'false' ? byPassAuthProvider : authProvider}
       i18nProvider={i18nProvider}
       dataProvider={dataProvider}
       loginPage={LoginPage}
     >
-      {isFeatureEnabled('user') && (
-        <Resource
-          name="user"
-          icon={UserIcon}
-          list={UserList}
-          edit={UserEdit}
-          create={UserCreate}
-          show={UserShow}
-          recordRepresentation={(record) =>
-            `${record.firstname} ${record.lastname}`
-          }
-        />
-      )}
-      {isFeatureEnabled('measurement') && (
-        <Resource
-          name="measurement"
-          icon={StraightenIcon}
-          list={MeasurementList}
-          edit={MeasurementEdit}
-          create={MeasurementCreate}
-          show={MeasurementShowPageTable}
-        />
-      )}
-      {isFeatureEnabled('nutritionist') && (
-        <Resource
-          name="nutritionist"
-          icon={LocalPharmacyIcon}
-          list={NutritionistList}
-          edit={NutritionistEdit}
-          create={NutritionistCreate}
-          show={NutritionistShow}
-          recordRepresentation={(record) =>
-            `${record.firstname} ${record.lastname}`
-          }
-        />
-      )}
-      {isFeatureEnabled('referenced_somatotype') && (
-        <Resource
-          name="referenced_somatotype"
-          icon={NearMeIcon}
-          list={ReferencedSomatotypeList}
-          edit={ReferencedSomatotypeEdit}
-          create={ReferencedSomatotypeCreate}
-          show={ReferencedSomatotypeShow}
-          recordRepresentation={(record) =>
-            `${record.sport} - ${record.gender ? 'M' : 'F'}`
-          }
-        />
-      )}
+      {(permissions) => (
+        <>
+          {isFeatureEnabled('user') && (
+            <Resource
+              name="user"
+              icon={UserIcon}
+              list={UserList}
+              edit={UserEdit}
+              create={UserCreate}
+              show={UserShow}
+              recordRepresentation={(record) =>
+                `${record.firstname} ${record.lastname}`
+              }
+            />
+          )}
+          {isFeatureEnabled('measurement') && (
+            <Resource
+              name="measurement"
+              icon={StraightenIcon}
+              list={MeasurementList}
+              edit={MeasurementEdit}
+              create={MeasurementCreate}
+              show={MeasurementShowPageTable}
+            />
+          )}
+          {isFeatureEnabled('nutritionist') && (!permissions || permissions?.role === 'admin') && (
+            <Resource
+              name="nutritionist"
+              icon={LocalPharmacyIcon}
+              list={NutritionistList}
+              edit={NutritionistEdit}
+              create={NutritionistCreate}
+              show={NutritionistShow}
+              recordRepresentation={(record) =>
+                `${record.firstname} ${record.lastname}`
+              }
+            />
+          )}
+          {isFeatureEnabled('referenced_somatotype') && (
+            <Resource
+              name="referenced_somatotype"
+              icon={NearMeIcon}
+              list={ReferencedSomatotypeList}
+              edit={ReferencedSomatotypeEdit}
+              create={ReferencedSomatotypeCreate}
+              show={ReferencedSomatotypeShow}
+              recordRepresentation={(record) =>
+                `${record.sport} - ${record.gender ? 'M' : 'F'}`
+              }
+            />
+          )}
 
-      {isFeatureEnabled('results_analytics') && (
-        <CustomRoutes>
-          <Route path="/results/:measurementId" element={<Results />} />
-        </CustomRoutes>
+          {isFeatureEnabled('results_analytics') && (
+            <CustomRoutes>
+              <Route path="/results/:measurementId" element={<Results />} />
+            </CustomRoutes>
+          )}
+        </>
       )}
     </Admin>
   );

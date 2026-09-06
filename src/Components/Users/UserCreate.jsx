@@ -7,6 +7,7 @@ import {
   Create,
   useTranslate,
   SelectInput,
+  usePermissions,
 } from "react-admin";
 import { Typography, Box, Paper } from "@mui/material";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
@@ -14,6 +15,11 @@ import { Separator } from "../Separator/Separator";
 
 export const UserCreate = (props) => {
   const translate = useTranslate();
+  const { permissions } = usePermissions();
+  const isNutritionist = permissions?.role === "nutritionist";
+  const defaultValues = isNutritionist && permissions?.nutritionistId
+    ? { nutritionist_id: permissions.nutritionistId }
+    : {};
 
   return (
     <Box sx={{ p: { xs: 1.5, sm: 3 }, maxWidth: 800, margin: "0 auto" }}>
@@ -80,6 +86,7 @@ export const UserCreate = (props) => {
 
       <Create component="div" {...props}>
         <SimpleForm
+          defaultValues={defaultValues}
           sx={{
             backgroundColor: "#fff",
             border: "1px solid rgba(3, 37, 23, 0.16)",
@@ -119,14 +126,16 @@ export const UserCreate = (props) => {
             <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
               <TextInput source="lastname" isRequired fullWidth />
             </Box>
-            <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
-              <ReferenceInput
-                label={translate("resources.user.fields.nutritionist")}
-                source="nutritionist_id"
-                reference="nutritionist"
-                fullWidth
-              />
-            </Box>
+            {!isNutritionist && (
+              <Box flex={1} mr={{ xs: 0, sm: "0.5em" }}>
+                <ReferenceInput
+                  label={translate("resources.user.fields.nutritionist")}
+                  source="nutritionist_id"
+                  reference="nutritionist"
+                  fullWidth
+                />
+              </Box>
+            )}
           </Box>
           <Separator />
           <Box display={{ xs: "block", sm: "flex", width: "100%" }}>

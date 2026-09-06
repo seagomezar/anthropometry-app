@@ -9,6 +9,7 @@ import {
   FunctionField,
   useRecordContext,
   useShowContext,
+  usePermissions,
 } from 'react-admin';
 import {
   Typography,
@@ -20,6 +21,7 @@ import {
   Chip,
   Divider,
   Paper,
+  Button,
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
@@ -32,6 +34,7 @@ import StraightenIcon from '@mui/icons-material/Straighten';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
+import ShieldIcon from '@mui/icons-material/Shield';
 
 import { MeasurementList } from '../Measurements/MeasurementList';
 import LineChartField from '../LineChartField/LineChartField';
@@ -136,16 +139,80 @@ const UserHeaderCard = () => {
 };
 
 const UserShowView = () => {
-  const { record, isLoading } = useShowContext();
-  const translate = useTranslate();
+  const record = useRecordContext();
   const { isFeatureEnabled } = useFeaturePreferences();
+  const { permissions } = usePermissions();
+  const translate = useTranslate();
 
-  if (isLoading || !record) {
+  if (!record) {
     return (
       <Box sx={{ p: 4, textAlign: 'center' }}>
-        <Typography variant="h6" sx={{ fontFamily: "'EB Garamond', serif", color: '#1b3b2b' }}>
+        <Typography variant="body1" sx={{ fontStyle: 'italic', color: '#5b655f' }}>
           {translate('ra.page.loading', { _: 'Cargando expediente...' })}
         </Typography>
+      </Box>
+    );
+  }
+
+  const isNutritionist = permissions?.role === 'nutritionist';
+  const isUnauthorized =
+    isNutritionist &&
+    permissions?.nutritionistId &&
+    record.nutritionist_id &&
+    Number(record.nutritionist_id) !== Number(permissions.nutritionistId);
+
+  if (isUnauthorized) {
+    return (
+      <Box sx={{ p: 4, maxWidth: 600, margin: '40px auto', textAlign: 'center' }}>
+        <Paper
+          elevation={0}
+          sx={{
+            p: 4,
+            border: '3px double #ba1a1a',
+            borderRadius: '2px',
+            backgroundColor: '#fffaf9',
+          }}
+        >
+          <ShieldIcon sx={{ fontSize: 56, color: '#ba1a1a', mb: 1.5 }} />
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: "'EB Garamond', serif",
+              fontWeight: 700,
+              color: '#ba1a1a',
+              mb: 1,
+            }}
+          >
+            {translate('auth.restricted_title', { _: 'Acceso Restringido' })}
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{
+              fontFamily: "'Inter', sans-serif",
+              color: '#424843',
+              mb: 3,
+              lineHeight: 1.6,
+            }}
+          >
+            {translate('auth.restricted_message', {
+              _: 'Este expediente confidencial pertenece a otro especialista. No tiene permisos para consultar o modificar esta información.',
+            })}
+          </Typography>
+          <Button
+            variant="contained"
+            href="#/user"
+            sx={{
+              backgroundColor: '#1b3b2b',
+              color: '#fcf9f4',
+              fontFamily: "'EB Garamond', serif",
+              fontSize: '15px',
+              fontWeight: 700,
+              '&:hover': { backgroundColor: '#032517' },
+            }}
+          >
+            {translate('auth.return_to_list', { _: 'Volver a Mis Pacientes' })}
+          </Button>
+        </Paper>
       </Box>
     );
   }

@@ -6,7 +6,13 @@ describe('byPassAuthProvider', () => {
     await expect(byPassAuthProvider.checkError()).resolves.toBeUndefined();
     await expect(byPassAuthProvider.checkAuth()).resolves.toBeUndefined();
     await expect(byPassAuthProvider.logout()).resolves.toBeUndefined();
-    await expect(byPassAuthProvider.getIdentity()).resolves.toBeUndefined();
-    await expect(byPassAuthProvider.getPermissions()).resolves.toBeUndefined();
+    await expect(byPassAuthProvider.getIdentity()).resolves.toEqual({
+      id: 'admin',
+      fullName: 'Super Administrador',
+      role: 'admin',
+    });
+    await expect(byPassAuthProvider.getPermissions()).resolves.toEqual({
+      role: 'admin',
+    });
   });
 });
