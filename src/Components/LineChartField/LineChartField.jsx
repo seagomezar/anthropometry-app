@@ -42,15 +42,23 @@ const LineChartField = ({ source }) => {
   const [selectedOption, setSelectedOption] = useState('weight');
   const [dataX, setX] = useState([]);
   const [dataY, setY] = useState([]);
-  const { data } = useGetManyReference('measurement', {
-    target: 'user_id',
-    id: record.id,
-  });
+  const { data } = useGetManyReference(
+    'measurement',
+    {
+      target: 'user_id',
+      id: record?.id,
+    },
+    {
+      enabled: Boolean(record?.id),
+    }
+  );
 
   useEffect(() => {
-    createData('weight');
+    if (record) {
+      createData('weight');
+    }
     // eslint-disable-next-line
-  }, [data]);
+  }, [data, record]);
 
   const createData = (option) => {
     if (data) {
@@ -60,6 +68,8 @@ const LineChartField = ({ source }) => {
       setY(sortedData.map((e) => e[option]));
     }
   };
+
+  if (!record) return null;
 
   return (
     <Card sx={{ maxWidth: '100%' }}>

@@ -25,19 +25,21 @@ const LoginPage = ({ theme }) => {
       container
       spacing={0}
       direction="column"
-      alignItems="center"
-      justify="center"
-      flexDirection="column"
-      style={{ minHeight: '100vh', paddingTop: '8%' }}
+      sx={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '100vh',
+        paddingTop: '8%',
+      }}
     >
-      <Grid item xs={3}>
+      <Grid sx={{ minWidth: 320, maxWidth: 360 }}>
         <Card sx={{ maxWidth: 345 }}>
           <CardHeader
-            style={{ textAlign: 'center' }}
+            sx={{ textAlign: 'center' }}
             title={translate('myroot.welcomelogin')}
           />
-          <CardMedia component="img" image={logo} alt="Paella dish" />
-          <CardContent>
+          <CardMedia component="img" image={logo} alt="Anthropometry Logo" />
+          <CardContent sx={{ textAlign: 'center' }}>
             <Button onClick={handleLogin} variant="contained">
               {translate('myroot.login')}
             </Button>

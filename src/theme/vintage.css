@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Heritage Laboratory Core Variables */
+:root {
+  --vintage-parchment: #fcf9f4;
+  --vintage-surface-low: #f6f3ee;
+  --vintage-surface-container: #f0ede9;
+  --vintage-forest-green: #1b3b2b;
+  --vintage-forest-dark: #032517;
+  --vintage-brass-gold: #c29b38;
+  --vintage-brass-dark: #775a00;
+  --vintage-brass-light: #fed269;
+  --vintage-ink: #1c1c19;
+  --vintage-ink-muted: #424843;
+  --vintage-ledger-border: rgba(3, 37, 23, 0.2);
+}
+
+body {
+  background-color: var(--vintage-parchment);
+  color: var(--vintage-ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headings font */
+h1, h2, h3, h4, h5, h6, .vintage-serif {
+  font-family: 'EB Garamond', Georgia, serif;
+}
+
+/* Monospaced Metrics & Coordinates */
+.vintage-mono, .metric-number {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Ledger Borders & Plinth Cards */
+.ledger-border {
+  border: 1px solid var(--vintage-ledger-border);
+}
+
+.plinth-card {
+  background-color: var(--vintage-surface-low);
+  border: 1px solid var(--vintage-ledger-border);
+  border-top: 3px solid var(--vintage-forest-green);
+  border-radius: 4px;
+}
+
+/* Tactile Brass Toggle Switch from Stitch */
+.brass-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 46px;
+  height: 24px;
+  background: #e5e2dd;
+  border-radius: 12px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid rgba(119, 90, 0, 0.35);
+  transition: background 0.25s ease, border-color 0.25s ease;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.brass-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #ffdf99 0%, #ecc15a 50%, #c29b38 100%);
+  border-radius: 50%;
+  border: 1px solid #775a00;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brass-toggle:checked {
+  background: #c7ebd4;
+  border-color: var(--vintage-forest-green);
+}
+
+.brass-toggle:checked::after {
+  transform: translateX(22px);
+  background: linear-gradient(135deg, #ffeaad 0%, #fed269 50%, #d4a737 100%);
+}
+
+.brass-toggle:focus {
+  outline: 2px solid rgba(194, 155, 56, 0.5);
+  outline-offset: 2px;
+}
+
+/* Status Pill Badges */
+.badge-active {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  background-color: rgba(3, 37, 23, 0.08);
+  color: var(--vintage-forest-dark);
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(3, 37, 23, 0.25);
+}
+
+.badge-inactive {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  background-color: rgba(140, 130, 120, 0.1);
+  color: var(--vintage-ink-muted);
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(140, 130, 120, 0.25);
+}

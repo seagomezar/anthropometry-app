@@ -4,6 +4,7 @@ import { Chart } from 'chart.js/auto';
 const ScatterChart = ({ labels, points, title }) => {
   React.useEffect(() => {
     const ctx = document.getElementById(title);
+    if (!ctx) return;
 
     const graph = new Chart(ctx, {
       type: 'scatter',

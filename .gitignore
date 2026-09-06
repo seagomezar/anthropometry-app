@@ -10,16 +10,28 @@
 
 # production
 /build
+/dist
 
-# misc
-.DS_Store
+# environment files
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# misc
+.DS_Store
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 /cypress/videos
+
+# Stitch mockups & local scratch
+/detalle_de_somatotipo
+/detalle_de_somatotipo_desktop
+/formulario_de_somatotipo
+/formulario_de_somatotipo_desktop
+/somatotype_vitality_system
+/tasks
+screen.png

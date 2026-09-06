@@ -6,7 +6,8 @@ const BarChart = ({ x, y, title, description, ariaLabel }) => {
 
   React.useEffect(() => {
     if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d');
+      const ctx = canvasRef.current.getContext ? canvasRef.current.getContext('2d') : null;
+      if (!ctx) return;
 
       const graph = new Chart(ctx, {
         type: 'bar',

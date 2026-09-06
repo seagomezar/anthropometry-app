@@ -1,0 +1,8 @@
+{
+  "user": true,
+  "measurement": true,
+  "nutritionist": true,
+  "referenced_somatotype": true,
+  "results_analytics": true,
+  "pdf_export": true
+}
