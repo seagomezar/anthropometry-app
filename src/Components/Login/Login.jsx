@@ -19,8 +19,6 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
-import ShieldIcon from '@mui/icons-material/Shield';
-import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -52,12 +50,6 @@ const LoginPage = () => {
         setErrorMessage(msg);
         notify(msg, { type: 'error' });
       });
-  };
-
-  const handleQuickFill = (user, pass) => {
-    setUsername(user);
-    setPassword(pass);
-    setErrorMessage('');
   };
 
   return (
@@ -204,7 +196,7 @@ const LoginPage = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 autoComplete="username"
                 disabled={loading}
-                placeholder="ej: wilravec18@gmail.com o admin"
+                placeholder="ej: usuario@ejemplo.com"
                 slotProps={{
                   input: {
                     startAdornment: (
@@ -316,65 +308,6 @@ const LoginPage = () => {
                 : translate('auth.login_button', { _: 'Entrar al Atelier' })}
             </Button>
           </form>
-
-          {/* Quick Access Credentials helper badge */}
-          <Divider sx={{ my: 3, borderColor: 'rgba(3, 37, 23, 0.15)' }}>
-            <Typography
-              variant="caption"
-              sx={{
-                color: '#727973',
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '10px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-              }}
-            >
-              Acceso Rápido / Credenciales
-            </Typography>
-          </Divider>
-
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Chip
-              icon={<ShieldIcon fontSize="small" sx={{ color: '#1b3b2b !important' }} />}
-              label="Super Admin (Ver todo + Crear nutricionistas)"
-              variant="outlined"
-              onClick={() => handleQuickFill('admin@anthropometry.com', 'Admin2026!')}
-              sx={{
-                justifyContent: 'flex-start',
-                py: 2,
-                borderRadius: '2px',
-                borderColor: 'rgba(194, 155, 56, 0.5)',
-                backgroundColor: '#faf7f2',
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '12px',
-                color: '#032517',
-                '&:hover': {
-                  backgroundColor: '#f5efe4',
-                  borderColor: '#c29b38',
-                },
-              }}
-            />
-            <Chip
-              icon={<LocalPharmacyIcon fontSize="small" sx={{ color: '#1b3b2b !important' }} />}
-              label="Dr. Wilson Rave (Nutricionista — solo sus pacientes)"
-              variant="outlined"
-              onClick={() => handleQuickFill('wilravec18@gmail.com', 'WilsonRave2026!')}
-              sx={{
-                justifyContent: 'flex-start',
-                py: 2,
-                borderRadius: '2px',
-                borderColor: 'rgba(3, 37, 23, 0.3)',
-                backgroundColor: '#faf7f2',
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '12px',
-                color: '#032517',
-                '&:hover': {
-                  backgroundColor: '#f5efe4',
-                  borderColor: '#1b3b2b',
-                },
-              }}
-            />
-          </Box>
         </CardContent>
       </Card>
     </Box>

@@ -216,14 +216,14 @@ export const MeasurementList = (props) => {
   const { permissions } = usePermissions();
 
   const isNutritionist = permissions?.role === "nutritionist";
-  const permanentFilter =
+  const mergedFilter =
     isNutritionist && permissions?.nutritionistId
-      ? { nutritionist_id: permissions.nutritionistId }
-      : undefined;
+      ? { ...(props.filter || {}), nutritionist_id: permissions.nutritionistId }
+      : props.filter;
 
   return (
     <Box sx={{ p: { xs: 1, sm: 2 } }}>
-      <List filters={measurementFilters} filter={permanentFilter} component="div" {...props}>
+      <List {...props} filters={measurementFilters} filter={mergedFilter} component="div">
         <MeasurementListHeader />
         {isSmall ? (
           <SimpleList

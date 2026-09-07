@@ -78,12 +78,11 @@ const authProvider = {
     const nutritionist = await queryNutritionist(rawUsername);
     if (nutritionist) {
       const storedPassword = (nutritionist.password || '').trim();
-      const validPassword = storedPassword || 'WilsonRave2026!';
-      
-      if (rawPassword === validPassword) {
+
+      if (storedPassword && rawPassword === storedPassword) {
         const session = {
           id: nutritionist.id,
-          fullName: `${nutritionist.firstname || ''} ${nutritionist.lastname || ''}`.trim(),
+          fullName: `${nutritionist.firstname || ''} ${nutritionist.lastname || ''}`.trim() || 'Especialista',
           email: (nutritionist.email || rawUsername).trim(),
           role: 'nutritionist',
           nutritionistId: nutritionist.id,
@@ -91,22 +90,6 @@ const authProvider = {
         localStorage.setItem('anthropometry_session', JSON.stringify(session));
         return Promise.resolve({ redirectTo: '/' });
       }
-    }
-
-    // Default demo fallback for Wilson Rave if offline/network error
-    if (
-      (rawUsername === 'wilravec18@gmail.com' || rawUsername.includes('wilrave')) &&
-      rawPassword === 'WilsonRave2026!'
-    ) {
-      const session = {
-        id: 1,
-        fullName: 'Wilson Rave',
-        email: 'wilravec18@gmail.com',
-        role: 'nutritionist',
-        nutritionistId: 1,
-      };
-      localStorage.setItem('anthropometry_session', JSON.stringify(session));
-      return Promise.resolve({ redirectTo: '/' });
     }
 
     return Promise.reject(new Error('auth.invalid_credentials'));

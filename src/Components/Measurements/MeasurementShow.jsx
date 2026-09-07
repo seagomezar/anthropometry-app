@@ -78,6 +78,7 @@ const MetricItem = ({ label, value, unit = "" }) => (
 export const MeasurementShowLayout = React.memo(() => {
   const translate = useTranslate();
   const { error, record, isLoading } = useShowContext();
+  const { permissions } = usePermissions();
   const { isFeatureEnabled } = useFeaturePreferences();
 
   const [user, setUser] = React.useState({});
@@ -152,13 +153,10 @@ export const MeasurementShowLayout = React.memo(() => {
     );
   }
 
-  const { permissions } = usePermissions();
   const isNutritionist = permissions?.role === "nutritionist";
   const isUnauthorized =
     isNutritionist &&
-    permissions?.nutritionistId &&
-    record.nutritionist_id &&
-    Number(record.nutritionist_id) !== Number(permissions.nutritionistId);
+    (!record.nutritionist_id || Number(record.nutritionist_id) !== Number(permissions?.nutritionistId));
 
   if (isUnauthorized) {
     return (

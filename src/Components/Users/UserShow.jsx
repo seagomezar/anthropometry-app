@@ -157,9 +157,7 @@ const UserShowView = () => {
   const isNutritionist = permissions?.role === 'nutritionist';
   const isUnauthorized =
     isNutritionist &&
-    permissions?.nutritionistId &&
-    record.nutritionist_id &&
-    Number(record.nutritionist_id) !== Number(permissions.nutritionistId);
+    (!record.nutritionist_id || Number(record.nutritionist_id) !== Number(permissions?.nutritionistId));
 
   if (isUnauthorized) {
     return (

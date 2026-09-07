@@ -21,6 +21,16 @@ export const UserCreate = (props) => {
     ? { nutritionist_id: permissions.nutritionistId }
     : {};
 
+  const transform = (data) => {
+    if (isNutritionist && permissions?.nutritionistId) {
+      return {
+        ...data,
+        nutritionist_id: permissions.nutritionistId,
+      };
+    }
+    return data;
+  };
+
   return (
     <Box sx={{ p: { xs: 1.5, sm: 3 }, maxWidth: 800, margin: "0 auto" }}>
       <Paper
@@ -84,7 +94,7 @@ export const UserCreate = (props) => {
         </Box>
       </Paper>
 
-      <Create component="div" {...props}>
+      <Create component="div" transform={transform} {...props}>
         <SimpleForm
           defaultValues={defaultValues}
           sx={{

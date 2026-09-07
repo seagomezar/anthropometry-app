@@ -6,6 +6,7 @@ import {
   TextInput,
   useTranslate,
   AutocompleteInput,
+  usePermissions,
 } from "react-admin";
 import { Box, Typography, Paper, Grid } from "@mui/material";
 import StraightenIcon from "@mui/icons-material/Straighten";
@@ -54,6 +55,12 @@ const SectionCard = ({ title, icon: Icon, children }) => (
 
 export const MeasurementFormFields = () => {
   const translate = useTranslate();
+  const { permissions } = usePermissions();
+  const isNutritionist = permissions?.role === "nutritionist";
+  const userFilter =
+    isNutritionist && permissions?.nutritionistId
+      ? { nutritionist_id: permissions.nutritionistId }
+      : undefined;
 
   return (
     <Box sx={{ width: "100%", maxWidth: 860, margin: "0 auto" }}>
@@ -66,7 +73,12 @@ export const MeasurementFormFields = () => {
       >
         <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
           <Box flex={1}>
-            <ReferenceInput source="user_id" reference="user" fullWidth>
+            <ReferenceInput
+              source="user_id"
+              reference="user"
+              filter={userFilter}
+              fullWidth
+            >
               <AutocompleteInput filterToQuery={userToQuery} />
             </ReferenceInput>
           </Box>
@@ -85,13 +97,15 @@ export const MeasurementFormFields = () => {
           <Box flex={1}>
             <NumberInput source="control" fullWidth />
           </Box>
-          <Box flex={1}>
-            <ReferenceInput
-              source="nutritionist_id"
-              reference="nutritionist"
-              fullWidth
-            />
-          </Box>
+          {!isNutritionist && (
+            <Box flex={1}>
+              <ReferenceInput
+                source="nutritionist_id"
+                reference="nutritionist"
+                fullWidth
+              />
+            </Box>
+          )}
         </Box>
 
         <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>

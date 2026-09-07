@@ -51,6 +51,26 @@ describe('authProvider RBAC and Credentials', () => {
     expect(identity.role).toBe('nutritionist');
   });
 
+  it('authenticates second Nutritionist (Carolina Gomez) and scopes permissions to her nutritionistId', async () => {
+    const loginResult = await authProvider.login({
+      username: 'carolina.gomez@anthropometry.com',
+      password: 'Carolina2026!',
+    });
+    expect(loginResult).toEqual({ redirectTo: '/' });
+
+    await expect(authProvider.checkAuth()).resolves.toBeUndefined();
+
+    const permissions = await authProvider.getPermissions();
+    expect(permissions).toEqual({
+      role: 'nutritionist',
+      nutritionistId: 2,
+    });
+
+    const identity = await authProvider.getIdentity();
+    expect(identity.fullName).toContain('Carolina');
+    expect(identity.role).toBe('nutritionist');
+  });
+
   it('rejects invalid credentials', async () => {
     await expect(
       authProvider.login({
