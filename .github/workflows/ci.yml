@@ -1,0 +1,71 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    name: Test & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Vitest tests
+        run: npm test
+
+      - name: Build production bundle
+        run: npm run build
+        env:
+          REACT_APP_HASURA_GRAPHQL_URL: ${{ secrets.REACT_APP_HASURA_GRAPHQL_URL || 'https://nutrition-app.hasura.app/v1/graphql' }}
+          REACT_APP_HASURA_ADMIN_SECRET: ${{ secrets.REACT_APP_HASURA_ADMIN_SECRET || secrets.REACT_APP_HASHURA_API_KEY }}
+          REACT_APP_ENABLE_LOGIN: ${{ secrets.REACT_APP_ENABLE_LOGIN || 'false' }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: test-and-build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: anthropometry.sebastian-gomez.com
