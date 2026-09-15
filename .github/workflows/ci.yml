@@ -33,6 +33,10 @@ jobs:
 
       - name: Run Vitest tests
         run: npm test
+        env:
+          REACT_APP_HASURA_GRAPHQL_URL: ${{ secrets.REACT_APP_HASURA_GRAPHQL_URL || 'https://nutrition-app.hasura.app/v1/graphql' }}
+          REACT_APP_HASURA_ADMIN_SECRET: ${{ secrets.REACT_APP_HASURA_ADMIN_SECRET || secrets.REACT_APP_HASHURA_API_KEY }}
+          REACT_APP_ENABLE_LOGIN: ${{ secrets.REACT_APP_ENABLE_LOGIN || 'false' }}
 
       - name: Build production bundle
         run: npm run build

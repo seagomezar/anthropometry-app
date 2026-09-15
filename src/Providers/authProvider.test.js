@@ -1,9 +1,75 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import authProvider from './authProvider';
+import { hashPassword } from '../Utils/cryptoUtils';
 
 describe('authProvider RBAC and Credentials', () => {
-  beforeEach(() => {
+  let originalFetch;
+
+  beforeEach(async () => {
     localStorage.clear();
+    originalFetch = global.fetch;
+
+    const wilsonHash = await hashPassword('WilsonRave2026!');
+    const carolinaHash = await hashPassword('Carolina2026!');
+
+    global.fetch = vi.fn(async (url, options) => {
+      try {
+        const body = JSON.parse(options?.body || '{}');
+        const email = (body?.variables?.email || '').replace(/%/g, '').toLowerCase();
+
+        if (email.includes('wilravec18')) {
+          return {
+            ok: true,
+            json: async () => ({
+              data: {
+                nutritionist: [
+                  {
+                    id: 1,
+                    firstname: 'Wilson',
+                    lastname: 'Rave',
+                    email: 'wilravec18@gmail.com',
+                    password: wilsonHash,
+                  },
+                ],
+              },
+            }),
+          };
+        }
+
+        if (email.includes('carolina.gomez')) {
+          return {
+            ok: true,
+            json: async () => ({
+              data: {
+                nutritionist: [
+                  {
+                    id: 2,
+                    firstname: 'Carolina',
+                    lastname: 'Gomez',
+                    email: 'carolina.gomez@anthropometry.com',
+                    password: carolinaHash,
+                  },
+                ],
+              },
+            }),
+          };
+        }
+
+        return {
+          ok: true,
+          json: async () => ({ data: { nutritionist: [] } }),
+        };
+      } catch (e) {
+        return {
+          ok: true,
+          json: async () => ({ data: { nutritionist: [] } }),
+        };
+      }
+    });
+  });
+
+  afterEach(() => {
+    global.fetch = originalFetch;
   });
 
   it('authenticates Super Admin with valid credentials and provides admin permissions', async () => {
