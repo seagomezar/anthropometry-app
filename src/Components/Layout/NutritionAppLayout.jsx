@@ -262,5 +262,35 @@ const NutritionAppBar = (props) => {
 };
 
 export const NutritionAppLayout = (props) => (
-  <Layout {...props} appBar={NutritionAppBar} menu={NutritionAppMenu} />
+  <Layout
+    {...props}
+    appBar={NutritionAppBar}
+    menu={NutritionAppMenu}
+    sx={{
+      minWidth: 0,
+      width: '100%',
+      maxWidth: '100vw',
+      overflowX: 'hidden',
+      '& .RaLayout-appFrame': {
+        minWidth: 0,
+        width: '100%',
+        maxWidth: '100%',
+        overflowX: 'hidden',
+        boxSizing: 'border-box',
+      },
+      '& .RaLayout-contentWithSidebar': {
+        flex: '1 1 0%',
+        minWidth: 0,
+        maxWidth: '100%',
+        overflowX: 'hidden',
+        boxSizing: 'border-box',
+      },
+      '& .RaLayout-content': {
+        flex: '1 1 0%',
+        minWidth: 0,
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+      },
+    }}
+  />
 );

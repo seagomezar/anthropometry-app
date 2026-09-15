@@ -213,7 +213,7 @@ export const NutritionistList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={{ p: { xs: 1, sm: 2 } }}>
+    <Box sx={{ p: { xs: 1, sm: 2 }, width: "100%", maxWidth: "100%", boxSizing: "border-box" }}>
       <List filters={nutricionistaFilters} component="div">
         <NutritionistListHeader />
         {isSmall ? (
@@ -227,9 +227,10 @@ export const NutritionistList = () => {
               backgroundColor: "#fcf9f4",
               border: "1px solid rgba(3, 37, 23, 0.18)",
               borderLeft: "4px solid #c29b38",
-              borderRadius: "2px",
-              margin: "8px 0",
-              padding: "10px 12px",
+              borderRadius: "3px",
+              margin: "10px 0",
+              padding: "12px 14px",
+              boxShadow: "0 1px 4px rgba(27, 59, 43, 0.05)",
             })}
             linkType="show"
           />
@@ -237,17 +238,31 @@ export const NutritionistList = () => {
           <Paper
             elevation={0}
             sx={{
-              border: "3px double #1b3b2b",
-              borderRadius: "2px",
+              width: "100%",
+              maxWidth: "100%",
+              boxSizing: "border-box",
+              border: "2px solid #1b3b2b",
+              borderRadius: "3px",
               overflow: "hidden",
               backgroundColor: "#fff",
-              boxShadow: "0 2px 8px rgba(27, 59, 43, 0.08)",
+              boxShadow: "0 2px 10px rgba(27, 59, 43, 0.08)",
             }}
           >
-            <Datagrid
-              rowClick="show"
+            <Box
+              className="vintage-table-container"
               sx={{
-                boxShadow: "none",
+                width: "100%",
+                maxWidth: "100%",
+                overflowX: "auto",
+                WebkitOverflowScrolling: "touch",
+              }}
+            >
+              <Datagrid
+                rowClick="show"
+                sx={{
+                  width: "100%",
+                  minWidth: 950,
+                  boxShadow: "none",
                 "& .MuiTableCell-head": {
                   fontWeight: 700,
                   backgroundColor: "#1b3b2b",
@@ -312,8 +327,9 @@ export const NutritionistList = () => {
               <EditButton />
               <DeleteButton />
             </Datagrid>
-            <NutritionistListLedgerFooter />
-          </Paper>
+          </Box>
+          <NutritionistListLedgerFooter />
+        </Paper>
         )}
       </List>
     </Box>
