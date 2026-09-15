@@ -19,6 +19,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
+import { ForgotPasswordModal } from './ForgotPasswordModal';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -26,6 +27,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [forgotOpen, setForgotOpen] = useState(false);
 
   const login = useLogin();
   const notify = useNotify();
@@ -278,6 +280,29 @@ const LoginPage = () => {
                   },
                 }}
               />
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
+                <Button
+                  variant="text"
+                  size="small"
+                  onClick={() => setForgotOpen(true)}
+                  sx={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '12px',
+                    color: '#032517',
+                    textTransform: 'none',
+                    p: 0,
+                    minWidth: 'auto',
+                    textDecoration: 'underline',
+                    textUnderlineOffset: '3px',
+                    '&:hover': {
+                      color: '#c29b38',
+                      backgroundColor: 'transparent',
+                    },
+                  }}
+                >
+                  {translate('forgot_password.link', { _: '¿Olvidó su contraseña?' })}
+                </Button>
+              </Box>
             </Box>
 
             <Button
@@ -310,6 +335,11 @@ const LoginPage = () => {
           </form>
         </CardContent>
       </Card>
+
+      <ForgotPasswordModal
+        open={forgotOpen}
+        onClose={() => setForgotOpen(false)}
+      />
     </Box>
   );
 };

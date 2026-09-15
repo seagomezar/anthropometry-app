@@ -1,3 +1,5 @@
+import { verifyPassword, hashPassword } from '../Utils/cryptoUtils';
+
 const adminEmail = (process.env.REACT_APP_ADMIN_EMAIL || 'admin@anthropometry.com').toLowerCase().trim();
 const adminPassword = process.env.REACT_APP_ADMIN_PASSWORD || 'Admin2026!';
 
@@ -74,12 +76,13 @@ const authProvider = {
       return Promise.resolve({ redirectTo: '/' });
     }
 
-    // 2. Check Nutritionist Credentials via Hasura DB
+    // 2. Check Nutritionist Credentials via Hasura DB (salted hash or legacy plaintext)
     const nutritionist = await queryNutritionist(rawUsername);
     if (nutritionist) {
       const storedPassword = (nutritionist.password || '').trim();
+      const isValid = await verifyPassword(rawPassword, storedPassword);
 
-      if (storedPassword && rawPassword === storedPassword) {
+      if (isValid) {
         const session = {
           id: nutritionist.id,
           fullName: `${nutritionist.firstname || ''} ${nutritionist.lastname || ''}`.trim() || 'Especialista',
@@ -157,6 +160,127 @@ const authProvider = {
     }
     return Promise.resolve(null);
   },
+
+  getNutritionistProfile: async (id) => {
+    try {
+      const response = await fetch(hasuraUri, {
+        method: 'POST',
+        headers: getHasuraHeaders(),
+        body: JSON.stringify({
+          query: `
+            query GetNutritionistDetails($id: Int!) {
+              nutritionist_by_pk(id: $id) {
+                id
+                firstname
+                lastname
+                email
+                phone
+                address
+                password
+                users_aggregate {
+                  aggregate {
+                    count
+                  }
+                }
+              }
+            }
+          `,
+          variables: { id: Number(id) },
+        }),
+      });
+      const result = await response.json();
+      return result?.data?.nutritionist_by_pk || null;
+    } catch (err) {
+      console.warn('Could not fetch nutritionist details:', err);
+      return null;
+    }
+  },
+
+  updateNutritionistProfile: async ({
+    id,
+    firstname,
+    lastname,
+    phone,
+    address,
+    currentPassword,
+    newPassword,
+  }) => {
+    // 1. Fetch current record to verify password
+    const current = await authProvider.getNutritionistProfile(id);
+    if (!current) throw new Error('profile.not_found');
+
+    // Verify current password
+    const storedPassword = (current.password || '').trim();
+    const isCurrentValid = await verifyPassword(currentPassword, storedPassword);
+    if (!isCurrentValid) {
+      throw new Error('profile.current_password_invalid');
+    }
+
+    const changes = {
+      firstname: firstname !== undefined ? firstname : current.firstname,
+      lastname: lastname !== undefined ? lastname : current.lastname,
+      phone: phone !== undefined ? phone : current.phone,
+      address: address !== undefined ? address : current.address,
+    };
+
+    if (newPassword && newPassword.trim()) {
+      changes.password = await hashPassword(newPassword.trim());
+    }
+
+    const response = await fetch(hasuraUri, {
+      method: 'POST',
+      headers: getHasuraHeaders(),
+      body: JSON.stringify({
+        query: `
+          mutation UpdateNutritionist($id: Int!, $changes: nutritionist_set_input!) {
+            update_nutritionist_by_pk(pk_columns: { id: $id }, _set: $changes) {
+              id
+              firstname
+              lastname
+              email
+              phone
+              address
+            }
+          }
+        `,
+        variables: {
+          id: Number(id),
+          changes,
+        },
+      }),
+    });
+
+    const result = await response.json();
+    const updated = result?.data?.update_nutritionist_by_pk;
+    if (!updated) throw new Error('profile.update_failed');
+
+    // Update local session identity if name changed
+    const session = localStorage.getItem('anthropometry_session');
+    if (session) {
+      try {
+        const parsed = JSON.parse(session);
+        if (Number(parsed.id) === Number(id)) {
+          parsed.fullName = `${updated.firstname || ''} ${updated.lastname || ''}`.trim() || parsed.fullName;
+          localStorage.setItem('anthropometry_session', JSON.stringify(parsed));
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    return updated;
+  },
+
+  requestPasswordAssistance: async (email) => {
+    const rawEmail = (email || '').toLowerCase().trim();
+    if (!rawEmail) throw new Error('forgot_password.empty_email');
+    const existing = await queryNutritionist(rawEmail);
+    return {
+      recognized: !!existing,
+      email: rawEmail,
+    };
+  },
 };
 
 export default authProvider;
+

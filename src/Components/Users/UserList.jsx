@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TextInput,
   List,
@@ -16,10 +16,12 @@ import {
   ReferenceInput,
   SelectInput,
 } from "react-admin";
-import { useMediaQuery, Box, Typography, Paper, Chip } from "@mui/material";
+import { useMediaQuery, Box, Typography, Paper, Chip, Button } from "@mui/material";
 import FolderSharedIcon from "@mui/icons-material/FolderShared";
 import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useFeaturePreferences } from "../../config/features";
+import { UserImportModal } from "./UserImportModal";
 
 const filterInputStyles = {
   "& .MuiOutlinedInput-root": {
@@ -69,7 +71,7 @@ const adminUserFilters = [
   </ReferenceInput>,
 ];
 
-const UserListHeader = () => {
+const UserListHeader = ({ onOpenImport }) => {
   const translate = useTranslate();
   const { total, data } = useListContext();
   const { permissions } = usePermissions();
@@ -142,6 +144,29 @@ const UserListHeader = () => {
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+        {onOpenImport && (
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={onOpenImport}
+            startIcon={<UploadFileIcon />}
+            sx={{
+              borderColor: "#c29b38",
+              color: "#032517",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 600,
+              fontSize: "12px",
+              textTransform: "none",
+              backgroundColor: "#fff",
+              "&:hover": {
+                borderColor: "#032517",
+                backgroundColor: "rgba(194, 155, 56, 0.15)",
+              },
+            }}
+          >
+            {translate("import_csv.button", { _: "Importar CSV" })}
+          </Button>
+        )}
         {isNutritionist && (
           <Chip
             icon={<LocalPharmacyIcon fontSize="small" sx={{ color: "#1b3b2b !important" }} />}
@@ -239,6 +264,7 @@ export const UserList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const { isFeatureEnabled } = useFeaturePreferences();
   const { permissions } = usePermissions();
+  const [importOpen, setImportOpen] = useState(false);
 
   const isNutritionist = permissions?.role === "nutritionist";
   const permanentFilter =
@@ -254,7 +280,7 @@ export const UserList = (props) => {
         filter={permanentFilter}
         component="div"
       >
-        <UserListHeader />
+        <UserListHeader onOpenImport={() => setImportOpen(true)} />
         {isSmall ? (
           <SimpleList
             primaryText={(record) => `${record.firstname || ""} ${record.lastname || ""}`}
@@ -374,6 +400,11 @@ export const UserList = (props) => {
           </Paper>
         )}
       </List>
+
+      <UserImportModal
+        open={importOpen}
+        onClose={() => setImportOpen(false)}
+      />
     </Box>
   );
 };
