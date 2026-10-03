@@ -25,6 +25,11 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import MonitorWeightIcon from "@mui/icons-material/MonitorWeight";
 import HeightIcon from "@mui/icons-material/Height";
 import ShieldIcon from "@mui/icons-material/Shield";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
+import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
+import ScienceIcon from "@mui/icons-material/Science";
+import PersonIcon from "@mui/icons-material/Person";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 import { Link as RouterLink } from "react-router-dom";
 
 import { generateResults } from "../../Providers/retultsProvider";
@@ -329,17 +334,19 @@ export const MeasurementShowLayout = React.memo(() => {
               <Button
                 component={RouterLink}
                 to={`/results/${record.id}`}
-                variant="outlined"
-                startIcon={<RemoveRedEyeIcon />}
+                variant="contained"
+                startIcon={<AnalyticsIcon />}
                 sx={{
-                  borderColor: "#c29b38",
-                  color: "#775a00",
-                  backgroundColor: "#fff",
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 600,
+                  backgroundColor: "#c29b38",
+                  color: "#032517",
+                  fontFamily: "'EB Garamond', serif",
+                  fontSize: "14.5px",
+                  fontWeight: 700,
+                  border: "1px solid #775a00",
+                  boxShadow: "0 2px 6px rgba(194, 155, 56, 0.4)",
                   "&:hover": {
-                    borderColor: "#775a00",
-                    backgroundColor: "rgba(194, 155, 56, 0.1)",
+                    backgroundColor: "#b38a2e",
+                    color: "#000",
                   },
                 }}
               >
@@ -507,52 +514,62 @@ export const MeasurementShowLayout = React.memo(() => {
           </Typography>
           <MetricItem
             label={translate("measurement_show.triceps", { _: "Tríceps" })}
-            value={record.triceps}
+            value={record.plg_triceps ?? record.triceps}
+            unit="mm"
+          />
+          <MetricItem
+            label={translate("measurement_show.biceps", { _: "Bíceps" })}
+            value={record.plg_bicep ?? record.biceps}
             unit="mm"
           />
           <MetricItem
             label={translate("measurement_show.subscapular", {
               _: "Subescapular",
             })}
-            value={record.subscapular}
-            unit="mm"
-          />
-          <MetricItem
-            label={translate("measurement_show.biceps", { _: "Bíceps" })}
-            value={record.biceps}
+            value={record.plg_subscapular ?? record.subscapular}
             unit="mm"
           />
           <MetricItem
             label={translate("measurement_show.iliac_crest", {
               _: "Cresta Ilíaca",
             })}
-            value={record.iliac_crest}
+            value={record.plg_suprailiac ?? record.iliac_crest}
             unit="mm"
           />
           <MetricItem
             label={translate("measurement_show.supraspinale", {
               _: "Supraespinal",
             })}
-            value={record.supraspinale}
+            value={record.plg_supraspinal ?? record.supraspinale}
             unit="mm"
           />
           <MetricItem
             label={translate("measurement_show.abdominal", { _: "Abdominal" })}
-            value={record.abdominal}
+            value={record.plg_abdominal ?? record.abdominal}
             unit="mm"
           />
           <MetricItem
             label={translate("measurement_show.front_thigh", {
               _: "Muslo Anterior",
             })}
-            value={record.front_thigh}
+            value={record.plg_thigh ?? record.front_thigh}
             unit="mm"
           />
           <MetricItem
             label={translate("measurement_show.medial_calf", {
               _: "Pantorrilla Medial",
             })}
-            value={record.medial_calf}
+            value={record.plg_calf ?? record.medial_calf}
+            unit="mm"
+          />
+          <MetricItem
+            label="Pectoral / Pecho"
+            value={record.plg_chest}
+            unit="mm"
+          />
+          <MetricItem
+            label="Axilar Medio"
+            value={record.plg_armpit}
             unit="mm"
           />
         </Paper>
@@ -586,63 +603,46 @@ export const MeasurementShowLayout = React.memo(() => {
             label={translate("measurement_show.arm_relaxed", {
               _: "Brazo Relajado",
             })}
-            value={record.arm_relaxed}
+            value={record.prm_arm ?? record.arm_relaxed}
             unit="cm"
           />
           <MetricItem
             label={translate("measurement_show.arm_flexed", {
               _: "Brazo Flexionado",
             })}
-            value={record.arm_flexed}
-            unit="cm"
-          />
-          <MetricItem
-            label={translate("measurement_show.forearm", { _: "Antebrazo" })}
-            value={record.forearm}
+            value={record.prm_arm_contracted ?? record.arm_flexed}
             unit="cm"
           />
           <MetricItem
             label={translate("measurement_show.wrist", { _: "Muñeca" })}
-            value={record.wrist}
-            unit="cm"
-          />
-          <MetricItem
-            label={translate("measurement_show.chest", { _: "Tórax" })}
-            value={record.chest}
+            value={record.prm_wrist ?? record.wrist}
             unit="cm"
           />
           <MetricItem
             label={translate("measurement_show.waist", { _: "Cintura" })}
-            value={record.waist}
+            value={record.prm_waist ?? record.waist}
             unit="cm"
           />
           <MetricItem
             label={translate("measurement_show.hip", { _: "Cadera" })}
-            value={record.hip}
+            value={record.prm_hip ?? record.hip}
             unit="cm"
           />
           <MetricItem
             label={translate("measurement_show.thigh", {
               _: "Muslo Superior",
             })}
-            value={record.thigh}
-            unit="cm"
-          />
-          <MetricItem
-            label={translate("measurement_show.thigh_mid", {
-              _: "Muslo Medio",
-            })}
-            value={record.mid_thigh}
+            value={record.prm_thigh ?? record.thigh}
             unit="cm"
           />
           <MetricItem
             label={translate("measurement_show.calf", { _: "Pantorrilla" })}
-            value={record.calf}
+            value={record.prm_calf ?? record.calf}
             unit="cm"
           />
           <MetricItem
-            label={translate("measurement_show.ankle", { _: "Tobillo" })}
-            value={record.ankle}
+            label={translate("measurement_show.chest", { _: "Tórax" })}
+            value={record.prm_chest ?? record.chest}
             unit="cm"
           />
         </Paper>
@@ -669,49 +669,22 @@ export const MeasurementShowLayout = React.memo(() => {
             }}
           >
             {translate("measurement_show.section_d", {
-              _: "Sección D: Diámetros Óseos & Somatotipo (cm)",
+              _: "Sección D: Diámetros Óseos (cm)",
             })}
           </Typography>
           <MetricItem
-            label={translate("measurement_show.biacromial", {
-              _: "Biacromial",
-            })}
-            value={record.biacromial}
+            label="Biepicondilar Húmero / Codo"
+            value={record.dm_elbow}
             unit="cm"
           />
           <MetricItem
-            label={translate("measurement_show.transverse_chest", {
-              _: "Tórax Transverso",
-            })}
-            value={record.transverse_chest}
+            label="Biepicondilar Fémur / Rodilla"
+            value={record.dm_knee}
             unit="cm"
           />
           <MetricItem
-            label={translate("measurement_show.anterior_posterior_chest", {
-              _: "Tórax Anteroposterior",
-            })}
-            value={record.antero_posterior_chest_depth}
-            unit="cm"
-          />
-          <MetricItem
-            label={translate("measurement_show.biiliocristal", {
-              _: "Bi-iliocrestal",
-            })}
-            value={record.bi_iliocristal}
-            unit="cm"
-          />
-          <MetricItem
-            label={translate("measurement_show.humerus", {
-              _: "Humeral (Húmero)",
-            })}
-            value={record.humerus}
-            unit="cm"
-          />
-          <MetricItem
-            label={translate("measurement_show.femur", {
-              _: "Femoral (Fémur)",
-            })}
-            value={record.femur}
+            label="Biestiloideo Muñeca"
+            value={record.dm_wrist}
             unit="cm"
           />
 
@@ -732,32 +705,225 @@ export const MeasurementShowLayout = React.memo(() => {
               />
             </>
           )}
+        </Paper>
 
+        {/* Card 5: Coordenadas, Somatotipo & Indicadores Calculados */}
+        <Paper
+          sx={{
+            p: 2.5,
+            border: "1px solid rgba(3, 37, 23, 0.15)",
+            borderTop: "3px solid #1b3b2b",
+            borderRadius: 1,
+            backgroundColor: "#fff",
+          }}
+        >
+          <Typography
+            variant="h6"
+            sx={{
+              fontFamily: "'EB Garamond', serif",
+              fontWeight: 700,
+              color: "#032517",
+              mb: 1.5,
+              pb: 0.5,
+              borderBottom: "1px solid rgba(3, 37, 23, 0.12)",
+            }}
+          >
+            {translate("measurement_show.section_e", {
+              _: "Sección E: Somatotipo & Composición Corporal",
+            })}
+          </Typography>
           {results && (
             <>
-              <Divider sx={{ my: 1.5, borderColor: "rgba(3, 37, 23, 0.1)" }} />
               <MetricItem
-                label={translate("measurement_show.calculated_bmi", {
-                  _: "IMC Calculado",
-                })}
+                label="IMC Calculado"
                 value={results.imc ? results.imc.toFixed(2) : null}
                 unit="kg/m²"
               />
               <MetricItem
-                label={translate("measurement_show.estimated_fat_mass", {
-                  _: "Masa Grasa Estimada",
-                })}
-                value={
-                  results.yhaszFatPercentage
-                    ? results.yhaszFatPercentage.toFixed(1)
-                    : null
-                }
+                label="Endomorfia"
+                value={results.endomorph ? results.endomorph.toFixed(2) : null}
+              />
+              <MetricItem
+                label="Mesomorfia"
+                value={results.mesomorph ? results.mesomorph.toFixed(2) : null}
+              />
+              <MetricItem
+                label="Ectomorfia"
+                value={results.ectomorph ? results.ectomorph.toFixed(2) : null}
+              />
+              <MetricItem
+                label="Coordenada X (Somatocarta)"
+                value={results.resultX ? results.resultX.toFixed(2) : (record.x ?? null)}
+              />
+              <MetricItem
+                label="Coordenada Y (Somatocarta)"
+                value={results.resultY ? results.resultY.toFixed(2) : (record.y ?? null)}
+              />
+              <MetricItem
+                label="Masa Grasa Estimada (Yhasz)"
+                value={results.yhaszFatPercentage ? results.yhaszFatPercentage.toFixed(1) : null}
                 unit="%"
+              />
+              <MetricItem
+                label="Masa Grasa Estimada (Faulkner)"
+                value={results.faulknerFatPercentage ? results.faulknerFatPercentage.toFixed(1) : null}
+                unit="%"
+              />
+              <MetricItem
+                label="Suma de 6 Pliegues"
+                value={results.sumOfPlgs ? results.sumOfPlgs.toFixed(1) : null}
+                unit="mm"
               />
             </>
           )}
+          <MetricItem
+            label="Nivel de Condición Física"
+            value={record.fitness_level}
+          />
+        </Paper>
+
+        {/* Card 6: Exámenes Paraclínicos & Laboratorio */}
+        <Paper
+          sx={{
+            p: 2.5,
+            border: "1px solid rgba(3, 37, 23, 0.15)",
+            borderTop: "3px solid #c29b38",
+            borderRadius: 1,
+            backgroundColor: "#fff",
+            gridColumn: { xs: "1", md: "span 2" },
+          }}
+        >
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1.5, pb: 0.5, borderBottom: "1px solid rgba(194, 155, 56, 0.2)", flexWrap: "wrap", gap: 1 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: "'EB Garamond', serif",
+                fontWeight: 700,
+                color: "#775a00",
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+              }}
+            >
+              <LocalPharmacyIcon sx={{ color: "#775a00", fontSize: 20 }} />
+              {translate("measurement_show.section_f", {
+                _: "Sección F: Exámenes Paraclínicos & Laboratorio (Opcionales)",
+              })}
+            </Typography>
+            <Chip
+              label="Valores Registrados"
+              size="small"
+              sx={{
+                backgroundColor: "rgba(194, 155, 56, 0.12)",
+                color: "#775a00",
+                fontSize: "11px",
+                fontWeight: 600,
+              }}
+            />
+          </Box>
+
+          <Grid container spacing={2}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <MetricItem label="Presión Arterial" value={record.blood_pressure} />
+              <MetricItem label="Glucosa en Ayunas" value={record.glucose} unit="mg/dL" />
+              <MetricItem label="Hemoglobina Glicosilada (HbA1c)" value={record.hba1c} unit="%" />
+              <MetricItem label="Hemoglobina / Hto" value={record.hemoglobin} unit="g/dL" />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <MetricItem label="Colesterol Total" value={record.cholesterol_total} unit="mg/dL" />
+              <MetricItem label="Colesterol HDL" value={record.cholesterol_hdl} unit="mg/dL" />
+              <MetricItem label="Colesterol LDL" value={record.cholesterol_ldl} unit="mg/dL" />
+              <MetricItem label="Triglicéridos" value={record.triglycerides} unit="mg/dL" />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <MetricItem label="Creatinina Sérica" value={record.creatinine} unit="mg/dL" />
+              <MetricItem label="Ácido Úrico" value={record.uric_acid} unit="mg/dL" />
+              <MetricItem label="Perfil Tiroideo (T3 / T4)" value={record.t3_t4} />
+              <MetricItem label="Notas Paraclínicas" value={record.paraclinicals_notes} />
+            </Grid>
+          </Grid>
         </Paper>
       </Box>
+
+      {/* Prominent Bottom Action Bar for Quick Navigation */}
+      <Paper
+        sx={{
+          mt: 3.5,
+          p: 2.5,
+          backgroundColor: "#faf7f2",
+          border: "2px solid #1b3b2b",
+          borderRadius: 1,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 2,
+        }}
+      >
+        <Box>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              fontFamily: "'EB Garamond', serif",
+              fontWeight: 700,
+              color: "#032517",
+            }}
+          >
+            Diagnóstico Morfológico & Análisis de Resultados
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{
+              color: "#424843",
+              fontSize: "13px",
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            Consulte la Somatocarta interactiva, distribución de masas corporales y gráficos comparativos.
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
+          {isFeatureEnabled("results_analytics") && (
+            <Button
+              component={RouterLink}
+              to={`/results/${record.id}`}
+              variant="contained"
+              startIcon={<AnalyticsIcon />}
+              sx={{
+                backgroundColor: "#1b3b2b",
+                color: "#fed269",
+                fontFamily: "'EB Garamond', serif",
+                fontSize: "15px",
+                fontWeight: 700,
+                border: "1px solid #c29b38",
+                px: 2.5,
+                py: 1,
+                "&:hover": { backgroundColor: "#032517", color: "#fff" },
+              }}
+            >
+              Consultar Diagnóstico & Somatocarta
+            </Button>
+          )}
+          {record.user_id && (
+            <Button
+              component={RouterLink}
+              to={`/measurement/create?user_id=${record.user_id}`}
+              variant="outlined"
+              startIcon={<PostAddIcon />}
+              sx={{
+                borderColor: "#1b3b2b",
+                color: "#1b3b2b",
+                backgroundColor: "#fff",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 600,
+                "&:hover": { backgroundColor: "rgba(27, 59, 43, 0.05)" },
+              }}
+            >
+              Nueva Medición
+            </Button>
+          )}
+        </Box>
+      </Paper>
     </Box>
   );
 });

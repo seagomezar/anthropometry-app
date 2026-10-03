@@ -35,6 +35,8 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import ShieldIcon from '@mui/icons-material/Shield';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { MeasurementList } from '../Measurements/MeasurementList';
 import LineChartField from '../LineChartField/LineChartField';
@@ -133,6 +135,29 @@ const UserHeaderCard = () => {
             </span>
           )}
         </Box>
+      </Box>
+
+      <Box sx={{ ml: { xs: 0, sm: 'auto' } }}>
+        <Button
+          variant="contained"
+          component={RouterLink}
+          to={`/measurement/create?user_id=${record.id}`}
+          startIcon={<PostAddIcon />}
+          sx={{
+            backgroundColor: '#1b3b2b',
+            color: '#fed269',
+            fontFamily: "'EB Garamond', Georgia, serif",
+            fontWeight: 700,
+            fontSize: '15px',
+            border: '1px solid #c29b38',
+            px: 2,
+            py: 0.8,
+            boxShadow: '0 2px 6px rgba(27, 59, 43, 0.2)',
+            '&:hover': { backgroundColor: '#032517', color: '#fff' },
+          }}
+        >
+          {translate('user_show.new_measurement_btn', { _: 'Nueva Medición' })}
+        </Button>
       </Box>
     </Paper>
   );
@@ -328,9 +353,29 @@ const UserShowView = () => {
         {/* Measurements Card - only if measurement feature enabled */}
         {isFeatureEnabled('measurement') && (
           <Paper sx={{ p: 3, mb: 3, borderRadius: 1, border: '1px solid rgba(3, 37, 23, 0.15)', backgroundColor: '#fff' }}>
-            <Typography variant="h6" sx={{ fontFamily: "'EB Garamond', serif", fontWeight: 700, mb: 1.5, display: 'flex', alignItems: 'center', gap: 1, color: '#032517' }}>
-              <StraightenIcon sx={{ color: '#1b3b2b' }} /> {translate('user_show.evaluation_history', { _: 'Historial de Evaluaciones Antropométricas' })}
-            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1.5, flexWrap: 'wrap', gap: 1 }}>
+              <Typography variant="h6" sx={{ fontFamily: "'EB Garamond', serif", fontWeight: 700, display: 'flex', alignItems: 'center', gap: 1, color: '#032517' }}>
+                <StraightenIcon sx={{ color: '#1b3b2b' }} /> {translate('user_show.evaluation_history', { _: 'Historial de Evaluaciones Antropométricas' })}
+              </Typography>
+              <Button
+                variant="outlined"
+                component={RouterLink}
+                to={`/measurement/create?user_id=${record.id}`}
+                startIcon={<PostAddIcon />}
+                size="small"
+                sx={{
+                  borderColor: '#1b3b2b',
+                  color: '#1b3b2b',
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600,
+                  fontSize: '13px',
+                  textTransform: 'none',
+                  '&:hover': { backgroundColor: 'rgba(27, 59, 43, 0.05)', borderColor: '#032517' },
+                }}
+              >
+                {translate('user_show.new_measurement_btn', { _: '+ Registrar Medición' })}
+              </Button>
+            </Box>
             <Divider sx={{ mb: 2, borderColor: 'rgba(3, 37, 23, 0.1)' }} />
             <MeasurementList resource="measurement" filter={{ user_id: record.id }} />
           </Paper>

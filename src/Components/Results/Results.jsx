@@ -19,6 +19,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ShieldIcon from '@mui/icons-material/Shield';
+import PersonIcon from '@mui/icons-material/Person';
+import StraightenIcon from '@mui/icons-material/Straighten';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 
 import { generateResults } from '../../Providers/retultsProvider';
 
@@ -401,25 +404,91 @@ export const Results = React.memo(() => {
             </div>
           </Box>
 
-          <Button
-            component={RouterLink}
-            to="/measurement"
-            variant="outlined"
-            startIcon={<ArrowBackIcon />}
-            sx={{
-              borderColor: 'rgba(3, 37, 23, 0.3)',
-              color: '#1b3b2b',
-              backgroundColor: '#fff',
-              fontSize: '13px',
-              '&:hover': {
-                backgroundColor: 'rgba(27, 59, 43, 0.05)',
-              },
-            }}
-          >
-            {translate('results.back_to_measurements', {
-              _: 'Volver a Mediciones',
-            })}
-          </Button>
+          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+            <Button
+              component={RouterLink}
+              to="/measurement"
+              variant="outlined"
+              size="small"
+              startIcon={<ArrowBackIcon />}
+              sx={{
+                borderColor: 'rgba(3, 37, 23, 0.3)',
+                color: '#1b3b2b',
+                backgroundColor: '#fff',
+                fontSize: '12.5px',
+                '&:hover': {
+                  backgroundColor: 'rgba(27, 59, 43, 0.05)',
+                },
+              }}
+            >
+              {translate('results.back_to_measurements', {
+                _: 'Lista Mediciones',
+              })}
+            </Button>
+            <Button
+              component={RouterLink}
+              to={`/measurement/${data.id}/show`}
+              variant="outlined"
+              size="small"
+              startIcon={<StraightenIcon />}
+              sx={{
+                borderColor: 'rgba(3, 37, 23, 0.3)',
+                color: '#1b3b2b',
+                backgroundColor: '#fff',
+                fontSize: '12.5px',
+                '&:hover': {
+                  backgroundColor: 'rgba(27, 59, 43, 0.05)',
+                },
+              }}
+            >
+              Ficha ISAK
+            </Button>
+            {data.user_id && (
+              <>
+                <Button
+                  component={RouterLink}
+                  to={`/user/${data.user_id}/show`}
+                  variant="outlined"
+                  size="small"
+                  startIcon={<PersonIcon />}
+                  sx={{
+                    borderColor: '#c29b38',
+                    color: '#775a00',
+                    backgroundColor: '#fff',
+                    fontSize: '12.5px',
+                    fontWeight: 600,
+                    '&:hover': {
+                      backgroundColor: 'rgba(194, 155, 56, 0.08)',
+                    },
+                  }}
+                >
+                  Expediente Paciente
+                </Button>
+                <Button
+                  component={RouterLink}
+                  to={`/measurement/create?user_id=${data.user_id}`}
+                  variant="contained"
+                  size="small"
+                  startIcon={<PostAddIcon />}
+                  sx={{
+                    backgroundColor: '#1b3b2b',
+                    color: '#fed269',
+                    fontFamily: "'EB Garamond', Georgia, serif",
+                    fontWeight: 700,
+                    fontSize: '13px',
+                    textTransform: 'none',
+                    border: '1px solid #c29b38',
+                    '&:hover': {
+                      backgroundColor: '#032517',
+                      color: '#fff',
+                    },
+                  }}
+                >
+                  + Nueva Medición
+                </Button>
+              </>
+            )}
+          </Box>
         </Box>
 
         {user && (

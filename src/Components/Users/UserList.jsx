@@ -15,11 +15,14 @@ import {
   usePermissions,
   ReferenceInput,
   SelectInput,
+  FunctionField,
 } from "react-admin";
 import { useMediaQuery, Box, Typography, Paper, Chip, Button } from "@mui/material";
 import FolderSharedIcon from "@mui/icons-material/FolderShared";
 import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import { Link as RouterLink } from "react-router-dom";
 import { useFeaturePreferences } from "../../config/features";
 import { UserImportModal } from "./UserImportModal";
 
@@ -408,7 +411,38 @@ export const UserList = (props) => {
                 <ReferenceField source="nutritionist_id" reference="nutritionist" />
               )}
               <DateField source="created_at" />
-              <DateField source="updated_at" />
+              <FunctionField
+                label="Evaluación"
+                render={(record) => (
+                  <Button
+                    component={RouterLink}
+                    to={`/measurement/create?user_id=${record.id}`}
+                    variant="contained"
+                    size="small"
+                    startIcon={<PostAddIcon fontSize="small" />}
+                    onClick={(e) => e.stopPropagation()}
+                    sx={{
+                      backgroundColor: "#1b3b2b",
+                      color: "#fed269",
+                      fontFamily: "'EB Garamond', Georgia, serif",
+                      fontWeight: 700,
+                      fontSize: "12.5px",
+                      textTransform: "none",
+                      whiteSpace: "nowrap",
+                      py: 0.3,
+                      px: 1.2,
+                      border: "1px solid #c29b38",
+                      boxShadow: "none",
+                      "&:hover": {
+                        backgroundColor: "#032517",
+                        color: "#fff",
+                      },
+                    }}
+                  >
+                    + Medición
+                  </Button>
+                )}
+              />
               <EditButton />
               <DeleteButton />
             </Datagrid>

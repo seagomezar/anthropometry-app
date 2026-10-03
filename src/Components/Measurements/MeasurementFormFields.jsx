@@ -13,6 +13,7 @@ import StraightenIcon from "@mui/icons-material/Straighten";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import ScienceIcon from "@mui/icons-material/Science";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
 
 const filterToQuery = (searchText) => ({
   sport: `%${searchText}%`,
@@ -79,7 +80,12 @@ export const MeasurementFormFields = () => {
               filter={userFilter}
               fullWidth
             >
-              <AutocompleteInput filterToQuery={userToQuery} />
+              <AutocompleteInput
+                filterToQuery={userToQuery}
+                optionText={(r) =>
+                  r ? `${r.firstname || ""} ${r.lastname || ""}`.trim() : ""
+                }
+              />
             </ReferenceInput>
           </Box>
           <Box flex={1}>
@@ -244,42 +250,115 @@ export const MeasurementFormFields = () => {
         </Box>
       </SectionCard>
 
-      {/* Section E: Somatotype & Bioquímicos */}
+      {/* Section E: Somatotype & Coordenadas */}
       <SectionCard
         title={translate("measurement_form.section_e", {
-          _: "Sección E: Marcadores Bioquímicos & Coordenadas",
+          _: "Sección E: Coordenadas & Condición Física",
         })}
         icon={ScienceIcon}
       >
         <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
           <Box flex={1}>
-            <NumberInput source="x" fullWidth />
+            <NumberInput source="x" fullWidth helperText="Coordenada X Somatotipo (opcional si calcula automático)" />
           </Box>
           <Box flex={1}>
-            <NumberInput source="y" fullWidth />
-          </Box>
-        </Box>
-        <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
-          <Box flex={1}>
-            <TextInput source="creatinine" fullWidth />
-          </Box>
-          <Box flex={1}>
-            <NumberInput source="fitness_level" fullWidth />
-          </Box>
-        </Box>
-        <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
-          <Box flex={1}>
-            <TextInput source="t3_t4" fullWidth />
-          </Box>
-          <Box flex={1}>
-            <TextInput source="triglycerides" fullWidth />
+            <NumberInput source="y" fullWidth helperText="Coordenada Y Somatotipo (opcional si calcula automático)" />
           </Box>
         </Box>
         <Box display={{ xs: "block", sm: "flex" }} gap={2}>
           <Box flex={1}>
-            <TextInput source="uric_acid" fullWidth />
+            <NumberInput source="fitness_level" fullWidth />
           </Box>
           <Box flex={1} />
+        </Box>
+      </SectionCard>
+
+      {/* Section F: Exámenes Paraclínicos (Opcionales) */}
+      <SectionCard
+        title={translate("measurement_form.section_f", {
+          _: "Sección F: Exámenes Paraclínicos & Laboratorio (Opcionales)",
+        })}
+        icon={LocalPharmacyIcon}
+      >
+        <Typography
+          variant="caption"
+          sx={{
+            display: "block",
+            mb: 2,
+            p: 1.2,
+            backgroundColor: "#faf7f2",
+            border: "1px dashed rgba(194, 155, 56, 0.6)",
+            borderRadius: "2px",
+            color: "#775a00",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "12px",
+          }}
+        >
+          {translate("measurement_form.paraclinicals_notice", {
+            _: "Nota clínica: Todos los exámenes paraclínicos son opcionales. Diligencie únicamente aquellos disponibles si el paciente cuenta con análisis de laboratorio recientes.",
+          })}
+        </Typography>
+
+        <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
+          <Box flex={1}>
+            <TextInput source="blood_pressure" fullWidth helperText="Presión Arterial (Ej: 120/80 mmHg)" />
+          </Box>
+          <Box flex={1}>
+            <TextInput source="glucose" fullWidth helperText="Glucosa en ayunas (mg/dL)" />
+          </Box>
+        </Box>
+
+        <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
+          <Box flex={1}>
+            <TextInput source="hba1c" fullWidth helperText="Hemoglobina Glicosilada (%)" />
+          </Box>
+          <Box flex={1}>
+            <TextInput source="hemoglobin" fullWidth helperText="Hemoglobina / Hematocrito (g/dL)" />
+          </Box>
+        </Box>
+
+        <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
+          <Box flex={1}>
+            <TextInput source="cholesterol_total" fullWidth helperText="Colesterol Total (mg/dL)" />
+          </Box>
+          <Box flex={1}>
+            <TextInput source="cholesterol_hdl" fullWidth helperText="Colesterol HDL (mg/dL)" />
+          </Box>
+        </Box>
+
+        <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
+          <Box flex={1}>
+            <TextInput source="cholesterol_ldl" fullWidth helperText="Colesterol LDL (mg/dL)" />
+          </Box>
+          <Box flex={1}>
+            <TextInput source="triglycerides" fullWidth helperText="Triglicéridos (mg/dL)" />
+          </Box>
+        </Box>
+
+        <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
+          <Box flex={1}>
+            <TextInput source="creatinine" fullWidth helperText="Creatinina Sérica (mg/dL)" />
+          </Box>
+          <Box flex={1}>
+            <TextInput source="uric_acid" fullWidth helperText="Ácido Úrico (mg/dL)" />
+          </Box>
+        </Box>
+
+        <Box display={{ xs: "block", sm: "flex" }} gap={2} mb={1.5}>
+          <Box flex={1}>
+            <TextInput source="t3_t4" fullWidth helperText="Perfil Tiroideo T3 / T4" />
+          </Box>
+          <Box flex={1} />
+        </Box>
+
+        <Box>
+          <TextInput
+            source="paraclinicals_notes"
+            fullWidth
+            multiline
+            rows={2}
+            helperText="Observaciones e interpretaciones paraclínicas adicionales"
+          />
         </Box>
       </SectionCard>
     </Box>

@@ -1,16 +1,30 @@
 import React from "react";
 import { Create, SimpleForm, useTranslate, usePermissions } from "react-admin";
-import { Box, Typography, Paper } from "@mui/material";
+import { Box, Typography, Paper, Chip, Button } from "@mui/material";
 import PostAddIcon from "@mui/icons-material/PostAdd";
+import PersonIcon from "@mui/icons-material/Person";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useLocation, Link as RouterLink } from "react-router-dom";
 import { MeasurementFormFields } from "./MeasurementFormFields";
 
 export const MeasurementCreate = (props) => {
   const translate = useTranslate();
+  const location = useLocation();
   const { permissions } = usePermissions();
   const isNutritionist = permissions?.role === "nutritionist";
-  const defaultValues = isNutritionist && permissions?.nutritionistId
-    ? { nutritionist_id: permissions.nutritionistId }
-    : {};
+
+  // Parse user_id from query search string, router state, or window hash
+  let paramUserId = new URLSearchParams(location.search).get("user_id") || location.state?.user_id;
+  if (!paramUserId && window.location.hash.includes("?")) {
+    const hashSearch = window.location.hash.split("?")[1];
+    paramUserId = new URLSearchParams(hashSearch).get("user_id");
+  }
+  const numericUserId = paramUserId ? parseInt(paramUserId, 10) : undefined;
+
+  const defaultValues = {
+    ...(isNutritionist && permissions?.nutritionistId ? { nutritionist_id: permissions.nutritionistId } : {}),
+    ...(numericUserId ? { user_id: numericUserId } : {}),
+  };
 
   const transform = (data) => {
     if (isNutritionist && permissions?.nutritionistId) {
@@ -84,6 +98,39 @@ export const MeasurementCreate = (props) => {
               _: "Cuaderno Oficial de Registro Antropométrico & Biometría",
             })}
           </Typography>
+          {numericUserId && (
+            <Box sx={{ mt: 1.2, display: "flex", alignItems: "center", gap: 1.5, flexWrap: "wrap" }}>
+              <Chip
+                icon={<PersonIcon fontSize="small" sx={{ color: "#1b3b2b !important" }} />}
+                label={`Paciente Seleccionado: ID #${numericUserId}`}
+                size="small"
+                sx={{
+                  backgroundColor: "rgba(27, 59, 43, 0.08)",
+                  border: "1px solid rgba(27, 59, 43, 0.3)",
+                  color: "#1b3b2b",
+                  fontWeight: 600,
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}
+              />
+              <Button
+                component={RouterLink}
+                to={`/user/${numericUserId}/show`}
+                variant="text"
+                size="small"
+                startIcon={<ArrowBackIcon fontSize="small" />}
+                sx={{
+                  color: "#775a00",
+                  fontSize: "12px",
+                  fontFamily: "'Inter', sans-serif",
+                  textTransform: "none",
+                  py: 0,
+                  "&:hover": { textDecoration: "underline" },
+                }}
+              >
+                Volver al expediente
+              </Button>
+            </Box>
+          )}
         </Box>
       </Paper>
 

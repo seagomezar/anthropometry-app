@@ -13,10 +13,13 @@ import {
   useTranslate,
   useListContext,
   usePermissions,
+  FunctionField,
 } from "react-admin";
-import { useMediaQuery, Box, Typography, Paper, Chip } from "@mui/material";
+import { useMediaQuery, Box, Typography, Paper, Chip, Button } from "@mui/material";
 import StraightenIcon from "@mui/icons-material/Straighten";
 import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
+import { Link as RouterLink } from "react-router-dom";
 
 const measurementFilters = [
   <TextInput
@@ -362,7 +365,38 @@ export const MeasurementList = (props) => {
               <TextField source="notes" />
               <TextField source="training_period" />
               <DateField source="created_at" />
-              <DateField source="updated_at" />
+              <FunctionField
+                label="Resultados"
+                render={(record) => (
+                  <Button
+                    component={RouterLink}
+                    to={`/results/${record.id}`}
+                    variant="contained"
+                    size="small"
+                    startIcon={<AnalyticsIcon fontSize="small" />}
+                    onClick={(e) => e.stopPropagation()}
+                    sx={{
+                      backgroundColor: "#1b3b2b",
+                      color: "#fed269",
+                      fontFamily: "'EB Garamond', Georgia, serif",
+                      fontWeight: 700,
+                      fontSize: "12.5px",
+                      textTransform: "none",
+                      whiteSpace: "nowrap",
+                      py: 0.3,
+                      px: 1.2,
+                      border: "1px solid #c29b38",
+                      boxShadow: "none",
+                      "&:hover": {
+                        backgroundColor: "#032517",
+                        color: "#fff",
+                      },
+                    }}
+                  >
+                    Resultados
+                  </Button>
+                )}
+              />
               <EditButton />
               <DeleteButton className="delete-button" />
             </Datagrid>

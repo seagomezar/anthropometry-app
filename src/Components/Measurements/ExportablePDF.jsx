@@ -85,11 +85,32 @@ const calculateAge = (birthday) => {
   const age_dt = new Date(diff_ms);
   const age = Math.abs(age_dt.getUTCFullYear() - 1970);
   return age;
-}
+};
 
+const fmt = (val, dec = 2) => {
+  if (val === null || val === undefined || isNaN(val) || val === '') return "—";
+  return Number(val).toFixed(dec);
+};
 
 // Create Document Component
 export const ExportablePDF = React.memo(({ record, results, translate, user, nutritionist, referencedSomatotype }) => {
+  const hasParaclinicals = Boolean(
+    record && (
+      record.blood_pressure ||
+      record.glucose ||
+      record.hba1c ||
+      record.cholesterol_total ||
+      record.cholesterol_hdl ||
+      record.cholesterol_ldl ||
+      record.triglycerides ||
+      record.creatinine ||
+      record.uric_acid ||
+      record.hemoglobin ||
+      record.t3_t4 ||
+      record.paraclinicals_notes
+    )
+  );
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -437,7 +458,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.endomorph")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.endomorph.toFixed(2)}
+              {fmt(results?.endomorph)}
             </Text>
           </View>
 
@@ -446,7 +467,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.mesomorph")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.mesomorph.toFixed(2)}
+              {fmt(results?.mesomorph)}
             </Text>
           </View>
 
@@ -455,7 +476,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.ectomorph")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.ectomorph.toFixed(2)}
+              {fmt(results?.ectomorph)}
             </Text>
           </View>
 
@@ -464,7 +485,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.x")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {record.x}
+              {record.x ?? "—"}
             </Text>
           </View>
 
@@ -473,7 +494,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.y")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {record.y}
+              {record.y ?? "—"}
             </Text>
           </View>
 
@@ -492,7 +513,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.resultX")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.resultX.toFixed(2)}
+              {fmt(results?.resultX)}
             </Text>
           </View>
 
@@ -501,7 +522,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.resultY")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.resultY.toFixed(2)}
+              {fmt(results?.resultY)}
             </Text>
           </View>
 
@@ -520,7 +541,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.imc")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.imc.toFixed(2)}
+              {fmt(results?.imc)}
             </Text>
           </View>
 
@@ -529,7 +550,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.iaks")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.iaks.toFixed(2)}
+              {fmt(results?.iaks)}
             </Text>
           </View>
 
@@ -538,7 +559,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.complexion")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.complexion.toFixed(2)}
+              {fmt(results?.complexion)}
             </Text>
           </View>
 
@@ -547,7 +568,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.conicIndex")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.conicIndex.toFixed(2)}
+              {fmt(results?.conicIndex)}
             </Text>
           </View>
 
@@ -557,7 +578,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.sumOfPlgs")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.sumOfPlgs.toFixed(2)}
+              {fmt(results?.sumOfPlgs)}
             </Text>
           </View>
 
@@ -566,7 +587,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.yhaszFatPercentage")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.yhaszFatPercentage.toFixed(2)}
+              {fmt(results?.yhaszFatPercentage)}
             </Text>
           </View>
 
@@ -581,7 +602,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.fatWeight")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.fatWeight.toFixed(2)}
+              {fmt(results?.fatWeight)}
             </Text>
           </View>
 
@@ -590,7 +611,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.freeFatWeight")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.freeFatWeight.toFixed(2)}
+              {fmt(results?.freeFatWeight)}
             </Text>
           </View>
 
@@ -605,7 +626,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.sumaPlieguesEndo")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valore }}>
-              {results.sumaPlieguesEndo.toFixed(2)}
+              {fmt(results?.sumaPlieguesEndo)}
             </Text>
           </View>
 
@@ -614,7 +635,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.yhaszFatPercentageSumaPliegues")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.faulknerFatPercentage.toFixed(2)}
+              {fmt(results?.faulknerFatPercentage)}
             </Text>
           </View>
 
@@ -625,7 +646,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               )}
             </Text>
             <Text style={{ ...styles.column, ...styles.valore }}>
-              {results.parizcovaFatPercentage.toFixed(2)}
+              {fmt(results?.parizcovaFatPercentage)}
             </Text>
           </View>
 
@@ -634,7 +655,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.desiredIMC")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valore }}>
-              {results.desiredIMC.toFixed(2)}
+              {fmt(results?.desiredIMC)}
             </Text>
           </View>
 
@@ -643,7 +664,7 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               {translate("resources.measurement.fields.desiredWeight")}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.desiredWeight.toFixed(2)}
+              {fmt(results?.desiredWeight)}
             </Text>
           </View>
 
@@ -654,11 +675,96 @@ export const ExportablePDF = React.memo(({ record, results, translate, user, nut
               )}
             </Text>
             <Text style={{ ...styles.column, ...styles.valores }}>
-              {results.desiredFat2MethodPercentage.toFixed(2)}
+              {fmt(results?.desiredFat2MethodPercentage)}
             </Text>
           </View>
         </View>
       </Page>
+      {hasParaclinicals && (
+        <Page size="A4" style={styles.page}>
+          <View style={{ ...styles.section, width: "100%" }}>
+            <View style={{ ...styles.row, ...styles.fondVerde, ...styles.columnaCompleta, marginBottom: 8 }}>
+              <Text style={{ ...styles.column, color: "#ffffff" }}>
+                EXÁMENES PARACLÍNICOS & MARCADORES DE LABORATORIO
+              </Text>
+            </View>
+
+            {record.blood_pressure && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Presión Arterial</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.blood_pressure}</Text>
+              </View>
+            )}
+            {record.glucose && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Glucosa en Ayunas (mg/dL)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.glucose}</Text>
+              </View>
+            )}
+            {record.hba1c && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Hemoglobina Glicosilada HbA1c (%)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.hba1c}</Text>
+              </View>
+            )}
+            {record.hemoglobin && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Hemoglobina / Hematocrito (g/dL)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.hemoglobin}</Text>
+              </View>
+            )}
+            {record.cholesterol_total && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Colesterol Total (mg/dL)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.cholesterol_total}</Text>
+              </View>
+            )}
+            {record.cholesterol_hdl && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Colesterol HDL (mg/dL)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.cholesterol_hdl}</Text>
+              </View>
+            )}
+            {record.cholesterol_ldl && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Colesterol LDL (mg/dL)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.cholesterol_ldl}</Text>
+              </View>
+            )}
+            {record.triglycerides && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Triglicéridos (mg/dL)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.triglycerides}</Text>
+              </View>
+            )}
+            {record.creatinine && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Creatinina Sérica (mg/dL)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.creatinine}</Text>
+              </View>
+            )}
+            {record.uric_acid && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Ácido Úrico (mg/dL)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.uric_acid}</Text>
+              </View>
+            )}
+            {record.t3_t4 && (
+              <View style={styles.row}>
+                <Text style={{ ...styles.column, ...styles.bord }}>Perfil Tiroideo (T3 / T4)</Text>
+                <Text style={{ ...styles.column, ...styles.fondoAzul, ...styles.valore }}>{record.t3_t4}</Text>
+              </View>
+            )}
+            {record.paraclinicals_notes && (
+              <View style={{ ...styles.row, marginTop: 6 }}>
+                <Text style={{ ...styles.column, ...styles.columnaCompleta }}>
+                  Observaciones Paraclínicas: {record.paraclinicals_notes}
+                </Text>
+              </View>
+            )}
+          </View>
+        </Page>
+      )}
     </Document>
   );
 });
