@@ -86,7 +86,7 @@ function sumaPlieguesEndo(measurement) {
 
 function endoFactor(measurement, height) {
   const h = n(height);
-  if (!h) return 0;
+  if (h <= 0) return 0;
   const endoFactor =
     sumaPlieguesEndo(measurement) * (170.18 / h);
   return endoFactor;
@@ -95,7 +95,7 @@ function endoFactor(measurement, height) {
 function ponderalIndex(height, weight) {
   const h = n(height);
   const w = n(weight);
-  if (!h || !w) return 0;
+  if (h <= 0 || w <= 0) return 0;
   const ponderalIndex = h / Math.pow(w, 1 / 3);
   return ponderalIndex;
 }
@@ -120,7 +120,7 @@ function mesomorph(measurement, height) {
   const prm_calf = n(measurement.prm_calf ?? measurement.calf);
   const prm_arm_contracted = n(measurement.prm_arm_contracted ?? measurement.arm_flexed);
   const h = n(height);
-  if (!h) return 0;
+  if (h <= 0) return 0;
   const mesomorph =
     0.858 * dm_elbow +
     0.601 * dm_knee +
@@ -154,13 +154,14 @@ function resultY(ectomorph, endomorph, mesomorph) {
 function imc(weight, height) {
   const w = n(weight);
   const h = n(height);
-  if (!w || !h) return 0;
+  if (w <= 0 || h <= 0) return 0;
   const imc = w / (((h / 100) * h) / 100);
   return imc;
 }
 
 function activeMass(measurement, weight) {
   const w = n(weight);
+  if (w <= 0) return 0;
   const activeMass =
     w - (parizcovaFatPercentage(measurement) * w) / 100;
   return activeMass;
@@ -169,7 +170,7 @@ function activeMass(measurement, weight) {
 function iaks(measurement, height, weight) {
   const h = n(height);
   const w = n(weight);
-  if (!h || !w) return 0;
+  if (h <= 0 || w <= 0) return 0;
   const iaks =
     (activeMass(measurement, w) * 100000) /
     (h * h * h);
@@ -179,7 +180,7 @@ function iaks(measurement, height, weight) {
 function complexion(measurement, height) {
   const h = n(height);
   const prm_wrist = n(measurement?.prm_wrist ?? measurement?.wrist);
-  if (prm_wrist && h) {
+  if (prm_wrist > 0 && h > 0) {
     return h / prm_wrist;
   } else {
     return 0;
@@ -189,7 +190,7 @@ function complexion(measurement, height) {
 function raizPT(weight, height) {
   const w = n(weight);
   const h = n(height);
-  if (!w || !h) return 0;
+  if (w <= 0 || h <= 0) return 0;
   const raizPt = Math.sqrt(w / (h / 100));
   return raizPt;
 }
@@ -197,7 +198,7 @@ function raizPT(weight, height) {
 function conicIndex(measurement, weight, height) {
   const prm_waist = n(measurement?.prm_waist ?? measurement?.waist);
   const rPT = raizPT(weight, height);
-  if (!rPT || !prm_waist) return 0;
+  if (rPT <= 0 || prm_waist <= 0) return 0;
   const conicIndex =
     prm_waist / 100 / (0.109 * rPT);
   return conicIndex;
@@ -224,6 +225,7 @@ function sumOfPlgs(measurement) {
 
 function fatWeight(measurement, weight, gender) {
   const w = n(weight);
+  if (w <= 0) return 0;
   const fatPercentage = yhaszFatPercentage(measurement, gender) || 1;
   const fatWeight = (fatPercentage * w) / 100;
   return fatWeight;
@@ -231,6 +233,7 @@ function fatWeight(measurement, weight, gender) {
 
 function freeFatWeight(measurement, weight, gender) {
   const w = n(weight);
+  if (w <= 0) return 0;
   const freeFatWeight =
     w - fatWeight(measurement, w, gender);
   return freeFatWeight;
@@ -238,7 +241,7 @@ function freeFatWeight(measurement, weight, gender) {
 
 function residualWeight(weight, gender) {
   const w = n(weight);
-  if (!w) return 0;
+  if (w <= 0) return 0;
   let residualWeight;
   // Hombre
   if (gender) {
@@ -259,7 +262,7 @@ function desiredIMC(gender) {
 
 function desiredWeight(height, gender) {
   const h = n(height);
-  if (!h) return 0;
+  if (h <= 0) return 0;
   const dIMC = desiredIMC(gender);
   const desiredWeight = dIMC * ((h / 100) * (h / 100));
   return desiredWeight;
